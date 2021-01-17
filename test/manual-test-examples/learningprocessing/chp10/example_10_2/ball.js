@@ -15,7 +15,7 @@ function Ball(tempR) {
   this.yspeed = random(-5, 5);
 }
 
-Ball.prototype.move = function() {
+Ball.prototype.move = function () {
   this.x += this.xspeed; // Increment x
   this.y += this.yspeed; // Increment y
 
@@ -30,7 +30,7 @@ Ball.prototype.move = function() {
 };
 
 // Draw the ball
-Ball.prototype.display = function() {
+Ball.prototype.display = function () {
   stroke(0);
   fill(0, 50);
   ellipse(this.x, this.y, this.r * 2, this.r * 2);

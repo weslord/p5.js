@@ -37,7 +37,7 @@ import '../core/friendly_errors/fes_core';
  * @alt
  * Left half of canvas light blue and right half light charcoal grey.
  */
-p5.prototype.alpha = function(c) {
+p5.prototype.alpha = function (c) {
   p5._validateParameters('alpha', arguments);
   return this.color(c)._getAlpha();
 };
@@ -64,7 +64,7 @@ p5.prototype.alpha = function(c) {
  * @alt
  * Left half of canvas light purple and right half a royal blue.
  */
-p5.prototype.blue = function(c) {
+p5.prototype.blue = function (c) {
   p5._validateParameters('blue', arguments);
   return this.color(c)._getBlue();
 };
@@ -108,7 +108,7 @@ p5.prototype.blue = function(c) {
  * Left half of canvas salmon pink and the right half with it's brightness colored white.
  * Left half of canvas olive colored and the right half with it's brightness color gray.
  */
-p5.prototype.brightness = function(c) {
+p5.prototype.brightness = function (c) {
   p5._validateParameters('brightness', arguments);
   return this.color(c)._getBrightness();
 };
@@ -284,7 +284,7 @@ p5.prototype.brightness = function(c) {
  * @param  {p5.Color}     color
  * @return {p5.Color}
  */
-p5.prototype.color = function() {
+p5.prototype.color = function () {
   p5._validateParameters('color', arguments);
   if (arguments[0] instanceof p5.Color) {
     return arguments[0]; // Do nothing if argument is already a color object.
@@ -318,7 +318,7 @@ p5.prototype.color = function() {
  * @alt
  * blue rect on left and green on right, both with black outlines & 35x60.
  */
-p5.prototype.green = function(c) {
+p5.prototype.green = function (c) {
   p5._validateParameters('green', arguments);
   return this.color(c)._getGreen();
 };
@@ -353,7 +353,7 @@ p5.prototype.green = function(c) {
  * @alt
  * salmon pink rect on left and black on right, both 35x60.
  */
-p5.prototype.hue = function(c) {
+p5.prototype.hue = function (c) {
   p5._validateParameters('hue', arguments);
   return this.color(c)._getHue();
 };
@@ -401,7 +401,7 @@ p5.prototype.hue = function(c) {
  * 4 rects one tan, brown, brownish purple, purple, with white outlines & 20x60
  */
 
-p5.prototype.lerpColor = function(c1, c2, amt) {
+p5.prototype.lerpColor = function (c1, c2, amt) {
   p5._validateParameters('lerpColor', arguments);
   const mode = this._colorMode;
   const maxes = this._colorMaxes;
@@ -409,8 +409,8 @@ p5.prototype.lerpColor = function(c1, c2, amt) {
   let fromArray, toArray;
 
   if (mode === constants.RGB) {
-    fromArray = c1.levels.map(level => level / 255);
-    toArray = c2.levels.map(level => level / 255);
+    fromArray = c1.levels.map((level) => level / 255);
+    toArray = c2.levels.map((level) => level / 255);
   } else if (mode === constants.HSB) {
     c1._getBrightness(); // Cache hsba so it definitely exists.
     c2._getBrightness();
@@ -474,7 +474,7 @@ p5.prototype.lerpColor = function(c1, c2, amt) {
  * @alt
  * light pastel green rect on left and dark grey rect on right, both 35x60.
  */
-p5.prototype.lightness = function(c) {
+p5.prototype.lightness = function (c) {
   p5._validateParameters('lightness', arguments);
   return this.color(c)._getLightness();
 };
@@ -514,7 +514,7 @@ p5.prototype.lightness = function(c) {
  * yellow rect on left and red rect on right, both with black outlines and 35x60.
  * grey canvas
  */
-p5.prototype.red = function(c) {
+p5.prototype.red = function (c) {
   p5._validateParameters('red', arguments);
   return this.color(c)._getRed();
 };
@@ -548,7 +548,7 @@ p5.prototype.red = function(c) {
  * @alt
  *deep pink rect on left and grey rect on right, both 35x60.
  */
-p5.prototype.saturation = function(c) {
+p5.prototype.saturation = function (c) {
   p5._validateParameters('saturation', arguments);
   return this.color(c)._getSaturation();
 };

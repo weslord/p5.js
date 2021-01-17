@@ -84,7 +84,7 @@ import Filters from './filters';
  * @param {Number} width
  * @param {Number} height
  */
-p5.Image = function(width, height) {
+p5.Image = function (width, height) {
   /**
    * Image width.
    * @property {Number} width
@@ -200,7 +200,7 @@ p5.Image = function(width, height) {
    * let pink = color(255, 102, 204);
    * let img = createImage(66, 66);
    * img.loadPixels();
-   * for (let i = 0; i < 4 * (width * height / 2); i += 4) {
+   * for (let i = 0; i < (4 * (width * height)) / 2; i += 4) {
    *   img.pixels[i] = red(pink);
    *   img.pixels[i + 1] = green(pink);
    *   img.pixels[i + 2] = blue(pink);
@@ -222,7 +222,7 @@ p5.Image = function(width, height) {
 /**
  * Helper function for animating GIF-based images with time
  */
-p5.Image.prototype._animateGif = function(pInst) {
+p5.Image.prototype._animateGif = function (pInst) {
   const props = this.gifProperties;
   const curTime = pInst._lastFrameTime + pInst.deltaTime;
   if (props.lastChangeTime === 0) {
@@ -253,7 +253,7 @@ p5.Image.prototype._animateGif = function(pInst) {
 /**
  * Helper fxn for sharing pixel methods
  */
-p5.Image.prototype._setProperty = function(prop, value) {
+p5.Image.prototype._setProperty = function (prop, value) {
   this[prop] = value;
   this.setModified(true);
 };
@@ -273,7 +273,7 @@ p5.Image.prototype._setProperty = function(prop, value) {
  *
  * function setup() {
  *   myImage.loadPixels();
- *   halfImage = 4 * myImage.width * myImage.height / 2;
+ *   halfImage = (4 * myImage.width * myImage.height) / 2;
  *   for (let i = 0; i < halfImage; i++) {
  *     myImage.pixels[i + halfImage] = myImage.pixels[i];
  *   }
@@ -288,7 +288,7 @@ p5.Image.prototype._setProperty = function(prop, value) {
  * @alt
  * 2 images of rocky mountains vertically stacked
  */
-p5.Image.prototype.loadPixels = function() {
+p5.Image.prototype.loadPixels = function () {
   p5.Renderer2D.prototype.loadPixels.call(this);
   this.setModified(true);
 };
@@ -320,7 +320,7 @@ p5.Image.prototype.loadPixels = function() {
  *
  * function setup() {
  *   myImage.loadPixels();
- *   halfImage = 4 * myImage.width * myImage.height / 2;
+ *   halfImage = (4 * myImage.width * myImage.height) / 2;
  *   for (let i = 0; i < halfImage; i++) {
  *     myImage.pixels[i + halfImage] = myImage.pixels[i];
  *   }
@@ -338,7 +338,7 @@ p5.Image.prototype.loadPixels = function() {
 /**
  * @method updatePixels
  */
-p5.Image.prototype.updatePixels = function(x, y, w, h) {
+p5.Image.prototype.updatePixels = function (x, y, w, h) {
   p5.Renderer2D.prototype.updatePixels.call(this, x, y, w, h);
   this.setModified(true);
 };
@@ -390,7 +390,7 @@ p5.Image.prototype.updatePixels = function(x, y, w, h) {
  * @param  {Number}        y
  * @return {Number[]}      color of pixel at x,y in array format [R, G, B, A]
  */
-p5.Image.prototype.get = function(x, y, w, h) {
+p5.Image.prototype.get = function (x, y, w, h) {
   p5._validateParameters('p5.Image.get', arguments);
   return p5.Renderer2D.prototype.get.apply(this, arguments);
 };
@@ -429,7 +429,7 @@ p5.Image.prototype._getPixel = p5.Renderer2D.prototype._getPixel;
  * @alt
  * 2 gradated dark turquoise rects fade left. 1 center 1 bottom right of canvas
  */
-p5.Image.prototype.set = function(x, y, imgOrCol) {
+p5.Image.prototype.set = function (x, y, imgOrCol) {
   p5.Renderer2D.prototype.set.call(this, x, y, imgOrCol);
   this.setModified(true);
 };
@@ -463,7 +463,7 @@ p5.Image.prototype.set = function(x, y, imgOrCol) {
  * @alt
  * image of rocky mountains. zoomed in
  */
-p5.Image.prototype.resize = function(width, height) {
+p5.Image.prototype.resize = function (width, height) {
   // Copy contents to a temporary canvas, resize the original
   // and then copy back.
   //
@@ -479,9 +479,9 @@ p5.Image.prototype.resize = function(width, height) {
     width = this.canvas.width;
     height = this.canvas.height;
   } else if (width === 0) {
-    width = this.canvas.width * height / this.canvas.height;
+    width = (this.canvas.width * height) / this.canvas.height;
   } else if (height === 0) {
-    height = this.canvas.height * width / this.canvas.width;
+    height = (this.canvas.height * width) / this.canvas.width;
   }
 
   width = Math.floor(width);
@@ -498,8 +498,8 @@ p5.Image.prototype.resize = function(width, height) {
       let pos = 0;
       for (let y = 0; y < dst.height; y++) {
         for (let x = 0; x < dst.width; x++) {
-          const srcX = Math.floor(x * src.width / dst.width);
-          const srcY = Math.floor(y * src.height / dst.height);
+          const srcX = Math.floor((x * src.width) / dst.width);
+          const srcY = Math.floor((y * src.height) / dst.height);
           let srcPos = (srcY * src.width + srcX) * 4;
           dst.data[pos++] = src.data[srcPos++]; // R
           dst.data[pos++] = src.data[srcPos++]; // G
@@ -596,7 +596,7 @@ p5.Image.prototype.resize = function(width, height) {
  * @param  {Integer} dw
  * @param  {Integer} dh
  */
-p5.Image.prototype.copy = function(...args) {
+p5.Image.prototype.copy = function (...args) {
   p5.prototype.copy.apply(this, args);
 };
 
@@ -632,7 +632,7 @@ p5.Image.prototype.copy = function(...args) {
 //       blue channel (which feels kind of arbitrary). Note: at the
 //       moment this method does not match native processing's original
 //       functionality exactly.
-p5.Image.prototype.mask = function(p5Image) {
+p5.Image.prototype.mask = function (p5Image) {
   if (p5Image === undefined) {
     p5Image = this;
   }
@@ -652,7 +652,7 @@ p5.Image.prototype.mask = function(p5Image) {
     0,
     0,
     this.width,
-    this.height
+    this.height,
   ];
 
   this.drawingContext.globalCompositeOperation = 'destination-in';
@@ -691,7 +691,7 @@ p5.Image.prototype.mask = function(p5Image) {
  * @alt
  * 2 images of rocky mountains left one in color, right in black and white
  */
-p5.Image.prototype.filter = function(operation, value) {
+p5.Image.prototype.filter = function (operation, value) {
   Filters.apply(this.canvas, Filters[operation], value);
   this.setModified(true);
 };
@@ -785,7 +785,7 @@ p5.Image.prototype.filter = function(operation, value) {
  * @param  {Integer} dh
  * @param  {Constant} blendMode
  */
-p5.Image.prototype.blend = function(...args) {
+p5.Image.prototype.blend = function (...args) {
   p5._validateParameters('p5.Image.blend', arguments);
   p5.prototype.blend.apply(this, args);
   this.setModified(true);
@@ -800,7 +800,7 @@ p5.Image.prototype.blend = function(...args) {
  * modified.
  * @private
  */
-p5.Image.prototype.setModified = function(val) {
+p5.Image.prototype.setModified = function (val) {
   this._modified = val; //enforce boolean?
 };
 
@@ -813,7 +813,7 @@ p5.Image.prototype.setModified = function(val) {
  * @return {boolean} a boolean indicating whether or not the
  * image has been updated or modified since last texture upload.
  */
-p5.Image.prototype.isModified = function() {
+p5.Image.prototype.isModified = function () {
   return this._modified;
 };
 
@@ -849,7 +849,7 @@ p5.Image.prototype.isModified = function() {
  * @alt
  * image of rocky mountains.
  */
-p5.Image.prototype.save = function(filename, extension) {
+p5.Image.prototype.save = function (filename, extension) {
   if (this.gifProperties) {
     p5.prototype.saveGif(this, filename);
   } else {
@@ -886,7 +886,7 @@ p5.Image.prototype.save = function(filename, extension) {
  * Animated image of a cartoon face that winks once and then freezes
  * When you click it animates again, winks once and freezes
  */
-p5.Image.prototype.reset = function() {
+p5.Image.prototype.reset = function () {
   if (this.gifProperties) {
     const props = this.gifProperties;
     props.playing = true;
@@ -923,7 +923,7 @@ p5.Image.prototype.reset = function() {
  * looking outwards, in the lower-left hand corner a number counts
  * up quickly to 124 and then starts back over at 0
  */
-p5.Image.prototype.getCurrentFrame = function() {
+p5.Image.prototype.getCurrentFrame = function () {
   if (this.gifProperties) {
     const props = this.gifProperties;
     return props.displayIndex % props.numFrames;
@@ -959,7 +959,7 @@ p5.Image.prototype.getCurrentFrame = function() {
  * A still image of a cartoon eye that looks around when you move your mouse
  * up and down over the canvas
  */
-p5.Image.prototype.setFrame = function(index) {
+p5.Image.prototype.setFrame = function (index) {
   if (this.gifProperties) {
     const props = this.gifProperties;
     if (index < props.numFrames && index >= 0) {
@@ -1004,7 +1004,7 @@ p5.Image.prototype.setFrame = function(index) {
  * A still image of a cartoon eye that looks around when you move your mouse
  * up and down over the canvas
  */
-p5.Image.prototype.numFrames = function() {
+p5.Image.prototype.numFrames = function () {
   if (this.gifProperties) {
     return this.gifProperties.numFrames;
   }
@@ -1041,7 +1041,7 @@ p5.Image.prototype.numFrames = function() {
  * hair blowing in the wind, when you click the image
  * freezes when you release it animates again
  */
-p5.Image.prototype.play = function() {
+p5.Image.prototype.play = function () {
   if (this.gifProperties) {
     this.gifProperties.playing = true;
   }
@@ -1077,7 +1077,7 @@ p5.Image.prototype.play = function() {
  * hair blowing in the wind, when you click the image
  * freezes when you release it animates again
  */
-p5.Image.prototype.pause = function() {
+p5.Image.prototype.pause = function () {
   if (this.gifProperties) {
     this.gifProperties.playing = false;
   }
@@ -1120,7 +1120,7 @@ p5.Image.prototype.pause = function() {
  * The gif on the left animates quickly, on the right
  * the animation is much slower
  */
-p5.Image.prototype.delay = function(d, index) {
+p5.Image.prototype.delay = function (d, index) {
   if (this.gifProperties) {
     const props = this.gifProperties;
     if (index < props.numFrames && index >= 0) {

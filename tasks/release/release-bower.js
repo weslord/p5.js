@@ -2,11 +2,11 @@
 
 const git = require('simple-git/promise');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.registerTask(
     'release-bower',
     'Publishes the new release of p5.js on Bower',
-    async function() {
+    async function () {
       // Async Task
       const done = this.async();
 
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     }
   );
 
-  grunt.registerTask('bower-push', async function() {
+  grunt.registerTask('bower-push', async function () {
     const done = this.async();
 
     const version = require('../../package.json').version;

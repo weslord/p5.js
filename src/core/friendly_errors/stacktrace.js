@@ -65,11 +65,11 @@ function ErrorStackParser() {
     },
 
     parseV8OrIE: function ErrorStackParser$$parseV8OrIE(error) {
-      let filtered = error.stack.split('\n').filter(function(line) {
+      let filtered = error.stack.split('\n').filter(function (line) {
         return !!line.match(CHROME_IE_STACK_REGEXP);
       }, this);
 
-      return filtered.map(function(line) {
+      return filtered.map(function (line) {
         if (line.indexOf('(eval ') > -1) {
           // Throw away eval information until we implement stacktrace.js/stackframe#8
           line = line
@@ -105,17 +105,17 @@ function ErrorStackParser() {
           fileName: fileName,
           lineNumber: locationParts[1],
           columnNumber: locationParts[2],
-          source: line
+          source: line,
         };
       }, this);
     },
 
     parseFFOrSafari: function ErrorStackParser$$parseFFOrSafari(error) {
-      let filtered = error.stack.split('\n').filter(function(line) {
+      let filtered = error.stack.split('\n').filter(function (line) {
         return !line.match(SAFARI_NATIVE_CODE_REGEXP);
       }, this);
 
-      return filtered.map(function(line) {
+      return filtered.map(function (line) {
         // Throw away eval information until we implement stacktrace.js/stackframe#8
         if (line.indexOf(' > eval') > -1) {
           line = line.replace(
@@ -127,7 +127,7 @@ function ErrorStackParser() {
         if (line.indexOf('@') === -1 && line.indexOf(':') === -1) {
           // Safari eval frames only have function names and nothing else
           return {
-            functionName: line
+            functionName: line,
           };
         } else {
           let functionNameRegex = /((.*".+"[^@]*)?[^@]*)(?:@)/;
@@ -142,7 +142,7 @@ function ErrorStackParser() {
             fileName: locationParts[0],
             lineNumber: locationParts[1],
             columnNumber: locationParts[2],
-            source: line
+            source: line,
           };
         }
       }, this);
@@ -173,7 +173,7 @@ function ErrorStackParser() {
           result.push({
             fileName: match[2],
             lineNumber: match[1],
-            source: lines[i]
+            source: lines[i],
           });
         }
       }
@@ -193,7 +193,7 @@ function ErrorStackParser() {
             functionName: match[3] || undefined,
             fileName: match[2],
             lineNumber: match[1],
-            source: lines[i]
+            source: lines[i],
           });
         }
       }
@@ -203,14 +203,14 @@ function ErrorStackParser() {
 
     // Opera 10.65+ Error.stack very similar to FF/Safari
     parseOpera11: function ErrorStackParser$$parseOpera11(error) {
-      let filtered = error.stack.split('\n').filter(function(line) {
+      let filtered = error.stack.split('\n').filter(function (line) {
         return (
           !!line.match(FIREFOX_SAFARI_STACK_REGEXP) &&
           !line.match(/^Error created at/)
         );
       }, this);
 
-      return filtered.map(function(line) {
+      return filtered.map(function (line) {
         let tokens = line.split('@');
         let locationParts = this.extractLocation(tokens.pop());
         let functionCall = tokens.shift() || '';
@@ -233,10 +233,10 @@ function ErrorStackParser() {
           fileName: locationParts[0],
           lineNumber: locationParts[1],
           columnNumber: locationParts[2],
-          source: line
+          source: line,
         };
       }, this);
-    }
+    },
   };
 }
 

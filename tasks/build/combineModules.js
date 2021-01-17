@@ -8,12 +8,12 @@ const browserify = require('browserify');
 const derequire = require('derequire');
 const { format } = require('prettier');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   const tempFilePath = path.resolve('./src/customApp.js');
   grunt.registerTask(
     'combineModules',
     'Compile and combine certain modules with Browserify',
-    function(args) {
+    function (args) {
       // Reading and writing files is asynchronous
       const done = this.async();
 
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       const dump = fs.readFileSync('./src/app.js', 'utf8').split('\n');
       const sources = [];
       const regexp = new RegExp('./(' + modules.join('/|') + ')', 'g');
-      dump.forEach(source => {
+      dump.forEach((source) => {
         let match;
         while ((match = regexp.exec(source)) !== null) {
           sources.push(match.input);
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 
       // Invoke Browserify programatically to bundle the code
       let browseified = browserify(tempFilePath, {
-        standalone: 'p5'
+        standalone: 'p5',
       });
 
       if (isMin) {
@@ -73,10 +73,10 @@ module.exports = function(grunt) {
 
       // Then read the bundle into memory so we can run it through derequire
       bundle
-        .on('data', function(data) {
+        .on('data', function (data) {
           code += data;
         })
-        .on('end', function() {
+        .on('end', function () {
           // "code" is complete: create the distributable UMD build by running
           // the bundle through derequire
           // (Derequire changes the bundle's internal "require" function to

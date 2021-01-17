@@ -50,7 +50,7 @@ import p5 from '../core/main';
  * @alt
  * no image displayed
  */
-p5.XML = function(DOM) {
+p5.XML = function (DOM) {
   if (!DOM) {
     const xmlDoc = document.implementation.createDocument(null, 'doc');
     this.DOM = xmlDoc.createElement('root');
@@ -93,7 +93,7 @@ p5.XML = function(DOM) {
  * // mammals
  * </code></div>
  */
-p5.XML.prototype.getParent = function() {
+p5.XML.prototype.getParent = function () {
   return new p5.XML(this.DOM.parentElement);
 };
 
@@ -128,7 +128,7 @@ p5.XML.prototype.getParent = function() {
  * // mammals
  * </code></div>
  */
-p5.XML.prototype.getName = function() {
+p5.XML.prototype.getName = function () {
   return this.DOM.tagName;
 };
 
@@ -166,7 +166,7 @@ p5.XML.prototype.getName = function() {
  * // fish
  * </code></div>
  */
-p5.XML.prototype.setName = function(name) {
+p5.XML.prototype.setName = function (name) {
   const content = this.DOM.innerHTML;
   const attributes = this.DOM.attributes;
   const xmlDoc = document.implementation.createDocument(null, 'default');
@@ -210,7 +210,7 @@ p5.XML.prototype.setName = function(name) {
  * // true
  * </code></div>
  */
-p5.XML.prototype.hasChildren = function() {
+p5.XML.prototype.hasChildren = function () {
   return this.DOM.children.length > 0;
 };
 
@@ -247,7 +247,7 @@ p5.XML.prototype.hasChildren = function() {
  * // ["animal", "animal", "animal"]
  * </code></div>
  */
-p5.XML.prototype.listChildren = function() {
+p5.XML.prototype.listChildren = function () {
   const arr = [];
   for (let i = 0; i < this.DOM.childNodes.length; i++) {
     arr.push(this.DOM.childNodes[i].nodeName);
@@ -295,7 +295,7 @@ p5.XML.prototype.listChildren = function() {
  * // "Zebra"
  * </code></div>
  */
-p5.XML.prototype.getChildren = function(param) {
+p5.XML.prototype.getChildren = function (param) {
   if (param) {
     return elementsToP5XML(this.DOM.getElementsByTagName(param));
   } else {
@@ -361,7 +361,7 @@ function elementsToP5XML(elements) {
  * // "Leopard"
  * </code></div>
  */
-p5.XML.prototype.getChild = function(param) {
+p5.XML.prototype.getChild = function (param) {
   if (typeof param === 'string') {
     for (const child of this.DOM.children) {
       if (child.tagName === param) return new p5.XML(child);
@@ -415,7 +415,7 @@ p5.XML.prototype.getChild = function(param) {
  * // "Zebra"
  * </code></div>
  */
-p5.XML.prototype.addChild = function(node) {
+p5.XML.prototype.addChild = function (node) {
   if (node instanceof p5.XML) {
     this.DOM.appendChild(node.DOM);
   } else {
@@ -478,7 +478,7 @@ p5.XML.prototype.addChild = function(node) {
  * // "Zebra"
  * </code></div>
  */
-p5.XML.prototype.removeChild = function(param) {
+p5.XML.prototype.removeChild = function (param) {
   let ind = -1;
   if (typeof param === 'string') {
     for (let i = 0; i < this.DOM.children.length; i++) {
@@ -527,7 +527,7 @@ p5.XML.prototype.removeChild = function(param) {
  * // 2
  * </code></div>
  */
-p5.XML.prototype.getAttributeCount = function() {
+p5.XML.prototype.getAttributeCount = function () {
   return this.DOM.attributes.length;
 };
 
@@ -564,7 +564,7 @@ p5.XML.prototype.getAttributeCount = function() {
  * // ["id", "species"]
  * </code></div>
  */
-p5.XML.prototype.listAttributes = function() {
+p5.XML.prototype.listAttributes = function () {
   const arr = [];
 
   for (const attribute of this.DOM.attributes) {
@@ -609,7 +609,7 @@ p5.XML.prototype.listAttributes = function() {
  * // false
  * </code></div>
  */
-p5.XML.prototype.hasAttribute = function(name) {
+p5.XML.prototype.hasAttribute = function (name) {
   const obj = {};
 
   for (const attribute of this.DOM.attributes) {
@@ -656,7 +656,7 @@ p5.XML.prototype.hasAttribute = function(name) {
  * // 0
  * </code></div>
  */
-p5.XML.prototype.getNum = function(name, defaultValue) {
+p5.XML.prototype.getNum = function (name, defaultValue) {
   const obj = {};
 
   for (const attribute of this.DOM.attributes) {
@@ -703,7 +703,7 @@ p5.XML.prototype.getNum = function(name, defaultValue) {
  * // "Capra hircus"
  * </code></div>
  */
-p5.XML.prototype.getString = function(name, defaultValue) {
+p5.XML.prototype.getString = function (name, defaultValue) {
   const obj = {};
 
   for (const attribute of this.DOM.attributes) {
@@ -750,7 +750,7 @@ p5.XML.prototype.getString = function(name, defaultValue) {
  * // "Jamides zebra"
  * </code></div>
  */
-p5.XML.prototype.setAttribute = function(name, value) {
+p5.XML.prototype.setAttribute = function (name, value) {
   this.DOM.setAttribute(name, value);
 };
 
@@ -788,7 +788,7 @@ p5.XML.prototype.setAttribute = function(name, value) {
  * // "Goat"
  * </code></div>
  */
-p5.XML.prototype.getContent = function(defaultValue) {
+p5.XML.prototype.getContent = function (defaultValue) {
   let str;
   str = this.DOM.textContent;
   str = str.replace(/\s\s+/g, ',');
@@ -830,7 +830,7 @@ p5.XML.prototype.getContent = function(defaultValue) {
  * // "Mountain Goat"
  * </code></div>
  */
-p5.XML.prototype.setContent = function(content) {
+p5.XML.prototype.setContent = function (content) {
   if (!this.DOM.children.length) {
     this.DOM.textContent = content;
   }
@@ -862,7 +862,7 @@ p5.XML.prototype.setContent = function(content) {
  * // </mammals>
  * </code></div>
  */
-p5.XML.prototype.serialize = function() {
+p5.XML.prototype.serialize = function () {
   const xmlSerializer = new XMLSerializer();
   return xmlSerializer.serializeToString(this.DOM);
 };

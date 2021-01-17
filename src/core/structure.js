@@ -76,7 +76,7 @@ import p5 from './main';
  * 113 pixel long line extending from top-left to bottom right of canvas.
  * horizontal line moves slowly from left. Loops but stops on mouse press.
  */
-p5.prototype.noLoop = function() {
+p5.prototype.noLoop = function () {
   this._loop = false;
 };
 
@@ -122,7 +122,7 @@ p5.prototype.noLoop = function() {
  * @alt
  * horizontal line moves slowly from left. Loops but stops on mouse press.
  */
-p5.prototype.loop = function() {
+p5.prototype.loop = function () {
   if (!this._loop) {
     this._loop = true;
     if (this._setupDone) {
@@ -185,7 +185,7 @@ p5.prototype.loop = function() {
  * Button colorizes sketch if isLooping().
  *
  */
-p5.prototype.isLooping = function() {
+p5.prototype.isLooping = function () {
   return this._loop;
 };
 
@@ -278,12 +278,12 @@ p5.prototype.isLooping = function() {
  * Gold ellipse + thick black outline @center 2 white ellipses on left and right.
  * 2 Gold ellipses left black right blue stroke. 2 white ellipses on left+right.
  */
-p5.prototype.push = function() {
+p5.prototype.push = function () {
   this._styles.push({
     props: {
-      _colorMode: this._colorMode
+      _colorMode: this._colorMode,
     },
-    renderer: this._renderer.push()
+    renderer: this._renderer.push(),
   });
 };
 
@@ -378,7 +378,7 @@ p5.prototype.push = function() {
  * Gold ellipse + thick black outline @center 2 white ellipses on left and right.
  * 2 Gold ellipses left black right blue stroke. 2 white ellipses on left+right.
  */
-p5.prototype.pop = function() {
+p5.prototype.pop = function () {
   const style = this._styles.pop();
   if (style) {
     this._renderer.pop(style.renderer);
@@ -455,7 +455,7 @@ p5.prototype.pop = function() {
  * black line on far left of canvas
  * black line on far left of canvas
  */
-p5.prototype.redraw = function(n) {
+p5.prototype.redraw = function (n) {
   if (this._inUserDraw || !this._setupDone) {
     return;
   }
@@ -470,7 +470,7 @@ p5.prototype.redraw = function(n) {
     if (typeof context.setup === 'undefined') {
       context.scale(context._pixelDensity, context._pixelDensity);
     }
-    const callMethod = f => {
+    const callMethod = (f) => {
       f.call(context);
     };
     for (let idxRedraw = 0; idxRedraw < numberOfRedraws; idxRedraw++) {
@@ -523,15 +523,15 @@ p5.prototype.redraw = function(n) {
  * @param {String|Object} node ID or pointer to HTML DOM node to contain sketch in
  * @example
  * <div class='norender'><code>
- * const s = p => {
+ * const s = (p) => {
  *   let x = 100;
  *   let y = 100;
  *
- *   p.setup = function() {
+ *   p.setup = function () {
  *     p.createCanvas(700, 410);
  *   };
  *
- *   p.draw = function() {
+ *   p.draw = function () {
  *     p.background(0);
  *     p.fill(255);
  *     p.rect(x, y, 50, 50);

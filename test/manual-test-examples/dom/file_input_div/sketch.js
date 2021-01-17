@@ -14,11 +14,11 @@ function setup() {
   var dropZone = createDiv('Drop files here');
   dropZone.id('drop_zone');
 
-  dropZone.dragOver(function() {
+  dropZone.dragOver(function () {
     this.style('background', '#AAAAAA');
   });
 
-  dropZone.dragLeave(function() {
+  dropZone.dragLeave(function () {
     // do nothing?
     console.log('LEAVING');
   });

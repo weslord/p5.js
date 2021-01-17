@@ -3,18 +3,18 @@
 'use strict';
 import { magenta } from 'chalk';
 
-module.exports = grunt => {
+module.exports = (grunt) => {
   grunt.registerMultiTask(
     'eslint-samples',
     'Validate samples with ESLint',
-    function() {
+    function () {
       const opts = this.options({
         outputFile: false,
         quiet: false,
         maxWarnings: -1,
         envs: ['eslint-samples/p5'],
         verbose: true,
-        debug: true
+        debug: true,
       });
 
       if (this.filesSrc.length === 0) {

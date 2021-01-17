@@ -40,7 +40,7 @@ import p5 from '../core/main';
  * @return {p5.StringDict}
  */
 
-p5.prototype.createStringDict = function(key, value) {
+p5.prototype.createStringDict = function (key, value) {
   p5._validateParameters('createStringDict', arguments);
   return new p5.StringDict(key, value);
 };
@@ -74,7 +74,7 @@ p5.prototype.createStringDict = function(key, value) {
  * @return {p5.NumberDict}
  */
 
-p5.prototype.createNumberDict = function(key, value) {
+p5.prototype.createNumberDict = function (key, value) {
   p5._validateParameters('createNumberDict', arguments);
   return new p5.NumberDict(key, value);
 };
@@ -88,7 +88,7 @@ p5.prototype.createNumberDict = function(key, value) {
  * @constructor
  */
 
-p5.TypedDict = function(key, value) {
+p5.TypedDict = function (key, value) {
   if (key instanceof Object) {
     this.data = key;
   } else {
@@ -115,7 +115,7 @@ p5.TypedDict = function(key, value) {
  * }
  * </code></div>
  */
-p5.TypedDict.prototype.size = function() {
+p5.TypedDict.prototype.size = function () {
   return Object.keys(this.data).length;
 };
 
@@ -137,7 +137,7 @@ p5.TypedDict.prototype.size = function() {
  * </code></div>
  */
 
-p5.TypedDict.prototype.hasKey = function(key) {
+p5.TypedDict.prototype.hasKey = function (key) {
   return this.data.hasOwnProperty(key);
 };
 
@@ -159,7 +159,7 @@ p5.TypedDict.prototype.hasKey = function(key) {
  * </code></div>
  */
 
-p5.TypedDict.prototype.get = function(key) {
+p5.TypedDict.prototype.get = function (key) {
   if (this.data.hasOwnProperty(key)) {
     return this.data[key];
   } else {
@@ -186,7 +186,7 @@ p5.TypedDict.prototype.get = function(key) {
  * </code></div>
  */
 
-p5.TypedDict.prototype.set = function(key, value) {
+p5.TypedDict.prototype.set = function (key, value) {
   if (this._validate(value)) {
     this.data[key] = value;
   } else {
@@ -199,7 +199,7 @@ p5.TypedDict.prototype.set = function(key, value) {
  * during construction or calls to create()
  */
 
-p5.TypedDict.prototype._addObj = function(obj) {
+p5.TypedDict.prototype._addObj = function (obj) {
   for (const key in obj) {
     this.set(key, obj[key]);
   }
@@ -228,7 +228,7 @@ p5.TypedDict.prototype._addObj = function(obj) {
  * @param {Object} obj key/value pair
  */
 
-p5.TypedDict.prototype.create = function(key, value) {
+p5.TypedDict.prototype.create = function (key, value) {
   if (key instanceof Object && typeof value === 'undefined') {
     this._addObj(key);
   } else if (typeof key !== 'undefined') {
@@ -258,7 +258,7 @@ p5.TypedDict.prototype.create = function(key, value) {
  * </div>
  */
 
-p5.TypedDict.prototype.clear = function() {
+p5.TypedDict.prototype.clear = function () {
   this.data = {};
 };
 
@@ -283,7 +283,7 @@ p5.TypedDict.prototype.clear = function() {
  * </code></div>
  */
 
-p5.TypedDict.prototype.remove = function(key) {
+p5.TypedDict.prototype.remove = function (key) {
   if (this.data.hasOwnProperty(key)) {
     delete this.data[key];
   } else {
@@ -309,7 +309,7 @@ p5.TypedDict.prototype.remove = function(key) {
  * </div>
  */
 
-p5.TypedDict.prototype.print = function() {
+p5.TypedDict.prototype.print = function () {
   for (const item in this.data) {
     console.log(`key:${item} value:${this.data[item]}`);
   }
@@ -334,7 +334,7 @@ p5.TypedDict.prototype.print = function() {
  *       john: 1940,
  *       paul: 1942,
  *       george: 1943,
- *       ringo: 1940
+ *       ringo: 1940,
  *     }).saveTable('beatles');
  *   }
  * }
@@ -342,7 +342,7 @@ p5.TypedDict.prototype.print = function() {
  * </div>
  */
 
-p5.TypedDict.prototype.saveTable = function(filename) {
+p5.TypedDict.prototype.saveTable = function (filename) {
   let output = '';
 
   for (const key in this.data) {
@@ -372,7 +372,7 @@ p5.TypedDict.prototype.saveTable = function(filename) {
  *       john: 1940,
  *       paul: 1942,
  *       george: 1943,
- *       ringo: 1940
+ *       ringo: 1940,
  *     }).saveJSON('beatles');
  *   }
  * }
@@ -380,7 +380,7 @@ p5.TypedDict.prototype.saveTable = function(filename) {
  * </div>
  */
 
-p5.TypedDict.prototype.saveJSON = function(filename, opt) {
+p5.TypedDict.prototype.saveJSON = function (filename, opt) {
   p5.prototype.saveJSON(this.data, filename, opt);
 };
 
@@ -389,7 +389,7 @@ p5.TypedDict.prototype.saveJSON = function(filename, opt) {
  * values for the Dictionary type
  */
 
-p5.TypedDict.prototype._validate = value => true;
+p5.TypedDict.prototype._validate = (value) => true;
 
 /**
  *
@@ -399,13 +399,13 @@ p5.TypedDict.prototype._validate = value => true;
  * @extends p5.TypedDict
  */
 
-p5.StringDict = function(...args) {
+p5.StringDict = function (...args) {
   p5.TypedDict.apply(this, args);
 };
 
 p5.StringDict.prototype = Object.create(p5.TypedDict.prototype);
 
-p5.StringDict.prototype._validate = value => typeof value === 'string';
+p5.StringDict.prototype._validate = (value) => typeof value === 'string';
 
 /**
  *
@@ -416,7 +416,7 @@ p5.StringDict.prototype._validate = value => typeof value === 'string';
  * @extends p5.TypedDict
  */
 
-p5.NumberDict = function(...args) {
+p5.NumberDict = function (...args) {
   p5.TypedDict.apply(this, args);
 };
 
@@ -427,7 +427,7 @@ p5.NumberDict.prototype = Object.create(p5.TypedDict.prototype);
  * values for the Dictionary type
  */
 
-p5.NumberDict.prototype._validate = value => typeof value === 'number';
+p5.NumberDict.prototype._validate = (value) => typeof value === 'number';
 
 /**
  * Add the given number to the value currently stored at the given key.
@@ -448,7 +448,7 @@ p5.NumberDict.prototype._validate = value => typeof value === 'number';
  *
  */
 
-p5.NumberDict.prototype.add = function(key, amount) {
+p5.NumberDict.prototype.add = function (key, amount) {
   if (this.data.hasOwnProperty(key)) {
     this.data[key] += amount;
   } else {
@@ -475,7 +475,7 @@ p5.NumberDict.prototype.add = function(key, amount) {
  *
  */
 
-p5.NumberDict.prototype.sub = function(key, amount) {
+p5.NumberDict.prototype.sub = function (key, amount) {
   this.add(key, -amount);
 };
 
@@ -498,7 +498,7 @@ p5.NumberDict.prototype.sub = function(key, amount) {
  *
  */
 
-p5.NumberDict.prototype.mult = function(key, amount) {
+p5.NumberDict.prototype.mult = function (key, amount) {
   if (this.data.hasOwnProperty(key)) {
     this.data[key] *= amount;
   } else {
@@ -525,7 +525,7 @@ p5.NumberDict.prototype.mult = function(key, amount) {
  *
  */
 
-p5.NumberDict.prototype.div = function(key, amount) {
+p5.NumberDict.prototype.div = function (key, amount) {
   if (this.data.hasOwnProperty(key)) {
     this.data[key] /= amount;
   } else {
@@ -539,7 +539,7 @@ p5.NumberDict.prototype.div = function(key, amount) {
  * from 'less than' to 'greater than'
  */
 
-p5.NumberDict.prototype._valueTest = function(flip) {
+p5.NumberDict.prototype._valueTest = function (flip) {
   if (Object.keys(this.data).length === 0) {
     throw new Error(
       'Unable to search for a minimum or maximum value on an empty NumberDict'
@@ -573,7 +573,7 @@ p5.NumberDict.prototype._valueTest = function(flip) {
  * </code></div>
  */
 
-p5.NumberDict.prototype.minValue = function() {
+p5.NumberDict.prototype.minValue = function () {
   return this._valueTest(1);
 };
 
@@ -593,7 +593,7 @@ p5.NumberDict.prototype.minValue = function() {
  * </code></div>
  */
 
-p5.NumberDict.prototype.maxValue = function() {
+p5.NumberDict.prototype.maxValue = function () {
   return this._valueTest(-1);
 };
 
@@ -603,7 +603,7 @@ p5.NumberDict.prototype.maxValue = function() {
  * from 'less than' to 'greater than'
  */
 
-p5.NumberDict.prototype._keyTest = function(flip) {
+p5.NumberDict.prototype._keyTest = function (flip) {
   if (Object.keys(this.data).length === 0) {
     throw new Error('Unable to use minValue on an empty NumberDict');
   } else if (Object.keys(this.data).length === 1) {
@@ -635,7 +635,7 @@ p5.NumberDict.prototype._keyTest = function(flip) {
  * </code></div>
  */
 
-p5.NumberDict.prototype.minKey = function() {
+p5.NumberDict.prototype.minKey = function () {
   return this._keyTest(1);
 };
 
@@ -655,7 +655,7 @@ p5.NumberDict.prototype.minKey = function() {
  * </code></div>
  */
 
-p5.NumberDict.prototype.maxKey = function() {
+p5.NumberDict.prototype.maxKey = function () {
   return this._keyTest(-1);
 };
 

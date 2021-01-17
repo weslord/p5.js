@@ -12,7 +12,7 @@ import './p5.Renderer';
 const styleEmpty = 'rgba(0,0,0,0)';
 // const alphaThreshold = 0.00125; // minimum visible
 
-p5.Renderer2D = function(elt, pInst, isMainCanvas) {
+p5.Renderer2D = function (elt, pInst, isMainCanvas) {
   p5.Renderer.call(this, elt, pInst, isMainCanvas);
   this.drawingContext = this.canvas.getContext('2d');
   this._pInst._setProperty('drawingContext', this.drawingContext);
@@ -21,7 +21,7 @@ p5.Renderer2D = function(elt, pInst, isMainCanvas) {
 
 p5.Renderer2D.prototype = Object.create(p5.Renderer.prototype);
 
-p5.Renderer2D.prototype._applyDefaults = function() {
+p5.Renderer2D.prototype._applyDefaults = function () {
   this._cachedFillStyle = this._cachedStrokeStyle = undefined;
   this._cachedBlendMode = constants.BLEND;
   this._setFill(constants._DEFAULT_FILL);
@@ -30,7 +30,7 @@ p5.Renderer2D.prototype._applyDefaults = function() {
   this.drawingContext.font = 'normal 12px sans-serif';
 };
 
-p5.Renderer2D.prototype.resize = function(w, h) {
+p5.Renderer2D.prototype.resize = function (w, h) {
   p5.Renderer.prototype.resize.call(this, w, h);
   this.drawingContext.scale(
     this._pInst._pixelDensity,
@@ -42,7 +42,7 @@ p5.Renderer2D.prototype.resize = function(w, h) {
 // COLOR | Setting
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype.background = function(...args) {
+p5.Renderer2D.prototype.background = function (...args) {
   this.drawingContext.save();
   this.resetMatrix();
 
@@ -76,14 +76,14 @@ p5.Renderer2D.prototype.background = function(...args) {
   this.drawingContext.restore();
 };
 
-p5.Renderer2D.prototype.clear = function() {
+p5.Renderer2D.prototype.clear = function () {
   this.drawingContext.save();
   this.resetMatrix();
   this.drawingContext.clearRect(0, 0, this.width, this.height);
   this.drawingContext.restore();
 };
 
-p5.Renderer2D.prototype.fill = function(...args) {
+p5.Renderer2D.prototype.fill = function (...args) {
   const color = this._pInst.color(...args);
   this._setFill(color.toString());
 
@@ -93,7 +93,7 @@ p5.Renderer2D.prototype.fill = function(...args) {
   }
 };
 
-p5.Renderer2D.prototype.stroke = function(...args) {
+p5.Renderer2D.prototype.stroke = function (...args) {
   const color = this._pInst.color(...args);
   this._setStroke(color.toString());
 
@@ -103,7 +103,7 @@ p5.Renderer2D.prototype.stroke = function(...args) {
   }
 };
 
-p5.Renderer2D.prototype.erase = function(opacityFill, opacityStroke) {
+p5.Renderer2D.prototype.erase = function (opacityFill, opacityStroke) {
   if (!this._isErasing) {
     // cache the fill style
     this._cachedFillStyle = this.drawingContext.fillStyle;
@@ -124,7 +124,7 @@ p5.Renderer2D.prototype.erase = function(opacityFill, opacityStroke) {
   }
 };
 
-p5.Renderer2D.prototype.noErase = function() {
+p5.Renderer2D.prototype.noErase = function () {
   if (this._isErasing) {
     this.drawingContext.fillStyle = this._cachedFillStyle;
     this.drawingContext.strokeStyle = this._cachedStrokeStyle;
@@ -138,7 +138,7 @@ p5.Renderer2D.prototype.noErase = function() {
 // IMAGE | Loading & Displaying
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype.image = function(
+p5.Renderer2D.prototype.image = function (
   img,
   sx,
   sy,
@@ -194,7 +194,7 @@ p5.Renderer2D.prototype.image = function(
   }
 };
 
-p5.Renderer2D.prototype._getTintedImageCanvas = function(img) {
+p5.Renderer2D.prototype._getTintedImageCanvas = function (img) {
   if (!img.canvas) {
     return img;
   }
@@ -210,10 +210,10 @@ p5.Renderer2D.prototype._getTintedImageCanvas = function(img) {
     const g = pixels[i + 1];
     const b = pixels[i + 2];
     const a = pixels[i + 3];
-    newPixels[i] = r * this._tint[0] / 255;
-    newPixels[i + 1] = g * this._tint[1] / 255;
-    newPixels[i + 2] = b * this._tint[2] / 255;
-    newPixels[i + 3] = a * this._tint[3] / 255;
+    newPixels[i] = (r * this._tint[0]) / 255;
+    newPixels[i + 1] = (g * this._tint[1]) / 255;
+    newPixels[i + 2] = (b * this._tint[2]) / 255;
+    newPixels[i + 3] = (a * this._tint[3]) / 255;
   }
   tmpCtx.putImageData(id, 0, 0);
   return tmpCanvas;
@@ -223,7 +223,7 @@ p5.Renderer2D.prototype._getTintedImageCanvas = function(img) {
 // IMAGE | Pixels
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype.blendMode = function(mode) {
+p5.Renderer2D.prototype.blendMode = function (mode) {
   if (mode === constants.SUBTRACT) {
     console.warn('blendMode(SUBTRACT) only works in WEBGL mode.');
   } else if (
@@ -250,7 +250,7 @@ p5.Renderer2D.prototype.blendMode = function(mode) {
   }
 };
 
-p5.Renderer2D.prototype.blend = function(...args) {
+p5.Renderer2D.prototype.blend = function (...args) {
   const currBlend = this.drawingContext.globalCompositeOperation;
   const blendMode = args[args.length - 1];
 
@@ -267,7 +267,7 @@ p5.Renderer2D.prototype.blend = function(...args) {
 // .get() is not overridden
 
 // x,y are canvas-relative (pre-scaled by _pixelDensity)
-p5.Renderer2D.prototype._getPixel = function(x, y) {
+p5.Renderer2D.prototype._getPixel = function (x, y) {
   let imageData, index;
   imageData = this.drawingContext.getImageData(x, y, 1, 1).data;
   index = 0;
@@ -275,11 +275,11 @@ p5.Renderer2D.prototype._getPixel = function(x, y) {
     imageData[index + 0],
     imageData[index + 1],
     imageData[index + 2],
-    imageData[index + 3]
+    imageData[index + 3],
   ];
 };
 
-p5.Renderer2D.prototype.loadPixels = function() {
+p5.Renderer2D.prototype.loadPixels = function () {
   const pixelsState = this._pixelsState; // if called by p5.Image
 
   const pd = pixelsState._pixelDensity;
@@ -292,7 +292,7 @@ p5.Renderer2D.prototype.loadPixels = function() {
   pixelsState._setProperty('pixels', imageData.data);
 };
 
-p5.Renderer2D.prototype.set = function(x, y, imgOrCol) {
+p5.Renderer2D.prototype.set = function (x, y, imgOrCol) {
   // round down to get integer numbers
   x = Math.floor(x);
   y = Math.floor(y);
@@ -368,7 +368,7 @@ p5.Renderer2D.prototype.set = function(x, y, imgOrCol) {
   }
 };
 
-p5.Renderer2D.prototype.updatePixels = function(x, y, w, h) {
+p5.Renderer2D.prototype.updatePixels = function (x, y, w, h) {
   const pixelsState = this._pixelsState;
   const pd = pixelsState._pixelDensity;
   if (
@@ -431,7 +431,7 @@ p5.Renderer2D.prototype._acuteArcToBezier = function _acuteArcToBezier(
     cx: (lambda * cos_phi - mu * sin_phi).toFixed(7),
     cy: (lambda * sin_phi + mu * cos_phi).toFixed(7),
     dx: Math.cos(start + size).toFixed(7),
-    dy: Math.sin(start + size).toFixed(7)
+    dy: Math.sin(start + size).toFixed(7),
   };
 };
 
@@ -442,7 +442,7 @@ p5.Renderer2D.prototype._acuteArcToBezier = function _acuteArcToBezier(
  *
  *   start <= stop < start + TWO_PI
  */
-p5.Renderer2D.prototype.arc = function(x, y, w, h, start, stop, mode) {
+p5.Renderer2D.prototype.arc = function (x, y, w, h, start, stop, mode) {
   const ctx = this.drawingContext;
   const rx = w / 2.0;
   const ry = h / 2.0;
@@ -502,7 +502,7 @@ p5.Renderer2D.prototype.arc = function(x, y, w, h, start, stop, mode) {
   return this;
 };
 
-p5.Renderer2D.prototype.ellipse = function(args) {
+p5.Renderer2D.prototype.ellipse = function (args) {
   const ctx = this.drawingContext;
   const doFill = this._doFill,
     doStroke = this._doStroke;
@@ -521,9 +521,9 @@ p5.Renderer2D.prototype.ellipse = function(args) {
   }
   const kappa = 0.5522847498,
     // control point offset horizontal
-    ox = w / 2 * kappa,
+    ox = (w / 2) * kappa,
     // control point offset vertical
-    oy = h / 2 * kappa,
+    oy = (h / 2) * kappa,
     // x-end
     xe = x + w,
     // y-end
@@ -545,7 +545,7 @@ p5.Renderer2D.prototype.ellipse = function(args) {
   }
 };
 
-p5.Renderer2D.prototype.line = function(x1, y1, x2, y2) {
+p5.Renderer2D.prototype.line = function (x1, y1, x2, y2) {
   const ctx = this.drawingContext;
   if (!this._doStroke) {
     return this;
@@ -559,7 +559,7 @@ p5.Renderer2D.prototype.line = function(x1, y1, x2, y2) {
   return this;
 };
 
-p5.Renderer2D.prototype.point = function(x, y) {
+p5.Renderer2D.prototype.point = function (x, y) {
   const ctx = this.drawingContext;
   if (!this._doStroke) {
     return this;
@@ -582,7 +582,7 @@ p5.Renderer2D.prototype.point = function(x, y) {
   this._setFill(f);
 };
 
-p5.Renderer2D.prototype.quad = function(x1, y1, x2, y2, x3, y3, x4, y4) {
+p5.Renderer2D.prototype.quad = function (x1, y1, x2, y2, x3, y3, x4, y4) {
   const ctx = this.drawingContext;
   const doFill = this._doFill,
     doStroke = this._doStroke;
@@ -610,7 +610,7 @@ p5.Renderer2D.prototype.quad = function(x1, y1, x2, y2, x3, y3, x4, y4) {
   return this;
 };
 
-p5.Renderer2D.prototype.rect = function(args) {
+p5.Renderer2D.prototype.rect = function (args) {
   const x = args[0];
   const y = args[1];
   const w = args[2];
@@ -699,7 +699,7 @@ p5.Renderer2D.prototype.rect = function(args) {
   return this;
 };
 
-p5.Renderer2D.prototype.triangle = function(args) {
+p5.Renderer2D.prototype.triangle = function (args) {
   const ctx = this.drawingContext;
   const doFill = this._doFill,
     doStroke = this._doStroke;
@@ -731,7 +731,7 @@ p5.Renderer2D.prototype.triangle = function(args) {
   }
 };
 
-p5.Renderer2D.prototype.endShape = function(
+p5.Renderer2D.prototype.endShape = function (
   mode,
   vertices,
   isCurve,
@@ -764,12 +764,13 @@ p5.Renderer2D.prototype.endShape = function(
         b[0] = [v[0], v[1]];
         b[1] = [
           v[0] + (s * vertices[i + 1][0] - s * vertices[i - 1][0]) / 6,
-          v[1] + (s * vertices[i + 1][1] - s * vertices[i - 1][1]) / 6
+          v[1] + (s * vertices[i + 1][1] - s * vertices[i - 1][1]) / 6,
         ];
         b[2] = [
           vertices[i + 1][0] +
             (s * vertices[i][0] - s * vertices[i + 2][0]) / 6,
-          vertices[i + 1][1] + (s * vertices[i][1] - s * vertices[i + 2][1]) / 6
+          vertices[i + 1][1] +
+            (s * vertices[i][1] - s * vertices[i + 2][1]) / 6,
         ];
         b[3] = [vertices[i + 1][0], vertices[i + 1][1]];
         this.drawingContext.bezierCurveTo(
@@ -993,7 +994,7 @@ p5.Renderer2D.prototype.endShape = function(
 // SHAPE | Attributes
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype.strokeCap = function(cap) {
+p5.Renderer2D.prototype.strokeCap = function (cap) {
   if (
     cap === constants.ROUND ||
     cap === constants.SQUARE ||
@@ -1004,7 +1005,7 @@ p5.Renderer2D.prototype.strokeCap = function(cap) {
   return this;
 };
 
-p5.Renderer2D.prototype.strokeJoin = function(join) {
+p5.Renderer2D.prototype.strokeJoin = function (join) {
   if (
     join === constants.ROUND ||
     join === constants.BEVEL ||
@@ -1015,7 +1016,7 @@ p5.Renderer2D.prototype.strokeJoin = function(join) {
   return this;
 };
 
-p5.Renderer2D.prototype.strokeWeight = function(w) {
+p5.Renderer2D.prototype.strokeWeight = function (w) {
   if (typeof w === 'undefined' || w === 0) {
     // hack because lineWidth 0 doesn't work
     this.drawingContext.lineWidth = 0.0001;
@@ -1025,28 +1026,28 @@ p5.Renderer2D.prototype.strokeWeight = function(w) {
   return this;
 };
 
-p5.Renderer2D.prototype._getFill = function() {
+p5.Renderer2D.prototype._getFill = function () {
   if (!this._cachedFillStyle) {
     this._cachedFillStyle = this.drawingContext.fillStyle;
   }
   return this._cachedFillStyle;
 };
 
-p5.Renderer2D.prototype._setFill = function(fillStyle) {
+p5.Renderer2D.prototype._setFill = function (fillStyle) {
   if (fillStyle !== this._cachedFillStyle) {
     this.drawingContext.fillStyle = fillStyle;
     this._cachedFillStyle = fillStyle;
   }
 };
 
-p5.Renderer2D.prototype._getStroke = function() {
+p5.Renderer2D.prototype._getStroke = function () {
   if (!this._cachedStrokeStyle) {
     this._cachedStrokeStyle = this.drawingContext.strokeStyle;
   }
   return this._cachedStrokeStyle;
 };
 
-p5.Renderer2D.prototype._setStroke = function(strokeStyle) {
+p5.Renderer2D.prototype._setStroke = function (strokeStyle) {
   if (strokeStyle !== this._cachedStrokeStyle) {
     this.drawingContext.strokeStyle = strokeStyle;
     this._cachedStrokeStyle = strokeStyle;
@@ -1056,7 +1057,7 @@ p5.Renderer2D.prototype._setStroke = function(strokeStyle) {
 //////////////////////////////////////////////
 // SHAPE | Curves
 //////////////////////////////////////////////
-p5.Renderer2D.prototype.bezier = function(x1, y1, x2, y2, x3, y3, x4, y4) {
+p5.Renderer2D.prototype.bezier = function (x1, y1, x2, y2, x3, y3, x4, y4) {
   this._pInst.beginShape();
   this._pInst.vertex(x1, y1);
   this._pInst.bezierVertex(x2, y2, x3, y3, x4, y4);
@@ -1064,7 +1065,7 @@ p5.Renderer2D.prototype.bezier = function(x1, y1, x2, y2, x3, y3, x4, y4) {
   return this;
 };
 
-p5.Renderer2D.prototype.curve = function(x1, y1, x2, y2, x3, y3, x4, y4) {
+p5.Renderer2D.prototype.curve = function (x1, y1, x2, y2, x3, y3, x4, y4) {
   this._pInst.beginShape();
   this._pInst.curveVertex(x1, y1);
   this._pInst.curveVertex(x2, y2);
@@ -1078,7 +1079,7 @@ p5.Renderer2D.prototype.curve = function(x1, y1, x2, y2, x3, y3, x4, y4) {
 // SHAPE | Vertex
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype._doFillStrokeClose = function(closeShape) {
+p5.Renderer2D.prototype._doFillStrokeClose = function (closeShape) {
   if (closeShape) {
     this.drawingContext.closePath();
   }
@@ -1094,11 +1095,11 @@ p5.Renderer2D.prototype._doFillStrokeClose = function(closeShape) {
 // TRANSFORM
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype.applyMatrix = function(a, b, c, d, e, f) {
+p5.Renderer2D.prototype.applyMatrix = function (a, b, c, d, e, f) {
   this.drawingContext.transform(a, b, c, d, e, f);
 };
 
-p5.Renderer2D.prototype.resetMatrix = function() {
+p5.Renderer2D.prototype.resetMatrix = function () {
   this.drawingContext.setTransform(1, 0, 0, 1, 0, 0);
   this.drawingContext.scale(
     this._pInst._pixelDensity,
@@ -1107,16 +1108,16 @@ p5.Renderer2D.prototype.resetMatrix = function() {
   return this;
 };
 
-p5.Renderer2D.prototype.rotate = function(rad) {
+p5.Renderer2D.prototype.rotate = function (rad) {
   this.drawingContext.rotate(rad);
 };
 
-p5.Renderer2D.prototype.scale = function(x, y) {
+p5.Renderer2D.prototype.scale = function (x, y) {
   this.drawingContext.scale(x, y);
   return this;
 };
 
-p5.Renderer2D.prototype.translate = function(x, y) {
+p5.Renderer2D.prototype.translate = function (x, y) {
   // support passing a vector as the 1st parameter
   if (x instanceof p5.Vector) {
     y = x.y;
@@ -1131,7 +1132,7 @@ p5.Renderer2D.prototype.translate = function(x, y) {
 //
 //////////////////////////////////////////////
 
-p5.Renderer2D.prototype.text = function(str, x, y, maxWidth, maxHeight) {
+p5.Renderer2D.prototype.text = function (str, x, y, maxWidth, maxHeight) {
   let baselineHacked;
 
   // baselineHacked: (HACK)
@@ -1154,7 +1155,7 @@ p5.Renderer2D.prototype.text = function(str, x, y, maxWidth, maxHeight) {
   return p;
 };
 
-p5.Renderer2D.prototype._renderText = function(p, line, x, y, maxY) {
+p5.Renderer2D.prototype._renderText = function (p, line, x, y, maxY) {
   if (y >= maxY) {
     return; // don't render lines beyond our maxY position
   }
@@ -1187,7 +1188,7 @@ p5.Renderer2D.prototype._renderText = function(p, line, x, y, maxY) {
   return p;
 };
 
-p5.Renderer2D.prototype.textWidth = function(s) {
+p5.Renderer2D.prototype.textWidth = function (s) {
   if (this._isOpenType()) {
     return this._textFont._textWidth(s, this._textSize);
   }
@@ -1195,7 +1196,7 @@ p5.Renderer2D.prototype.textWidth = function(s) {
   return this.drawingContext.measureText(s).width;
 };
 
-p5.Renderer2D.prototype._applyTextProperties = function() {
+p5.Renderer2D.prototype._applyTextProperties = function () {
   let font;
   const p = this._pInst;
 
@@ -1209,8 +1210,9 @@ p5.Renderer2D.prototype._applyTextProperties = function() {
     this._setProperty('_textStyle', this._textFont.font.styleName);
   }
 
-  this.drawingContext.font = `${this._textStyle || 'normal'} ${this._textSize ||
-    12}px ${font || 'sans-serif'}`;
+  this.drawingContext.font = `${this._textStyle || 'normal'} ${
+    this._textSize || 12
+  }px ${font || 'sans-serif'}`;
 
   this.drawingContext.textAlign = this._textAlign;
   if (this._textBaseline === constants.CENTER) {
@@ -1231,7 +1233,7 @@ p5.Renderer2D.prototype._applyTextProperties = function() {
 // store on the push stack.
 // derived renderers should call the base class' push() method
 // to fetch the base style object.
-p5.Renderer2D.prototype.push = function() {
+p5.Renderer2D.prototype.push = function () {
   this.drawingContext.save();
 
   // get the base renderer style
@@ -1243,7 +1245,7 @@ p5.Renderer2D.prototype.push = function() {
 // from its push() method.
 // derived renderers should pass this object to their base
 // class' pop method
-p5.Renderer2D.prototype.pop = function(style) {
+p5.Renderer2D.prototype.pop = function (style) {
   this.drawingContext.restore();
   // Re-cache the fill / stroke state
   this._cachedFillStyle = this.drawingContext.fillStyle;

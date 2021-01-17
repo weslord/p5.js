@@ -4,7 +4,7 @@ const Entities = require('html-entities').AllHtmlEntities;
 const DocumentedMethod = require('./documented-method');
 
 function smokeTestMethods(data) {
-  data.classitems.forEach(function(classitem) {
+  data.classitems.forEach(function (classitem) {
     if (classitem.itemtype === 'method') {
       new DocumentedMethod(classitem);
 
@@ -32,9 +32,9 @@ function smokeTestMethods(data) {
 }
 
 function cleanExamples(data) {
-  data.classitems.forEach(function(classitem) {
+  data.classitems.forEach(function (classitem) {
     if (classitem.itemtype === 'method' && classitem.example) {
-      classitem.example = classitem.example.map(i =>
+      classitem.example = classitem.example.map((i) =>
         i.replace(/[^\n]*\/\/\s*prettier-ignore.*\r?\n/g, '')
       );
     }
@@ -47,7 +47,7 @@ function mergeOverloadedMethods(data) {
 
   let consts = (data.consts = {});
 
-  data.classitems = data.classitems.filter(function(classitem) {
+  data.classitems = data.classitems.filter(function (classitem) {
     if (classitem.access === 'private') {
       return false;
     }
@@ -61,7 +61,7 @@ function mergeOverloadedMethods(data) {
 
     let fullName, method;
 
-    var assertEqual = function(a, b, msg) {
+    var assertEqual = function (a, b, msg) {
       if (a !== b) {
         throw new Error(
           'for ' +
@@ -81,7 +81,7 @@ function mergeOverloadedMethods(data) {
       }
     };
 
-    var extractConsts = function(param) {
+    var extractConsts = function (param) {
       if (!param.type) {
         console.log(param);
       }
@@ -117,7 +117,7 @@ function mergeOverloadedMethods(data) {
       }
     };
 
-    var processOverloadedParams = function(params) {
+    var processOverloadedParams = function (params) {
       let paramNames;
 
       if (!(fullName in paramsForOverloadedMethods)) {
@@ -126,7 +126,7 @@ function mergeOverloadedMethods(data) {
 
       paramNames = paramsForOverloadedMethods[fullName];
 
-      params.forEach(function(param) {
+      params.forEach(function (param) {
         const origParam = paramNames[param.name];
 
         if (origParam) {
@@ -186,10 +186,10 @@ function mergeOverloadedMethods(data) {
           'additional overloads should have no description'
         );
 
-        var makeOverload = function(method) {
+        var makeOverload = function (method) {
           const overload = {
             line: method.line,
-            params: processOverloadedParams(method.params || [])
+            params: processOverloadedParams(method.params || []),
           };
           // TODO: the doc renderer assumes (incorrectly) that
           //   these are the same for all overrides
@@ -207,14 +207,14 @@ function mergeOverloadedMethods(data) {
         return false;
       } else {
         if (classitem.params) {
-          classitem.params.forEach(function(param) {
+          classitem.params.forEach(function (param) {
             extractConsts(param);
           });
         }
         methodsByFullName[fullName] = classitem;
       }
 
-      Object.keys(methodConsts).forEach(constName =>
+      Object.keys(methodConsts).forEach((constName) =>
         (consts[constName] || (consts[constName] = [])).push(fullName)
       );
     }
@@ -261,7 +261,7 @@ function buildParamDocs(docs) {
     path.join(process.cwd(), 'docs', 'parameterData.json'),
     {
       flags: 'w',
-      mode: '0644'
+      mode: '0644',
     }
   );
   out.write(JSON.stringify(newClassItems, null, 2));
@@ -279,13 +279,13 @@ function renderItemDescriptionsAsMarkdown(item) {
 }
 
 function renderDescriptionsAsMarkdown(data) {
-  Object.keys(data.modules).forEach(function(moduleName) {
+  Object.keys(data.modules).forEach(function (moduleName) {
     renderItemDescriptionsAsMarkdown(data.modules[moduleName]);
   });
-  Object.keys(data.classes).forEach(function(className) {
+  Object.keys(data.classes).forEach(function (className) {
     renderItemDescriptionsAsMarkdown(data.classes[className]);
   });
-  data.classitems.forEach(function(classitem) {
+  data.classitems.forEach(function (classitem) {
     renderItemDescriptionsAsMarkdown(classitem);
   });
 }
@@ -293,15 +293,16 @@ function renderDescriptionsAsMarkdown(data) {
 module.exports = (data, options) => {
   data.classitems
     .filter(
-      ci => !ci.itemtype && (ci.params || ci.return) && ci.access !== 'private'
+      (ci) =>
+        !ci.itemtype && (ci.params || ci.return) && ci.access !== 'private'
     )
-    .forEach(ci => {
+    .forEach((ci) => {
       console.error(ci.file + ':' + ci.line + ': unnamed public member');
     });
 
   Object.keys(data.classes)
-    .filter(k => data.classes[k].access === 'private')
-    .forEach(k => delete data.classes[k]);
+    .filter((k) => data.classes[k].access === 'private')
+    .forEach((k) => delete data.classes[k]);
 
   renderDescriptionsAsMarkdown(data);
   mergeOverloadedMethods(data);
@@ -314,7 +315,7 @@ module.exports.mergeOverloadedMethods = mergeOverloadedMethods;
 module.exports.renderDescriptionsAsMarkdown = renderDescriptionsAsMarkdown;
 
 module.exports.register = (Handlebars, options) => {
-  Handlebars.registerHelper('root', function(context, options) {
+  Handlebars.registerHelper('root', function (context, options) {
     // if (this.language === 'en') {
     //   return '';
     // } else {

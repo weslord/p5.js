@@ -4,17 +4,17 @@ function Particle(x, y) {
   this.vel.setMag(random(2, 5));
   this.acc = createVector();
 
-  this.update = function() {
+  this.update = function () {
     this.pos.add(this.vel);
     this.vel.add(this.acc);
     this.acc.mult(0);
   };
 
-  this.show = function() {
+  this.show = function () {
     vertex(this.pos.x, this.pos.y);
   };
 
-  this.attracted = function(target) {
+  this.attracted = function (target) {
     var force = p5.Vector.sub(target, this.pos);
     var dsquared = force.magSq();
     dsquared = constrain(dsquared, 25, 500);

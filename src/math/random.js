@@ -20,7 +20,7 @@ const c = 1013904223;
 let y2 = 0;
 
 // Linear Congruential Generator that stores its state at instance[stateProperty]
-p5.prototype._lcg = function(stateProperty) {
+p5.prototype._lcg = function (stateProperty) {
   // define the recurrence relationship
   this[stateProperty] = (a * this[stateProperty] + c) % m;
   // return a float in [0, 1)
@@ -28,7 +28,7 @@ p5.prototype._lcg = function(stateProperty) {
   return this[stateProperty] / m;
 };
 
-p5.prototype._lcgSetSeed = function(stateProperty, val) {
+p5.prototype._lcgSetSeed = function (stateProperty, val) {
   // pick a random seed if val is undefined or null
   // the >>> 0 casts the seed to an unsigned 32-bit integer
   this[stateProperty] = (val == null ? Math.random() * m : val) >>> 0;
@@ -58,7 +58,7 @@ p5.prototype._lcgSetSeed = function(stateProperty, val) {
  * @alt
  * many vertical lines drawn in white, black or grey.
  */
-p5.prototype.randomSeed = function(seed) {
+p5.prototype.randomSeed = function (seed) {
   this._lcgSetSeed(randomStateProp, seed);
   this._gaussian_previous = false;
 };
@@ -122,7 +122,7 @@ p5.prototype.randomSeed = function(seed) {
  * @return {*} the random element from the array
  * @example
  */
-p5.prototype.random = function(min, max) {
+p5.prototype.random = function (min, max) {
   p5._validateParameters('random', arguments);
   let rand;
 
@@ -206,7 +206,7 @@ p5.prototype.random = function(min, max) {
  * 100 horizontal lines from center of canvas. height & side change each render
  * black lines radiate from center of canvas. size determined each render
  */
-p5.prototype.randomGaussian = function(mean, sd = 1) {
+p5.prototype.randomGaussian = function (mean, sd = 1) {
   let y1, x1, x2, w;
   if (this._gaussian_previous) {
     y1 = y2;
@@ -217,7 +217,7 @@ p5.prototype.randomGaussian = function(mean, sd = 1) {
       x2 = this.random(2) - 1;
       w = x1 * x1 + x2 * x2;
     } while (w >= 1);
-    w = Math.sqrt(-2 * Math.log(w) / w);
+    w = Math.sqrt((-2 * Math.log(w)) / w);
     y1 = x1 * w;
     y2 = x2 * w;
     this._gaussian_previous = true;

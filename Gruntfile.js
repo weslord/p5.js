@@ -64,15 +64,15 @@ function getYuidocOptions() {
       themedir: 'docs/yuidoc-p5-theme/',
       helpers: [],
       preprocessor: './docs/preprocessor.js',
-      outdir: 'docs/reference/'
-    }
+      outdir: 'docs/reference/',
+    },
   };
 
   // note dev is no longer used, prod is used to build both testing and production ready docs
 
   const o = {
     prod: JSON.parse(JSON.stringify(BASE_YUIDOC_OPTIONS)),
-    dev: JSON.parse(JSON.stringify(BASE_YUIDOC_OPTIONS))
+    dev: JSON.parse(JSON.stringify(BASE_YUIDOC_OPTIONS)),
   };
 
   o.prod.options.helpers.push('docs/yuidoc-p5-theme/helpers/helpers_prod.js');
@@ -81,7 +81,7 @@ function getYuidocOptions() {
   return o;
 }
 
-module.exports = grunt => {
+module.exports = (grunt) => {
   // Specify what reporter we'd like to use for Mocha
   const quietReport = process.env.GITHUB_ACTIONS || grunt.option('quiet');
   const reporter = quietReport ? 'spec' : 'Nyan';
@@ -101,23 +101,23 @@ module.exports = grunt => {
         run: false,
         log: true,
         logErrors: true,
-        growlOnSuccess: false
-      }
+        growlOnSuccess: false,
+      },
     },
     test: {
       options: {
         urls: [
           'http://localhost:9001/test/test.html',
-          'http://localhost:9001/test/test-minified.html'
+          'http://localhost:9001/test/test-minified.html',
         ],
         reporter: reporter,
         run: true,
         log: true,
         logErrors: true,
         timeout: 100000,
-        growlOnSuccess: false
-      }
-    }
+        growlOnSuccess: false,
+      },
+    },
   };
 
   let gruntConfig = {
@@ -127,54 +127,54 @@ module.exports = grunt => {
     // Configure style consistency checking for this file, the source, and the tests.
     eslint: {
       options: {
-        format: 'unix'
+        format: 'unix',
       },
       build: {
         src: [
           'Gruntfile.js',
           'docs/preprocessor.js',
           'utils/**/*.js',
-          'tasks/**/*.js'
-        ]
+          'tasks/**/*.js',
+        ],
       },
       fix: {
         // src: is calculated below...
         options: {
           rules: {
             'no-undef': 0,
-            'no-unused-vars': 0
+            'no-unused-vars': 0,
           },
-          fix: true
-        }
+          fix: true,
+        },
       },
       source: {
         options: {
           parserOptions: {
-            ecmaVersion: 5
-          }
+            ecmaVersion: 5,
+          },
         },
-        src: ['src/**/*.js']
+        src: ['src/**/*.js'],
       },
       test: {
-        src: ['test/**/*.js', '!test/js/*.js']
-      }
+        src: ['test/**/*.js', '!test/js/*.js'],
+      },
     },
 
     'eslint-samples': {
       options: {
         parserOptions: {
-          ecmaVersion: 6
+          ecmaVersion: 6,
         },
-        format: 'unix'
+        format: 'unix',
       },
       source: {
-        src: ['src/**/*.js']
+        src: ['src/**/*.js'],
       },
       fix: {
         options: {
-          fix: true
-        }
-      }
+          fix: true,
+        },
+      },
     },
 
     // Set up the watch task, used for live-reloading during development.
@@ -187,20 +187,20 @@ module.exports = grunt => {
           'src/**/*.js',
           'src/**/*.frag',
           'src/**/*.vert',
-          'src/**/*.glsl'
+          'src/**/*.glsl',
         ],
         tasks: ['browserify:dev'],
         options: {
-          livereload: true
-        }
+          livereload: true,
+        },
       },
       // Watch the codebase for changes
       main: {
         files: ['src/**/*.js'],
         tasks: ['newer:eslint:source', 'test'],
         options: {
-          livereload: true
-        }
+          livereload: true,
+        },
       },
       // watch the theme for changes
       reference_build: {
@@ -208,8 +208,8 @@ module.exports = grunt => {
         tasks: ['yuidoc'],
         options: {
           livereload: true,
-          interrupt: true
-        }
+          interrupt: true,
+        },
       },
       // Watch the codebase for doc updates
       // launch with 'grunt requirejs connect watch:yui'
@@ -219,7 +219,7 @@ module.exports = grunt => {
           'lib/addons/*.js',
           'src/**/*.frag',
           'src/**/*.vert',
-          'src/**/*.glsl'
+          'src/**/*.glsl',
         ],
         tasks: [
           'browserify',
@@ -227,12 +227,12 @@ module.exports = grunt => {
           'yuidoc:prod',
           'clean:reference',
           'minjson',
-          'uglify'
+          'uglify',
         ],
         options: {
-          livereload: true
-        }
-      }
+          livereload: true,
+        },
+      },
     },
 
     // Set up node-side (non-browser) mocha tests.
@@ -242,9 +242,9 @@ module.exports = grunt => {
         options: {
           reporter: reporter,
           require: '@babel/register',
-          ui: 'tdd'
-        }
-      }
+          ui: 'tdd',
+        },
+      },
     },
 
     // Set up the mocha task, used for running the automated tests.
@@ -255,9 +255,9 @@ module.exports = grunt => {
     nyc: {
       report: {
         options: {
-          reporter: ['text-summary', 'html', 'json']
-        }
-      }
+          reporter: ['text-summary', 'html', 'json'],
+        },
+      },
     },
 
     // This minifies the javascript into a single file and adds a banner to the
@@ -266,18 +266,18 @@ module.exports = grunt => {
       options: {
         compress: {
           global_defs: {
-            IS_MINIFIED: true
-          }
+            IS_MINIFIED: true,
+          },
         },
         banner:
-          '/*! p5.js v<%= pkg.version %> <%= grunt.template.today("mmmm dd, yyyy") %> */ '
+          '/*! p5.js v<%= pkg.version %> <%= grunt.template.today("mmmm dd, yyyy") %> */ ',
       },
       dist: {
         files: {
           'lib/p5.min.js': 'lib/p5.pre-min.js',
-          'lib/modules/p5Custom.min.js': 'lib/modules/p5Custom.pre-min.js'
-        }
-      }
+          'lib/modules/p5Custom.min.js': 'lib/modules/p5Custom.pre-min.js',
+        },
+      },
     },
 
     // this builds the documentation for the codebase.
@@ -291,20 +291,20 @@ module.exports = grunt => {
           'docs/reference/elements/',
           'docs/reference/files/',
           'docs/reference/modules/',
-          'docs/reference/api.js'
-        ]
+          'docs/reference/api.js',
+        ],
       },
 
       // Clean up files generated by release build
       release: {
-        src: ['release/']
+        src: ['release/'],
       },
       bower: {
-        src: ['bower-repo/']
+        src: ['bower-repo/'],
       },
       website: {
-        src: ['p5-website/']
-      }
+        src: ['p5-website/'],
+      },
     },
 
     // Static assets copy task. Used by release steps.
@@ -315,24 +315,24 @@ module.exports = grunt => {
           'lib/p5.js',
           'lib/p5.min.js',
           'lib/addons/p5.sound.js',
-          'lib/addons/p5.sound.min.js'
+          'lib/addons/p5.sound.min.js',
         ],
         dest: 'release/',
-        flatten: true
+        flatten: true,
       },
       bower: {
         files: [
           {
             expand: true,
             src: ['lib/p5.js', 'lib/p5.min.js'],
-            dest: 'bower-repo/'
+            dest: 'bower-repo/',
           },
           {
             expand: true,
             src: 'lib/addons/*',
-            dest: 'bower-repo/'
-          }
-        ]
+            dest: 'bower-repo/',
+          },
+        ],
       },
       docs: {
         files: [
@@ -340,22 +340,22 @@ module.exports = grunt => {
             expand: true,
             src: ['docs/reference/data.json', 'docs/reference/data.min.json'],
             dest: 'p5-website/src/templates/pages/reference/',
-            flatten: true
+            flatten: true,
           },
           {
             expand: true,
             cwd: 'docs/reference/assets/',
             src: '**',
-            dest: 'p5-website/src/templates/pages/reference/assets'
+            dest: 'p5-website/src/templates/pages/reference/assets',
           },
           {
             expand: true,
             src: ['lib/p5.min.js', 'lib/addons/p5.sound.min.js'],
             dest: 'p5-website/src/assets/js/',
-            flatten: true
-          }
-        ]
-      }
+            flatten: true,
+          },
+        ],
+      },
     },
 
     // Compresses the lib folder into the release zip archive.
@@ -363,10 +363,10 @@ module.exports = grunt => {
     compress: {
       main: {
         options: {
-          archive: 'release/p5.zip'
+          archive: 'release/p5.zip',
         },
-        files: [{ cwd: 'lib/', src: ['**/*'], expand: true }]
-      }
+        files: [{ cwd: 'lib/', src: ['**/*'], expand: true }],
+      },
     },
 
     // This is a static server which is used when testing connectivity for the
@@ -378,98 +378,98 @@ module.exports = grunt => {
           directory: {
             path: './',
             options: {
-              icons: true
-            }
+              icons: true,
+            },
           },
           port: 9001,
           keepalive: keepalive,
-          middleware: function(connect, options, middlewares) {
+          middleware: function (connect, options, middlewares) {
             middlewares.unshift(
               require('connect-modrewrite')([
                 '^/assets/js/p5(\\.min)?\\.js(.*) /lib/p5$1.js$2 [L]',
-                '^/assets/js/p5\\.(sound)(\\.min)?\\.js(.*) /lib/addons/p5.$1$2.js$3 [L]'
+                '^/assets/js/p5\\.(sound)(\\.min)?\\.js(.*) /lib/addons/p5.$1$2.js$3 [L]',
               ]),
-              function(req, res, next) {
+              function (req, res, next) {
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Access-Control-Allow-Methods', '*');
                 return next();
               }
             );
             return middlewares;
-          }
-        }
+          },
+        },
       },
       yui: {
         options: {
           directory: {
             path: './',
             options: {
-              icons: true
-            }
+              icons: true,
+            },
           },
           port: 9001,
           open: 'http://127.0.0.1:9001/docs/reference/',
           keepalive: keepalive,
-          middleware: function(connect, options, middlewares) {
+          middleware: function (connect, options, middlewares) {
             middlewares.unshift(
               require('connect-modrewrite')([
                 '^/assets/js/p5(\\.min)?\\.js(.*) /lib/p5$1.js$2 [L]',
-                '^/assets/js/p5\\.(sound)(\\.min)?\\.js(.*) /lib/addons/p5.$1$2.js$3 [L]'
+                '^/assets/js/p5\\.(sound)(\\.min)?\\.js(.*) /lib/addons/p5.$1$2.js$3 [L]',
               ]),
-              function(req, res, next) {
+              function (req, res, next) {
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Access-Control-Allow-Methods', '*');
                 return next();
               }
             );
             return middlewares;
-          }
-        }
+          },
+        },
       },
       test: {
         options: {
           directory: {
             path: './',
             options: {
-              icons: true
-            }
+              icons: true,
+            },
           },
           port: 9001,
           open: 'http://127.0.0.1:9001/test/',
           keepalive: keepalive,
-          middleware: function(connect, options, middlewares) {
+          middleware: function (connect, options, middlewares) {
             middlewares.unshift(
               require('connect-modrewrite')([
                 '^/assets/js/p5(\\.min)?\\.js(.*) /lib/p5$1.js$2 [L]',
-                '^/assets/js/p5\\.(sound)(\\.min)?\\.js(.*) /lib/addons/p5.$1$2.js$3 [L]'
+                '^/assets/js/p5\\.(sound)(\\.min)?\\.js(.*) /lib/addons/p5.$1$2.js$3 [L]',
               ]),
-              function(req, res, next) {
+              function (req, res, next) {
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Access-Control-Allow-Methods', '*');
                 return next();
               }
             );
             return middlewares;
-          }
-        }
-      }
+          },
+        },
+      },
     },
 
     // This minifies the data.json file created from the inline reference
     minjson: {
       compile: {
         files: {
-          './docs/reference/data.min.json': './docs/reference/data.json'
-        }
-      }
-    }
+          './docs/reference/data.min.json': './docs/reference/data.json',
+        },
+      },
+    },
   };
 
   // eslint fixes everything it checks:
   gruntConfig.eslint.fix.src = Object.keys(gruntConfig.eslint)
-    .map(s => gruntConfig.eslint[s].src)
+    .map((s) => gruntConfig.eslint[s].src)
     .reduce((a, b) => a.concat(b), [])
-    .filter(a => a);
+    .filter((a) => a);
 
   /* not yet
   gruntConfig['eslint-samples'].fix.src = Object.keys(
@@ -516,20 +516,20 @@ module.exports = grunt => {
     'browserify',
     'browserify:min',
     'uglify',
-    'browserify:test'
+    'browserify:test',
   ]);
   grunt.registerTask('lint-no-fix', [
     'lint-no-fix:source',
-    'lint-no-fix:samples'
+    'lint-no-fix:samples',
   ]);
   grunt.registerTask('lint-no-fix:source', [
     'eslint:build',
     'eslint:source',
-    'eslint:test'
+    'eslint:test',
   ]);
   grunt.registerTask('lint-no-fix:samples', [
     'yui', // required for eslint-samples
-    'eslint-samples:source'
+    'eslint-samples:source',
   ]);
   grunt.registerTask('lint-fix', ['eslint:fix']);
   grunt.registerTask('test', [
@@ -537,28 +537,28 @@ module.exports = grunt => {
     'connect:server',
     'mochaChrome',
     'mochaTest',
-    'nyc:report'
+    'nyc:report',
   ]);
   grunt.registerTask('test:nobuild', [
     'eslint:test',
     'connect:server',
     'mochaChrome',
     'mochaTest',
-    'nyc:report'
+    'nyc:report',
   ]);
   grunt.registerTask('yui', ['yuidoc:prod', 'clean:reference', 'minjson']);
   grunt.registerTask('yui:test', [
     'yuidoc:prod',
     'clean:reference',
     'connect:yui',
-    'mochaChrome:yui'
+    'mochaChrome:yui',
   ]);
   grunt.registerTask('yui:dev', [
     'yui:prod',
     'clean:reference',
     'build',
     'connect:yui',
-    'watch:yui'
+    'watch:yui',
   ]);
   grunt.registerTask('yui:build', ['yui']);
 

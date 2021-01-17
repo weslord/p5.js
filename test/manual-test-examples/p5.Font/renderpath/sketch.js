@@ -10,7 +10,7 @@ function setup() {
   textSize(32);
   text(txt, x, 30);
 
-  loadFont('../SourceSansPro-Regular.otf', function(font) {
+  loadFont('../SourceSansPro-Regular.otf', function (font) {
     text(txt, x, 60);
 
     textSize(35); // not aligning correctly (ignore alignment or fix)

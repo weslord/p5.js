@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var Liquid = function(x, y, w, h, c) {
+var Liquid = function (x, y, w, h, c) {
   this.x = x;
   this.y = y;
   this.w = w;
@@ -11,7 +11,7 @@ var Liquid = function(x, y, w, h, c) {
 };
 
 // Is the Mover in the Liquid?
-Liquid.prototype.contains = function(m) {
+Liquid.prototype.contains = function (m) {
   var l = m.position;
   return (
     l.x > this.x &&
@@ -22,7 +22,7 @@ Liquid.prototype.contains = function(m) {
 };
 
 // Calculate drag force
-Liquid.prototype.calculateDrag = function(m) {
+Liquid.prototype.calculateDrag = function (m) {
   // Magnitude is coefficient * speed squared
   var speed = m.velocity.mag();
   var dragMagnitude = this.c * speed * speed;
@@ -38,7 +38,7 @@ Liquid.prototype.calculateDrag = function(m) {
   return dragForce;
 };
 
-Liquid.prototype.display = function() {
+Liquid.prototype.display = function () {
   noStroke();
   fill(50);
   rect(this.x, this.y, this.w, this.h);

@@ -9,14 +9,14 @@ const EventEmitter = require('events');
 const mkdir = util.promisify(fs.mkdir);
 const writeFile = util.promisify(fs.writeFile);
 
-module.exports = function(grunt) {
-  grunt.registerMultiTask('mochaChrome', async function() {
+module.exports = function (grunt) {
+  grunt.registerMultiTask('mochaChrome', async function () {
     const done = this.async();
 
     // Launch Chrome in headless mode
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     try {
@@ -55,8 +55,8 @@ module.exports = function(grunt) {
           `);
 
           // Pipe console messages from the browser to the terminal
-          page.on('console', async msg => {
-            const args = await mapSeries(msg.args(), v => v.jsonValue());
+          page.on('console', async (msg) => {
+            const args = await mapSeries(msg.args(), (v) => v.jsonValue());
             console.log(util.format.apply(util, args));
           });
 
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 
           await new Promise(async (resolve, reject) => {
             // When test end, check if there are any failures and record coverage
-            event.on('mocha:end', async results => {
+            event.on('mocha:end', async (results) => {
               const { stats, coverage } = results;
               if (stats.failures) {
                 reject(stats);

@@ -108,7 +108,7 @@ p5.prototype.ceil = Math.ceil;
  * @alt
  * 2 vertical lines. 2 ellipses move with mouse X 1 does not move passed lines
  */
-p5.prototype.constrain = function(n, low, high) {
+p5.prototype.constrain = function (n, low, high) {
   p5._validateParameters('constrain', arguments);
   return Math.max(Math.min(n, high), low);
 };
@@ -167,7 +167,7 @@ p5.prototype.constrain = function(n, low, high) {
  * @param  {Number} z2 z-coordinate of the second point
  * @return {Number}    distance between the two points
  */
-p5.prototype.dist = function(...args) {
+p5.prototype.dist = function (...args) {
   p5._validateParameters('dist', args);
   if (args.length === 4) {
     //2D
@@ -307,7 +307,7 @@ p5.prototype.floor = Math.floor;
  * @alt
  * 5 points horizontally staggered mid-canvas. mid 3 are grey, outer black
  */
-p5.prototype.lerp = function(start, stop, amt) {
+p5.prototype.lerp = function (start, stop, amt) {
   p5._validateParameters('lerp', arguments);
   return amt * (stop - start) + start;
 };
@@ -400,7 +400,7 @@ p5.prototype.log = Math.log;
  * @alt
  * 4 lines of different length radiate from top left of canvas.
  */
-p5.prototype.mag = function(x, y) {
+p5.prototype.mag = function (x, y) {
   p5._validateParameters('mag', arguments);
   return hypot(x, y);
 };
@@ -447,9 +447,9 @@ p5.prototype.mag = function(x, y) {
  * 10 by 10 white ellipse with in mid left canvas
  * 2 25 by 25 white ellipses move with mouse x. Bottom has more range from X
  */
-p5.prototype.map = function(n, start1, stop1, start2, stop2, withinBounds) {
+p5.prototype.map = function (n, start1, stop1, start2, stop2, withinBounds) {
   p5._validateParameters('map', arguments);
-  const newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+  const newval = ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
   if (!withinBounds) {
     return newval;
   }
@@ -500,7 +500,7 @@ p5.prototype.map = function(n, start1, stop1, start2, stop2, withinBounds) {
  * @param  {Number[]} nums Numbers to compare
  * @return {Number}
  */
-p5.prototype.max = function(...args) {
+p5.prototype.max = function (...args) {
   if (args[0] instanceof Array) {
     return Math.max.apply(null, args[0]);
   } else {
@@ -548,7 +548,7 @@ p5.prototype.max = function(...args) {
  * @param  {Number[]} nums Numbers to compare
  * @return {Number}
  */
-p5.prototype.min = function(...args) {
+p5.prototype.min = function (...args) {
   if (args[0] instanceof Array) {
     return Math.min.apply(null, args[0]);
   } else {
@@ -603,7 +603,7 @@ p5.prototype.min = function(...args) {
  * @alt
  * ellipse moves with mouse. 0 shown left & 100 right and updating values center
  */
-p5.prototype.norm = function(n, start, stop) {
+p5.prototype.norm = function (n, start, stop) {
   p5._validateParameters('norm', arguments);
   return this.map(n, start, stop, 0, 1);
 };
@@ -689,7 +689,7 @@ p5.prototype.pow = Math.pow;
  * "12.78" written in middle of canvas
  * horizontal center line squared values displayed on top and regular on bottom.
  */
-p5.prototype.round = function(n, decimals) {
+p5.prototype.round = function (n, decimals) {
   if (!decimals) {
     return Math.round(n);
   }
@@ -738,7 +738,7 @@ p5.prototype.round = function(n, decimals) {
  * @alt
  * horizontal center line squared values displayed on top and regular on bottom.
  */
-p5.prototype.sq = n => n * n;
+p5.prototype.sq = (n) => n * n;
 
 /**
  * Calculates the square root of a number. The square root of a number is
@@ -849,7 +849,7 @@ function hypot(x, y, z) {
  * @alt
  * 2 rows of numbers, the first row having 8 numbers and the second having the fractional parts of those numbers.
  */
-p5.prototype.fract = function(toConvert) {
+p5.prototype.fract = function (toConvert) {
   p5._validateParameters('fract', arguments);
   let sign = 0;
   let num = Number(toConvert);

@@ -38,7 +38,7 @@ import p5 from '../core/main';
  */
 p5.prototype.touches = [];
 
-p5.prototype._updateTouchCoords = function(e) {
+p5.prototype._updateTouchCoords = function (e) {
   if (this._curElement !== null) {
     const touches = [];
     for (let i = 0; i < e.touches.length; i++) {
@@ -64,7 +64,7 @@ function getTouchInfo(canvas, w, h, e, i = 0) {
     y: (touch.clientY - rect.top) / sy,
     winX: touch.clientX,
     winY: touch.clientY,
-    id: touch.identifier
+    id: touch.identifier,
   };
 }
 
@@ -123,7 +123,7 @@ function getTouchInfo(canvas, w, h, e, i = 0) {
  * 50x50 black rect turns white with touch event.
  * no image displayed
  */
-p5.prototype._ontouchstart = function(e) {
+p5.prototype._ontouchstart = function (e) {
   const context = this._isGlobal ? window : this;
   let executeDefault;
   this._setProperty('mouseIsPressed', true);
@@ -202,7 +202,7 @@ p5.prototype._ontouchstart = function(e) {
  * 50x50 black rect turns lighter with touch until white. resets
  * no image displayed
  */
-p5.prototype._ontouchmove = function(e) {
+p5.prototype._ontouchmove = function (e) {
   const context = this._isGlobal ? window : this;
   let executeDefault;
   this._updateTouchCoords(e);
@@ -275,7 +275,7 @@ p5.prototype._ontouchmove = function(e) {
  * 50x50 black rect turns white with touch.
  * no image displayed
  */
-p5.prototype._ontouchend = function(e) {
+p5.prototype._ontouchend = function (e) {
   this._setProperty('mouseIsPressed', false);
   this._updateTouchCoords(e);
   this._updateNextMouseCoords(e);

@@ -1,6 +1,6 @@
 import p5 from '../core/main';
 
-p5.RenderBuffer = function(size, src, dst, attr, renderer, map) {
+p5.RenderBuffer = function (size, src, dst, attr, renderer, map) {
   this.size = size; // the number of FLOATs in each vertex
   this.src = src; // the name of the model's source array
   this.dst = dst; // the name of the geometry's buffer
@@ -16,7 +16,7 @@ p5.RenderBuffer = function(size, src, dst, attr, renderer, map) {
  * @param {p5.Shader} shader Active shader
  * @private
  */
-p5.RenderBuffer.prototype._prepareBuffer = function(geometry, shader) {
+p5.RenderBuffer.prototype._prepareBuffer = function (geometry, shader) {
   const attributes = shader.attributes;
   const gl = this._renderer.GL;
   let model;

@@ -13,12 +13,12 @@ function Catcher(tempR) {
   this.y = 0;
 }
 
-Catcher.prototype.setLocation = function(tempX, tempY) {
+Catcher.prototype.setLocation = function (tempX, tempY) {
   this.x = tempX;
   this.y = tempY;
 };
 
-Catcher.prototype.display = function() {
+Catcher.prototype.display = function () {
   stroke(0);
   fill(this.col);
   ellipse(this.x, this.y, this.r * 2, this.r * 2);
@@ -26,7 +26,7 @@ Catcher.prototype.display = function() {
 
 // A function that returns true or false based on
 // if the catcher intersects a raindrop
-Catcher.prototype.intersect = function(d) {
+Catcher.prototype.intersect = function (d) {
   // Calculate distance
   var distance = dist(this.x, this.y, d.x, d.y);
 

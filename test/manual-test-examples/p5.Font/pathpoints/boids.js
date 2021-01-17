@@ -16,7 +16,7 @@ function Boid(target) {
   this.arrived = false;
   this.hidden = true;
 
-  this.place = function(x, y) {
+  this.place = function (x, y) {
     this.position = createVector(mouseX, mouseY);
     this.velocity = p5.Vector.sub(
       createVector(mouseX, mouseY),
@@ -25,7 +25,7 @@ function Boid(target) {
     this.hidden = false;
   };
 
-  this.run = function(boids) {
+  this.run = function (boids) {
     if (this.hidden) return;
 
     if (flock.assemble) {
@@ -38,13 +38,13 @@ function Boid(target) {
     this.render();
   };
 
-  this.applyForce = function(force) {
+  this.applyForce = function (force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
   };
 
   // We accumulate a new acceleration each time based on three rules
-  this.flock = function(boids) {
+  this.flock = function (boids) {
     var sep = this.separate(boids); // Separation
     var ali = this.align(boids); // Alignment
     var coh = this.cohesion(boids); // Cohesion
@@ -59,7 +59,7 @@ function Boid(target) {
   };
 
   // Method to update location
-  this.update = function() {
+  this.update = function () {
     if (
       flock.assemble &&
       !this.arrived &&
@@ -75,7 +75,7 @@ function Boid(target) {
     }
   };
 
-  this.seek = function(target) {
+  this.seek = function (target) {
     var desired = p5.Vector.sub(target, this.position);
     // Normalize desired and scale to maximum speed
     desired.normalize();
@@ -86,7 +86,7 @@ function Boid(target) {
     return steer;
   };
 
-  this.render = function() {
+  this.render = function () {
     // Draw a triangle rotated in the direction of velocity
     var theta = this.velocity.heading() + radians(90);
     fill(255);
@@ -103,7 +103,7 @@ function Boid(target) {
   };
 
   // Wraparound
-  this.borders = function() {
+  this.borders = function () {
     if (this.position.x < -this.r) this.position.x = width + this.r;
     if (this.position.y < -this.r) this.position.y = height + this.r;
     if (this.position.x > width + this.r) this.position.x = -this.r;
@@ -112,7 +112,7 @@ function Boid(target) {
 
   // Separation
   // Method checks for nearby boids and steers away
-  this.separate = function(boids) {
+  this.separate = function (boids) {
     var desiredseparation = 25.0;
     var steer = createVector(0, 0);
     var count = 0;
@@ -147,7 +147,7 @@ function Boid(target) {
 
   // Alignment
   // For every nearby boid in the system, calculate the average velocity
-  this.align = function(boids) {
+  this.align = function (boids) {
     var neighbordist = 50;
     var sum = createVector(0, 0);
     var count = 0;
@@ -172,7 +172,7 @@ function Boid(target) {
 
   // Cohesion
   // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
-  this.cohesion = function(boids) {
+  this.cohesion = function (boids) {
     var neighbordist = 50;
     var sum = createVector(0, 0); // Start with empty vector to accumulate all locations
     var num = 0;
@@ -190,7 +190,7 @@ function Boid(target) {
     }
   };
 
-  Boid.prototype.arrive = function(target) {
+  Boid.prototype.arrive = function (target) {
     // A vector pointing from the location to the target
     var desired = p5.Vector.sub(target, this.position),
       d = desired.mag();
@@ -214,7 +214,7 @@ function Flock() {
   this.boids = [];
   this.assemble = false;
 
-  this.arrived = function() {
+  this.arrived = function () {
     var i;
     if (arguments.length) {
       for (i = 0; i < this.boids.length; i++)
@@ -227,7 +227,7 @@ function Flock() {
     }
   };
 
-  this.run = function() {
+  this.run = function () {
     this.assemble = this.count === flock.boids.length;
 
     if (!this.assemble && mouseOnScreen())

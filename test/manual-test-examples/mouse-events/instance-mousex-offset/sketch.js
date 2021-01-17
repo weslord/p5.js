@@ -1,12 +1,12 @@
-var sketch = function(p) {
+var sketch = function (p) {
   var c;
 
-  p.setup = function() {
+  p.setup = function () {
     c = p.createCanvas(200, 200);
     c.position(100, 100);
   };
 
-  p.draw = function() {
+  p.draw = function () {
     p.background(125);
     p.ellipse(p.mouseX, p.mouseY, 20, 20);
     console.log(

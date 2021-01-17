@@ -22,7 +22,7 @@ import * as constants from './constants';
  * @param {Constant} renderer   the renderer to use, either P2D or WEBGL
  * @param {p5} [pInst]          pointer to p5 instance
  */
-p5.Graphics = function(w, h, renderer, pInst) {
+p5.Graphics = function (w, h, renderer, pInst) {
   const r = renderer || constants.P2D;
 
   this.canvas = document.createElement('canvas');
@@ -55,9 +55,9 @@ p5.Graphics = function(w, h, renderer, pInst) {
   pInst._elements.push(this);
 
   Object.defineProperty(this, 'deltaTime', {
-    get: function() {
+    get: function () {
       return this._pInst.deltaTime;
-    }
+    },
   });
 
   this._renderer.resize(w, h);
@@ -112,7 +112,7 @@ p5.Graphics.prototype = Object.create(p5.Element.prototype);
  * A black line animates from top to bottom on a white background on the right half.
  * When clicked, the black line starts back over at the top.
  */
-p5.Graphics.prototype.reset = function() {
+p5.Graphics.prototype.reset = function () {
   this._renderer.resetMatrix();
   if (this._renderer.isP3D) {
     this._renderer._update();
@@ -154,7 +154,7 @@ p5.Graphics.prototype.reset = function() {
  *   // draw the background
  *   if (bg) {
  *     image(bg, frameCount % 100, 0);
- *     image(bg, frameCount % 100 - 100, 0);
+ *     image(bg, (frameCount % 100) - 100, 0);
  *   }
  *   // draw the foreground
  *   let p = p5.Vector.fromAngle(t, 35).add(50, 50);
@@ -173,7 +173,7 @@ p5.Graphics.prototype.reset = function() {
  * no image
  * a multi-colored circle moving back and forth over a scrolling background.
  */
-p5.Graphics.prototype.remove = function() {
+p5.Graphics.prototype.remove = function () {
   if (this.elt.parentNode) {
     this.elt.parentNode.removeChild(this.elt);
   }

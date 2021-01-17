@@ -143,7 +143,7 @@ import p5 from './main';
  * A rectangle rotating clockwise about the center
  * A rectangle shearing
  */
-p5.prototype.applyMatrix = function(a, b, c, d, e, f) {
+p5.prototype.applyMatrix = function (a, b, c, d, e, f) {
   this._renderer.applyMatrix(...arguments);
   return this;
 };
@@ -168,7 +168,7 @@ p5.prototype.applyMatrix = function(a, b, c, d, e, f) {
  * @alt
  * A rotated retangle in the center with another at the top left corner
  */
-p5.prototype.resetMatrix = function() {
+p5.prototype.resetMatrix = function () {
   this._renderer.resetMatrix();
   return this;
 };
@@ -206,7 +206,7 @@ p5.prototype.resetMatrix = function() {
  * @alt
  * white 52x52 rect with black outline at center rotated counter 45 degrees
  */
-p5.prototype.rotate = function(angle, axis) {
+p5.prototype.rotate = function (angle, axis) {
   p5._validateParameters('rotate', arguments);
   this._renderer.rotate(this._toRadians(angle), axis);
   return this;
@@ -241,7 +241,7 @@ p5.prototype.rotate = function(angle, axis) {
  * @alt
  * 3d box rotating around the x axis.
  */
-p5.prototype.rotateX = function(angle) {
+p5.prototype.rotateX = function (angle) {
   this._assert3d('rotateX');
   p5._validateParameters('rotateX', arguments);
   this._renderer.rotateX(this._toRadians(angle));
@@ -277,7 +277,7 @@ p5.prototype.rotateX = function(angle) {
  * @alt
  * 3d box rotating around the y axis.
  */
-p5.prototype.rotateY = function(angle) {
+p5.prototype.rotateY = function (angle) {
   this._assert3d('rotateY');
   p5._validateParameters('rotateY', arguments);
   this._renderer.rotateY(this._toRadians(angle));
@@ -315,7 +315,7 @@ p5.prototype.rotateY = function(angle) {
  * @alt
  * 3d box rotating around the z axis.
  */
-p5.prototype.rotateZ = function(angle) {
+p5.prototype.rotateZ = function (angle) {
   this._assert3d('rotateZ');
   p5._validateParameters('rotateZ', arguments);
   this._renderer.rotateZ(this._toRadians(angle));
@@ -371,7 +371,7 @@ p5.prototype.rotateZ = function(angle) {
  * @param  {p5.Vector|Number[]} scales per-axis percents to scale the object
  * @chainable
  */
-p5.prototype.scale = function(x, y, z) {
+p5.prototype.scale = function (x, y, z) {
   p5._validateParameters('scale', arguments);
   // Only check for Vector argument type if Vector is available
   if (x instanceof p5.Vector) {
@@ -428,7 +428,7 @@ p5.prototype.scale = function(x, y, z) {
  * @alt
  * white irregular quadrilateral with black outline at top middle.
  */
-p5.prototype.shearX = function(angle) {
+p5.prototype.shearX = function (angle) {
   p5._validateParameters('shearX', arguments);
   const rad = this._toRadians(angle);
   this._renderer.applyMatrix(1, 0, Math.tan(rad), 1, 0, 0);
@@ -467,7 +467,7 @@ p5.prototype.shearX = function(angle) {
  * @alt
  * white irregular quadrilateral with black outline at middle bottom.
  */
-p5.prototype.shearY = function(angle) {
+p5.prototype.shearY = function (angle) {
   p5._validateParameters('shearY', arguments);
   const rad = this._toRadians(angle);
   this._renderer.applyMatrix(1, Math.tan(rad), 0, 1, 0, 0);
@@ -532,7 +532,7 @@ p5.prototype.shearY = function(angle) {
  * @param  {p5.Vector} vector the vector to translate by
  * @chainable
  */
-p5.prototype.translate = function(x, y, z) {
+p5.prototype.translate = function (x, y, z) {
   p5._validateParameters('translate', arguments);
   if (this._renderer.isP3D) {
     this._renderer.translate(x, y, z);

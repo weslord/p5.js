@@ -75,7 +75,7 @@ import '../friendly_errors/validate_params';
  * @param  {Number} z4 z-coordinate for the second anchor point
  * @chainable
  */
-p5.prototype.bezier = function(...args) {
+p5.prototype.bezier = function (...args) {
   p5._validateParameters('bezier', args);
 
   // if the current stroke and fill settings wouldn't result in something
@@ -121,7 +121,7 @@ p5.prototype.bezier = function(...args) {
  * @alt
  * stretched black s-shape with a low level of bezier detail
  */
-p5.prototype.bezierDetail = function(d) {
+p5.prototype.bezierDetail = function (d) {
   p5._validateParameters('bezierDetail', arguments);
   this._bezierDetail = d;
   return this;
@@ -170,7 +170,7 @@ p5.prototype.bezierDetail = function(d) {
  * @alt
  * 10 points plotted on a given bezier at equal distances.
  */
-p5.prototype.bezierPoint = function(a, b, c, d, t) {
+p5.prototype.bezierPoint = function (a, b, c, d, t) {
   p5._validateParameters('bezierPoint', arguments);
 
   const adjustedT = 1 - t;
@@ -247,7 +247,7 @@ p5.prototype.bezierPoint = function(a, b, c, d, t) {
  * s-shaped line with 6 short orange lines showing the tangents at those points.
  * s-shaped line with 6 short orange lines showing lines coming out the underside of the bezier.
  */
-p5.prototype.bezierTangent = function(a, b, c, d, t) {
+p5.prototype.bezierTangent = function (a, b, c, d, t) {
   p5._validateParameters('bezierTangent', arguments);
 
   const adjustedT = 1 - t;
@@ -345,7 +345,7 @@ p5.prototype.bezierTangent = function(a, b, c, d, t) {
  * @param  {Number} z4 z-coordinate for the ending control point
  * @chainable
  */
-p5.prototype.curve = function(...args) {
+p5.prototype.curve = function (...args) {
   p5._validateParameters('curve', args);
 
   if (this._renderer._doStroke) {
@@ -385,7 +385,7 @@ p5.prototype.curve = function(...args) {
  * @alt
  * white arch shape with a low level of curve detail.
  */
-p5.prototype.curveDetail = function(d) {
+p5.prototype.curveDetail = function (d) {
   p5._validateParameters('curveDetail', arguments);
   if (d < 3) {
     this._curveDetail = 3;
@@ -435,7 +435,7 @@ p5.prototype.curveDetail = function(d) {
  * @alt
  * Line shaped like right-facing arrow,points move with mouse-x and warp shape.
  */
-p5.prototype.curveTightness = function(t) {
+p5.prototype.curveTightness = function (t) {
   p5._validateParameters('curveTightness', arguments);
   this._renderer._curveTightness = t;
   return this;
@@ -478,7 +478,7 @@ p5.prototype.curveTightness = function(t) {
  *
  *line hooking down to right-bottom with 13 5x5 white ellipse points
  */
-p5.prototype.curvePoint = function(a, b, c, d, t) {
+p5.prototype.curvePoint = function (a, b, c, d, t) {
   p5._validateParameters('curvePoint', arguments);
 
   const t3 = t * t * t,
@@ -525,14 +525,14 @@ p5.prototype.curvePoint = function(a, b, c, d, t) {
  * @alt
  * right curving line mid-right of canvas with 7 short lines radiating from it.
  */
-p5.prototype.curveTangent = function(a, b, c, d, t) {
+p5.prototype.curveTangent = function (a, b, c, d, t) {
   p5._validateParameters('curveTangent', arguments);
 
   const t2 = t * t,
-    f1 = -3 * t2 / 2 + 2 * t - 0.5,
-    f2 = 9 * t2 / 2 - 5 * t,
-    f3 = -9 * t2 / 2 + 4 * t + 0.5,
-    f4 = 3 * t2 / 2 - t;
+    f1 = (-3 * t2) / 2 + 2 * t - 0.5,
+    f2 = (9 * t2) / 2 - 5 * t,
+    f3 = (-9 * t2) / 2 + 4 * t + 0.5,
+    f4 = (3 * t2) / 2 - t;
   return a * f1 + b * f2 + c * f3 + d * f4;
 };
 

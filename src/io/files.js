@@ -116,7 +116,7 @@ import '../core/friendly_errors/fes_core';
  * @param  {function}      [errorCallback]
  * @return {Object|Array}
  */
-p5.prototype.loadJSON = function(...args) {
+p5.prototype.loadJSON = function (...args) {
   p5._validateParameters('loadJSON', args);
   const path = args[0];
   let callback;
@@ -155,7 +155,7 @@ p5.prototype.loadJSON = function(...args) {
     'GET',
     options,
     t,
-    resp => {
+    (resp) => {
       for (const k in resp) {
         ret[k] = resp[k];
       }
@@ -165,7 +165,7 @@ p5.prototype.loadJSON = function(...args) {
 
       self._decrementPreload();
     },
-    err => {
+    (err) => {
       // Error handling
       p5._friendlyFileLoadError(5, path);
 
@@ -238,7 +238,7 @@ p5.prototype.loadJSON = function(...args) {
  * randomly generated text from a file, for example "i smell like butter"
  * randomly generated text from a file, for example "i have three feet"
  */
-p5.prototype.loadStrings = function(...args) {
+p5.prototype.loadStrings = function (...args) {
   p5._validateParameters('loadStrings', args);
 
   const ret = [];
@@ -261,7 +261,7 @@ p5.prototype.loadStrings = function(...args) {
     args[0],
     'GET',
     'text',
-    data => {
+    (data) => {
       // split lines handling mac/windows/linux endings
       const lines = data
         .replace(/\r\n/g, '\r')
@@ -285,7 +285,7 @@ p5.prototype.loadStrings = function(...args) {
 
       self._decrementPreload();
     },
-    function(err) {
+    function (err) {
       // Error handling
       p5._friendlyFileLoadError(3, arguments[0]);
 
@@ -372,7 +372,7 @@ p5.prototype.loadStrings = function(...args) {
  * randomly generated text from a file, for example "i smell like butter"
  * randomly generated text from a file, for example "i have three feet"
  */
-p5.prototype.loadTable = function(path) {
+p5.prototype.loadTable = function (path) {
   // p5._validateParameters('loadTable', arguments);
   let callback;
   let errorCallback;
@@ -418,7 +418,7 @@ p5.prototype.loadTable = function(path) {
     path,
     'GET',
     'table',
-    resp => {
+    (resp) => {
       const state = {};
 
       // define constants
@@ -548,7 +548,7 @@ p5.prototype.loadTable = function(path) {
 
       self._decrementPreload();
     },
-    err => {
+    (err) => {
       // Error handling
       p5._friendlyFileLoadError(2, path);
 
@@ -645,7 +645,7 @@ function makeObject(row, headers) {
  * @alt
  * no image displayed
  */
-p5.prototype.loadXML = function(...args) {
+p5.prototype.loadXML = function (...args) {
   const ret = new p5.XML();
   let callback, errorCallback;
 
@@ -665,7 +665,7 @@ p5.prototype.loadXML = function(...args) {
     args[0],
     'GET',
     'xml',
-    xml => {
+    (xml) => {
       for (const key in xml) {
         ret[key] = xml[key];
       }
@@ -675,7 +675,7 @@ p5.prototype.loadXML = function(...args) {
 
       self._decrementPreload();
     },
-    function(err) {
+    function (err) {
       // Error handling
       p5._friendlyFileLoadError(1, arguments[0]);
 
@@ -718,7 +718,7 @@ p5.prototype.loadXML = function(...args) {
  * @alt
  * no image displayed
  */
-p5.prototype.loadBytes = function(file, callback, errorCallback) {
+p5.prototype.loadBytes = function (file, callback, errorCallback) {
   const ret = {};
 
   const self = this;
@@ -726,7 +726,7 @@ p5.prototype.loadBytes = function(file, callback, errorCallback) {
     file,
     'GET',
     'arrayBuffer',
-    arrayBuffer => {
+    (arrayBuffer) => {
       ret.bytes = new Uint8Array(arrayBuffer);
 
       if (typeof callback === 'function') {
@@ -735,7 +735,7 @@ p5.prototype.loadBytes = function(file, callback, errorCallback) {
 
       self._decrementPreload();
     },
-    err => {
+    (err) => {
       // Error handling
       p5._friendlyFileLoadError(6, file);
 
@@ -780,7 +780,7 @@ p5.prototype.loadBytes = function(file, callback, errorCallback) {
  *   let url =
     'https://earthquake.usgs.gov/fdsnws/event/1/query?' +
  *     'format=geojson&limit=1&orderby=time';
- *   httpGet(url, 'jsonp', false, function(response) {
+ *   httpGet(url, 'jsonp', false, function (response) {
  *     // when the HTTP request completes, populate the variable that holds the
  *     // earthquake data used in the visualization.
  *     earthquakes = response;
@@ -818,7 +818,7 @@ p5.prototype.loadBytes = function(file, callback, errorCallback) {
  * @param  {function}      [errorCallback]
  * @return {Promise}
  */
-p5.prototype.httpGet = function() {
+p5.prototype.httpGet = function () {
   p5._validateParameters('httpGet', arguments);
 
   const args = Array.prototype.slice.call(arguments);
@@ -860,7 +860,7 @@ p5.prototype.httpGet = function() {
  * }
  *
  * function mousePressed() {
- *   httpPost(url, 'json', postData, function(result) {
+ *   httpPost(url, 'json', postData, function (result) {
  *     strokeWeight(2);
  *     text(result.body, mouseX, mouseY);
  *   });
@@ -882,10 +882,10 @@ p5.prototype.httpGet = function() {
  *     url,
  *     'json',
  *     postData,
- *     function(result) {
+ *     function (result) {
  *       // ... won't be called
  *     },
- *     function(error) {
+ *     function (error) {
  *       strokeWeight(2);
  *       text(error.toString(), mouseX, mouseY);
  *     }
@@ -908,7 +908,7 @@ p5.prototype.httpGet = function() {
  * @param  {function}      [errorCallback]
  * @return {Promise}
  */
-p5.prototype.httpPost = function() {
+p5.prototype.httpPost = function () {
   p5._validateParameters('httpPost', arguments);
 
   const args = Array.prototype.slice.call(arguments);
@@ -957,9 +957,9 @@ p5.prototype.httpPost = function() {
  *     {
  *       method: 'GET',
  *       // Other Request options, like special headers for apis
- *       headers: { authorization: 'Bearer secretKey' }
+ *       headers: { authorization: 'Bearer secretKey' },
  *     },
- *     function(res) {
+ *     function (res) {
  *       earthquakes = res;
  *     }
  *   );
@@ -974,7 +974,7 @@ p5.prototype.httpPost = function() {
  *
  *   let feature = earthquakes.features[eqFeatureIndex];
  *   let mag = feature.properties.mag;
- *   let rad = mag / 11 * ((width + height) / 2);
+ *   let rad = (mag / 11) * ((width + height) / 2);
  *   fill(255, 0, 0, 100);
  *   ellipse(width / 2 + random(-2, 2), height / 2 + random(-2, 2), rad, rad);
  *
@@ -997,7 +997,7 @@ p5.prototype.httpPost = function() {
  * @param  {function}      [errorCallback]
  * @return {Promise}
  */
-p5.prototype.httpDo = function(...args) {
+p5.prototype.httpDo = function (...args) {
   let type;
   let callback;
   let errorCallback;
@@ -1084,7 +1084,7 @@ p5.prototype.httpDo = function(...args) {
       method,
       mode: 'cors',
       body: data,
-      headers: headers
+      headers: headers,
     });
   }
   // do some sort of smart type checking
@@ -1103,7 +1103,7 @@ p5.prototype.httpDo = function(...args) {
   } else {
     promise = fetch(request);
   }
-  promise = promise.then(res => {
+  promise = promise.then((res) => {
     if (!res.ok) {
       const err = new Error(res.body);
       err.status = res.status;
@@ -1126,7 +1126,7 @@ p5.prototype.httpDo = function(...args) {
         case 'arrayBuffer':
           return res.arrayBuffer();
         case 'xml':
-          return res.text().then(text => {
+          return res.text().then((text) => {
             const parser = new DOMParser();
             const xml = parser.parseFromString(text, 'text/xml');
             return new p5.XML(xml.documentElement);
@@ -1179,7 +1179,7 @@ p5.prototype._pWriters = [];
  * </code>
  * </div>
  */
-p5.prototype.createWriter = function(name, extension) {
+p5.prototype.createWriter = function (name, extension) {
   let newPW;
   // check that it doesn't already exist
   for (const i in p5.prototype._pWriters) {
@@ -1202,7 +1202,7 @@ p5.prototype.createWriter = function(name, extension) {
  *  @param  {String}     filename
  *  @param  {String}     [extension]
  */
-p5.PrintWriter = function(filename, extension) {
+p5.PrintWriter = function (filename, extension) {
   let self = this;
   this.name = filename;
   this.content = '';
@@ -1263,7 +1263,7 @@ p5.PrintWriter = function(filename, extension) {
    * </code>
    * </div>
    */
-  this.write = function(data) {
+  this.write = function (data) {
     this.content += data;
   };
   /**
@@ -1304,7 +1304,7 @@ p5.PrintWriter = function(filename, extension) {
    * </code>
    * </div>
    */
-  this.print = function(data) {
+  this.print = function (data) {
     this.content += `${data}\n`;
   };
   /**
@@ -1338,7 +1338,7 @@ p5.PrintWriter = function(filename, extension) {
    * </div>
    *
    */
-  this.clear = function() {
+  this.clear = function () {
     this.content = '';
   };
   /**
@@ -1364,7 +1364,7 @@ p5.PrintWriter = function(filename, extension) {
    * </code>
    * </div>
    */
-  this.close = function() {
+  this.close = function () {
     // convert String to Array for the writeFile Blob
     const arr = [];
     arr.push(this.content);
@@ -1485,7 +1485,7 @@ p5.PrintWriter = function(filename, extension) {
  * An example for saving an array of strings to text file with line breaks.
  */
 
-p5.prototype.save = function(object, _filename, _options) {
+p5.prototype.save = function (object, _filename, _options) {
   // parse the arguments and figure out which things we are saving
   const args = arguments;
   // =================================================
@@ -1575,7 +1575,7 @@ p5.prototype.save = function(object, _filename, _options) {
  * @alt
  * no image displayed
  */
-p5.prototype.saveJSON = function(json, filename, opt) {
+p5.prototype.saveJSON = function (json, filename, opt) {
   p5._validateParameters('saveJSON', arguments);
   let stringify;
   if (opt) {
@@ -1629,7 +1629,7 @@ p5.prototype.saveJSONArray = p5.prototype.saveJSON;
  * @alt
  * no image displayed
  */
-p5.prototype.saveStrings = function(list, filename, extension, isCRLF) {
+p5.prototype.saveStrings = function (list, filename, extension, isCRLF) {
   p5._validateParameters('saveStrings', arguments);
   const ext = extension || 'txt';
   const pWriter = this.createWriter(filename, ext);
@@ -1692,7 +1692,7 @@ function escapeHelper(content) {
  * @alt
  * no image displayed
  */
-p5.prototype.saveTable = function(table, filename, options) {
+p5.prototype.saveTable = function (table, filename, options) {
   p5._validateParameters('saveTable', arguments);
   let ext;
   if (options === undefined) {
@@ -1797,13 +1797,13 @@ p5.prototype.saveTable = function(table, filename, options) {
  *  @param  {String} [extension]
  *  @private
  */
-p5.prototype.writeFile = function(dataToDownload, filename, extension) {
+p5.prototype.writeFile = function (dataToDownload, filename, extension) {
   let type = 'application/octet-stream';
   if (p5.prototype._isSafari()) {
     type = 'text/plain';
   }
   const blob = new Blob(dataToDownload, {
-    type
+    type,
   });
   p5.prototype.downloadFile(blob, filename, extension);
 };
@@ -1821,7 +1821,7 @@ p5.prototype.writeFile = function(dataToDownload, filename, extension) {
  *  @param  {String} [filename]
  *  @param  {String} [extension]
  */
-p5.prototype.downloadFile = function(data, fName, extension) {
+p5.prototype.downloadFile = function (data, fName, extension) {
   const fx = _checkFileExtension(fName, extension);
   const filename = fx[0];
 
@@ -1835,7 +1835,7 @@ p5.prototype.downloadFile = function(data, fName, extension) {
   a.download = filename;
 
   // Firefox requires the link to be added to the DOM before click()
-  a.onclick = e => {
+  a.onclick = (e) => {
     destroyClickedElement(e);
     e.stopPropagation();
   };
@@ -1894,7 +1894,7 @@ p5.prototype._checkFileExtension = _checkFileExtension;
  *  @return  {Boolean} [description]
  *  @private
  */
-p5.prototype._isSafari = function() {
+p5.prototype._isSafari = function () {
   const x = Object.prototype.toString.call(window.HTMLElement);
   return x.indexOf('Constructor') > 0;
 };

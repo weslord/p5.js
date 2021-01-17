@@ -17,7 +17,7 @@ import p5 from '../core/main';
  * @param {String} vertSrc source code for the vertex shader (as a string)
  * @param {String} fragSrc source code for the fragment shader (as a string)
  */
-p5.Shader = function(renderer, vertSrc, fragSrc) {
+p5.Shader = function (renderer, vertSrc, fragSrc) {
   // TODO: adapt this to not take ids, but rather,
   // to take the source for a vertex and fragment shader
   // to enable custom shaders at some later date
@@ -44,7 +44,7 @@ p5.Shader = function(renderer, vertSrc, fragSrc) {
  * @chainable
  * @private
  */
-p5.Shader.prototype.init = function() {
+p5.Shader.prototype.init = function () {
   if (this._glProgram === 0 /* or context is stale? */) {
     const gl = this._renderer.GL;
 
@@ -108,7 +108,7 @@ p5.Shader.prototype.init = function() {
  * @method _loadAttributes
  * @private
  */
-p5.Shader.prototype._loadAttributes = function() {
+p5.Shader.prototype._loadAttributes = function () {
   if (this._loadedAttributes) {
     return;
   }
@@ -143,7 +143,7 @@ p5.Shader.prototype._loadAttributes = function() {
  * @method _loadUniforms
  * @private
  */
-p5.Shader.prototype._loadUniforms = function() {
+p5.Shader.prototype._loadUniforms = function () {
   if (this._loadedUniforms) {
     return;
   }
@@ -193,7 +193,7 @@ p5.Shader.prototype._loadUniforms = function() {
   this._loadedUniforms = true;
 };
 
-p5.Shader.prototype.compile = function() {
+p5.Shader.prototype.compile = function () {
   // TODO
 };
 
@@ -202,7 +202,7 @@ p5.Shader.prototype.compile = function() {
  * @method bindShader
  * @private
  */
-p5.Shader.prototype.bindShader = function() {
+p5.Shader.prototype.bindShader = function () {
   this.init();
   if (!this._bound) {
     this.useProgram();
@@ -219,7 +219,7 @@ p5.Shader.prototype.bindShader = function() {
  * @chainable
  * @private
  */
-p5.Shader.prototype.unbindShader = function() {
+p5.Shader.prototype.unbindShader = function () {
   if (this._bound) {
     this.unbindTextures();
     //this._renderer.GL.useProgram(0); ??
@@ -228,7 +228,7 @@ p5.Shader.prototype.unbindShader = function() {
   return this;
 };
 
-p5.Shader.prototype.bindTextures = function() {
+p5.Shader.prototype.bindTextures = function () {
   const gl = this._renderer.GL;
 
   for (const uniform of this.samplers) {
@@ -246,7 +246,7 @@ p5.Shader.prototype.bindTextures = function() {
   }
 };
 
-p5.Shader.prototype.updateTextures = function() {
+p5.Shader.prototype.updateTextures = function () {
   for (const uniform of this.samplers) {
     const tex = uniform.texture;
     if (tex) {
@@ -255,12 +255,12 @@ p5.Shader.prototype.updateTextures = function() {
   }
 };
 
-p5.Shader.prototype.unbindTextures = function() {
+p5.Shader.prototype.unbindTextures = function () {
   // TODO: migrate stuff from material.js here
   // - OR - have material.js define this function
 };
 
-p5.Shader.prototype._setMatrixUniforms = function() {
+p5.Shader.prototype._setMatrixUniforms = function () {
   this.setUniform('uProjectionMatrix', this._renderer.uPMatrix.mat4);
   if (this.isStrokeShader()) {
     if (this._renderer._curCamera.cameraType === 'default') {
@@ -284,7 +284,7 @@ p5.Shader.prototype._setMatrixUniforms = function() {
  * @chainable
  * @private
  */
-p5.Shader.prototype.useProgram = function() {
+p5.Shader.prototype.useProgram = function () {
   const gl = this._renderer.GL;
   if (this._renderer._curShader !== this) {
     gl.useProgram(this._glProgram);
@@ -355,7 +355,7 @@ p5.Shader.prototype.useProgram = function() {
  * @alt
  * canvas toggles between a circular gradient of orange and blue vertically. and a circular gradient of red and green moving horizontally when mouse is clicked/pressed.
  */
-p5.Shader.prototype.setUniform = function(uniformName, data) {
+p5.Shader.prototype.setUniform = function (uniformName, data) {
   const uniform = this.uniforms[uniformName];
   if (!uniform) {
     return;
@@ -471,7 +471,7 @@ p5.Shader.prototype.setUniform = function(uniformName, data) {
  *
  **/
 
-p5.Shader.prototype.isLightShader = function() {
+p5.Shader.prototype.isLightShader = function () {
   return (
     this.attributes.aNormal !== undefined ||
     this.uniforms.uUseLighting !== undefined ||
@@ -489,26 +489,26 @@ p5.Shader.prototype.isLightShader = function() {
   );
 };
 
-p5.Shader.prototype.isNormalShader = function() {
+p5.Shader.prototype.isNormalShader = function () {
   return this.attributes.aNormal !== undefined;
 };
 
-p5.Shader.prototype.isTextureShader = function() {
+p5.Shader.prototype.isTextureShader = function () {
   return this.samplerIndex > 0;
 };
 
-p5.Shader.prototype.isColorShader = function() {
+p5.Shader.prototype.isColorShader = function () {
   return (
     this.attributes.aVertexColor !== undefined ||
     this.uniforms.uMaterialColor !== undefined
   );
 };
 
-p5.Shader.prototype.isTexLightShader = function() {
+p5.Shader.prototype.isTexLightShader = function () {
   return this.isLightShader() && this.isTextureShader();
 };
 
-p5.Shader.prototype.isStrokeShader = function() {
+p5.Shader.prototype.isStrokeShader = function () {
   return this.uniforms.uStrokeWeight !== undefined;
 };
 
@@ -517,7 +517,7 @@ p5.Shader.prototype.isStrokeShader = function() {
  * @chainable
  * @private
  */
-p5.Shader.prototype.enableAttrib = function(
+p5.Shader.prototype.enableAttrib = function (
   attr,
   size,
   type,
@@ -531,9 +531,7 @@ p5.Shader.prototype.enableAttrib = function(
       this.attributes[attr.name] !== attr
     ) {
       console.warn(
-        `The attribute "${
-          attr.name
-        }"passed to enableAttrib does not belong to this shader.`
+        `The attribute "${attr.name}"passed to enableAttrib does not belong to this shader.`
       );
     }
     const loc = attr.location;

@@ -30,7 +30,7 @@ function draw() {
 }
 
 function setupSound() {
-  cnv.mouseClicked(function() {
+  cnv.mouseClicked(function () {
     if (soundFile.isPlaying()) {
       soundFile.stop();
     } else {

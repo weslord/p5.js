@@ -16,7 +16,7 @@ import * as constants from '../core/constants';
  * @constructor
  * @param {p5} [pInst] pointer to p5 instance
  */
-p5.Font = function(p) {
+p5.Font = function (p) {
   this.parent = p;
 
   this.cache = {};
@@ -71,7 +71,7 @@ p5.Font = function(p) {
  * @alt
  *words Lorem ipsum dol go off canvas and contained by white bounding box
  */
-p5.Font.prototype.textBounds = function(str, x = 0, y = 0, fontSize, opts) {
+p5.Font.prototype.textBounds = function (str, x = 0, y = 0, fontSize, opts) {
   // Check cache for existing bounds. Take into consideration the text alignment
   // settings. Default alignment should match opentype's origin: left-aligned &
   // alphabetic baseline.
@@ -149,7 +149,7 @@ p5.Font.prototype.textBounds = function(str, x = 0, y = 0, fontSize, opts) {
       y: minY,
       h: maxY - minY,
       w: finalMaxX,
-      advance: finalMinX - x
+      advance: finalMinX - x,
     };
 
     // Bounds are now calculated, so shift the x & y to match alignment settings
@@ -208,7 +208,7 @@ p5.Font.prototype.textBounds = function(str, x = 0, y = 0, fontSize, opts) {
  *
  *   points = font.textToPoints('p5', 0, 0, 10, {
  *     sampleFactor: 5,
- *     simplifyThreshold: 0
+ *     simplifyThreshold: 0,
  *   });
  *   bounds = font.textBounds(' p5 ', 0, 0, 10);
  * }
@@ -216,13 +216,13 @@ p5.Font.prototype.textBounds = function(str, x = 0, y = 0, fontSize, opts) {
  * function draw() {
  *   background(255);
  *   beginShape();
- *   translate(-bounds.x * width / bounds.w, -bounds.y * height / bounds.h);
+ *   translate((-bounds.x * width) / bounds.w, (-bounds.y * height) / bounds.h);
  *   for (let i = 0; i < points.length; i++) {
  *     let p = points[i];
  *     vertex(
- *       p.x * width / bounds.w +
- *         sin(20 * p.y / bounds.h + millis() / 1000) * width / 30,
- *       p.y * height / bounds.h
+ *       (p.x * width) / bounds.w +
+ *         (sin((20 * p.y) / bounds.h + millis() / 1000) * width) / 30,
+ *       (p.y * height) / bounds.h
  *     );
  *   }
  *   endShape(CLOSE);
@@ -230,7 +230,7 @@ p5.Font.prototype.textBounds = function(str, x = 0, y = 0, fontSize, opts) {
  * </code>
  * </div>
  */
-p5.Font.prototype.textToPoints = function(txt, x, y, fontSize, options) {
+p5.Font.prototype.textToPoints = function (txt, x, y, fontSize, options) {
   let xoff = 0;
   const result = [];
   const glyphs = this._getGlyphs(txt);
@@ -281,7 +281,7 @@ p5.Font.prototype.textToPoints = function(txt, x, y, fontSize, options) {
  * @param  {String} str the string to be converted
  * @return {Array}     the opentype glyphs
  */
-p5.Font.prototype._getGlyphs = function(str) {
+p5.Font.prototype._getGlyphs = function (str) {
   return this.font.stringToGlyphs(str);
 };
 
@@ -295,7 +295,7 @@ p5.Font.prototype._getGlyphs = function(str) {
  * @param  {Object} options opentype options (optional)
  * @return {Object}     the opentype path
  */
-p5.Font.prototype._getPath = function(line, x, y, options) {
+p5.Font.prototype._getPath = function (line, x, y, options) {
   const p =
       (options && options.renderer && options.renderer._pInst) || this.parent,
     renderer = p._renderer,
@@ -319,7 +319,7 @@ p5.Font.prototype._getPath = function(line, x, y, options) {
  *
  * @return {Object}     this p5.Font object
  */
-p5.Font.prototype._getPathData = function(line, x, y, options) {
+p5.Font.prototype._getPathData = function (line, x, y, options) {
   let decimals = 3;
 
   // create path from string/position
@@ -355,7 +355,7 @@ p5.Font.prototype._getPathData = function(line, x, y, options) {
  *
  * @return {Object}     this p5.Font object
  */
-p5.Font.prototype._getSVG = function(line, x, y, options) {
+p5.Font.prototype._getSVG = function (line, x, y, options) {
   let decimals = 3;
 
   // create path from string/position
@@ -398,7 +398,7 @@ p5.Font.prototype._getSVG = function(line, x, y, options) {
  *
  * @return {p5.Font}     this p5.Font object
  */
-p5.Font.prototype._renderPath = function(line, x, y, options) {
+p5.Font.prototype._renderPath = function (line, x, y, options) {
   let pdata;
   const pg = (options && options.renderer) || this.parent._renderer;
   const ctx = pg.drawingContext;
@@ -442,25 +442,31 @@ p5.Font.prototype._renderPath = function(line, x, y, options) {
   return this;
 };
 
-p5.Font.prototype._textWidth = function(str, fontSize) {
+p5.Font.prototype._textWidth = function (str, fontSize) {
   return this.font.getAdvanceWidth(str, fontSize);
 };
 
-p5.Font.prototype._textAscent = function(fontSize) {
+p5.Font.prototype._textAscent = function (fontSize) {
   return this.font.ascender * this._scale(fontSize);
 };
 
-p5.Font.prototype._textDescent = function(fontSize) {
+p5.Font.prototype._textDescent = function (fontSize) {
   return -this.font.descender * this._scale(fontSize);
 };
 
-p5.Font.prototype._scale = function(fontSize) {
+p5.Font.prototype._scale = function (fontSize) {
   return (
-    1 / this.font.unitsPerEm * (fontSize || this.parent._renderer._textSize)
+    (1 / this.font.unitsPerEm) * (fontSize || this.parent._renderer._textSize)
   );
 };
 
-p5.Font.prototype._handleAlignment = function(renderer, line, x, y, textWidth) {
+p5.Font.prototype._handleAlignment = function (
+  renderer,
+  line,
+  x,
+  y,
+  textWidth
+) {
   const fontSize = renderer._textSize;
 
   if (typeof textWidth === 'undefined') {
@@ -496,7 +502,7 @@ p5.Font.prototype._handleAlignment = function(renderer, line, x, y, textWidth) {
 function pathToPoints(cmds, options) {
   const opts = parseOpts(options, {
     sampleFactor: 0.1,
-    simplifyThreshold: 0
+    simplifyThreshold: 0,
   });
 
   const // total-length
@@ -575,7 +581,7 @@ function parseOpts(options, defaults) {
 
 function at(v, i) {
   const s = v.length;
-  return v[i < 0 ? i % s + s : i % s];
+  return v[i < 0 ? (i % s) + s : i % s];
 }
 
 function collinear(a, b, c, thresholdAngle) {
@@ -625,7 +631,7 @@ function findDotsAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
   const ay = t1 * p1y + t * c1y;
   const cx = t1 * c2x + t * p2x;
   const cy = t1 * c2y + t * p2y;
-  let alpha = 90 - Math.atan2(mx - nx, my - ny) * 180 / Math.PI;
+  let alpha = 90 - (Math.atan2(mx - nx, my - ny) * 180) / Math.PI;
 
   if (mx > nx || my < ny) {
     alpha += 180;
@@ -638,7 +644,7 @@ function findDotsAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
     n: { x: nx, y: ny },
     start: { x: ax, y: ay },
     end: { x: cx, y: cy },
-    alpha
+    alpha,
   };
 }
 
@@ -981,12 +987,12 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
   // http://www.w3.org/TR/SVG11/implnote.html#ArcImplementationNotes
   const PI = Math.PI;
 
-  const _120 = PI * 120 / 180;
+  const _120 = (PI * 120) / 180;
   let f1;
   let f2;
   let cx;
   let cy;
-  const rad = PI / 180 * (+angle || 0);
+  const rad = (PI / 180) * (+angle || 0);
   let res = [];
   let xy;
 
@@ -1005,7 +1011,7 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
     y2 = xy.y;
     const x = (x1 - x2) / 2;
     const y = (y1 - y2) / 2;
-    let h = x * x / (rx * rx) + y * y / (ry * ry);
+    let h = (x * x) / (rx * rx) + (y * y) / (ry * ry);
     if (h > 1) {
       h = Math.sqrt(h);
       rx = h * rx;
@@ -1021,8 +1027,8 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
         )
       );
 
-    cx = k * rx * y / ry + (x1 + x2) / 2;
-    cy = k * -ry * x / rx + (y1 + y2) / 2;
+    cx = (k * rx * y) / ry + (x1 + x2) / 2;
+    cy = (k * -ry * x) / rx + (y1 + y2) / 2;
     f1 = Math.asin(((y1 - cy) / ry).toFixed(9));
     f2 = Math.asin(((y2 - cy) / ry).toFixed(9));
 
@@ -1060,7 +1066,7 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
       f2,
       f2old,
       cx,
-      cy
+      cy,
     ]);
   }
   df = f2 - f1;
@@ -1069,8 +1075,8 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
     c2 = Math.cos(f2),
     s2 = Math.sin(f2),
     t = Math.tan(df / 4),
-    hx = 4 / 3 * rx * t,
-    hy = 4 / 3 * ry * t,
+    hx = (4 / 3) * rx * t,
+    hy = (4 / 3) * ry * t,
     m1 = [x1, y1],
     m2 = [x1 + hx * s1, y1 - hy * c1],
     m3 = [x2 + hx * s2, y2 - hy * c2],
@@ -1080,10 +1086,7 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
   if (recursive) {
     return [m2, m3, m4].concat(res);
   } else {
-    res = [m2, m3, m4]
-      .concat(res)
-      .join()
-      .split(',');
+    res = [m2, m3, m4].concat(res).join().split(',');
     const newres = [];
     for (let i = 0, ii = res.length; i < ii; i++) {
       newres[i] =
@@ -1102,40 +1105,40 @@ function catmullRom2bezier(crp, z) {
     const p = [
       {
         x: +crp[i - 2],
-        y: +crp[i - 1]
+        y: +crp[i - 1],
       },
       {
         x: +crp[i],
-        y: +crp[i + 1]
+        y: +crp[i + 1],
       },
       {
         x: +crp[i + 2],
-        y: +crp[i + 3]
+        y: +crp[i + 3],
       },
       {
         x: +crp[i + 4],
-        y: +crp[i + 5]
-      }
+        y: +crp[i + 5],
+      },
     ];
     if (z) {
       if (!i) {
         p[0] = {
           x: +crp[iLen - 2],
-          y: +crp[iLen - 1]
+          y: +crp[iLen - 1],
         };
       } else if (iLen - 4 === i) {
         p[3] = {
           x: +crp[0],
-          y: +crp[1]
+          y: +crp[1],
         };
       } else if (iLen - 2 === i) {
         p[2] = {
           x: +crp[0],
-          y: +crp[1]
+          y: +crp[1],
         };
         p[3] = {
           x: +crp[2],
-          y: +crp[3]
+          y: +crp[3],
         };
       }
     } else {
@@ -1144,7 +1147,7 @@ function catmullRom2bezier(crp, z) {
       } else if (!i) {
         p[0] = {
           x: +crp[i],
-          y: +crp[i + 1]
+          y: +crp[i + 1],
         };
       }
     }
@@ -1155,7 +1158,7 @@ function catmullRom2bezier(crp, z) {
       (p[1].x + 6 * p[2].x - p[3].x) / 6,
       (p[1].y + 6 * p[2].y - p[3].y) / 6,
       p[2].x,
-      p[2].y
+      p[2].y,
     ]);
   }
 
@@ -1175,7 +1178,7 @@ function q2c(x1, y1, ax, ay, x2, y2) {
     _13 * x2 + _23 * ax,
     _13 * y2 + _23 * ay,
     x2,
-    y2
+    y2,
   ];
 }
 
@@ -1198,7 +1201,7 @@ function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
     -0.9041,
     0.9041,
     -0.9816,
-    0.9816
+    0.9816,
   ];
 
   let sum = 0;
@@ -1214,7 +1217,7 @@ function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
     0.1069,
     0.1069,
     0.0472,
-    0.0472
+    0.0472,
   ];
 
   for (let i = 0; i < n; i++) {

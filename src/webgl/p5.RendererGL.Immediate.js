@@ -29,7 +29,7 @@ import './p5.RenderBuffer';
  *                       TRIANGLE_STRIP, TRIANGLE_FAN and TESS(WEBGL only)
  * @chainable
  */
-p5.RendererGL.prototype.beginShape = function(mode) {
+p5.RendererGL.prototype.beginShape = function (mode) {
   this.immediateMode.shapeMode =
     mode !== undefined ? mode : constants.TRIANGLE_FAN;
   this.immediateMode.geometry.reset();
@@ -46,7 +46,7 @@ p5.RendererGL.prototype.beginShape = function(mode) {
  * @chainable
  * @TODO implement handling of <a href="#/p5.Vector">p5.Vector</a> args
  */
-p5.RendererGL.prototype.vertex = function(x, y) {
+p5.RendererGL.prototype.vertex = function (x, y) {
   let z, u, v;
 
   // default to (x, y) mode: all other arugments assumed to be 0.
@@ -107,7 +107,7 @@ p5.RendererGL.prototype.vertex = function(x, y) {
  * End shape drawing and render vertices to screen.
  * @chainable
  */
-p5.RendererGL.prototype.endShape = function(
+p5.RendererGL.prototype.endShape = function (
   mode,
   isCurve,
   isBezier,
@@ -152,7 +152,7 @@ p5.RendererGL.prototype.endShape = function(
  *                       POINTS,LINES,LINE_STRIP,LINE_LOOP,TRIANGLES,
  *                       TRIANGLE_STRIP, TRIANGLE_FAN and TESS(WEBGL only)
  */
-p5.RendererGL.prototype._processVertices = function(mode) {
+p5.RendererGL.prototype._processVertices = function (mode) {
   if (this.immediateMode.geometry.vertices.length === 0) return;
 
   const calculateStroke = this._doStroke && this.drawMode !== constants.TEXTURE;
@@ -183,7 +183,7 @@ p5.RendererGL.prototype._processVertices = function(mode) {
  * @private
  * @returns  {Array[Number]} indices for custom shape vertices indicating edges.
  */
-p5.RendererGL.prototype._calculateEdges = function(
+p5.RendererGL.prototype._calculateEdges = function (
   shapeMode,
   verts,
   shouldClose
@@ -226,10 +226,10 @@ p5.RendererGL.prototype._calculateEdges = function(
  * Called from _processVertices() when applicable. This function tesselates immediateMode.geometry.
  * @private
  */
-p5.RendererGL.prototype._tesselateShape = function() {
+p5.RendererGL.prototype._tesselateShape = function () {
   this.immediateMode.shapeMode = constants.TRIANGLES;
   const contours = [
-    new Float32Array(this._vToNArray(this.immediateMode.geometry.vertices))
+    new Float32Array(this._vToNArray(this.immediateMode.geometry.vertices)),
   ];
   const polyTriangles = this._triangulate(contours);
   this.immediateMode.geometry.vertices = [];
@@ -247,7 +247,7 @@ p5.RendererGL.prototype._tesselateShape = function() {
  * enabling all appropriate buffers, applying color blend, and drawing the fill geometry.
  * @private
  */
-p5.RendererGL.prototype._drawImmediateFill = function() {
+p5.RendererGL.prototype._drawImmediateFill = function () {
   const gl = this.GL;
   const shader = this._getImmediateFillShader();
 
@@ -282,7 +282,7 @@ p5.RendererGL.prototype._drawImmediateFill = function() {
  * enabling all appropriate buffers, applying color blend, and drawing the stroke geometry.
  * @private
  */
-p5.RendererGL.prototype._drawImmediateStroke = function() {
+p5.RendererGL.prototype._drawImmediateStroke = function () {
   const gl = this.GL;
   const shader = this._getImmediateStrokeShader();
   this._setStrokeUniforms(shader);
@@ -304,7 +304,7 @@ p5.RendererGL.prototype._drawImmediateStroke = function() {
  * @parem
  * @private
  */
-p5.RendererGL.prototype._calculateNormals = function(geometry) {
+p5.RendererGL.prototype._calculateNormals = function (geometry) {
   geometry.vertices.forEach(() => {
     geometry.vertexNormals.push(new p5.Vector(0, 0, 1));
   });

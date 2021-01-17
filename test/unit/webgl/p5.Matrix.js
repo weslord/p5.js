@@ -21,24 +21,24 @@ var mat3 = [
   7, 8, 9,
 ];
 
-suite('p5.Matrix', function() {
+suite('p5.Matrix', function () {
   var myp5;
 
-  setup(function(done) {
-    new p5(function(p) {
-      p.setup = function() {
+  setup(function (done) {
+    new p5(function (p) {
+      p.setup = function () {
         myp5 = p;
         done();
       };
     });
   });
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
-  suite('construction', function() {
-    test('new p5.Matrix()', function() {
+  suite('construction', function () {
+    test('new p5.Matrix()', function () {
       var m = new p5.Matrix();
       assert.instanceOf(m, p5.Matrix);
       assert.isUndefined(m.mat3);
@@ -51,21 +51,21 @@ suite('p5.Matrix', function() {
 			]);
     });
 
-    test('new p5.Matrix(array)', function() {
+    test('new p5.Matrix(array)', function () {
       var m = new p5.Matrix(mat4);
       assert.instanceOf(m, p5.Matrix);
       assert.isUndefined(m.mat3);
       assert.deepEqual([].slice.call(m.mat4), mat4);
     });
 
-    test('new p5.Matrix(mat3)', function() {
+    test('new p5.Matrix(mat3)', function () {
       var m = new p5.Matrix('mat3', mat3);
       assert.instanceOf(m, p5.Matrix);
       assert.isUndefined(m.mat4);
       assert.deepEqual([].slice.call(m.mat3), mat3);
     });
 
-    test('identity()', function() {
+    test('identity()', function () {
       var m = p5.Matrix.identity();
       assert.instanceOf(m, p5.Matrix);
       assert.isUndefined(m.mat3);
@@ -79,20 +79,20 @@ suite('p5.Matrix', function() {
     });
   });
 
-  suite('set', function() {
-    test('p5.Matrix', function() {
+  suite('set', function () {
+    test('p5.Matrix', function () {
       var m = new p5.Matrix();
       m.set(new p5.Matrix(mat4));
       assert.deepEqual([].slice.call(m.mat4), mat4);
     });
 
-    test('array', function() {
+    test('array', function () {
       var m = new p5.Matrix();
       m.set(mat4);
       assert.deepEqual([].slice.call(m.mat4), mat4);
     });
 
-    test('arguments', function() {
+    test('arguments', function () {
       var m = new p5.Matrix();
       m.set.apply(m, mat4);
       assert.notEqual(m.mat4, mat4);
@@ -100,14 +100,14 @@ suite('p5.Matrix', function() {
     });
   });
 
-  suite('get / copy', function() {
-    test('get', function() {
+  suite('get / copy', function () {
+    test('get', function () {
       var m = new p5.Matrix(mat4);
       var m2 = m.get();
       assert.notEqual(m, m2);
       assert.equal(m.mat4, m2.mat4);
     });
-    test('copy', function() {
+    test('copy', function () {
       var m = new p5.Matrix(mat4);
       var m2 = m.copy();
       assert.notEqual(m, m2);
@@ -116,7 +116,7 @@ suite('p5.Matrix', function() {
     });
   });
 
-  suite('mult', function() {
+  suite('mult', function () {
     // prettier-ignore
     var mm = [
        30,  70, 110, 150,
@@ -125,7 +125,7 @@ suite('p5.Matrix', function() {
       150, 382, 614, 846,
     ];
 
-    test('self', function() {
+    test('self', function () {
       var m = new p5.Matrix(mat4.slice());
       m.mult(m);
       // prettier-ignore
@@ -137,27 +137,27 @@ suite('p5.Matrix', function() {
      ]);
     });
 
-    test('p5.Matrix', function() {
+    test('p5.Matrix', function () {
       var m1 = new p5.Matrix(mat4.slice());
       var m2 = new p5.Matrix(other);
       m1.mult(m2);
       assert.deepEqual([].slice.call(m1.mat4), mm);
     });
 
-    test('array', function() {
+    test('array', function () {
       var m = new p5.Matrix(mat4.slice());
       m.mult(other);
       assert.deepEqual([].slice.call(m.mat4), mm);
     });
 
-    test('arguments', function() {
+    test('arguments', function () {
       var m = new p5.Matrix(mat4.slice());
       m.mult.apply(m, other);
       assert.deepEqual([].slice.call(m.mat4), mm);
     });
   });
 
-  suite('apply', function() {
+  suite('apply', function () {
     // prettier-ignore
     var am = [
       276, 304, 332, 360,
@@ -166,7 +166,7 @@ suite('p5.Matrix', function() {
       360, 400, 440, 480,
     ];
 
-    test('self', function() {
+    test('self', function () {
       var m = new p5.Matrix(mat4.slice());
       m.apply(m);
       // prettier-ignore
@@ -178,27 +178,27 @@ suite('p5.Matrix', function() {
      ]);
     });
 
-    test('p5.Matrix', function() {
+    test('p5.Matrix', function () {
       var m1 = new p5.Matrix(mat4.slice());
       var m2 = new p5.Matrix(other);
       m1.apply(m2);
       assert.deepEqual([].slice.call(m1.mat4), am);
     });
 
-    test('array', function() {
+    test('array', function () {
       var m = new p5.Matrix(mat4.slice());
       m.apply(other);
       assert.deepEqual([].slice.call(m.mat4), am);
     });
 
-    test('arguments', function() {
+    test('arguments', function () {
       var m = new p5.Matrix(mat4.slice());
       m.apply.apply(m, other);
       assert.deepEqual([].slice.call(m.mat4), am);
     });
   });
 
-  suite('scale', function() {
+  suite('scale', function () {
     // prettier-ignore
     var sm = [
        2,  4,  6,  8,
@@ -207,7 +207,7 @@ suite('p5.Matrix', function() {
       13, 14, 15, 16,
     ];
 
-    test('p5.Vector', function() {
+    test('p5.Vector', function () {
       var m = new p5.Matrix(mat4.slice());
       var v = myp5.createVector(2, 3, 5);
       m.scale(v);
@@ -215,14 +215,14 @@ suite('p5.Matrix', function() {
       assert.deepEqual([].slice.call(m.mat4), sm);
     });
 
-    test('array', function() {
+    test('array', function () {
       var m = new p5.Matrix(mat4.slice());
       m.scale([2, 3, 5]);
       assert.notEqual(m.mat4, mat4);
       assert.deepEqual([].slice.call(m.mat4), sm);
     });
 
-    test('arguments', function() {
+    test('arguments', function () {
       var m = new p5.Matrix(mat4.slice());
       m.scale(2, 3, 5);
       assert.notEqual(m.mat4, mat4);
@@ -230,7 +230,7 @@ suite('p5.Matrix', function() {
     });
   });
 
-  suite('rotate', function() {
+  suite('rotate', function () {
     // prettier-ignore
     var rm = [
       1.433447866601989, 2.5241247073503885, 3.6148015480987885, 4.7054783888471885, 
@@ -239,20 +239,20 @@ suite('p5.Matrix', function() {
       13, 14, 15, 16, 
     ];
 
-    test('p5.Vector', function() {
+    test('p5.Vector', function () {
       var m = new p5.Matrix(mat4.slice());
       var v = myp5.createVector(2, 3, 5);
       m.rotate(45 * myp5.DEG_TO_RAD, v);
       assert.deepEqual([].slice.call(m.mat4), rm);
     });
 
-    test('array', function() {
+    test('array', function () {
       var m = new p5.Matrix(mat4.slice());
       m.rotate(45 * myp5.DEG_TO_RAD, [2, 3, 5]);
       assert.deepEqual([].slice.call(m.mat4), rm);
     });
 
-    test('arguments', function() {
+    test('arguments', function () {
       var m = new p5.Matrix(mat4.slice());
       m.rotate(45 * myp5.DEG_TO_RAD, 2, 3, 5);
       assert.deepEqual([].slice.call(m.mat4), rm);

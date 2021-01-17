@@ -16,7 +16,7 @@ function Ball(tempR) {
   this.c = [100, 50];
 }
 
-Ball.prototype.move = function() {
+Ball.prototype.move = function () {
   this.x += this.xspeed; // Increment x
   this.y += this.yspeed; // Increment y
 
@@ -33,12 +33,12 @@ Ball.prototype.move = function() {
 
 // Whenever the balls are touching, this highlight() function is called
 // and the color is darkened.
-Ball.prototype.highlight = function() {
+Ball.prototype.highlight = function () {
   this.c = [0, 150];
 };
 
 // Draw the ball
-Ball.prototype.display = function() {
+Ball.prototype.display = function () {
   stroke(0);
   fill(this.c);
   ellipse(this.x, this.y, this.r * 2, this.r * 2);
@@ -48,7 +48,7 @@ Ball.prototype.display = function() {
 
 // A function that returns true or false based on whether two circles intersect
 // If distance is less than the sum of radii the circles touch
-Ball.prototype.intersect = function(b) {
+Ball.prototype.intersect = function (b) {
   // Objects can be passed into functions as arguments too!
   var distance = dist(this.x, this.y, b.x, b.y); // Calculate distance
 

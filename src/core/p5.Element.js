@@ -17,7 +17,7 @@ import p5 from './main';
  * @param {String} elt DOM node that is wrapped
  * @param {p5} [pInst] pointer to p5 instance
  */
-p5.Element = function(elt, pInst) {
+p5.Element = function (elt, pInst) {
   /**
    * Underlying HTML element. All normal HTML methods can be called on this.
    * @example
@@ -94,7 +94,7 @@ p5.Element = function(elt, pInst) {
  * @method parent
  * @return {p5.Element}
  */
-p5.Element.prototype.parent = function(p) {
+p5.Element.prototype.parent = function (p) {
   if (typeof p === 'undefined') {
     return this.elt.parentNode;
   }
@@ -140,7 +140,7 @@ p5.Element.prototype.parent = function(p) {
  * @method id
  * @return {String} the id of the element
  */
-p5.Element.prototype.id = function(id) {
+p5.Element.prototype.id = function (id) {
   if (typeof id === 'undefined') {
     return this.elt.id;
   }
@@ -177,7 +177,7 @@ p5.Element.prototype.id = function(id) {
  * @method class
  * @return {String} the class of the element
  */
-p5.Element.prototype.class = function(c) {
+p5.Element.prototype.class = function (c) {
   if (typeof c === 'undefined') {
     return this.elt.className;
   }
@@ -228,11 +228,11 @@ p5.Element.prototype.class = function(c) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mousePressed = function(fxn) {
+p5.Element.prototype.mousePressed = function (fxn) {
   // Prepend the mouse property setters to the event-listener.
   // This is required so that mouseButton is set correctly prior to calling the callback (fxn).
   // For details, see https://github.com/processing/p5.js/issues/3087.
-  const eventPrependedFxn = function(event) {
+  const eventPrependedFxn = function (event) {
     this._pInst._setProperty('mouseIsPressed', true);
     this._pInst._setMouseButton(event);
     // Pass along the return-value of the callback:
@@ -284,7 +284,7 @@ p5.Element.prototype.mousePressed = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.doubleClicked = function(fxn) {
+p5.Element.prototype.doubleClicked = function (fxn) {
   p5.Element._adjustListener('dblclick', fxn, this);
   return this;
 };
@@ -346,7 +346,7 @@ p5.Element.prototype.doubleClicked = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mouseWheel = function(fxn) {
+p5.Element.prototype.mouseWheel = function (fxn) {
   p5.Element._adjustListener('wheel', fxn, this);
   return this;
 };
@@ -395,7 +395,7 @@ p5.Element.prototype.mouseWheel = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mouseReleased = function(fxn) {
+p5.Element.prototype.mouseReleased = function (fxn) {
   p5.Element._adjustListener('mouseup', fxn, this);
   return this;
 };
@@ -446,7 +446,7 @@ p5.Element.prototype.mouseReleased = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mouseClicked = function(fxn) {
+p5.Element.prototype.mouseClicked = function (fxn) {
   p5.Element._adjustListener('click', fxn, this);
   return this;
 };
@@ -502,7 +502,7 @@ p5.Element.prototype.mouseClicked = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mouseMoved = function(fxn) {
+p5.Element.prototype.mouseMoved = function (fxn) {
   p5.Element._adjustListener('mousemove', fxn, this);
   return this;
 };
@@ -543,7 +543,7 @@ p5.Element.prototype.mouseMoved = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mouseOver = function(fxn) {
+p5.Element.prototype.mouseOver = function (fxn) {
   p5.Element._adjustListener('mouseover', fxn, this);
   return this;
 };
@@ -584,7 +584,7 @@ p5.Element.prototype.mouseOver = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.mouseOut = function(fxn) {
+p5.Element.prototype.mouseOut = function (fxn) {
   p5.Element._adjustListener('mouseout', fxn, this);
   return this;
 };
@@ -631,7 +631,7 @@ p5.Element.prototype.mouseOut = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.touchStarted = function(fxn) {
+p5.Element.prototype.touchStarted = function (fxn) {
   p5.Element._adjustListener('touchstart', fxn, this);
   return this;
 };
@@ -670,7 +670,7 @@ p5.Element.prototype.touchStarted = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.touchMoved = function(fxn) {
+p5.Element.prototype.touchMoved = function (fxn) {
   p5.Element._adjustListener('touchmove', fxn, this);
   return this;
 };
@@ -717,7 +717,7 @@ p5.Element.prototype.touchMoved = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.touchEnded = function(fxn) {
+p5.Element.prototype.touchEnded = function (fxn) {
   p5.Element._adjustListener('touchend', fxn, this);
   return this;
 };
@@ -755,7 +755,7 @@ p5.Element.prototype.touchEnded = function(fxn) {
  * @alt
  * nothing displayed
  */
-p5.Element.prototype.dragOver = function(fxn) {
+p5.Element.prototype.dragOver = function (fxn) {
   p5.Element._adjustListener('dragover', fxn, this);
   return this;
 };
@@ -793,13 +793,13 @@ p5.Element.prototype.dragOver = function(fxn) {
  * @alt
  * nothing displayed
  */
-p5.Element.prototype.dragLeave = function(fxn) {
+p5.Element.prototype.dragLeave = function (fxn) {
   p5.Element._adjustListener('dragleave', fxn, this);
   return this;
 };
 
 // General handler for event attaching and detaching
-p5.Element._adjustListener = function(ev, fxn, ctx) {
+p5.Element._adjustListener = function (ev, fxn, ctx) {
   if (fxn === false) {
     p5.Element._detachListener(ev, ctx);
   } else {
@@ -808,7 +808,7 @@ p5.Element._adjustListener = function(ev, fxn, ctx) {
   return this;
 };
 
-p5.Element._attachListener = function(ev, fxn, ctx) {
+p5.Element._attachListener = function (ev, fxn, ctx) {
   // detach the old listener if there was one
   if (ctx._events[ev]) {
     p5.Element._detachListener(ev, ctx);
@@ -818,7 +818,7 @@ p5.Element._attachListener = function(ev, fxn, ctx) {
   ctx._events[ev] = f;
 };
 
-p5.Element._detachListener = function(ev, ctx) {
+p5.Element._detachListener = function (ev, ctx) {
   const f = ctx._events[ev];
   ctx.elt.removeEventListener(ev, f, false);
   ctx._events[ev] = null;
@@ -827,7 +827,7 @@ p5.Element._detachListener = function(ev, ctx) {
 /**
  * Helper fxn for sharing pixel methods
  */
-p5.Element.prototype._setProperty = function(prop, value) {
+p5.Element.prototype._setProperty = function (prop, value) {
   this[prop] = value;
 };
 

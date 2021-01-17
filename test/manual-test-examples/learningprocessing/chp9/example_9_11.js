@@ -48,12 +48,12 @@ function Ball(tempX, tempY, tempW) {
   this.speed = 0;
 }
 
-Ball.prototype.gravity = function() {
+Ball.prototype.gravity = function () {
   // Add gravity to speed
   this.speed = this.speed + gravity;
 };
 
-Ball.prototype.move = function() {
+Ball.prototype.move = function () {
   // Add speed to y location
   this.y = this.y + this.speed;
   // If square reaches the bottom
@@ -64,7 +64,7 @@ Ball.prototype.move = function() {
   }
 };
 
-Ball.prototype.display = function() {
+Ball.prototype.display = function () {
   // Display the circle
   fill(175);
   stroke(0);

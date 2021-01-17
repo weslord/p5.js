@@ -10,20 +10,22 @@ import derequire from 'derequire';
 const bannerTemplate =
   '/*! p5.js v<%= pkg.version %> <%= grunt.template.today("mmmm dd, yyyy") %> */';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   const srcFilePath = require.resolve('../../src/app.js');
 
   grunt.registerTask(
     'browserify',
     'Compile the p5.js source with Browserify',
-    function(param) {
+    function (param) {
       const isMin = param === 'min';
       const isTest = param === 'test';
       const isDev = param === 'dev';
 
       const filename = isMin
         ? 'p5.pre-min.js'
-        : isTest ? 'p5-test.js' : 'p5.js';
+        : isTest
+        ? 'p5-test.js'
+        : 'p5.js';
 
       // This file will not exist until it has been built
       const libFilePath = resolve('lib/' + filename);
@@ -41,7 +43,7 @@ module.exports = function(grunt) {
       // Invoke Browserify programatically to bundle the code
       let browserified = browserify(srcFilePath, {
         standalone: 'p5',
-        insertGlobalVars: globalVars
+        insertGlobalVars: globalVars,
       });
 
       if (isMin) {
@@ -74,10 +76,10 @@ module.exports = function(grunt) {
 
       // Then read the bundle into memory so we can run it through derequire
       bundle
-        .on('data', function(data) {
+        .on('data', function (data) {
           code += data;
         })
-        .on('end', function() {
+        .on('end', function () {
           // "code" is complete: create the distributable UMD build by running
           // the bundle through derequire
           // (Derequire changes the bundle's internal "require" function to

@@ -26,10 +26,10 @@ function draw() {
   noStroke();
   fill(255);
   arc(0, 0, w, h, theta, theta + PI / 2);
-  arc(0, 0, w, h, theta + PI, theta + 3 * PI / 2);
+  arc(0, 0, w, h, theta + PI, theta + (3 * PI) / 2);
   fill(200);
   arc(0, 0, w, h, theta + PI / 2, theta + PI);
-  arc(0, 0, w, h, theta + 3 * PI / 2, theta);
+  arc(0, 0, w, h, theta + (3 * PI) / 2, theta);
 
   theta += 0.01;
   phi += 0.0123;

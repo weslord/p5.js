@@ -57,7 +57,7 @@ import './p5.Texture';
  * @alt
  * zooming Mandelbrot set. a colorful, infinitely detailed fractal.
  */
-p5.prototype.loadShader = function(
+p5.prototype.loadShader = function (
   vertFilename,
   fragFilename,
   callback,
@@ -83,7 +83,7 @@ p5.prototype.loadShader = function(
 
   this.loadStrings(
     vertFilename,
-    result => {
+    (result) => {
       loadedShader._vertSrc = result.join('\n');
       loadedVert = true;
       if (loadedFrag) {
@@ -95,7 +95,7 @@ p5.prototype.loadShader = function(
 
   this.loadStrings(
     fragFilename,
-    result => {
+    (result) => {
       loadedShader._fragSrc = result.join('\n');
       loadedFrag = true;
       if (loadedVert) {
@@ -170,7 +170,7 @@ p5.prototype.loadShader = function(
  * @alt
  * zooming Mandelbrot set. a colorful, infinitely detailed fractal.
  */
-p5.prototype.createShader = function(vertSrc, fragSrc) {
+p5.prototype.createShader = function (vertSrc, fragSrc) {
   this._assert3d('createShader');
   p5._validateParameters('createShader', arguments);
   return new p5.Shader(this._renderer, vertSrc, fragSrc);
@@ -247,7 +247,7 @@ p5.prototype.createShader = function(vertSrc, fragSrc) {
  * @alt
  * canvas toggles between a circular gradient of orange and blue vertically. and a circular gradient of red and green moving horizontally when mouse is clicked/pressed.
  */
-p5.prototype.shader = function(s) {
+p5.prototype.shader = function (s) {
   this._assert3d('shader');
   p5._validateParameters('shader', arguments);
 
@@ -275,7 +275,7 @@ p5.prototype.shader = function(s) {
  * @method resetShader
  * @chainable
  */
-p5.prototype.resetShader = function() {
+p5.prototype.resetShader = function () {
   this._renderer.userFillShader = this._renderer.userStrokeShader = null;
   return this;
 };
@@ -305,7 +305,7 @@ p5.prototype.resetShader = function() {
  * @alt
  * Red, green and blue gradient.
  */
-p5.prototype.normalMaterial = function(...args) {
+p5.prototype.normalMaterial = function (...args) {
   this._assert3d('normalMaterial');
   p5._validateParameters('normalMaterial', args);
   this._renderer.drawMode = constants.FILL;
@@ -401,7 +401,7 @@ p5.prototype.normalMaterial = function(...args) {
  * black canvas
  * black canvas
  */
-p5.prototype.texture = function(tex) {
+p5.prototype.texture = function (tex) {
   this._assert3d('texture');
   p5._validateParameters('texture', arguments);
   if (tex.gifProperties) {
@@ -486,7 +486,7 @@ p5.prototype.texture = function(tex) {
  * @alt
  * the underside of a white umbrella and gridded ceiling above
  */
-p5.prototype.textureMode = function(mode) {
+p5.prototype.textureMode = function (mode) {
   if (mode !== constants.IMAGE && mode !== constants.NORMAL) {
     console.warn(
       `You tried to set ${mode} textureMode only supports IMAGE & NORMAL `
@@ -558,7 +558,7 @@ p5.prototype.textureMode = function(mode) {
  * @alt
  * an image of the rocky mountains repeated in mirrored tiles
  */
-p5.prototype.textureWrap = function(wrapX, wrapY = wrapX) {
+p5.prototype.textureWrap = function (wrapX, wrapY = wrapX) {
   this._renderer.textureWrapX = wrapX;
   this._renderer.textureWrapY = wrapY;
 
@@ -633,7 +633,7 @@ p5.prototype.textureWrap = function(wrapX, wrapY = wrapX) {
  * @param  {Number[]|String|p5.Color} color  color, color Array, or CSS color string
  * @chainable
  */
-p5.prototype.ambientMaterial = function(v1, v2, v3) {
+p5.prototype.ambientMaterial = function (v1, v2, v3) {
   this._assert3d('ambientMaterial');
   p5._validateParameters('ambientMaterial', arguments);
 
@@ -685,7 +685,7 @@ p5.prototype.ambientMaterial = function(v1, v2, v3) {
  * @param  {Number[]|String|p5.Color} color  color, color Array, or CSS color string
  * @chainable
  */
-p5.prototype.emissiveMaterial = function(v1, v2, v3, a) {
+p5.prototype.emissiveMaterial = function (v1, v2, v3, a) {
   this._assert3d('emissiveMaterial');
   p5._validateParameters('emissiveMaterial', arguments);
 
@@ -749,7 +749,7 @@ p5.prototype.emissiveMaterial = function(v1, v2, v3, a) {
  * @param  {Number[]|String|p5.Color} color color Array, or CSS color string
  * @chainable
  */
-p5.prototype.specularMaterial = function(v1, v2, v3, alpha) {
+p5.prototype.specularMaterial = function (v1, v2, v3, alpha) {
   this._assert3d('specularMaterial');
   p5._validateParameters('specularMaterial', arguments);
 
@@ -798,7 +798,7 @@ p5.prototype.specularMaterial = function(v1, v2, v3, alpha) {
  * @alt
  * Shininess on Camera changes position with mouse
  */
-p5.prototype.shininess = function(shine) {
+p5.prototype.shininess = function (shine) {
   this._assert3d('shininess');
   p5._validateParameters('shininess', arguments);
 
@@ -816,7 +816,7 @@ p5.prototype.shininess = function(shine) {
  * @param  {Number[]} color [description]
  * @return {Number[]]}  Normalized numbers array
  */
-p5.RendererGL.prototype._applyColorBlend = function(colors) {
+p5.RendererGL.prototype._applyColorBlend = function (colors) {
   const gl = this.GL;
 
   const isTexture = this.drawMode === constants.TEXTURE;
@@ -845,7 +845,7 @@ p5.RendererGL.prototype._applyColorBlend = function(colors) {
  * @param  {Number[]} color [description]
  * @return {Number[]]}  Normalized numbers array
  */
-p5.RendererGL.prototype._applyBlendMode = function() {
+p5.RendererGL.prototype._applyBlendMode = function () {
   if (this._cachedBlendMode === this.curBlendMode) {
     return;
   }

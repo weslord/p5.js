@@ -29,7 +29,7 @@ function Car() {
   this.xspeed = 1;
 }
 
-Car.prototype.display = function() {
+Car.prototype.display = function () {
   // Function.
   // The car is just a square
   rectMode(CENTER);
@@ -38,7 +38,7 @@ Car.prototype.display = function() {
   rect(this.xpos, this.ypos, 20, 10);
 };
 
-Car.prototype.move = function() {
+Car.prototype.move = function () {
   // Function.
   this.xpos = this.xpos + this.xspeed;
   if (this.xpos > width) {

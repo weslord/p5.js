@@ -31,7 +31,7 @@ function Zoog(tempX, tempY, tempW, tempH, tempEyeSize) {
 }
 
 // Move Zoog
-Zoog.prototype.jiggle = function(speed) {
+Zoog.prototype.jiggle = function (speed) {
   // Change the location of Zoog randomly
   this.x = this.x + random(-1, 1) * speed;
   this.y = this.y + random(-1, 1) * speed;
@@ -41,7 +41,7 @@ Zoog.prototype.jiggle = function(speed) {
 };
 
 // Display Zoog
-Zoog.prototype.display = function() {
+Zoog.prototype.display = function () {
   // Set ellipses and rects to CENTER mode
   ellipseMode(CENTER);
   rectMode(CENTER);

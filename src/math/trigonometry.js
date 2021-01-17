@@ -46,7 +46,7 @@ p5.prototype._angleMode = constants.RADIANS;
  * </code>
  * </div>
  */
-p5.prototype.acos = function(ratio) {
+p5.prototype.acos = function (ratio) {
   return this._fromRadians(Math.acos(ratio));
 };
 
@@ -81,7 +81,7 @@ p5.prototype.acos = function(ratio) {
  * </code>
  * </div>
  */
-p5.prototype.asin = function(ratio) {
+p5.prototype.asin = function (ratio) {
   return this._fromRadians(Math.asin(ratio));
 };
 
@@ -116,7 +116,7 @@ p5.prototype.asin = function(ratio) {
  * </code>
  * </div>
  */
-p5.prototype.atan = function(ratio) {
+p5.prototype.atan = function (ratio) {
   return this._fromRadians(Math.atan(ratio));
 };
 
@@ -152,7 +152,7 @@ p5.prototype.atan = function(ratio) {
  * @alt
  * 60 by 10 rect at center of canvas rotates with mouse movements
  */
-p5.prototype.atan2 = function(y, x) {
+p5.prototype.atan2 = function (y, x) {
   return this._fromRadians(Math.atan2(y, x));
 };
 
@@ -179,7 +179,7 @@ p5.prototype.atan2 = function(y, x) {
  * @alt
  * vertical black lines form wave patterns, extend-down on left and right side
  */
-p5.prototype.cos = function(angle) {
+p5.prototype.cos = function (angle) {
   return Math.cos(this._toRadians(angle));
 };
 
@@ -206,7 +206,7 @@ p5.prototype.cos = function(angle) {
  * @alt
  * vertical black lines extend down and up from center to form wave pattern
  */
-p5.prototype.sin = function(angle) {
+p5.prototype.sin = function (angle) {
   return Math.sin(this._toRadians(angle));
 };
 
@@ -232,7 +232,7 @@ p5.prototype.sin = function(angle) {
  * @alt
  * vertical black lines end down and up from center to form spike pattern
  */
-p5.prototype.tan = function(angle) {
+p5.prototype.tan = function (angle) {
   return Math.tan(this._toRadians(angle));
 };
 
@@ -257,7 +257,7 @@ p5.prototype.tan = function(angle) {
  * </code>
  * </div>
  */
-p5.prototype.degrees = angle => angle * constants.RAD_TO_DEG;
+p5.prototype.degrees = (angle) => angle * constants.RAD_TO_DEG;
 
 /**
  * Converts a degree measurement to its corresponding value in radians.
@@ -280,7 +280,7 @@ p5.prototype.degrees = angle => angle * constants.RAD_TO_DEG;
  * </code>
  * </div>
  */
-p5.prototype.radians = angle => angle * constants.DEG_TO_RAD;
+p5.prototype.radians = (angle) => angle * constants.DEG_TO_RAD;
 
 /**
  * Sets the current mode of p5 to given mode. Default mode is RADIANS.
@@ -311,7 +311,7 @@ p5.prototype.radians = angle => angle * constants.DEG_TO_RAD;
  * 40 by 10 rect in center rotates with mouse moves. 20 by 10 rect moves faster.
  *
  */
-p5.prototype.angleMode = function(mode) {
+p5.prototype.angleMode = function (mode) {
   if (mode === constants.DEGREES || mode === constants.RADIANS) {
     this._angleMode = mode;
   }
@@ -325,7 +325,7 @@ p5.prototype.angleMode = function(mode) {
  * @param {Number} angle
  * @returns {Number}
  */
-p5.prototype._toRadians = function(angle) {
+p5.prototype._toRadians = function (angle) {
   if (this._angleMode === constants.DEGREES) {
     return angle * constants.DEG_TO_RAD;
   }
@@ -340,7 +340,7 @@ p5.prototype._toRadians = function(angle) {
  * @param {Number} angle
  * @returns {Number}
  */
-p5.prototype._toDegrees = function(angle) {
+p5.prototype._toDegrees = function (angle) {
   if (this._angleMode === constants.RADIANS) {
     return angle * constants.RAD_TO_DEG;
   }
@@ -355,7 +355,7 @@ p5.prototype._toDegrees = function(angle) {
  * @param {Number} angle
  * @returns {Number}
  */
-p5.prototype._fromRadians = function(angle) {
+p5.prototype._fromRadians = function (angle) {
   if (this._angleMode === constants.DEGREES) {
     return angle * constants.RAD_TO_DEG;
   }

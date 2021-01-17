@@ -18,7 +18,7 @@ import * as constants from '../core/constants';
  * @param {p5.Image|p5.Graphics|p5.Element|p5.MediaElement|ImageData} [obj] the
  * object containing the image data to store in the texture.
  */
-p5.Texture = function(renderer, obj) {
+p5.Texture = function (renderer, obj) {
   this._renderer = renderer;
 
   const gl = this._renderer.GL;
@@ -55,7 +55,7 @@ p5.Texture = function(renderer, obj) {
   return this;
 };
 
-p5.Texture.prototype._getTextureDataFromSource = function() {
+p5.Texture.prototype._getTextureDataFromSource = function () {
   let textureData;
   if (this.isSrcP5Image) {
     // param is a p5.Image
@@ -80,7 +80,7 @@ p5.Texture.prototype._getTextureDataFromSource = function() {
  * @private
  * @method init
  */
-p5.Texture.prototype.init = function(data) {
+p5.Texture.prototype.init = function (data) {
   const gl = this._renderer.GL;
   this.glTex = gl.createTexture();
 
@@ -133,7 +133,7 @@ p5.Texture.prototype.init = function(data) {
  * not the data has occurred, this method simply re-uploads the texture.
  * @method update
  */
-p5.Texture.prototype.update = function() {
+p5.Texture.prototype.update = function () {
   const data = this.src;
   if (data.width === 0 || data.height === 0) {
     return false; // nothing to do!
@@ -223,7 +223,7 @@ p5.Texture.prototype.update = function() {
  * Binds the texture to the appropriate GL target.
  * @method bindTexture
  */
-p5.Texture.prototype.bindTexture = function() {
+p5.Texture.prototype.bindTexture = function () {
   // bind texture using gl context + glTarget and
   // generated gl texture object
   const gl = this._renderer.GL;
@@ -236,7 +236,7 @@ p5.Texture.prototype.bindTexture = function() {
  * Unbinds the texture from the appropriate GL target.
  * @method unbindTexture
  */
-p5.Texture.prototype.unbindTexture = function() {
+p5.Texture.prototype.unbindTexture = function () {
   // unbind per above, disable texturing on glTarget
   const gl = this._renderer.GL;
   gl.bindTexture(this.glTarget, null);
@@ -253,7 +253,7 @@ p5.Texture.prototype.unbindTexture = function() {
  *                         textures are magnified. Options are LINEAR or NEAREST
  * @todo implement mipmapping filters
  */
-p5.Texture.prototype.setInterpolation = function(downScale, upScale) {
+p5.Texture.prototype.setInterpolation = function (downScale, upScale) {
   const gl = this._renderer.GL;
 
   if (downScale === constants.NEAREST) {
@@ -283,13 +283,13 @@ p5.Texture.prototype.setInterpolation = function(downScale, upScale) {
  * @param {String} wrapX Controls the horizontal texture wrapping behavior
  * @param {String} wrapY Controls the vertical texture wrapping behavior
  */
-p5.Texture.prototype.setWrapMode = function(wrapX, wrapY) {
+p5.Texture.prototype.setWrapMode = function (wrapX, wrapY) {
   const gl = this._renderer.GL;
 
   // for webgl 1 we need to check if the texture is power of two
   // if it isn't we will set the wrap mode to CLAMP
   // webgl2 will support npot REPEAT and MIRROR but we don't check for it yet
-  const isPowerOfTwo = x => (x & (x - 1)) === 0;
+  const isPowerOfTwo = (x) => (x & (x - 1)) === 0;
 
   const widthPowerOfTwo = isPowerOfTwo(this.width);
   const heightPowerOfTwo = isPowerOfTwo(this.height);

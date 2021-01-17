@@ -34,7 +34,7 @@ import p5 from '../core/main';
  * @alt
  * 20 by 20 white ellipse in the center of the canvas
  */
-p5.prototype.float = function(str) {
+p5.prototype.float = function (str) {
   if (str instanceof Array) {
     return str.map(parseFloat);
   }
@@ -68,7 +68,7 @@ p5.prototype.float = function(str) {
  * @param {Array} ns                    values to parse
  * @return {Number[]}                   integer representation of values
  */
-p5.prototype.int = function(n, radix = 10) {
+p5.prototype.int = function (n, radix = 10) {
   if (n === Infinity || n === 'Infinity') {
     return Infinity;
   } else if (n === -Infinity || n === '-Infinity') {
@@ -80,7 +80,7 @@ p5.prototype.int = function(n, radix = 10) {
   } else if (typeof n === 'boolean') {
     return n ? 1 : 0;
   } else if (n instanceof Array) {
-    return n.map(n => p5.prototype.int(n, radix));
+    return n.map((n) => p5.prototype.int(n, radix));
   }
 };
 
@@ -102,7 +102,7 @@ p5.prototype.int = function(n, radix = 10) {
  * print(str([true, '10.3', 9.8])); // [ "true", "10.3", "9.8" ]
  * </code></div>
  */
-p5.prototype.str = function(n) {
+p5.prototype.str = function (n) {
   if (n instanceof Array) {
     return n.map(p5.prototype.str);
   } else {
@@ -130,7 +130,7 @@ p5.prototype.str = function(n) {
  * print(boolean([0, 12, 'true'])); // [false, true, true]
  * </code></div>
  */
-p5.prototype.boolean = function(n) {
+p5.prototype.boolean = function (n) {
   if (typeof n === 'number') {
     return n !== 0;
   } else if (typeof n === 'string') {
@@ -169,10 +169,10 @@ p5.prototype.boolean = function(n) {
  * @param {Array} ns                   values to parse
  * @return {Number[]}                  array of byte representation of values
  */
-p5.prototype.byte = function(n) {
+p5.prototype.byte = function (n) {
   const nn = p5.prototype.int(n, 10);
   if (typeof nn === 'number') {
-    return (nn + 128) % 256 - 128;
+    return ((nn + 128) % 256) - 128;
   } else if (nn instanceof Array) {
     return nn.map(p5.prototype.byte);
   }
@@ -202,7 +202,7 @@ p5.prototype.byte = function(n) {
  * @param {Array} ns              values to parse
  * @return {String[]}             array of string representation of values
  */
-p5.prototype.char = function(n) {
+p5.prototype.char = function (n) {
   if (typeof n === 'number' && !isNaN(n)) {
     return String.fromCharCode(n);
   } else if (n instanceof Array) {
@@ -233,7 +233,7 @@ p5.prototype.char = function(n) {
  * @param {Array} ns       values to parse
  * @return {Number[]}      integer representation of values
  */
-p5.prototype.unchar = function(n) {
+p5.prototype.unchar = function (n) {
   if (typeof n === 'string' && n.length === 1) {
     return n.charCodeAt(0);
   } else if (n instanceof Array) {
@@ -267,10 +267,10 @@ p5.prototype.unchar = function(n) {
  * @param {Number} [digits]
  * @return {String[]}      hexadecimal string representation of values
  */
-p5.prototype.hex = function(n, digits) {
+p5.prototype.hex = function (n, digits) {
   digits = digits === undefined || digits === null ? (digits = 8) : digits;
   if (n instanceof Array) {
-    return n.map(n => p5.prototype.hex(n, digits));
+    return n.map((n) => p5.prototype.hex(n, digits));
   } else if (n === Infinity || n === -Infinity) {
     const c = n === Infinity ? 'F' : '0';
     return c.repeat(digits);
@@ -278,9 +278,7 @@ p5.prototype.hex = function(n, digits) {
     if (n < 0) {
       n = 0xffffffff + n + 1;
     }
-    let hex = Number(n)
-      .toString(16)
-      .toUpperCase();
+    let hex = Number(n).toString(16).toUpperCase();
     while (hex.length < digits) {
       hex = `0${hex}`;
     }
@@ -312,7 +310,7 @@ p5.prototype.hex = function(n, digits) {
  * @param {Array} ns values to parse
  * @return {Number[]}      integer representations of hexadecimal value
  */
-p5.prototype.unhex = function(n) {
+p5.prototype.unhex = function (n) {
   if (n instanceof Array) {
     return n.map(p5.prototype.unhex);
   } else {

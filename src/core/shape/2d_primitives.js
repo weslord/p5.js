@@ -72,18 +72,18 @@ p5.prototype._normalizeArcAngles = (
   // Optionally adjust the angles to counter linear scaling.
   if (correctForScaling) {
     if (start <= constants.HALF_PI) {
-      start = Math.atan(width / height * Math.tan(start));
+      start = Math.atan((width / height) * Math.tan(start));
     } else if (start > constants.HALF_PI && start <= 3 * constants.HALF_PI) {
-      start = Math.atan(width / height * Math.tan(start)) + constants.PI;
+      start = Math.atan((width / height) * Math.tan(start)) + constants.PI;
     } else {
-      start = Math.atan(width / height * Math.tan(start)) + constants.TWO_PI;
+      start = Math.atan((width / height) * Math.tan(start)) + constants.TWO_PI;
     }
     if (stop <= constants.HALF_PI) {
-      stop = Math.atan(width / height * Math.tan(stop));
+      stop = Math.atan((width / height) * Math.tan(stop));
     } else if (stop > constants.HALF_PI && stop <= 3 * constants.HALF_PI) {
-      stop = Math.atan(width / height * Math.tan(stop)) + constants.PI;
+      stop = Math.atan((width / height) * Math.tan(stop)) + constants.PI;
     } else {
-      stop = Math.atan(width / height * Math.tan(stop)) + constants.TWO_PI;
+      stop = Math.atan((width / height) * Math.tan(stop)) + constants.TWO_PI;
     }
   }
 
@@ -95,7 +95,7 @@ p5.prototype._normalizeArcAngles = (
   return {
     start,
     stop,
-    correspondToSamePoint: separation < epsilon
+    correspondToSamePoint: separation < epsilon,
   };
 };
 
@@ -169,7 +169,7 @@ p5.prototype._normalizeArcAngles = (
  *white ellipse with top right missing with black outline around shape.
  *white ellipse with top right quarter missing with black outline around the shape.
  */
-p5.prototype.arc = function(x, y, w, h, start, stop, mode, detail) {
+p5.prototype.arc = function (x, y, w, h, start, stop, mode, detail) {
   p5._validateParameters('arc', arguments);
 
   // if the current stroke and fill settings wouldn't result in something
@@ -220,7 +220,7 @@ p5.prototype.arc = function(x, y, w, h, start, stop, mode, detail) {
         vals.h,
         angles.start,
         angles.stop,
-        mode
+        mode,
       ]);
     }
   }
@@ -263,7 +263,7 @@ p5.prototype.arc = function(x, y, w, h, start, stop, mode, detail) {
  * @param  {Number} h
  * @param  {Integer} detail number of radial sectors to draw (for WebGL mode)
  */
-p5.prototype.ellipse = function(x, y, w, h, detailX) {
+p5.prototype.ellipse = function (x, y, w, h, detailX) {
   p5._validateParameters('ellipse', arguments);
   return this._renderEllipse.apply(this, arguments);
 };
@@ -293,7 +293,7 @@ p5.prototype.ellipse = function(x, y, w, h, detailX) {
  * @alt
  * white circle with black outline in mid of canvas that is 55x55.
  */
-p5.prototype.circle = function() {
+p5.prototype.circle = function () {
   p5._validateParameters('circle', arguments);
   const args = Array.prototype.slice.call(arguments, 0, 2);
   args.push(arguments[2]);
@@ -302,7 +302,7 @@ p5.prototype.circle = function() {
 };
 
 // internal method for drawing ellipses (without parameter validation)
-p5.prototype._renderEllipse = function(x, y, w, h, detailX) {
+p5.prototype._renderEllipse = function (x, y, w, h, detailX) {
   // if the current stroke and fill settings wouldn't result in something
   // visible, exit immediately
   if (!this._renderer._doStroke && !this._renderer._doFill) {
@@ -378,7 +378,7 @@ p5.prototype._renderEllipse = function(x, y, w, h, detailX) {
  * @param  {Number} z2 the z-coordinate of the second point
  * @chainable
  */
-p5.prototype.line = function(...args) {
+p5.prototype.line = function (...args) {
   p5._validateParameters('line', args);
 
   if (this._renderer._doStroke) {
@@ -448,7 +448,7 @@ p5.prototype.line = function(...args) {
  * @param {p5.Vector} coordinate_vector the coordinate vector
  * @chainable
  */
-p5.prototype.point = function(...args) {
+p5.prototype.point = function (...args) {
   p5._validateParameters('point', args);
 
   if (this._renderer._doStroke) {
@@ -519,7 +519,7 @@ p5.prototype.point = function(...args) {
  * @param {Integer} [detailY]
  * @chainable
  */
-p5.prototype.quad = function(...args) {
+p5.prototype.quad = function (...args) {
   p5._validateParameters('quad', args);
 
   if (this._renderer._doStroke || this._renderer._doFill) {
@@ -606,7 +606,7 @@ p5.prototype.quad = function(...args) {
  * @param  {Integer} [detailY] number of segments in the y-direction (for WebGL mode)
  * @chainable
  */
-p5.prototype.rect = function() {
+p5.prototype.rect = function () {
   p5._validateParameters('rect', arguments);
   return this._renderRect.apply(this, arguments);
 };
@@ -662,14 +662,14 @@ p5.prototype.rect = function() {
  * 55x55 white square with black outline and rounded edges in mid-right of canvas.
  * 55x55 white square with black outline and rounded edges of different radii.
  */
-p5.prototype.square = function(x, y, s, tl, tr, br, bl) {
+p5.prototype.square = function (x, y, s, tl, tr, br, bl) {
   p5._validateParameters('square', arguments);
   // duplicate width for height in case of square
   return this._renderRect.call(this, x, y, s, s, tl, tr, br, bl);
 };
 
 // internal method to have renderer draw a rectangle
-p5.prototype._renderRect = function() {
+p5.prototype._renderRect = function () {
   if (this._renderer._doStroke || this._renderer._doFill) {
     // duplicate width for height in case only 3 arguments is provided
     if (arguments.length === 3) {
@@ -724,7 +724,7 @@ p5.prototype._renderRect = function() {
  *@alt
  * white triangle with black outline in mid-right of canvas.
  */
-p5.prototype.triangle = function(...args) {
+p5.prototype.triangle = function (...args) {
   p5._validateParameters('triangle', args);
 
   if (this._renderer._doStroke || this._renderer._doFill) {

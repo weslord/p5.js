@@ -170,7 +170,7 @@ class p5 {
       text: false,
       grid: false,
       textLabel: false,
-      gridLabel: false
+      gridLabel: false,
     };
     this._setupDone = false;
     // for handling hidpi
@@ -186,7 +186,7 @@ class p5 {
     this._initializeInstanceVariables();
     this._defaultCanvasSize = {
       width: 100,
-      height: 100
+      height: 100,
     };
     this._events = {
       // keep track of user-events for unregistering later
@@ -206,7 +206,7 @@ class p5 {
       touchmove: null,
       touchend: null,
       resize: null,
-      blur: null
+      blur: null,
     };
     this._millisStart = -1;
 
@@ -281,7 +281,7 @@ class p5 {
       }
     };
 
-    this._runIfPreloadsAreDone = function() {
+    this._runIfPreloadsAreDone = function () {
       const context = this._isGlobal ? window : this;
       if (context._preloadCount === 0) {
         const loadingScreen = document.getElementById(context._loadingScreenId);
@@ -296,7 +296,7 @@ class p5 {
       }
     };
 
-    this._decrementPreload = function() {
+    this._decrementPreload = function () {
       const context = this._isGlobal ? window : this;
       if (typeof context.preload === 'function') {
         context._setProperty('_preloadCount', context._preloadCount - 1);
@@ -304,7 +304,7 @@ class p5 {
       }
     };
 
-    this._wrapPreload = function(obj, fnName) {
+    this._wrapPreload = function (obj, fnName) {
       return (...args) => {
         //increment counter
         this._incrementPreload();
@@ -313,7 +313,7 @@ class p5 {
       };
     };
 
-    this._incrementPreload = function() {
+    this._incrementPreload = function () {
       const context = this._isGlobal ? window : this;
       context._setProperty('_preloadCount', context._preloadCount + 1);
     };
@@ -474,7 +474,7 @@ class p5 {
 
         // call any registered remove functions
         const self = this;
-        this._registeredMethods.remove.forEach(f => {
+        this._registeredMethods.remove.forEach((f) => {
           if (typeof f !== 'undefined') {
             f.call(self);
           }
@@ -503,7 +503,7 @@ class p5 {
     };
 
     // call any registered init functions
-    this._registeredMethods.init.forEach(function(f) {
+    this._registeredMethods.init.forEach(function (f) {
       if (typeof f !== 'undefined') {
         f.call(this);
       }
@@ -592,7 +592,7 @@ class p5 {
     this._colorMaxes = {
       rgb: [255, 255, 255, 255],
       hsb: [360, 100, 100, 1],
-      hsl: [360, 100, 100, 1]
+      hsl: [360, 100, 100, 1],
     };
 
     this._downKeys = {}; //Holds the key codes of currently pressed keys
@@ -626,7 +626,7 @@ class p5 {
       // albeit one that is very unlikely to be used:
       //
       //   https://developer.mozilla.org/en-US/docs/Web/API/Window/print
-      print: true
+      print: true,
     };
 
     return (prop, value) => {
@@ -666,12 +666,12 @@ class p5 {
                 configurable: true,
                 enumerable: true,
                 value: newValue,
-                writable: true
+                writable: true,
               });
               log(
                 `You just changed the value of "${prop}", which was a p5 function. This could cause problems later if you're not careful.`
               );
-            }
+            },
           });
         } catch (e) {
           log(
@@ -724,7 +724,7 @@ p5.prototype._preloadMethods = {
   loadTable: p5.prototype,
   loadFont: p5.prototype,
   loadModel: p5.prototype,
-  loadShader: p5.prototype
+  loadShader: p5.prototype,
 };
 
 p5.prototype._registeredMethods = { init: [], pre: [], post: [], remove: [] };

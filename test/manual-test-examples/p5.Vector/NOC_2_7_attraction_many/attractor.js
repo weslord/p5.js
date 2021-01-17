@@ -4,7 +4,7 @@
 
 // An object for a draggable attractive body in our world
 
-var Attractor = function() {
+var Attractor = function () {
   this.position = createVector(width / 2, height / 2);
   this.mass = 20;
   this.G = 1;
@@ -13,7 +13,7 @@ var Attractor = function() {
   this.rollover = false;
 };
 
-Attractor.prototype.calculateAttraction = function(m) {
+Attractor.prototype.calculateAttraction = function (m) {
   // Calculate direction of force
   var force = p5.Vector.sub(this.position, m.position);
   // Distance between objects
@@ -23,14 +23,14 @@ Attractor.prototype.calculateAttraction = function(m) {
   // Normalize vector (distance doesn't matter here, we just want this vector for direction)
   force.normalize();
   // Calculate gravitional force magnitude
-  var strength = this.G * this.mass * m.mass / (distance * distance);
+  var strength = (this.G * this.mass * m.mass) / (distance * distance);
   // Get force vector --> magnitude * direction
   force.mult(strength);
   return force;
 };
 
 // Method to display
-Attractor.prototype.display = function() {
+Attractor.prototype.display = function () {
   ellipseMode(CENTER);
   strokeWeight(4);
   stroke(0);
@@ -45,7 +45,7 @@ Attractor.prototype.display = function() {
 };
 
 // The methods below are for mouse interaction
-Attractor.prototype.handleClick = function(mx, my) {
+Attractor.prototype.handleClick = function (mx, my) {
   var d = dist(mx, my, this.position.x, this.position.y);
   if (d < this.mass) {
     this.dragging = true;
@@ -54,7 +54,7 @@ Attractor.prototype.handleClick = function(mx, my) {
   }
 };
 
-Attractor.prototype.handleHover = function(mx, my) {
+Attractor.prototype.handleHover = function (mx, my) {
   var d = dist(mx, my, this.position.x, this.position.y);
   if (d < this.mass) {
     this.rollover = true;
@@ -63,11 +63,11 @@ Attractor.prototype.handleHover = function(mx, my) {
   }
 };
 
-Attractor.prototype.stopDragging = function() {
+Attractor.prototype.stopDragging = function () {
   this.dragging = false;
 };
 
-Attractor.prototype.handleDrag = function(mx, my) {
+Attractor.prototype.handleDrag = function (mx, my) {
   if (this.dragging) {
     this.position.x = mx + this.dragOffset.x;
     this.position.y = my + this.dragOffset.y;

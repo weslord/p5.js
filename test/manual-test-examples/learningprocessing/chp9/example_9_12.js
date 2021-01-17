@@ -36,7 +36,7 @@ function Zoog(tempX, tempY, tempW, tempH, tempEyeSize) {
 }
 
 // Move Zoog
-Zoog.prototype.jiggle = function() {
+Zoog.prototype.jiggle = function () {
   // For simplicity we have also removed the “speed” argument from the jiggle() function. Try adding it back in as an exercise.
   // Change the location
   this.x = this.x + random(-1, 1);
@@ -47,7 +47,7 @@ Zoog.prototype.jiggle = function() {
 };
 
 // Display Zoog
-Zoog.prototype.display = function() {
+Zoog.prototype.display = function () {
   // Set ellipses and rects to CENTER mode
   ellipseMode(CENTER);
   rectMode(CENTER);

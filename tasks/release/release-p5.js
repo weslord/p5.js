@@ -7,12 +7,12 @@ const open = require('open');
 const spawn = require('child_process').spawnSync;
 const simpleGit = require('simple-git/promise');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   // Register the Release Task
   grunt.registerTask(
     'release-p5',
     'Drafts and Publishes a fresh release of p5.js',
-    async function(args) {
+    async function (args) {
       const done = this.async();
 
       // Check we are currently on the 'main' branch, refuse to continue
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
           : ['--any-branch'],
         {
           stdio: 'inherit',
-          shell: true
+          shell: true,
         }
       );
 

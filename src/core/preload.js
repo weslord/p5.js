@@ -18,13 +18,13 @@ p5.prototype._promisePreloads = [
   */
 ];
 
-p5.prototype.registerPromisePreload = function(setup) {
+p5.prototype.registerPromisePreload = function (setup) {
   p5.prototype._promisePreloads.push(setup);
 };
 
 let initialSetupRan = false;
 
-p5.prototype._setupPromisePreloads = function() {
+p5.prototype._setupPromisePreloads = function () {
   for (const preloadSetup of this._promisePreloads) {
     let thisValue = this;
     let { method, addCallbacks, legacyPreloadSetup } = preloadSetup;
@@ -62,8 +62,8 @@ p5.prototype._setupPromisePreloads = function() {
   initialSetupRan = true;
 };
 
-p5.prototype._wrapPromisePreload = function(thisValue, fn, addCallbacks) {
-  let replacementFunction = function(...args) {
+p5.prototype._wrapPromisePreload = function (thisValue, fn, addCallbacks) {
+  let replacementFunction = function (...args) {
     // Uses the current preload counting mechanism for now.
     this._incrementPreload();
     // A variable for the callback function if specified
@@ -103,11 +103,11 @@ p5.prototype._wrapPromisePreload = function(thisValue, fn, addCallbacks) {
   return replacementFunction;
 };
 
-const objectCreator = function() {
+const objectCreator = function () {
   return {};
 };
 
-p5.prototype._legacyPreloadGenerator = function(
+p5.prototype._legacyPreloadGenerator = function (
   thisValue,
   legacyPreloadSetup,
   fn
@@ -117,13 +117,13 @@ p5.prototype._legacyPreloadGenerator = function(
   // of a specific class.
   const baseValueGenerator =
     legacyPreloadSetup.createBaseObject || objectCreator;
-  let returnedFunction = function() {
+  let returnedFunction = function () {
     // Our then clause needs to run before setup, so we also increment the preload counter
     this._incrementPreload();
     // Generate the return value based on the generator.
     const returnValue = baseValueGenerator.apply(this, arguments);
     // Run the original wrapper
-    fn.apply(this, arguments).then(data => {
+    fn.apply(this, arguments).then((data) => {
       // Copy each key from the resolved value into returnValue
       Object.assign(returnValue, data);
       // Decrement the preload counter, to allow setup to continue.

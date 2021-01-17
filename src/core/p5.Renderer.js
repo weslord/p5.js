@@ -19,7 +19,7 @@ import * as constants from '../core/constants';
  * @param {p5} [pInst] pointer to p5 instance
  * @param {Boolean} [isMainCanvas] whether we're using it as main canvas
  */
-p5.Renderer = function(elt, pInst, isMainCanvas) {
+p5.Renderer = function (elt, pInst, isMainCanvas) {
   p5.Element.call(this, elt, pInst);
   this.canvas = elt;
   this._pixelsState = pInst;
@@ -61,7 +61,7 @@ p5.Renderer.prototype = Object.create(p5.Element.prototype);
 
 // the renderer should return a 'style' object that it wishes to
 // store on the push stack.
-p5.Renderer.prototype.push = function() {
+p5.Renderer.prototype.push = function () {
   return {
     properties: {
       _doStroke: this._doStroke,
@@ -77,15 +77,15 @@ p5.Renderer.prototype.push = function() {
       _textSize: this._textSize,
       _textAlign: this._textAlign,
       _textBaseline: this._textBaseline,
-      _textStyle: this._textStyle
-    }
+      _textStyle: this._textStyle,
+    },
   };
 };
 
 // a pop() operation is in progress
 // the renderer is passed the 'style' object that it returned
 // from its push() method.
-p5.Renderer.prototype.pop = function(style) {
+p5.Renderer.prototype.pop = function (style) {
   if (style.properties) {
     // copy the style properties back into the renderer
     Object.assign(this, style.properties);
@@ -95,7 +95,7 @@ p5.Renderer.prototype.pop = function(style) {
 /**
  * Resize our canvas element.
  */
-p5.Renderer.prototype.resize = function(w, h) {
+p5.Renderer.prototype.resize = function (w, h) {
   this.width = w;
   this.height = h;
   this.elt.width = w * this._pInst._pixelDensity;
@@ -108,7 +108,7 @@ p5.Renderer.prototype.resize = function(w, h) {
   }
 };
 
-p5.Renderer.prototype.get = function(x, y, w, h) {
+p5.Renderer.prototype.get = function (x, y, w, h) {
   const pixelsState = this._pixelsState;
   const pd = pixelsState._pixelDensity;
   const canvas = this.canvas;
@@ -141,7 +141,7 @@ p5.Renderer.prototype.get = function(x, y, w, h) {
   return region;
 };
 
-p5.Renderer.prototype.textLeading = function(l) {
+p5.Renderer.prototype.textLeading = function (l) {
   if (typeof l === 'number') {
     this._setProperty('_textLeading', l);
     return this._pInst;
@@ -150,7 +150,7 @@ p5.Renderer.prototype.textLeading = function(l) {
   return this._textLeading;
 };
 
-p5.Renderer.prototype.textSize = function(s) {
+p5.Renderer.prototype.textSize = function (s) {
   if (typeof s === 'number') {
     this._setProperty('_textSize', s);
     this._setProperty('_textLeading', s * constants._DEFAULT_LEADMULT);
@@ -160,7 +160,7 @@ p5.Renderer.prototype.textSize = function(s) {
   return this._textSize;
 };
 
-p5.Renderer.prototype.textStyle = function(s) {
+p5.Renderer.prototype.textStyle = function (s) {
   if (s) {
     if (
       s === constants.NORMAL ||
@@ -177,21 +177,21 @@ p5.Renderer.prototype.textStyle = function(s) {
   return this._textStyle;
 };
 
-p5.Renderer.prototype.textAscent = function() {
+p5.Renderer.prototype.textAscent = function () {
   if (this._textAscent === null) {
     this._updateTextMetrics();
   }
   return this._textAscent;
 };
 
-p5.Renderer.prototype.textDescent = function() {
+p5.Renderer.prototype.textDescent = function () {
   if (this._textDescent === null) {
     this._updateTextMetrics();
   }
   return this._textDescent;
 };
 
-p5.Renderer.prototype.textAlign = function(h, v) {
+p5.Renderer.prototype.textAlign = function (h, v) {
   if (typeof h !== 'undefined') {
     this._setProperty('_textAlign', h);
 
@@ -203,12 +203,12 @@ p5.Renderer.prototype.textAlign = function(h, v) {
   } else {
     return {
       horizontal: this._textAlign,
-      vertical: this._textBaseline
+      vertical: this._textBaseline,
     };
   }
 };
 
-p5.Renderer.prototype.text = function(str, x, y, maxWidth, maxHeight) {
+p5.Renderer.prototype.text = function (str, x, y, maxWidth, maxHeight) {
   const p = this._pInst;
   let cars;
   let n;
@@ -344,7 +344,7 @@ p5.Renderer.prototype.text = function(str, x, y, maxWidth, maxHeight) {
 
     const vAlign = p.textAlign().vertical;
     if (vAlign === constants.CENTER) {
-      offset = (cars.length - 1) * p.textLeading() / 2;
+      offset = ((cars.length - 1) * p.textLeading()) / 2;
     } else if (vAlign === constants.BOTTOM) {
       offset = (cars.length - 1) * p.textLeading();
     }
@@ -358,18 +358,18 @@ p5.Renderer.prototype.text = function(str, x, y, maxWidth, maxHeight) {
   return p;
 };
 
-p5.Renderer.prototype._applyDefaults = function() {
+p5.Renderer.prototype._applyDefaults = function () {
   return this;
 };
 
 /**
  * Helper fxn to check font type (system or otf)
  */
-p5.Renderer.prototype._isOpenType = function(f = this._textFont) {
+p5.Renderer.prototype._isOpenType = function (f = this._textFont) {
   return typeof f === 'object' && f.font && f.font.supported;
 };
 
-p5.Renderer.prototype._updateTextMetrics = function() {
+p5.Renderer.prototype._updateTextMetrics = function () {
   if (this._isOpenType()) {
     this._setProperty('_textAscent', this._textFont._textAscent());
     this._setProperty('_textDescent', this._textFont._textDescent());

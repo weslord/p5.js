@@ -25,7 +25,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     'constant',
     'function',
     'any',
-    'integer'
+    'integer',
   ]);
 
   const basicTypes = {
@@ -33,7 +33,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     boolean: true,
     string: true,
     function: true,
-    undefined: true
+    undefined: true,
   };
 
   // reverse map of all constants
@@ -185,7 +185,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
   // validateParameters() helper functions:
   // lookupParamDoc() for querying data.json
-  const lookupParamDoc = func => {
+  const lookupParamDoc = (func) => {
     // look for the docs in the `data.json` datastructure
 
     const ichDot = func.lastIndexOf('.');
@@ -210,7 +210,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     // parse the parameter types for each overload
     const mapConstants = {};
     let maxParams = 0;
-    overloads.forEach(overload => {
+    overloads.forEach((overload) => {
       const formats = overload.formats;
 
       // keep a record of the maximum number of arguments
@@ -228,14 +228,14 @@ if (typeof IS_MINIFIED !== 'undefined') {
       overload.minParams = minParams;
 
       // loop through each parameter position, and parse its types
-      formats.forEach(format => {
+      formats.forEach((format) => {
         // split this parameter's types
         format.types = format.type.split('|').map(function ct(type) {
           // array
           if (type.substr(type.length - 2, 2) === '[]') {
             return {
               name: type,
-              array: ct(type.substr(0, type.length - 2))
+              array: ct(type.substr(0, type.length - 2)),
             };
           }
 
@@ -254,7 +254,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
               constant = mapConstants[format.name] = {
                 values,
-                names
+                names,
               };
 
               const myArray = myRe.exec(format.description);
@@ -278,7 +278,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               name: type,
               builtin: lowerType,
               names: constant.names,
-              values: constant.values
+              values: constant.values,
             };
           }
 
@@ -301,7 +301,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             typeParts.shift();
           }
 
-          typeParts.forEach(p => {
+          typeParts.forEach((p) => {
             t = t && t[p];
           });
           if (t) {
@@ -314,11 +314,11 @@ if (typeof IS_MINIFIED !== 'undefined') {
     });
     return {
       overloads,
-      maxParams
+      maxParams,
     };
   };
 
-  const isNumber = param => {
+  const isNumber = (param) => {
     switch (typeof param) {
       case 'number':
         return true;
@@ -427,16 +427,16 @@ if (typeof IS_MINIFIED !== 'undefined') {
         {
           type: 'TOO_FEW_ARGUMENTS',
           argCount,
-          minParams
-        }
+          minParams,
+        },
       ];
     } else if (argCount > formats.length) {
       return [
         {
           type: 'TOO_MANY_ARGUMENTS',
           argCount,
-          maxParams: formats.length
-        }
+          maxParams: formats.length,
+        },
       ];
     }
 
@@ -451,7 +451,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           errorArray.push({
             type: 'EMPTY_VAR',
             position: p,
-            format
+            format,
           });
         }
       } else if (testParamTypes(arg, format.types) > 0) {
@@ -459,7 +459,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           type: 'WRONG_TYPE',
           position: p,
           format,
-          arg
+          arg,
         });
       }
     }
@@ -469,7 +469,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
   // a custom error type, used by the mocha
   // tests when expecting validation errors
-  p5.ValidationError = (name => {
+  p5.ValidationError = ((name) => {
     class err extends Error {
       constructor(message, func, type) {
         super();
@@ -486,14 +486,14 @@ if (typeof IS_MINIFIED !== 'undefined') {
   })('ValidationError');
 
   // function for generating console.log() msg
-  p5._friendlyParamError = function(errorObj, func) {
+  p5._friendlyParamError = function (errorObj, func) {
     let message;
     let translationObj;
 
     function formatType() {
       const format = errorObj.format;
       return format.types
-        .map(type => (type.names ? type.names.join('|') : type.name))
+        .map((type) => (type.names ? type.names.join('|') : type.name))
         .join('|');
     }
 
@@ -508,9 +508,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
           /* i18next-extract-mark-context-next-line ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] */
           position: translator('fes.positions.p', {
             context: (errorObj.position + 1).toString(),
-            defaultValue: (errorObj.position + 1).toString()
+            defaultValue: (errorObj.position + 1).toString(),
           }),
-          link: '[https://p5js.org/examples/data-variable-scope.html]'
+          link: '[https://p5js.org/examples/data-variable-scope.html]',
         };
 
         break;
@@ -520,7 +520,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
         const argType =
           arg instanceof Array
             ? 'array'
-            : arg === null ? 'null' : arg.name || typeof arg;
+            : arg === null
+            ? 'null'
+            : arg.name || typeof arg;
 
         translationObj = {
           func,
@@ -529,8 +531,8 @@ if (typeof IS_MINIFIED !== 'undefined') {
           /* i18next-extract-mark-context-next-line ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] */
           position: translator('fes.positions.p', {
             context: (errorObj.position + 1).toString(),
-            defaultValue: (errorObj.position + 1).toString()
-          })
+            defaultValue: (errorObj.position + 1).toString(),
+          }),
         };
 
         break;
@@ -539,7 +541,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         translationObj = {
           func,
           minParams: errorObj.minParams,
-          argCount: errorObj.argCount
+          argCount: errorObj.argCount,
         };
 
         break;
@@ -548,7 +550,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         translationObj = {
           func,
           maxParams: errorObj.maxParams,
-          argCount: errorObj.argCount
+          argCount: errorObj.argCount,
         };
 
         break;
@@ -579,15 +581,13 @@ if (typeof IS_MINIFIED !== 'undefined') {
           parsed[3].lineNumber &&
           parsed[3].columnNumber
         ) {
-          let location = `${parsed[3].fileName}:${parsed[3].lineNumber}:${
-            parsed[3].columnNumber
-          }`;
+          let location = `${parsed[3].fileName}:${parsed[3].lineNumber}:${parsed[3].columnNumber}`;
 
           translationObj.location = translator('fes.location', {
             location: location,
             // for e.g. get "sketch.js" from "https://example.com/abc/sketch.js"
             file: parsed[3].fileName.split('/').slice(-1),
-            line: parsed[3].lineNumber
+            line: parsed[3].lineNumber,
           });
 
           // tell fesErrorMonitor that we have already given a friendly message

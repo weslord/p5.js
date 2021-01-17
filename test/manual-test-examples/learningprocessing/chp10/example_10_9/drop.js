@@ -18,13 +18,13 @@ function Drop() {
 }
 
 // Move the raindrop down
-Drop.prototype.move = function() {
+Drop.prototype.move = function () {
   // Increment by speed
   this.y += this.speed;
 };
 
 // Check if it hits the bottom
-Drop.prototype.reachedBottom = function() {
+Drop.prototype.reachedBottom = function () {
   // If we go a little beyond the bottom
   if (this.y > height + this.r * 4) {
     return true;
@@ -34,7 +34,7 @@ Drop.prototype.reachedBottom = function() {
 };
 
 // Display the raindrop
-Drop.prototype.display = function() {
+Drop.prototype.display = function () {
   // Display the drop
   fill(this.c);
   noStroke();
@@ -44,7 +44,7 @@ Drop.prototype.display = function() {
 };
 
 // If the drop is caught
-Drop.prototype.caught = function() {
+Drop.prototype.caught = function () {
   // Stop it from moving by setting speed equal to zero
   this.speed = 0;
   // Set the location to somewhere way off-screen

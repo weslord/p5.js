@@ -8,7 +8,7 @@ function setup() {
 
   //Copy image 1 into image 2
   image1 = createImage(40, 40);
-  image2 = loadImage('unicorn.jpg', function(img) {
+  image2 = loadImage('unicorn.jpg', function (img) {
     image1.copy(img, 0, 0, 36, 36, 0, 0, 40, 40);
 
     image(image1, 10, 10);
@@ -16,7 +16,7 @@ function setup() {
   });
 
   //Copy an image into iself
-  image3 = loadImage('cat.jpg', function(img) {
+  image3 = loadImage('cat.jpg', function (img) {
     img.copy(
       img.width / 2,
       0,

@@ -150,14 +150,14 @@ function play() {
 
 // Beat Ball Class
 
-BeatBall = function(x, y) {
+BeatBall = function (x, y) {
   this.x = x;
   this.y = y;
   this.size = 20;
   this.target = 0;
 };
 
-BeatBall.prototype.update = function() {
+BeatBall.prototype.update = function () {
   fill(255, 0, 0);
   ellipse(this.x, this.y, this.size + this.target, this.size + this.target);
   // fill(0);
@@ -166,7 +166,7 @@ BeatBall.prototype.update = function() {
   this.target *= 0.95;
 };
 
-BeatBall.prototype.trigger = function(value) {
+BeatBall.prototype.trigger = function (value) {
   this.target = 50 * value;
 };
 

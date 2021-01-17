@@ -39,7 +39,7 @@ import p5 from '../core/main';
  *  @constructor
  *  @param  {p5.TableRow[]}     [rows] An array of p5.TableRow objects
  */
-p5.Table = function(rows) {
+p5.Table = function (rows) {
   /**
    * An array containing the names of the columns in the table, if the "header" the table is
    * loaded with the "header" parameter.
@@ -132,7 +132,7 @@ p5.Table = function(rows) {
  * @alt
  * no image displayed
  */
-p5.Table.prototype.addRow = function(row) {
+p5.Table.prototype.addRow = function (row) {
   // make sure it is a valid TableRow
   const r = row || new p5.TableRow();
 
@@ -185,7 +185,7 @@ p5.Table.prototype.addRow = function(row) {
  * @alt
  * no image displayed
  */
-p5.Table.prototype.removeRow = function(id) {
+p5.Table.prototype.removeRow = function (id) {
   this.rows[id].table = null; // remove reference to table
   const chunk = this.rows.splice(id + 1, this.rows.length);
   this.rows.pop();
@@ -233,7 +233,7 @@ p5.Table.prototype.removeRow = function(id) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.getRow = function(r) {
+p5.Table.prototype.getRow = function (r) {
   return this.rows[r];
 };
 
@@ -281,7 +281,7 @@ p5.Table.prototype.getRow = function(r) {
  * @alt
  * no image displayed
  */
-p5.Table.prototype.getRows = function() {
+p5.Table.prototype.getRows = function () {
   return this.rows;
 };
 
@@ -329,7 +329,7 @@ p5.Table.prototype.getRows = function() {
  * @alt
  * no image displayed
  */
-p5.Table.prototype.findRow = function(value, column) {
+p5.Table.prototype.findRow = function (value, column) {
   // try the Object
   if (typeof column === 'string') {
     for (let i = 0; i < this.rows.length; i++) {
@@ -398,7 +398,7 @@ p5.Table.prototype.findRow = function(value, column) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.findRows = function(value, column) {
+p5.Table.prototype.findRows = function (value, column) {
   const ret = [];
   if (typeof column === 'string') {
     for (let i = 0; i < this.rows.length; i++) {
@@ -458,7 +458,7 @@ p5.Table.prototype.findRows = function(value, column) {
  * </code>
  * </div>
  */
-p5.Table.prototype.matchRow = function(regexp, column) {
+p5.Table.prototype.matchRow = function (regexp, column) {
   if (typeof column === 'number') {
     for (let j = 0; j < this.rows.length; j++) {
       if (this.rows[j].arr[column].match(regexp)) {
@@ -524,7 +524,7 @@ p5.Table.prototype.matchRow = function(regexp, column) {
  * </code>
  * </div>
  */
-p5.Table.prototype.matchRows = function(regexp, column) {
+p5.Table.prototype.matchRows = function (regexp, column) {
   const ret = [];
   if (typeof column === 'number') {
     for (let j = 0; j < this.rows.length; j++) {
@@ -580,7 +580,7 @@ p5.Table.prototype.matchRows = function(regexp, column) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.getColumn = function(value) {
+p5.Table.prototype.getColumn = function (value) {
   const ret = [];
   if (typeof value === 'string') {
     for (let i = 0; i < this.rows.length; i++) {
@@ -630,7 +630,7 @@ p5.Table.prototype.getColumn = function(value) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.clearRows = function() {
+p5.Table.prototype.clearRows = function () {
   delete this.rows;
   this.rows = [];
 };
@@ -680,7 +680,7 @@ p5.Table.prototype.clearRows = function() {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.addColumn = function(title) {
+p5.Table.prototype.addColumn = function (title) {
   const t = title || null;
   this.columns.push(t);
 };
@@ -717,7 +717,7 @@ p5.Table.prototype.addColumn = function(title) {
  * </code>
  * </div>
  */
-p5.Table.prototype.getColumnCount = function() {
+p5.Table.prototype.getColumnCount = function () {
   return this.columns.length;
 };
 
@@ -753,7 +753,7 @@ p5.Table.prototype.getColumnCount = function() {
  * </code>
  * </div>
  */
-p5.Table.prototype.getRowCount = function() {
+p5.Table.prototype.getRowCount = function () {
   return this.rows.length;
 };
 
@@ -794,8 +794,8 @@ p5.Table.prototype.getRowCount = function() {
  * //  1  "Snake"  "Reptile"
  * </code></div>
  */
-p5.Table.prototype.removeTokens = function(chars, column) {
-  const escape = s => s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+p5.Table.prototype.removeTokens = function (chars, column) {
+  const escape = (s) => s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
   const charArray = [];
   for (let i = 0; i < chars.length; i++) {
     charArray.push(escape(chars.charAt(i)));
@@ -863,7 +863,7 @@ p5.Table.prototype.removeTokens = function(chars, column) {
  * //  1  "Snake"  "Reptile"
  * </code></div>
  */
-p5.Table.prototype.trim = function(column) {
+p5.Table.prototype.trim = function (column) {
   const regex = new RegExp(' ', 'g');
 
   if (typeof column === 'undefined') {
@@ -932,7 +932,7 @@ p5.Table.prototype.trim = function(column) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.removeColumn = function(c) {
+p5.Table.prototype.removeColumn = function (c) {
   let cString;
   let cNumber;
   if (typeof c === 'string') {
@@ -1002,7 +1002,7 @@ p5.Table.prototype.removeColumn = function(c) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.set = function(row, column, value) {
+p5.Table.prototype.set = function (row, column, value) {
   this.rows[row].set(column, value);
 };
 
@@ -1048,7 +1048,7 @@ p5.Table.prototype.set = function(row, column, value) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.setNum = function(row, column, value) {
+p5.Table.prototype.setNum = function (row, column, value) {
   this.rows[row].setNum(column, value);
 };
 
@@ -1093,7 +1093,7 @@ p5.Table.prototype.setNum = function(row, column, value) {
  * @alt
  * no image displayed
  */
-p5.Table.prototype.setString = function(row, column, value) {
+p5.Table.prototype.setString = function (row, column, value) {
   this.rows[row].setString(column, value);
 };
 
@@ -1139,7 +1139,7 @@ p5.Table.prototype.setString = function(row, column, value) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.get = function(row, column) {
+p5.Table.prototype.get = function (row, column) {
   return this.rows[row].get(column);
 };
 
@@ -1183,7 +1183,7 @@ p5.Table.prototype.get = function(row, column) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.getNum = function(row, column) {
+p5.Table.prototype.getNum = function (row, column) {
   return this.rows[row].getNum(column);
 };
 
@@ -1235,7 +1235,7 @@ p5.Table.prototype.getNum = function(row, column) {
  * no image displayed
  */
 
-p5.Table.prototype.getString = function(row, column) {
+p5.Table.prototype.getString = function (row, column) {
   return this.rows[row].getString(column);
 };
 
@@ -1280,7 +1280,7 @@ p5.Table.prototype.getString = function(row, column) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.getObject = function(headerColumn) {
+p5.Table.prototype.getObject = function (headerColumn) {
   const tableObject = {};
   let obj, cPos, index;
 
@@ -1339,7 +1339,7 @@ p5.Table.prototype.getObject = function(headerColumn) {
  *@alt
  * no image displayed
  */
-p5.Table.prototype.getArray = function() {
+p5.Table.prototype.getArray = function () {
   const tableArray = [];
   for (let i = 0; i < this.rows.length; i++) {
     tableArray.push(this.rows[i].arr);

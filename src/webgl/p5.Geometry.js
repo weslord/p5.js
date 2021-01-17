@@ -17,7 +17,7 @@ import p5 from '../core/main';
  * @param  {Integer} [detailY] number of vertices on horizontal surface
  * @param {function} [callback] function to call upon object instantiation.
  */
-p5.Geometry = function(detailX, detailY, callback) {
+p5.Geometry = function (detailX, detailY, callback) {
   //an array containing every vertex
   //@type [p5.Vector]
   this.vertices = [];
@@ -55,7 +55,7 @@ p5.Geometry = function(detailX, detailY, callback) {
   return this; // TODO: is this a constructor?
 };
 
-p5.Geometry.prototype.reset = function() {
+p5.Geometry.prototype.reset = function () {
   this.lineVertices.length = 0;
   this.lineNormals.length = 0;
 
@@ -73,7 +73,7 @@ p5.Geometry.prototype.reset = function() {
  * @method computeFaces
  * @chainable
  */
-p5.Geometry.prototype.computeFaces = function() {
+p5.Geometry.prototype.computeFaces = function () {
   this.faces.length = 0;
   const sliceCount = this.detailX + 1;
   let a, b, c, d;
@@ -90,7 +90,7 @@ p5.Geometry.prototype.computeFaces = function() {
   return this;
 };
 
-p5.Geometry.prototype._getFaceNormal = function(faceId) {
+p5.Geometry.prototype._getFaceNormal = function (faceId) {
   //This assumes that vA->vB->vC is a counter-clockwise ordering
   const face = this.faces[faceId];
   const vA = this.vertices[face[0]];
@@ -117,7 +117,7 @@ p5.Geometry.prototype._getFaceNormal = function(faceId) {
  * @method computeNormals
  * @chainable
  */
-p5.Geometry.prototype.computeNormals = function() {
+p5.Geometry.prototype.computeNormals = function () {
   const vertexNormals = this.vertexNormals;
   const vertices = this.vertices;
   const faces = this.faces;
@@ -156,7 +156,7 @@ p5.Geometry.prototype.computeNormals = function() {
  * @method averageNormals
  * @chainable
  */
-p5.Geometry.prototype.averageNormals = function() {
+p5.Geometry.prototype.averageNormals = function () {
   for (let i = 0; i <= this.detailY; i++) {
     const offset = this.detailX + 1;
     let temp = p5.Vector.add(
@@ -176,7 +176,7 @@ p5.Geometry.prototype.averageNormals = function() {
  * @method averagePoleNormals
  * @chainable
  */
-p5.Geometry.prototype.averagePoleNormals = function() {
+p5.Geometry.prototype.averagePoleNormals = function () {
   //average the north pole
   let sum = new p5.Vector(0, 0, 0);
   for (let i = 0; i < this.detailX; i++) {
@@ -214,7 +214,7 @@ p5.Geometry.prototype.averagePoleNormals = function() {
  * @private
  * @chainable
  */
-p5.Geometry.prototype._makeTriangleEdges = function() {
+p5.Geometry.prototype._makeTriangleEdges = function () {
   this.edges.length = 0;
   if (Array.isArray(this.strokeIndices)) {
     for (let i = 0, max = this.strokeIndices.length; i < max; i++) {
@@ -237,17 +237,14 @@ p5.Geometry.prototype._makeTriangleEdges = function() {
  * @private
  * @chainable
  */
-p5.Geometry.prototype._edgesToVertices = function() {
+p5.Geometry.prototype._edgesToVertices = function () {
   this.lineVertices.length = 0;
   this.lineNormals.length = 0;
 
   for (let i = 0; i < this.edges.length; i++) {
     const begin = this.vertices[this.edges[i][0]];
     const end = this.vertices[this.edges[i][1]];
-    const dir = end
-      .copy()
-      .sub(begin)
-      .normalize();
+    const dir = end.copy().sub(begin).normalize();
     const a = begin.array();
     const b = begin.array();
     const c = end.array();
@@ -269,7 +266,7 @@ p5.Geometry.prototype._edgesToVertices = function() {
  * @method normalize
  * @chainable
  */
-p5.Geometry.prototype.normalize = function() {
+p5.Geometry.prototype.normalize = function () {
   if (this.vertices.length > 0) {
     // Find the corners of our bounding box
     const maxPosition = this.vertices[0].copy();

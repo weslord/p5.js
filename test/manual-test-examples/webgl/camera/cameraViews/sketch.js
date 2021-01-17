@@ -1,9 +1,9 @@
-let orthoP5 = new p5(sketch => {
+let orthoP5 = new p5((sketch) => {
   let x = 100;
   let y = 100;
   let width, height;
 
-  sketch.setup = function() {
+  sketch.setup = function () {
     sketch.createCanvas(
       sketch.windowWidth,
       sketch.windowHeight / 2,
@@ -14,7 +14,7 @@ let orthoP5 = new p5(sketch => {
     sketch.ortho(-width / 2, width / 2, height / 2, -height / 2, -500, 10000);
   };
 
-  sketch.draw = function() {
+  sketch.draw = function () {
     sketch.background(0);
     sketch.rotateX(sketch.map(sketch.mouseY, 0, height, 0, sketch.PI));
     sketch.rotateY(sketch.map(sketch.mouseX, 0, width, 0, sketch.PI));
@@ -30,8 +30,8 @@ let orthoP5 = new p5(sketch => {
   };
 });
 
-let perspP5 = new p5(sketch => {
-  sketch.setup = function() {
+let perspP5 = new p5((sketch) => {
+  sketch.setup = function () {
     sketch.createCanvas(
       sketch.windowWidth,
       sketch.windowHeight / 2,
@@ -47,7 +47,7 @@ let perspP5 = new p5(sketch => {
     );
   };
 
-  sketch.draw = function() {
+  sketch.draw = function () {
     sketch.background(0);
     sketch.rotateX(sketch.map(sketch.mouseY, 0, sketch.height, 0, sketch.PI));
     sketch.rotateY(sketch.map(sketch.mouseX, 0, sketch.width, 0, sketch.PI));

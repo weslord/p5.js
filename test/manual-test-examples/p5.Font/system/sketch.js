@@ -1,5 +1,5 @@
-var textSketch = function(p) {
-  p.setup = function() {
+var textSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(18);
     p.text('Default Text', 10, 30);
@@ -10,8 +10,7 @@ var textSketch = function(p) {
     p.text('Blue No Stroke Text Italic', 10, 80);
     p.textStyle(p.BOLD);
     p.text('Blue No Stroke Text Bold', 10, 100);
-    p
-      .fill(120)
+    p.fill(120)
       .textStyle(p.NORMAL)
       .textSize(12)
       .text(
@@ -24,8 +23,8 @@ var textSketch = function(p) {
   };
 };
 
-var textLineSketch = function(p) {
-  p.setup = function() {
+var textLineSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240 * 4, 160);
     p.textSize(10);
     p.stroke(0);
@@ -131,8 +130,8 @@ var textLineSketch = function(p) {
   };
 };
 
-var textWrapSketch = function(p) {
-  p.setup = function() {
+var textWrapSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240 * 4, 160);
     p.textSize(10);
     p.stroke(0);
@@ -310,8 +309,8 @@ var textWrapSketch = function(p) {
   };
 };
 
-var textFontSketch = function(p) {
-  p.setup = function() {
+var textFontSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(20);
     p.fill(0);
@@ -325,8 +324,8 @@ var textFontSketch = function(p) {
   };
 };
 
-var textAlignSketch = function(p) {
-  p.setup = function() {
+var textAlignSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.fill(0);
     p.strokeWeight(0);
@@ -344,13 +343,13 @@ var textAlignSketch = function(p) {
   };
 };
 
-var textAllAlignmentsSketch = function(p) {
+var textAllAlignmentsSketch = function (p) {
   var systemFonts = ['Arial', 'Times New Roman', 'Consolas'];
   var font1, font2, font3;
   var hAligns = [p.LEFT, p.CENTER, p.RIGHT];
   var vAligns = [p.TOP, p.CENTER, p.BASELINE, p.BOTTOM];
   var padding = 10;
-  var drawFontAlignments = function(font, textString, xOff, yOff) {
+  var drawFontAlignments = function (font, textString, xOff, yOff) {
     p.textFont(font);
     p.textSize(20);
     for (var h = 0; h < hAligns.length; h += 1) {
@@ -378,7 +377,7 @@ var textAllAlignmentsSketch = function(p) {
       }
     }
   };
-  p.setup = function() {
+  p.setup = function () {
     var renderer = p.createCanvas(400, 600);
     renderer.elt.style.position = 'absolute';
     renderer.elt.style.top = '0';
@@ -393,8 +392,8 @@ var textAllAlignmentsSketch = function(p) {
   };
 };
 
-var textLeadingSketch = function(p) {
-  p.setup = function() {
+var textLeadingSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(400, 200);
     p.textFont('Arial');
     p.fill(0);
@@ -417,8 +416,8 @@ var textLeadingSketch = function(p) {
   };
 };
 
-var textLeadingSketch2 = function(p) {
-  p.setup = function() {
+var textLeadingSketch2 = function (p) {
+  p.setup = function () {
     p.createCanvas(400, 200);
     p.textFont('Arial');
     p.fill(0);
@@ -441,8 +440,8 @@ var textLeadingSketch2 = function(p) {
   };
 };
 
-var textLeadingSketch3 = function(p) {
-  p.setup = function() {
+var textLeadingSketch3 = function (p) {
+  p.setup = function () {
     p.createCanvas(400, 200);
     p.textFont('Arial');
     p.fill(0);
@@ -465,8 +464,8 @@ var textLeadingSketch3 = function(p) {
   };
 };
 
-var textLeadingSketch4 = function(p) {
-  p.setup = function() {
+var textLeadingSketch4 = function (p) {
+  p.setup = function () {
     p.createCanvas(400, 200);
     p.textFont('Arial');
     p.fill(0);
@@ -489,8 +488,8 @@ var textLeadingSketch4 = function(p) {
   };
 };
 
-var textSizeSketch = function(p) {
-  p.setup = function() {
+var textSizeSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.fill(0);
     p.strokeWeight(0);
@@ -503,8 +502,8 @@ var textSizeSketch = function(p) {
   };
 };
 
-var textStyleSketch = function(p) {
-  p.setup = function() {
+var textStyleSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.fill(0);
     p.strokeWeight(0);
@@ -518,8 +517,8 @@ var textStyleSketch = function(p) {
   };
 };
 
-var textWidthSketch = function(p) {
-  p.setup = function() {
+var textWidthSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.fill(0);
     p.strokeWeight(0);
@@ -532,8 +531,8 @@ var textWidthSketch = function(p) {
   };
 };
 
-var textOverlapSketch = function(p) {
-  p.setup = function() {
+var textOverlapSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.fill(0);
     p.strokeWeight(0);
@@ -549,15 +548,15 @@ var textOverlapSketch = function(p) {
   };
 };
 
-var textFlySketch = function(p) {
+var textFlySketch = function (p) {
   var x1 = 100;
   var x2 = 0;
-  p.setup = function() {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.fill(0);
     p.textSize(48);
   };
-  p.draw = function() {
+  p.draw = function () {
     p.background(204);
     p.text('Left', x1, 50);
     p.text('Right', x2, 150);
@@ -572,13 +571,13 @@ var textFlySketch = function(p) {
   };
 };
 
-var textFlickerSketch = function(p) {
-  p.setup = function() {
+var textFlickerSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(48);
     p.noStroke();
   };
-  p.draw = function() {
+  p.draw = function () {
     p.fill(204, 24);
     p.rect(0, 0, p.width, p.height);
     p.fill(0);
@@ -586,15 +585,15 @@ var textFlickerSketch = function(p) {
   };
 };
 
-var textFadeSketch = function(p) {
+var textFadeSketch = function (p) {
   var opacity = 0;
   var direction = 1;
-  p.setup = function() {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(72);
     p.noStroke();
   };
-  p.draw = function() {
+  p.draw = function () {
     p.background(204);
     opacity += 4 * direction;
     if (opacity < 0 || opacity > 255) {
@@ -605,15 +604,15 @@ var textFadeSketch = function(p) {
   };
 };
 
-var textRotateSketch = function(p) {
+var textRotateSketch = function (p) {
   var angle = 0.0;
-  p.setup = function() {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(24);
     p.noStroke();
     p.fill(0);
   };
-  p.draw = function() {
+  p.draw = function () {
     p.background(204);
     angle += 0.05;
     p.push();
@@ -625,16 +624,16 @@ var textRotateSketch = function(p) {
   };
 };
 
-var textGrowSketch = function(p) {
+var textGrowSketch = function (p) {
   var angle = 0.0;
   var str = 'GROW';
-  p.setup = function() {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(24);
     p.noStroke();
     p.fill(0, 0, 0, 120);
   };
-  p.draw = function() {
+  p.draw = function () {
     p.background(204);
     angle += 0.1;
     for (var i = 0; i < str.length; i++) {
@@ -645,29 +644,29 @@ var textGrowSketch = function(p) {
   };
 };
 
-var textAvoidSketch = function(p) {
-  p.setup = function() {
+var textAvoidSketch = function (p) {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(24);
     p.noStroke();
     p.fill(0);
     p.textAlign(p.CENTER);
   };
-  p.draw = function() {
+  p.draw = function () {
     p.background(204);
     p.text('AVOID', p.width - p.mouseX, p.height - p.mouseY);
   };
 };
 
-var textBendSketch = function(p) {
+var textBendSketch = function (p) {
   var str = 'Flexibility';
-  p.setup = function() {
+  p.setup = function () {
     p.createCanvas(240, 160);
     p.textSize(30);
     p.noStroke();
     p.fill(0);
   };
-  p.draw = function() {
+  p.draw = function () {
     p.background(204);
     p.push();
     p.translate(0, 33);
@@ -681,11 +680,11 @@ var textBendSketch = function(p) {
   };
 };
 
-var typographyLetterSketch = function(p) {
+var typographyLetterSketch = function (p) {
   var margin = 10;
   var gap = 46;
   var counter = 35;
-  p.setup = function() {
+  p.setup = function () {
     p.createCanvas(720, 320);
     p.background(0);
     p.textFont('Georgia');

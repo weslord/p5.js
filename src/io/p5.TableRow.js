@@ -20,7 +20,7 @@ import p5 from '../core/main';
  *                              separator
  *  @param {String} [separator] comma separated values (csv) by default
  */
-p5.TableRow = function(str, separator) {
+p5.TableRow = function (str, separator) {
   let arr = [];
   const obj = {};
   if (str) {
@@ -77,7 +77,7 @@ p5.TableRow = function(str, separator) {
  * @alt
  * no image displayed
  */
-p5.TableRow.prototype.set = function(column, value) {
+p5.TableRow.prototype.set = function (column, value) {
   // if typeof column is string, use .obj
   if (typeof column === 'string') {
     const cPos = this.table.columns.indexOf(column); // index of columnID
@@ -138,7 +138,7 @@ p5.TableRow.prototype.set = function(column, value) {
  * @alt
  * no image displayed
  */
-p5.TableRow.prototype.setNum = function(column, value) {
+p5.TableRow.prototype.setNum = function (column, value) {
   const floatVal = parseFloat(value);
   this.set(column, floatVal);
 };
@@ -183,7 +183,7 @@ p5.TableRow.prototype.setNum = function(column, value) {
  * @alt
  * no image displayed
  */
-p5.TableRow.prototype.setString = function(column, value) {
+p5.TableRow.prototype.setString = function (column, value) {
   const stringVal = value.toString();
   this.set(column, stringVal);
 };
@@ -228,7 +228,7 @@ p5.TableRow.prototype.setString = function(column, value) {
  * @alt
  * no image displayed
  */
-p5.TableRow.prototype.get = function(column) {
+p5.TableRow.prototype.get = function (column) {
   if (typeof column === 'string') {
     return this.obj[column];
   } else {
@@ -278,7 +278,7 @@ p5.TableRow.prototype.get = function(column) {
  * @alt
  * no image displayed
  */
-p5.TableRow.prototype.getNum = function(column) {
+p5.TableRow.prototype.getNum = function (column) {
   let ret;
   if (typeof column === 'string') {
     ret = parseFloat(this.obj[column]);
@@ -335,7 +335,7 @@ p5.TableRow.prototype.getNum = function(column) {
  * @alt
  * no image displayed
  */
-p5.TableRow.prototype.getString = function(column) {
+p5.TableRow.prototype.getString = function (column) {
   if (typeof column === 'string') {
     return this.obj[column].toString();
   } else {

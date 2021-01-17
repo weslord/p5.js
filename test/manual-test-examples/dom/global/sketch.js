@@ -17,7 +17,7 @@ function setup() {
   input = createInput('hi');
 
   button = createButton('hikk', 10);
-  button.mousePressed(function() {
+  button.mousePressed(function () {
     vid.play();
     result.html('input is: ' + input.value());
   });

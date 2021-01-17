@@ -39,7 +39,7 @@ function setup() {
   //
   // Load and draw a cat pic
   //
-  loadImage('cat.jpg', function(img2) {
+  loadImage('cat.jpg', function (img2) {
     image(img2, 300, 50);
   });
 
@@ -52,7 +52,7 @@ function setup() {
   // Load and draw a cat pic and then draw the random
   // color image inside it
   //
-  image2 = loadImage('cat.jpg', function(img2) {
+  image2 = loadImage('cat.jpg', function (img2) {
     img2.set(0, 0, image1);
 
     img2.loadPixels();
@@ -80,7 +80,7 @@ function setup() {
   });
 
   //Load and resize an image
-  image4 = loadImage('unicorn.jpg', function(img4) {
+  image4 = loadImage('unicorn.jpg', function (img4) {
     img4.resize(250, 400);
   });
 

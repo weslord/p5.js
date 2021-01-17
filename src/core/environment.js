@@ -41,7 +41,7 @@ const _windowPrint = window.print;
  * @alt
  * default grey canvas
  */
-p5.prototype.print = function(...args) {
+p5.prototype.print = function (...args) {
   if (!args.length) {
     _windowPrint();
   } else {
@@ -195,7 +195,7 @@ p5.prototype.focused = document.hasFocus();
  * canvas is divided into four quadrants. cursor on first is a cross, second is a progress,
  * third is a custom cursor using path to the cursor and fourth is a grab.
  */
-p5.prototype.cursor = function(type, x, y) {
+p5.prototype.cursor = function (type, x, y) {
   let cursor = 'auto';
   const canvas = this._curElement.elt;
   if (standardCursors.includes(type)) {
@@ -203,7 +203,7 @@ p5.prototype.cursor = function(type, x, y) {
     cursor = type;
   } else if (typeof type === 'string') {
     let coords = '';
-    if (x && y && (typeof x === 'number' && typeof y === 'number')) {
+    if (x && y && typeof x === 'number' && typeof y === 'number') {
       // Note that x and y values must be unit-less positive integers < 32
       // https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
       coords = `${x} ${y}`;
@@ -289,7 +289,7 @@ p5.prototype.cursor = function(type, x, y) {
  * @method frameRate
  * @return {Number}       current frameRate
  */
-p5.prototype.frameRate = function(fps) {
+p5.prototype.frameRate = function (fps) {
   p5._validateParameters('frameRate', arguments);
   if (typeof fps !== 'number' || fps < 0) {
     return this._frameRate;
@@ -308,7 +308,7 @@ p5.prototype.frameRate = function(fps) {
  * @private
  * @return {Number} current frameRate
  */
-p5.prototype.getFrameRate = function() {
+p5.prototype.getFrameRate = function () {
   return this.frameRate();
 };
 
@@ -324,7 +324,7 @@ p5.prototype.getFrameRate = function() {
  * @private
  * @param {Number} [fps] number of frames to be displayed every second
  */
-p5.prototype.setFrameRate = function(fps) {
+p5.prototype.setFrameRate = function (fps) {
   return this.frameRate(fps);
 };
 
@@ -347,7 +347,7 @@ p5.prototype.setFrameRate = function(fps) {
  * @alt
  * cursor becomes 10x 10 white ellipse the moves with mouse x and y.
  */
-p5.prototype.noCursor = function() {
+p5.prototype.noCursor = function () {
   this._curElement.elt.style.cursor = 'none';
 };
 
@@ -441,7 +441,7 @@ p5.prototype.windowHeight = getWindowHeight();
  * @alt
  * This example does not render anything.
  */
-p5.prototype._onresize = function(e) {
+p5.prototype._onresize = function (e) {
   this._setProperty('windowWidth', getWindowWidth());
   this._setProperty('windowHeight', getWindowHeight());
   const context = this._isGlobal ? window : this;
@@ -526,7 +526,7 @@ p5.prototype.height = 0;
  * @alt
  * This example does not render anything.
  */
-p5.prototype.fullscreen = function(val) {
+p5.prototype.fullscreen = function (val) {
   p5._validateParameters('fullscreen', arguments);
   // no arguments, return fullscreen or not
   if (typeof val === 'undefined') {
@@ -586,7 +586,7 @@ p5.prototype.fullscreen = function(val) {
  * @method pixelDensity
  * @returns {Number} current pixel density of the sketch
  */
-p5.prototype.pixelDensity = function(val) {
+p5.prototype.pixelDensity = function (val) {
   p5._validateParameters('pixelDensity', arguments);
   let returnValue;
   if (typeof val === 'number') {
@@ -702,7 +702,7 @@ p5.prototype.getURL = () => location.href;
  * This example does not render anything.
  */
 p5.prototype.getURLPath = () =>
-  location.pathname.split('/').filter(v => v !== '');
+  location.pathname.split('/').filter((v) => v !== '');
 /**
  * Gets the current URL params as an Object.
  * @method getURLParams
@@ -724,7 +724,7 @@ p5.prototype.getURLPath = () =>
  * @alt
  * This example does not render anything.
  */
-p5.prototype.getURLParams = function() {
+p5.prototype.getURLParams = function () {
   const re = /[?&]([^&=]+)(?:[&=])([^&=]+)/gim;
   let m;
   const v = {};

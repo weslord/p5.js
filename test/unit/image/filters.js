@@ -1,9 +1,9 @@
-suite('Filters', function() {
+suite('Filters', function () {
   var myp5;
   let img;
-  setup(function(done) {
-    new p5(function(p) {
-      p.setup = function() {
+  setup(function (done) {
+    new p5(function (p) {
+      p.setup = function () {
         myp5 = p;
         myp5.createCanvas(10, 10);
         img = myp5.createImage(10, 10);
@@ -20,11 +20,11 @@ suite('Filters', function() {
     });
   });
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
-  test('threshold filter. less than threshold', function() {
+  test('threshold filter. less than threshold', function () {
     img.filter(myp5.THRESHOLD);
     myp5.image(img, 0, 0);
     myp5.loadPixels();
@@ -35,7 +35,7 @@ suite('Filters', function() {
     }
   });
 
-  test('threshold filter. greater than threshold', function() {
+  test('threshold filter. greater than threshold', function () {
     img.loadPixels();
     for (let i = 0; i < img.width; i++) {
       for (let j = 0; j < img.height; j++) {
@@ -53,7 +53,7 @@ suite('Filters', function() {
     }
   });
 
-  test('gray filter', function() {
+  test('gray filter', function () {
     img.filter(myp5.GRAY);
     myp5.image(img, 0, 0);
     myp5.loadPixels();
@@ -63,7 +63,7 @@ suite('Filters', function() {
     }
   });
 
-  test('opaque filter', function() {
+  test('opaque filter', function () {
     img.loadPixels();
     for (let i = 0; i < img.width; i++) {
       for (let j = 0; j < img.height; j++) {
@@ -79,7 +79,7 @@ suite('Filters', function() {
     }
   });
 
-  test('invert filter', function() {
+  test('invert filter', function () {
     img.filter(myp5.INVERT);
     myp5.image(img, 0, 0);
     myp5.loadPixels();

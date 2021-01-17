@@ -52,7 +52,7 @@ function setup() {
   stroke(0);
 }
 
-setTimeout(function() {
+setTimeout(function () {
   function _textAsWords(ctx, font, text, x, y, fontSize) {
     var tw,
       spaceW = font.getAdvanceWidth(' ', fontSize);
@@ -75,7 +75,7 @@ setTimeout(function() {
     ctx.stroke();
   }
 
-  opentype.load('../Helvetica.ttf', function(err, font) {
+  opentype.load('../Helvetica.ttf', function (err, font) {
     if (err) throw 'Font could not be loaded: ' + err;
     var ctx = document.getElementById('defaultCanvas0').getContext('2d');
     font.getPath(words, 20, 190, 20).draw(ctx);

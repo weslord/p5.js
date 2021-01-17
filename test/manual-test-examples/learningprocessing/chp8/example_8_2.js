@@ -31,14 +31,14 @@ function Car(tempC, tempXpos, tempYpos, tempXspeed) {
   this.xspeed = tempXspeed;
 }
 
-Car.prototype.display = function() {
+Car.prototype.display = function () {
   stroke(0);
   fill(this.c);
   rectMode(CENTER);
   rect(this.xpos, this.ypos, 20, 10);
 };
 
-Car.prototype.move = function() {
+Car.prototype.move = function () {
   this.xpos = this.xpos + this.xspeed;
   if (this.xpos > width) {
     this.xpos = 0;

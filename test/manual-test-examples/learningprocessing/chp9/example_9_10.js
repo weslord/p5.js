@@ -40,7 +40,7 @@ function Stripe() {
 }
 
 // Draw stripe
-Stripe.prototype.display = function() {
+Stripe.prototype.display = function () {
   // Boolean variable determines Stripe color.
   if (this.mouse) {
     fill(255);
@@ -53,13 +53,13 @@ Stripe.prototype.display = function() {
 };
 
 // Move stripe
-Stripe.prototype.move = function() {
+Stripe.prototype.move = function () {
   this.x += this.speed;
   if (this.x > width + 20) this.x = -20;
 };
 
 // Check to see if point (mx,my) is inside the Stripe.
-Stripe.prototype.rollover = function(mx, my) {
+Stripe.prototype.rollover = function (mx, my) {
   // Left edge is x, Right edge is x + w
   if (mx > this.x && mx < this.x + this.w) {
     this.mouse = true;

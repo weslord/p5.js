@@ -28,7 +28,7 @@ import color_conversion from './color_conversion';
  * @class p5.Color
  * @constructor
  */
-p5.Color = function(pInst, vals) {
+p5.Color = function (pInst, vals) {
   // Record color mode and maxes at time of construction.
   this._storeModeAndMaxes(pInst._colorMode, pInst._colorMaxes);
 
@@ -86,7 +86,7 @@ p5.Color = function(pInst, vals) {
  * @alt
  * A canvas with 3 text representation of their color.
  */
-p5.Color.prototype.toString = function(format) {
+p5.Color.prototype.toString = function (format) {
   const a = this.levels;
   const f = this._array;
   const alpha = f[3]; // String representation uses normalized alpha
@@ -277,7 +277,7 @@ p5.Color.prototype.toString = function(format) {
  * @alt
  * canvas with gradually changing background color
  */
-p5.Color.prototype.setRed = function(new_red) {
+p5.Color.prototype.setRed = function (new_red) {
   this._array[0] = new_red / this.maxes[constants.RGB][0];
   this._calculateLevels();
 };
@@ -301,7 +301,7 @@ p5.Color.prototype.setRed = function(new_red) {
  * @alt
  * canvas with gradually changing background color
  **/
-p5.Color.prototype.setGreen = function(new_green) {
+p5.Color.prototype.setGreen = function (new_green) {
   this._array[1] = new_green / this.maxes[constants.RGB][1];
   this._calculateLevels();
 };
@@ -325,7 +325,7 @@ p5.Color.prototype.setGreen = function(new_green) {
  * @alt
  * canvas with gradually changing background color
  **/
-p5.Color.prototype.setBlue = function(new_blue) {
+p5.Color.prototype.setBlue = function (new_blue) {
   this._array[2] = new_blue / this.maxes[constants.RGB][2];
   this._calculateLevels();
 };
@@ -352,13 +352,13 @@ p5.Color.prototype.setBlue = function(new_blue) {
  * @alt
  * a square with gradually changing opacity on a gray background
  **/
-p5.Color.prototype.setAlpha = function(new_alpha) {
+p5.Color.prototype.setAlpha = function (new_alpha) {
   this._array[3] = new_alpha / this.maxes[this.mode][3];
   this._calculateLevels();
 };
 
 // calculates and stores the closest screen levels
-p5.Color.prototype._calculateLevels = function() {
+p5.Color.prototype._calculateLevels = function () {
   const array = this._array;
   // (loop backwards for performance)
   const levels = (this.levels = new Array(array.length));
@@ -367,37 +367,37 @@ p5.Color.prototype._calculateLevels = function() {
   }
 };
 
-p5.Color.prototype._getAlpha = function() {
+p5.Color.prototype._getAlpha = function () {
   return this._array[3] * this.maxes[this.mode][3];
 };
 
 // stores the color mode and maxes in this instance of Color
 // for later use (by _parseInputs())
-p5.Color.prototype._storeModeAndMaxes = function(new_mode, new_maxes) {
+p5.Color.prototype._storeModeAndMaxes = function (new_mode, new_maxes) {
   this.mode = new_mode;
   this.maxes = new_maxes;
 };
 
-p5.Color.prototype._getMode = function() {
+p5.Color.prototype._getMode = function () {
   return this.mode;
 };
 
-p5.Color.prototype._getMaxes = function() {
+p5.Color.prototype._getMaxes = function () {
   return this.maxes;
 };
 
-p5.Color.prototype._getBlue = function() {
+p5.Color.prototype._getBlue = function () {
   return this._array[2] * this.maxes[constants.RGB][2];
 };
 
-p5.Color.prototype._getBrightness = function() {
+p5.Color.prototype._getBrightness = function () {
   if (!this.hsba) {
     this.hsba = color_conversion._rgbaToHSBA(this._array);
   }
   return this.hsba[2] * this.maxes[constants.HSB][2];
 };
 
-p5.Color.prototype._getGreen = function() {
+p5.Color.prototype._getGreen = function () {
   return this._array[1] * this.maxes[constants.RGB][1];
 };
 
@@ -407,7 +407,7 @@ p5.Color.prototype._getGreen = function() {
  * an HSB color object, but will default to the HSL-normalized saturation
  * otherwise.
  */
-p5.Color.prototype._getHue = function() {
+p5.Color.prototype._getHue = function () {
   if (this.mode === constants.HSB) {
     if (!this.hsba) {
       this.hsba = color_conversion._rgbaToHSBA(this._array);
@@ -421,14 +421,14 @@ p5.Color.prototype._getHue = function() {
   }
 };
 
-p5.Color.prototype._getLightness = function() {
+p5.Color.prototype._getLightness = function () {
   if (!this.hsla) {
     this.hsla = color_conversion._rgbaToHSLA(this._array);
   }
   return this.hsla[2] * this.maxes[constants.HSL][2];
 };
 
-p5.Color.prototype._getRed = function() {
+p5.Color.prototype._getRed = function () {
   return this._array[0] * this.maxes[constants.RGB][0];
 };
 
@@ -437,7 +437,7 @@ p5.Color.prototype._getRed = function() {
  * the HSB saturation when supplied with an HSB color object, but will default
  * to the HSL saturation otherwise.
  */
-p5.Color.prototype._getSaturation = function() {
+p5.Color.prototype._getSaturation = function () {
   if (this.mode === constants.HSB) {
     if (!this.hsba) {
       this.hsba = color_conversion._rgbaToHSBA(this._array);
@@ -602,7 +602,7 @@ const namedColors = {
   white: '#ffffff',
   whitesmoke: '#f5f5f5',
   yellow: '#ffff00',
-  yellowgreen: '#9acd32'
+  yellowgreen: '#9acd32',
 };
 
 /**
@@ -643,7 +643,7 @@ const colorPatterns = {
       INTEGER.source,
       ',',
       INTEGER.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -657,7 +657,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       PERCENT.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -673,7 +673,7 @@ const colorPatterns = {
       INTEGER.source,
       ',',
       DECIMAL.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -689,7 +689,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       DECIMAL.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -703,7 +703,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       PERCENT.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -719,7 +719,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       DECIMAL.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -733,7 +733,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       PERCENT.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -749,10 +749,10 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       DECIMAL.source,
-      '\\)$'
+      '\\)$',
     ].join(WHITESPACE.source),
     'i'
-  )
+  ),
 };
 
 /**
@@ -783,7 +783,7 @@ const colorPatterns = {
  * @alt
  * //todo
  */
-p5.Color._parseInputs = function(r, g, b, a) {
+p5.Color._parseInputs = function (r, g, b, a) {
   const numArgs = arguments.length;
   const mode = this.mode;
   const maxes = this.maxes[mode];
@@ -836,40 +836,40 @@ p5.Color._parseInputs = function(r, g, b, a) {
       // #rgb
       results = colorPatterns.HEX3.exec(str)
         .slice(1)
-        .map(color => parseInt(color + color, 16) / 255);
+        .map((color) => parseInt(color + color, 16) / 255);
       results[3] = 1;
       return results;
     } else if (colorPatterns.HEX6.test(str)) {
       // #rrggbb
       results = colorPatterns.HEX6.exec(str)
         .slice(1)
-        .map(color => parseInt(color, 16) / 255);
+        .map((color) => parseInt(color, 16) / 255);
       results[3] = 1;
       return results;
     } else if (colorPatterns.HEX4.test(str)) {
       // #rgba
       results = colorPatterns.HEX4.exec(str)
         .slice(1)
-        .map(color => parseInt(color + color, 16) / 255);
+        .map((color) => parseInt(color + color, 16) / 255);
       return results;
     } else if (colorPatterns.HEX8.test(str)) {
       // #rrggbbaa
       results = colorPatterns.HEX8.exec(str)
         .slice(1)
-        .map(color => parseInt(color, 16) / 255);
+        .map((color) => parseInt(color, 16) / 255);
       return results;
     } else if (colorPatterns.RGB.test(str)) {
       // rgb(R,G,B)
       results = colorPatterns.RGB.exec(str)
         .slice(1)
-        .map(color => color / 255);
+        .map((color) => color / 255);
       results[3] = 1;
       return results;
     } else if (colorPatterns.RGB_PERCENT.test(str)) {
       // rgb(R%,G%,B%)
       results = colorPatterns.RGB_PERCENT.exec(str)
         .slice(1)
-        .map(color => parseFloat(color) / 100);
+        .map((color) => parseFloat(color) / 100);
       results[3] = 1;
       return results;
     } else if (colorPatterns.RGBA.test(str)) {
@@ -921,7 +921,7 @@ p5.Color._parseInputs = function(r, g, b, a) {
           return parseInt(color, 10) / 100;
         });
     }
-    results = results.map(value => Math.max(Math.min(value, 1), 0));
+    results = results.map((value) => Math.max(Math.min(value, 1), 0));
     if (results.length) {
       return color_conversion._hslaToRGBA(results);
     }
@@ -983,7 +983,7 @@ p5.Color._parseInputs = function(r, g, b, a) {
     }
 
     // Constrain components to the range [0,1].
-    results = results.map(value => Math.max(Math.min(value, 1), 0));
+    results = results.map((value) => Math.max(Math.min(value, 1), 0));
   } else {
     throw new Error(`${arguments}is not a valid color representation.`);
   }

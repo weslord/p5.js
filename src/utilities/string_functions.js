@@ -35,7 +35,7 @@ import '../core/friendly_errors/fes_core';
  * @alt
  * "hello world!" displayed middle left of canvas.
  */
-p5.prototype.join = function(list, separator) {
+p5.prototype.join = function (list, separator) {
   p5._validateParameters('join', arguments);
   return list.join(separator);
 };
@@ -75,7 +75,7 @@ p5.prototype.join = function(list, separator) {
  * @alt
  * "p5js*" displayed middle left of canvas.
  */
-p5.prototype.match = function(str, reg) {
+p5.prototype.match = function (str, reg) {
   p5._validateParameters('match', arguments);
   return str.match(reg);
 };
@@ -112,7 +112,7 @@ p5.prototype.match = function(str, reg) {
  * </code>
  * </div>
  */
-p5.prototype.matchAll = function(str, reg) {
+p5.prototype.matchAll = function (str, reg) {
   p5._validateParameters('matchAll', arguments);
   const re = new RegExp(reg, 'g');
   let match = re.exec(str);
@@ -182,10 +182,10 @@ p5.prototype.matchAll = function(str, reg) {
  * @param {Integer|String}      [right]
  * @return {String[]}                formatted Strings
  */
-p5.prototype.nf = function(nums, left, right) {
+p5.prototype.nf = function (nums, left, right) {
   p5._validateParameters('nf', arguments);
   if (nums instanceof Array) {
-    return nums.map(x => doNf(x, left, right));
+    return nums.map((x) => doNf(x, left, right));
   } else {
     const typeOfFirst = Object.prototype.toString.call(nums);
     if (typeOfFirst === '[object Arguments]') {
@@ -280,10 +280,10 @@ function doNf(num, left, right) {
  * @param  {Integer|String}  [right]
  * @return {String[]}           formatted Strings
  */
-p5.prototype.nfc = function(num, right) {
+p5.prototype.nfc = function (num, right) {
   p5._validateParameters('nfc', arguments);
   if (num instanceof Array) {
-    return num.map(x => doNfc(x, right));
+    return num.map((x) => doNfc(x, right));
   } else {
     return doNfc(num, right);
   }
@@ -358,7 +358,7 @@ function doNfc(num, right) {
  * @param {Integer}      [right]
  * @return {String[]}         formatted Strings
  */
-p5.prototype.nfp = function(...args) {
+p5.prototype.nfp = function (...args) {
   p5._validateParameters('nfp', args);
   const nfRes = p5.prototype.nf.apply(this, args);
   if (nfRes instanceof Array) {
@@ -436,7 +436,7 @@ function addNfp(num) {
  * @param {Integer}      [right]
  * @return {String[]}         formatted Strings
  */
-p5.prototype.nfs = function(...args) {
+p5.prototype.nfs = function (...args) {
   p5._validateParameters('nfs', args);
   const nfRes = p5.prototype.nf.apply(this, args);
   if (nfRes instanceof Array) {
@@ -478,7 +478,7 @@ function addNfs(num) {
  * @alt
  * "pat" top left, "Xio" mid left and "Alex" displayed bottom left
  */
-p5.prototype.split = function(str, delim) {
+p5.prototype.split = function (str, delim) {
   p5._validateParameters('split', arguments);
   return str.split(delim);
 };
@@ -509,7 +509,7 @@ p5.prototype.split = function(str, delim) {
  * </code>
  * </div>
  */
-p5.prototype.splitTokens = function(value, delims) {
+p5.prototype.splitTokens = function (value, delims) {
   p5._validateParameters('splitTokens', arguments);
   let d;
   if (typeof delims !== 'undefined') {
@@ -533,7 +533,7 @@ p5.prototype.splitTokens = function(value, delims) {
   } else {
     d = /\s/g;
   }
-  return value.split(d).filter(n => n);
+  return value.split(d).filter((n) => n);
 };
 
 /**
@@ -561,7 +561,7 @@ p5.prototype.splitTokens = function(value, delims) {
  * @param  {Array} strs an Array of Strings to be trimmed
  * @return {String[]}   an Array of trimmed Strings
  */
-p5.prototype.trim = function(str) {
+p5.prototype.trim = function (str) {
   p5._validateParameters('trim', arguments);
   if (str instanceof Array) {
     return str.map(this.trim);

@@ -61,7 +61,7 @@ import '../color/p5.Color';
  * let pink = color(255, 102, 204);
  * loadPixels();
  * let d = pixelDensity();
- * let halfImage = 4 * (width * d) * (height / 2 * d);
+ * let halfImage = 4 * (width * d) * ((height / 2) * d);
  * for (let i = 0; i < halfImage; i += 4) {
  *   pixels[i] = red(pink);
  *   pixels[i + 1] = green(pink);
@@ -161,7 +161,7 @@ p5.prototype.pixels = [];
  * @param  {Integer} dh
  * @param  {Constant} blendMode
  */
-p5.prototype.blend = function(...args) {
+p5.prototype.blend = function (...args) {
   p5._validateParameters('blend', args);
   if (this._renderer) {
     this._renderer.blend(...args);
@@ -223,7 +223,7 @@ p5.prototype.blend = function(...args) {
  * @param  {Integer} dw
  * @param  {Integer} dh
  */
-p5.prototype.copy = function(...args) {
+p5.prototype.copy = function (...args) {
   p5._validateParameters('copy', args);
 
   let srcImage, sx, sy, sw, sh, dx, dy, dw, dh;
@@ -469,7 +469,7 @@ p5.prototype._copyHelper = (
  * image of a brickwall
  * image of a brickwall with less detail
  */
-p5.prototype.filter = function(operation, value) {
+p5.prototype.filter = function (operation, value) {
   p5._validateParameters('filter', arguments);
   if (this.canvas !== undefined) {
     Filters.apply(this.canvas, Filters[operation], value);
@@ -558,7 +558,7 @@ p5.prototype.filter = function(operation, value) {
  * @param  {Number}        y
  * @return {Number[]}      color of pixel at x,y in array format [R, G, B, A]
  */
-p5.prototype.get = function(x, y, w, h) {
+p5.prototype.get = function (x, y, w, h) {
   p5._validateParameters('get', arguments);
   return this._renderer.get(...arguments);
 };
@@ -581,7 +581,7 @@ p5.prototype.get = function(x, y, w, h) {
  * function setup() {
  *   image(img, 0, 0, width, height);
  *   let d = pixelDensity();
- *   let halfImage = 4 * (width * d) * (height * d / 2);
+ *   let halfImage = 4 * (width * d) * ((height * d) / 2);
  *   loadPixels();
  *   for (let i = 0; i < halfImage; i++) {
  *     pixels[i + halfImage] = pixels[i];
@@ -594,7 +594,7 @@ p5.prototype.get = function(x, y, w, h) {
  * @alt
  * two images of the rocky mountains. one on top, one on bottom of canvas.
  */
-p5.prototype.loadPixels = function(...args) {
+p5.prototype.loadPixels = function (...args) {
   p5._validateParameters('loadPixels', args);
   this._renderer.loadPixels();
 };
@@ -668,7 +668,7 @@ p5.prototype.loadPixels = function(...args) {
  * square with orangey-brown gradient lightening at bottom right.
  * image of the rocky mountains. with lines like an 'x' through the center.
  */
-p5.prototype.set = function(x, y, imgOrCol) {
+p5.prototype.set = function (x, y, imgOrCol) {
   this._renderer.set(x, y, imgOrCol);
 };
 /**
@@ -697,7 +697,7 @@ p5.prototype.set = function(x, y, imgOrCol) {
  * function setup() {
  *   image(img, 0, 0, width, height);
  *   let d = pixelDensity();
- *   let halfImage = 4 * (width * d) * (height * d / 2);
+ *   let halfImage = 4 * (width * d) * ((height * d) / 2);
  *   loadPixels();
  *   for (let i = 0; i < halfImage; i++) {
  *     pixels[i + halfImage] = pixels[i];
@@ -709,7 +709,7 @@ p5.prototype.set = function(x, y, imgOrCol) {
  * @alt
  * two images of the rocky mountains. one on top, one on bottom of canvas.
  */
-p5.prototype.updatePixels = function(x, y, w, h) {
+p5.prototype.updatePixels = function (x, y, w, h) {
   p5._validateParameters('updatePixels', arguments);
   // graceful fail - if loadPixels() or set() has not been called, pixel
   // array will be empty, ignore call to updatePixels()

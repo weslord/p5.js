@@ -13,7 +13,7 @@ let hashCount = 0;
  * @param  {String} gId  key of the geometry object
  * @returns {Object} a new buffer object
  */
-p5.RendererGL.prototype._initBufferDefaults = function(gId) {
+p5.RendererGL.prototype._initBufferDefaults = function (gId) {
   this._freeBuffers(gId);
 
   //@TODO remove this limit on hashes in retainedMode.geometry
@@ -28,7 +28,7 @@ p5.RendererGL.prototype._initBufferDefaults = function(gId) {
   return (this.retainedMode.geometry[gId] = {});
 };
 
-p5.RendererGL.prototype._freeBuffers = function(gId) {
+p5.RendererGL.prototype._freeBuffers = function (gId) {
   const buffers = this.retainedMode.geometry[gId];
   if (!buffers) {
     return;
@@ -63,7 +63,7 @@ p5.RendererGL.prototype._freeBuffers = function(gId) {
  * @param  {String} gId    key of the geometry object
  * @param  {p5.Geometry}  model contains geometry data
  */
-p5.RendererGL.prototype.createBuffers = function(gId, model) {
+p5.RendererGL.prototype.createBuffers = function (gId, model) {
   const gl = this.GL;
   //initialize the gl buffers for our geom groups
   const buffers = this._initBufferDefaults(gId);
@@ -100,7 +100,7 @@ p5.RendererGL.prototype.createBuffers = function(gId, model) {
  * @param  {String} gId     ID in our geom hash
  * @chainable
  */
-p5.RendererGL.prototype.drawBuffers = function(gId) {
+p5.RendererGL.prototype.drawBuffers = function (gId) {
   const gl = this.GL;
   const geometry = this.retainedMode.geometry[gId];
 
@@ -147,7 +147,7 @@ p5.RendererGL.prototype.drawBuffers = function(gId) {
  * @param {Number} scaleY  the amount to scale in the Y direction
  * @param {Number} scaleZ  the amount to scale in the Z direction
  */
-p5.RendererGL.prototype.drawBuffersScaled = function(
+p5.RendererGL.prototype.drawBuffersScaled = function (
   gId,
   scaleX,
   scaleY,
@@ -162,7 +162,7 @@ p5.RendererGL.prototype.drawBuffersScaled = function(
   }
 };
 
-p5.RendererGL.prototype._drawArrays = function(drawMode, gId) {
+p5.RendererGL.prototype._drawArrays = function (drawMode, gId) {
   this.GL.drawArrays(
     drawMode,
     0,
@@ -171,7 +171,7 @@ p5.RendererGL.prototype._drawArrays = function(drawMode, gId) {
   return this;
 };
 
-p5.RendererGL.prototype._drawElements = function(drawMode, gId) {
+p5.RendererGL.prototype._drawElements = function (drawMode, gId) {
   const buffers = this.retainedMode.geometry[gId];
   const gl = this.GL;
   // render the fill
@@ -184,7 +184,7 @@ p5.RendererGL.prototype._drawElements = function(drawMode, gId) {
   }
 };
 
-p5.RendererGL.prototype._drawPoints = function(vertices, vertexBuffer) {
+p5.RendererGL.prototype._drawPoints = function (vertices, vertexBuffer) {
   const gl = this.GL;
   const pointShader = this._getImmediatePointShader();
   this._setPointUniforms(pointShader);

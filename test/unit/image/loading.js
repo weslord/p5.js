@@ -2,16 +2,16 @@
  * Expects an image file and a p5 instance with an image file loaded and drawn
  * and checks that they are exactly the same. Sends result to the callback.
  */
-var testImageRender = function(file, sketch) {
+var testImageRender = function (file, sketch) {
   sketch.loadPixels();
   var p = sketch.pixels;
   var ctx = sketch;
 
   sketch.clear();
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     sketch.loadImage(file, resolve, reject);
-  }).then(function(img) {
+  }).then(function (img) {
     ctx.image(img, 0, 0);
 
     ctx.loadPixels();
@@ -25,19 +25,19 @@ var testImageRender = function(file, sketch) {
   });
 };
 
-suite('loading images', function() {
+suite('loading images', function () {
   var myp5;
 
-  setup(function(done) {
-    new p5(function(p) {
-      p.setup = function() {
+  setup(function (done) {
+    new p5(function (p) {
+      p.setup = function () {
         myp5 = p;
         done();
       };
     });
   });
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
@@ -51,61 +51,61 @@ suite('loading images', function() {
     p5._friendlyFileLoadError.restore();
   });
 
-  test('should call successCallback when image loads', function() {
-    return new Promise(function(resolve, reject) {
+  test('should call successCallback when image loads', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage(imagePath, resolve, reject);
-    }).then(function(pImg) {
+    }).then(function (pImg) {
       assert.ok(pImg, 'cat.jpg loaded');
       assert.isTrue(pImg instanceof p5.Image);
     });
   });
 
-  test('should call failureCallback when unable to load image', function() {
-    return new Promise(function(resolve, reject) {
+  test('should call failureCallback when unable to load image', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage(
         'invalid path',
-        function(pImg) {
+        function (pImg) {
           reject('Entered success callback.');
         },
         resolve
       );
-    }).then(function(event) {
+    }).then(function (event) {
       assert.equal(event.type, 'error');
       assert.isTrue(p5._friendlyFileLoadError.called);
     });
   });
 
-  test('should draw image with defaults', function() {
-    return new Promise(function(resolve, reject) {
+  test('should draw image with defaults', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage('unit/assets/cat.jpg', resolve, reject);
-    }).then(function(img) {
+    }).then(function (img) {
       myp5.image(img, 0, 0);
-      return testImageRender('unit/assets/cat.jpg', myp5).then(function(res) {
+      return testImageRender('unit/assets/cat.jpg', myp5).then(function (res) {
         assert.isTrue(res);
       });
     });
   });
 
-  test('static image should not have gifProperties', function() {
-    return new Promise(function(resolve, reject) {
+  test('static image should not have gifProperties', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage('unit/assets/cat.jpg', resolve, reject);
-    }).then(function(img) {
+    }).then(function (img) {
       assert.isTrue(img.gifProperties === null);
     });
   });
 
-  test('single frame GIF should not have gifProperties', function() {
-    return new Promise(function(resolve, reject) {
+  test('single frame GIF should not have gifProperties', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage('unit/assets/target_small.gif', resolve, reject);
-    }).then(function(img) {
+    }).then(function (img) {
       assert.isTrue(img.gifProperties === null);
     });
   });
 
-  test('first frame of GIF should be painted after load', function() {
-    return new Promise(function(resolve, reject) {
+  test('first frame of GIF should be painted after load', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage('unit/assets/white_black.gif', resolve, reject);
-    }).then(function(img) {
+    }).then(function (img) {
       assert.deepEqual(img.get(0, 0), [255, 255, 255, 255]);
     });
   });
@@ -130,12 +130,12 @@ suite('loading images', function() {
   test('Test in setup() after preload()');
   // These tests don't work correctly (You can't use suite and test like that)
   // they simply get added at the root level.
-  var mySketch = function(this_p5) {
+  var mySketch = function (this_p5) {
     var myImage;
-    this_p5.preload = function() {
-      suite('Test in preload() with success callback', function() {
-        test('Load asynchronously and use success callback', function(done) {
-          myImage = this_p5.loadImage('unit/assets/cat.jpg', function() {
+    this_p5.preload = function () {
+      suite('Test in preload() with success callback', function () {
+        test('Load asynchronously and use success callback', function (done) {
+          myImage = this_p5.loadImage('unit/assets/cat.jpg', function () {
             assert.ok(myImage);
             done();
           });
@@ -143,9 +143,9 @@ suite('loading images', function() {
       });
     };
 
-    this_p5.setup = function() {
-      suite('setup() after preload() with success callback', function() {
-        test('should be loaded if preload() finished', function(done) {
+    this_p5.setup = function () {
+      suite('setup() after preload() with success callback', function () {
+        test('should be loaded if preload() finished', function (done) {
           assert.isTrue(myImage instanceof p5.Image);
           assert.isTrue(myImage.width > 0 && myImage.height > 0);
           done();
@@ -156,15 +156,15 @@ suite('loading images', function() {
   new p5(mySketch, null, false);
 
   // Test loading image in preload() without success callback
-  mySketch = function(this_p5) {
+  mySketch = function (this_p5) {
     var myImage;
-    this_p5.preload = function() {
+    this_p5.preload = function () {
       myImage = this_p5.loadImage('unit/assets/cat.jpg');
     };
 
-    this_p5.setup = function() {
-      suite('setup() after preload() without success callback', function() {
-        test('should be loaded now preload() finished', function(done) {
+    this_p5.setup = function () {
+      suite('setup() after preload() without success callback', function () {
+        test('should be loaded now preload() finished', function (done) {
           assert.isTrue(myImage instanceof p5.Image);
           assert.isTrue(myImage.width > 0 && myImage.height > 0);
           done();
@@ -175,19 +175,19 @@ suite('loading images', function() {
   new p5(mySketch, null, false);
 });
 
-suite('loading animated gif images', function() {
+suite('loading animated gif images', function () {
   var myp5;
 
-  setup(function(done) {
-    new p5(function(p) {
-      p.setup = function() {
+  setup(function (done) {
+    new p5(function (p) {
+      p.setup = function () {
         myp5 = p;
         done();
       };
     });
   });
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
@@ -201,37 +201,37 @@ suite('loading animated gif images', function() {
     p5._friendlyFileLoadError.restore();
   });
 
-  test('should call successCallback when image loads', function() {
-    return new Promise(function(resolve, reject) {
+  test('should call successCallback when image loads', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage(imagePath, resolve, reject);
-    }).then(function(pImg) {
+    }).then(function (pImg) {
       assert.ok(pImg, 'nyan_cat.gif loaded');
       assert.isTrue(pImg instanceof p5.Image);
     });
   });
 
-  test('should call failureCallback when unable to load image', function() {
-    return new Promise(function(resolve, reject) {
+  test('should call failureCallback when unable to load image', function () {
+    return new Promise(function (resolve, reject) {
       myp5.loadImage(
         'invalid path',
-        function(pImg) {
+        function (pImg) {
           reject('Entered success callback.');
         },
         resolve
       );
-    }).then(function(event) {
+    }).then(function (event) {
       assert.equal(event.type, 'error');
       assert.isTrue(p5._friendlyFileLoadError.called);
     });
   });
 
-  test('should construct gifProperties correctly after preload', function() {
-    var mySketch = function(this_p5) {
+  test('should construct gifProperties correctly after preload', function () {
+    var mySketch = function (this_p5) {
       var gifImage;
-      this_p5.preload = function() {
-        suite('Test in preload() with success callback', function() {
-          test('Load asynchronously and use success callback', function(done) {
-            gifImage = this_p5.loadImage(imagePath, function() {
+      this_p5.preload = function () {
+        suite('Test in preload() with success callback', function () {
+          test('Load asynchronously and use success callback', function (done) {
+            gifImage = this_p5.loadImage(imagePath, function () {
               assert.ok(gifImage);
               done();
             });
@@ -239,9 +239,9 @@ suite('loading animated gif images', function() {
         });
       };
 
-      this_p5.setup = function() {
-        suite('setup() after preload() with success callback', function() {
-          test('should be loaded if preload() finished', function(done) {
+      this_p5.setup = function () {
+        suite('setup() after preload() with success callback', function () {
+          test('should be loaded if preload() finished', function (done) {
             assert.isTrue(gifImage instanceof p5.Image);
             assert.isTrue(gifImage.width > 0 && gifImage.height > 0);
             done();
@@ -254,7 +254,7 @@ suite('loading animated gif images', function() {
               loopLimit: null,
               numFrames: 6,
               playing: true,
-              timeDisplayed: 0
+              timeDisplayed: 0,
             };
             assert.isTrue(gifImage.gifProperties !== null);
             for (var prop in nyanCatGifProperties) {
@@ -274,7 +274,7 @@ suite('loading animated gif images', function() {
               assert.isTrue(gifImage.gifProperties.frames[i].delay === 100);
             }
           });
-          test('should be able to modify gifProperties state', function() {
+          test('should be able to modify gifProperties state', function () {
             assert.isTrue(gifImage.gifProperties.timeDisplayed === 0);
             gifImage.pause();
             assert.isTrue(gifImage.gifProperties.playing === false);

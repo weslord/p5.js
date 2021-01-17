@@ -337,7 +337,7 @@ p5.Vector.prototype.add = function add(x, y, z) {
 };
 
 /// HELPERS FOR REMAINDER METHOD
-const calculateRemainder2D = function(xComponent, yComponent) {
+const calculateRemainder2D = function (xComponent, yComponent) {
   if (xComponent !== 0) {
     this.x = this.x % xComponent;
   }
@@ -347,7 +347,7 @@ const calculateRemainder2D = function(xComponent, yComponent) {
   return this;
 };
 
-const calculateRemainder3D = function(xComponent, yComponent, zComponent) {
+const calculateRemainder3D = function (xComponent, yComponent, zComponent) {
   if (xComponent !== 0) {
     this.x = this.x % xComponent;
   }
@@ -402,7 +402,7 @@ p5.Vector.prototype.rem = function rem(x, y, z) {
       calculateRemainder3D.call(this, xComponent, yComponent, zComponent);
     }
   } else if (x instanceof Array) {
-    if (x.every(element => Number.isFinite(element))) {
+    if (x.every((element) => Number.isFinite(element))) {
       if (x.length === 2) {
         calculateRemainder2D.call(this, x[0], x[1]);
       }
@@ -419,7 +419,7 @@ p5.Vector.prototype.rem = function rem(x, y, z) {
     }
   } else if (arguments.length === 2) {
     const vectorComponents = [...arguments];
-    if (vectorComponents.every(element => Number.isFinite(element))) {
+    if (vectorComponents.every((element) => Number.isFinite(element))) {
       if (vectorComponents.length === 2) {
         calculateRemainder2D.call(
           this,
@@ -430,7 +430,7 @@ p5.Vector.prototype.rem = function rem(x, y, z) {
     }
   } else if (arguments.length === 3) {
     const vectorComponents = [...arguments];
-    if (vectorComponents.every(element => Number.isFinite(element))) {
+    if (vectorComponents.every((element) => Number.isFinite(element))) {
       if (vectorComponents.length === 3) {
         calculateRemainder3D.call(
           this,
@@ -683,8 +683,8 @@ p5.Vector.prototype.mult = function mult(x, y, z) {
   }
   if (x instanceof Array) {
     if (
-      x.every(element => Number.isFinite(element)) &&
-      x.every(element => typeof element === 'number')
+      x.every((element) => Number.isFinite(element)) &&
+      x.every((element) => typeof element === 'number')
     ) {
       if (x.length === 1) {
         this.x *= x[0];
@@ -709,8 +709,8 @@ p5.Vector.prototype.mult = function mult(x, y, z) {
 
   const vectorComponents = [...arguments];
   if (
-    vectorComponents.every(element => Number.isFinite(element)) &&
-    vectorComponents.every(element => typeof element === 'number')
+    vectorComponents.every((element) => Number.isFinite(element)) &&
+    vectorComponents.every((element) => typeof element === 'number')
   ) {
     if (arguments.length === 1) {
       this.x *= x;
@@ -878,10 +878,10 @@ p5.Vector.prototype.div = function div(x, y, z) {
   }
   if (x instanceof Array) {
     if (
-      x.every(element => Number.isFinite(element)) &&
-      x.every(element => typeof element === 'number')
+      x.every((element) => Number.isFinite(element)) &&
+      x.every((element) => typeof element === 'number')
     ) {
-      if (x.some(element => element === 0)) {
+      if (x.some((element) => element === 0)) {
         console.warn('p5.Vector.prototype.div:', 'divide by 0');
         return this;
       }
@@ -910,10 +910,10 @@ p5.Vector.prototype.div = function div(x, y, z) {
 
   const vectorComponents = [...arguments];
   if (
-    vectorComponents.every(element => Number.isFinite(element)) &&
-    vectorComponents.every(element => typeof element === 'number')
+    vectorComponents.every((element) => Number.isFinite(element)) &&
+    vectorComponents.every((element) => typeof element === 'number')
   ) {
-    if (vectorComponents.some(element => element === 0)) {
+    if (vectorComponents.some((element) => element === 0)) {
       console.warn('p5.Vector.prototype.div:', 'divide by 0');
       return this;
     }
@@ -1192,10 +1192,7 @@ p5.Vector.prototype.cross = function cross(v) {
  * </div>
  */
 p5.Vector.prototype.dist = function dist(v) {
-  return v
-    .copy()
-    .sub(this)
-    .mag();
+  return v.copy().sub(this).mag();
 };
 
 /**
@@ -1926,7 +1923,7 @@ p5.Vector.fromAngle = function fromAngle(angle, length) {
  * </code>
  * </div>
  */
-p5.Vector.fromAngles = function(theta, phi, length) {
+p5.Vector.fromAngles = function (theta, phi, length) {
   if (typeof length === 'undefined') {
     length = 1;
   }

@@ -7,7 +7,7 @@ function setup() {
   text('Black No Stroke Text', 10, 60);
   textSize(12);
   fill(120);
-  loadFont('../SourceSansPro-Regular.otf', function(f) {
+  loadFont('../SourceSansPro-Regular.otf', function (f) {
     textFont(f);
     text(
       'Simple long Text: Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',

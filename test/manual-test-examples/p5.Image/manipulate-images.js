@@ -7,10 +7,10 @@ function setup() {
   background(200);
 
   //blend image 1 into image 2
-  loadImage('cat.jpg', function(img) {
+  loadImage('cat.jpg', function (img) {
     image(img, 10, 10, 100, 100);
 
-    loadImage('unicorn.jpg', function(img2) {
+    loadImage('unicorn.jpg', function (img2) {
       image(img2, 120, 10, 100, 100);
 
       img2.blend(
@@ -30,10 +30,10 @@ function setup() {
   });
 
   // mask image 2 with image 1 (using image 1 alpha channel)
-  loadImage('cat-with-alpha.png', function(img) {
+  loadImage('cat-with-alpha.png', function (img) {
     image(img, 10, 300, 100, 100);
 
-    loadImage('unicorn.jpg', function(img2) {
+    loadImage('unicorn.jpg', function (img2) {
       image(img2, 120, 300, 100, 100);
 
       img2.mask(img);

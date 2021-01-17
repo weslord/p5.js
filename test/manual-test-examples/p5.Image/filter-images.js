@@ -8,7 +8,7 @@ function setup() {
 
   //Load an image and then clone it and
   //apply filters
-  loadImage('cat.jpg', function(img) {
+  loadImage('cat.jpg', function (img) {
     var clone;
     //Original
     image(img, 10, 10, 100, 100);
@@ -44,7 +44,7 @@ function setup() {
 
   //Load an image with an alpha channel that
   //we will then make opaque
-  loadImage('cat-with-alpha.png', function(img) {
+  loadImage('cat-with-alpha.png', function (img) {
     var clone;
     //Original
     image(img, 10, 240, 100, 100);

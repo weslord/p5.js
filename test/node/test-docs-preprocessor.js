@@ -1,21 +1,21 @@
 import { expect } from 'chai';
 import preprocessor from '../../docs/preprocessor';
 
-suite('docs preprocessor', function() {
-  suite('mergeOverloadedMethods()', function() {
+suite('docs preprocessor', function () {
+  suite('mergeOverloadedMethods()', function () {
     const merge = preprocessor.mergeOverloadedMethods;
 
-    const ensureMergeDoesNothing = function(data) {
+    const ensureMergeDoesNothing = function (data) {
       const dataCopy = JSON.parse(JSON.stringify(data));
       merge(dataCopy);
       expect(dataCopy).to.eql(data);
     };
 
-    test('should merge methods with the same name', function() {
+    test('should merge methods with the same name', function () {
       const data = {
         classes: {
           Bar: {},
-          Baz: {}
+          Baz: {},
         },
         classitems: [
           {
@@ -25,7 +25,7 @@ suite('docs preprocessor', function() {
             itemtype: 'method',
             name: 'foo',
             class: 'Bar',
-            params: [{ name: 'bar', type: 'String' }]
+            params: [{ name: 'bar', type: 'String' }],
           },
           {
             file: 'foo.js',
@@ -33,10 +33,10 @@ suite('docs preprocessor', function() {
             itemtype: 'method',
             name: 'foo',
             class: 'Bar',
-            params: [{ name: 'baz', type: 'Number' }]
-          }
+            params: [{ name: 'baz', type: 'Number' }],
+          },
         ],
-        consts: {}
+        consts: {},
       };
 
       merge(data);
@@ -44,7 +44,7 @@ suite('docs preprocessor', function() {
       expect(data).to.eql({
         classes: {
           Bar: {},
-          Baz: {}
+          Baz: {},
         },
         classitems: [
           {
@@ -57,65 +57,65 @@ suite('docs preprocessor', function() {
             overloads: [
               {
                 line: 1,
-                params: [{ name: 'bar', type: 'String' }]
+                params: [{ name: 'bar', type: 'String' }],
               },
               {
                 line: 5,
-                params: [{ name: 'baz', type: 'Number' }]
-              }
-            ]
-          }
+                params: [{ name: 'baz', type: 'Number' }],
+              },
+            ],
+          },
         ],
-        consts: {}
+        consts: {},
       });
     });
 
-    test('should not merge methods from different classes', function() {
+    test('should not merge methods from different classes', function () {
       ensureMergeDoesNothing({
         classes: {
           Bar: {},
-          Baz: {}
+          Baz: {},
         },
         classitems: [
           { itemtype: 'method', class: 'Bar', name: 'foo' },
-          { itemtype: 'method', class: 'Baz', name: 'foo' }
+          { itemtype: 'method', class: 'Baz', name: 'foo' },
         ],
-        consts: {}
+        consts: {},
       });
     });
 
-    test('should not merge properties', function() {
+    test('should not merge properties', function () {
       ensureMergeDoesNothing({
         classes: {
           Bar: {},
-          Baz: {}
+          Baz: {},
         },
         classitems: [
           { itemtype: 'property', class: 'Bar', name: 'foo' },
-          { itemtype: 'property', class: 'Baz', name: 'foo' }
+          { itemtype: 'property', class: 'Baz', name: 'foo' },
         ],
-        consts: {}
+        consts: {},
       });
     });
   });
 
-  suite('renderDescriptionsAsMarkdown', function() {
+  suite('renderDescriptionsAsMarkdown', function () {
     const render = preprocessor.renderDescriptionsAsMarkdown;
 
-    test('should work', function() {
+    test('should work', function () {
       const data = {
         modules: {},
         classes: {
           Bar: {},
-          Baz: {}
+          Baz: {},
         },
         classitems: [
           {
             description: 'hi `there`',
-            params: [{ description: 'what is *up*' }]
-          }
+            params: [{ description: 'what is *up*' }],
+          },
         ],
-        consts: {}
+        consts: {},
       };
 
       render(data);
@@ -124,15 +124,15 @@ suite('docs preprocessor', function() {
         modules: {},
         classes: {
           Bar: {},
-          Baz: {}
+          Baz: {},
         },
         classitems: [
           {
             description: '<p>hi <code>there</code></p>\n',
-            params: [{ description: '<p>what is <em>up</em></p>\n' }]
-          }
+            params: [{ description: '<p>what is <em>up</em></p>\n' }],
+          },
         ],
-        consts: {}
+        consts: {},
       });
     });
   });

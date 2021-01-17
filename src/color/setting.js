@@ -172,7 +172,7 @@ import './p5.Color';
  * @param  {Number}  [a]
  * @chainable
  */
-p5.prototype.background = function(...args) {
+p5.prototype.background = function (...args) {
   this._renderer.background(...args);
   return this;
 };
@@ -206,7 +206,7 @@ p5.prototype.background = function(...args) {
  * small white ellipses are continually drawn at mouse's x and y coordinates.
  */
 
-p5.prototype.clear = function() {
+p5.prototype.clear = function () {
   this._renderer.clear();
   return this;
 };
@@ -298,7 +298,7 @@ p5.prototype.clear = function() {
  * @param {Number} [maxA]   range for the alpha
  * @chainable
  */
-p5.prototype.colorMode = function(mode, max1, max2, max3, maxA) {
+p5.prototype.colorMode = function (mode, max1, max2, max3, maxA) {
   p5._validateParameters('colorMode', arguments);
   if (
     mode === constants.RGB ||
@@ -482,7 +482,7 @@ p5.prototype.colorMode = function(mode, max1, max2, max3, maxA) {
  * @param  {p5.Color}      color   the fill color
  * @chainable
  */
-p5.prototype.fill = function(...args) {
+p5.prototype.fill = function (...args) {
   this._renderer._setProperty('_fillSet', true);
   this._renderer._setProperty('_doFill', true);
   this._renderer.fill(...args);
@@ -525,7 +525,7 @@ p5.prototype.fill = function(...args) {
  * white rect top middle and noFill rect center. Both 60x60 with black outlines.
  * black canvas with purple cube wireframe spinning
  */
-p5.prototype.noFill = function() {
+p5.prototype.noFill = function () {
   this._renderer._setProperty('_doFill', false);
   return this;
 };
@@ -565,7 +565,7 @@ p5.prototype.noFill = function() {
  * 60x60 white rect at center. no outline.
  * black canvas with pink cube spinning
  */
-p5.prototype.noStroke = function() {
+p5.prototype.noStroke = function () {
   this._renderer._setProperty('_doStroke', false);
   return this;
 };
@@ -735,7 +735,7 @@ p5.prototype.noStroke = function() {
  * @chainable
  */
 
-p5.prototype.stroke = function(...args) {
+p5.prototype.stroke = function (...args) {
   this._renderer._setProperty('_strokeSet', true);
   this._renderer._setProperty('_doStroke', true);
   this._renderer.stroke(...args);
@@ -816,7 +816,7 @@ p5.prototype.stroke = function(...args) {
  * 60x60 centered purple rect, mint green background. Triangle in top-right is partially erased with fully erased outline.
  * 60x60 centered teal sphere, yellow background. Torus rotating around sphere erases to reveal black text underneath.
  */
-p5.prototype.erase = function(opacityFill = 255, opacityStroke = 255) {
+p5.prototype.erase = function (opacityFill = 255, opacityStroke = 255) {
   this._renderer.erase(opacityFill, opacityStroke);
 
   return this;
@@ -848,7 +848,7 @@ p5.prototype.erase = function(opacityFill = 255, opacityStroke = 255) {
  * Orange background, with two tall blue rectangles. A centered ellipse erased the first blue rect but not the second.
  */
 
-p5.prototype.noErase = function() {
+p5.prototype.noErase = function () {
   this._renderer.noErase();
   return this;
 };

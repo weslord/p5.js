@@ -70,7 +70,7 @@ const labelTableElId = '_lte_'; //Label Table Element
  *
  */
 
-p5.prototype.describe = function(text, display) {
+p5.prototype.describe = function (text, display) {
   p5._validateParameters('describe', arguments);
   if (typeof text !== 'string') {
     return;
@@ -157,7 +157,7 @@ p5.prototype.describe = function(text, display) {
  * </div>
  */
 
-p5.prototype.describeElement = function(name, text, display) {
+p5.prototype.describeElement = function (name, text, display) {
   p5._validateParameters('describeElement', arguments);
   if (typeof text !== 'string' || typeof name !== 'string') {
     return;
@@ -240,7 +240,7 @@ function _descriptionText(text) {
  */
 
 //creates HTML structure for canvas descriptions
-p5.prototype._describeHTML = function(type, text) {
+p5.prototype._describeHTML = function (type, text) {
   const cnvId = this.canvas.id;
   if (type === 'fallback') {
     //if there is no description container
@@ -328,7 +328,7 @@ function _elementName(name) {
 }
 
 //creates HTML structure for element descriptions
-p5.prototype._describeElementHTML = function(type, name, text) {
+p5.prototype._describeElementHTML = function (type, name, text) {
   const cnvId = this.canvas.id;
   if (type === 'fallback') {
     //if there is no description container

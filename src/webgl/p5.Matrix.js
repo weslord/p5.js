@@ -10,10 +10,10 @@
 import p5 from '../core/main';
 
 let GLMAT_ARRAY_TYPE = Array;
-let isMatrixArray = x => x instanceof Array;
+let isMatrixArray = (x) => x instanceof Array;
 if (typeof Float32Array !== 'undefined') {
   GLMAT_ARRAY_TYPE = Float32Array;
-  isMatrixArray = x => x instanceof Array || x instanceof Float32Array;
+  isMatrixArray = (x) => x instanceof Array || x instanceof Float32Array;
 }
 
 /**
@@ -24,7 +24,7 @@ if (typeof Float32Array !== 'undefined') {
  * @constructor
  * @param {Array} [mat4] array literal of our 4x4 matrix
  */
-p5.Matrix = function() {
+p5.Matrix = function () {
   const args = new Array(arguments.length);
   for (let i = 0; i < args.length; ++i) {
     args[i] = arguments[i];
@@ -64,7 +64,7 @@ p5.Matrix = function() {
  *                                     array copying.
  * @chainable
  */
-p5.Matrix.prototype.set = function(inMatrix) {
+p5.Matrix.prototype.set = function (inMatrix) {
   if (inMatrix instanceof p5.Matrix) {
     this.mat4 = inMatrix.mat4;
     return this;
@@ -98,7 +98,7 @@ p5.Matrix.prototype.set = function(inMatrix) {
  * @method get
  * @return {p5.Matrix} the copy of the p5.Matrix object
  */
-p5.Matrix.prototype.get = function() {
+p5.Matrix.prototype.get = function () {
   return new p5.Matrix(this.mat4, this.p5);
 };
 
@@ -107,7 +107,7 @@ p5.Matrix.prototype.get = function() {
  * @method copy
  * @return {p5.Matrix}   the result matrix
  */
-p5.Matrix.prototype.copy = function() {
+p5.Matrix.prototype.copy = function () {
   const copied = new p5.Matrix(this.p5);
   copied.mat4[0] = this.mat4[0];
   copied.mat4[1] = this.mat4[1];
@@ -133,7 +133,7 @@ p5.Matrix.prototype.copy = function() {
  * @method identity
  * @return {p5.Matrix}   the result matrix
  */
-p5.Matrix.identity = pInst => new p5.Matrix(pInst);
+p5.Matrix.identity = (pInst) => new p5.Matrix(pInst);
 
 /**
  * transpose according to a given matrix
@@ -142,7 +142,7 @@ p5.Matrix.identity = pInst => new p5.Matrix(pInst);
  *                                               based on to transpose
  * @chainable
  */
-p5.Matrix.prototype.transpose = function(a) {
+p5.Matrix.prototype.transpose = function (a) {
   let a01, a02, a03, a12, a13, a23;
   if (a instanceof p5.Matrix) {
     a01 = a.mat4[1];
@@ -203,7 +203,7 @@ p5.Matrix.prototype.transpose = function(a) {
  *                                                based on to invert
  * @chainable
  */
-p5.Matrix.prototype.invert = function(a) {
+p5.Matrix.prototype.invert = function (a) {
   let a00, a01, a02, a03, a10, a11, a12, a13;
   let a20, a21, a22, a23, a30, a31, a32, a33;
   if (a instanceof p5.Matrix) {
@@ -288,7 +288,7 @@ p5.Matrix.prototype.invert = function(a) {
  * @method invert3x3
  * @chainable
  */
-p5.Matrix.prototype.invert3x3 = function() {
+p5.Matrix.prototype.invert3x3 = function () {
   const a00 = this.mat3[0];
   const a01 = this.mat3[1];
   const a02 = this.mat3[2];
@@ -326,7 +326,7 @@ p5.Matrix.prototype.invert3x3 = function() {
  * @param  {Number[]} mat3 1-dimensional array
  * @chainable
  */
-p5.Matrix.prototype.transpose3x3 = function(mat3) {
+p5.Matrix.prototype.transpose3x3 = function (mat3) {
   const a01 = mat3[1],
     a02 = mat3[2],
     a12 = mat3[5];
@@ -347,7 +347,7 @@ p5.Matrix.prototype.transpose3x3 = function(mat3) {
  * @chainable
  * @todo  finish implementation
  */
-p5.Matrix.prototype.inverseTranspose = function(matrix) {
+p5.Matrix.prototype.inverseTranspose = function (matrix) {
   if (this.mat3 === undefined) {
     console.error('sorry, this function only works with mat3');
   } else {
@@ -381,7 +381,7 @@ p5.Matrix.prototype.inverseTranspose = function(matrix) {
  * @method determinant
  * @return {Number} Determinant of our 4x4 matrix
  */
-p5.Matrix.prototype.determinant = function() {
+p5.Matrix.prototype.determinant = function () {
   const d00 = this.mat4[0] * this.mat4[5] - this.mat4[1] * this.mat4[4],
     d01 = this.mat4[0] * this.mat4[6] - this.mat4[2] * this.mat4[4],
     d02 = this.mat4[0] * this.mat4[7] - this.mat4[3] * this.mat4[4],
@@ -406,7 +406,7 @@ p5.Matrix.prototype.determinant = function() {
  *                                                we want to multiply by
  * @chainable
  */
-p5.Matrix.prototype.mult = function(multMatrix) {
+p5.Matrix.prototype.mult = function (multMatrix) {
   let _src;
 
   if (multMatrix === this || multMatrix === this.mat4) {
@@ -461,7 +461,7 @@ p5.Matrix.prototype.mult = function(multMatrix) {
   return this;
 };
 
-p5.Matrix.prototype.apply = function(multMatrix) {
+p5.Matrix.prototype.apply = function (multMatrix) {
   let _src;
 
   if (multMatrix === this || multMatrix === this.mat4) {
@@ -524,7 +524,7 @@ p5.Matrix.prototype.apply = function(multMatrix) {
  * @param  {p5.Vector|Float32Array|Number[]} s vector to scale by
  * @chainable
  */
-p5.Matrix.prototype.scale = function(x, y, z) {
+p5.Matrix.prototype.scale = function (x, y, z) {
   if (x instanceof p5.Vector) {
     // x is a vector, extract the components from it.
     y = x.y;
@@ -561,7 +561,7 @@ p5.Matrix.prototype.scale = function(x, y, z) {
  * @chainable
  * inspired by Toji's gl-matrix lib, mat4 rotation
  */
-p5.Matrix.prototype.rotate = function(a, x, y, z) {
+p5.Matrix.prototype.rotate = function (a, x, y, z) {
   if (x instanceof p5.Vector) {
     // x is a vector, extract the components from it.
     y = x.y;
@@ -631,7 +631,7 @@ p5.Matrix.prototype.rotate = function(a, x, y, z) {
  * @param  {Number[]} v vector to translate by
  * @chainable
  */
-p5.Matrix.prototype.translate = function(v) {
+p5.Matrix.prototype.translate = function (v) {
   const x = v[0],
     y = v[1],
     z = v[2] || 0;
@@ -641,13 +641,13 @@ p5.Matrix.prototype.translate = function(v) {
   this.mat4[15] += this.mat4[3] * x + this.mat4[7] * y + this.mat4[11] * z;
 };
 
-p5.Matrix.prototype.rotateX = function(a) {
+p5.Matrix.prototype.rotateX = function (a) {
   this.rotate(a, 1, 0, 0);
 };
-p5.Matrix.prototype.rotateY = function(a) {
+p5.Matrix.prototype.rotateY = function (a) {
   this.rotate(a, 0, 1, 0);
 };
-p5.Matrix.prototype.rotateZ = function(a) {
+p5.Matrix.prototype.rotateZ = function (a) {
   this.rotate(a, 0, 0, 1);
 };
 
@@ -660,7 +660,7 @@ p5.Matrix.prototype.rotateZ = function(a) {
  * @param  {Number} far    far clipping plane
  * @chainable
  */
-p5.Matrix.prototype.perspective = function(fovy, aspect, near, far) {
+p5.Matrix.prototype.perspective = function (fovy, aspect, near, far) {
   const f = 1.0 / Math.tan(fovy / 2),
     nf = 1 / (near - far);
 
@@ -695,7 +695,7 @@ p5.Matrix.prototype.perspective = function(fovy, aspect, near, far) {
  * @param  {Number} far    far clipping plane
  * @chainable
  */
-p5.Matrix.prototype.ortho = function(left, right, bottom, top, near, far) {
+p5.Matrix.prototype.ortho = function (left, right, bottom, top, near, far) {
   const lr = 1 / (left - right),
     bt = 1 / (bottom - top),
     nf = 1 / (near - far);

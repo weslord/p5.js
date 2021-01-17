@@ -24,7 +24,7 @@ function setup() {
     color(200, 200, 0, opac),
     color(0, 200, 200, opac),
     color(0, 255, 0, opac),
-    color(0, 255, 255, opac)
+    color(0, 255, 255, opac),
   ];
 }
 

@@ -110,12 +110,12 @@ if (typeof IS_MINIFIED !== 'undefined') {
     'Date',
     'RegExp',
     'Object',
-    'Error'
+    'Error',
   ];
   for (let n = 0; n < names.length; n++) {
     class2type[`[object ${names[n]}]`] = names[n].toLowerCase();
   }
-  const getType = obj => {
+  const getType = (obj) => {
     if (obj == null) {
       return `${obj}`;
     }
@@ -147,7 +147,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     'keyPressed',
     'keyReleased',
     'keyTyped',
-    'windowResized'
+    'windowResized',
   ];
 
   const friendlyWelcome = () => {
@@ -157,7 +157,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     //const welcomeBgColor = '#ED225D';
     //const welcomeTextColor = 'white';
     const welcomeMessage = translator('fes.pre', {
-      message: translator('fes.welcome')
+      message: translator('fes.welcome'),
     });
     console.log(
       '    _ \n' +
@@ -246,7 +246,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @param  {String} [method] name of method
    * @param  {Number|String} [color]   CSS color string or error type (Optional)
    */
-  p5._friendlyError = function(message, method, color) {
+  p5._friendlyError = function (message, method, color) {
     report(message, method, color);
   };
 
@@ -256,10 +256,10 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @method _friendlyAutoplayError
    * @private
    */
-  p5._friendlyAutoplayError = function(src) {
+  p5._friendlyAutoplayError = function (src) {
     const message = translator('fes.autoplay', {
       src,
-      link: 'https://developer.mozilla.org/docs/Web/Media/Autoplay_guide'
+      link: 'https://developer.mozilla.org/docs/Web/Media/Autoplay_guide',
     });
     console.log(translator('fes.pre', { message }));
   };
@@ -323,7 +323,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @param {*} context The current default context. It's set to window in
    * "global mode" and to a p5 instance in "instance mode"
    */
-  const checkForUserDefinedFunctions = context => {
+  const checkForUserDefinedFunctions = (context) => {
     if (p5.disableFriendlyErrors) return;
 
     // if using instance mode, this function would be called with the current
@@ -334,7 +334,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
     const fxns = {};
     // lowercasename -> actualName mapping
-    fnNames.forEach(symbol => {
+    fnNames.forEach((symbol) => {
       fxns[symbol.toLowerCase()] = symbol;
     });
 
@@ -351,7 +351,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
       ) {
         const msg = translator('fes.checkUserDefinedFns', {
           name: prop,
-          actualName: fxns[lowercase]
+          actualName: fxns[lowercase],
         });
 
         report(msg, fxns[lowercase]);
@@ -383,7 +383,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     let min = 999999;
     // compute the levenshtein distance for the symbol against all known
     // public p5 properties. Find the property with the minimum distance
-    misusedAtTopLevelCode.forEach(symbol => {
+    misusedAtTopLevelCode.forEach((symbol) => {
       let dist = computeEditDistance(errSym, symbol.name);
       if (distanceMap[dist]) distanceMap[dist].push(symbol);
       else distanceMap[dist] = [symbol];
@@ -397,7 +397,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     // Show a message only if the caught symbol and the matched property name
     // differ in their name ( either letter difference or difference of case )
     const matchedSymbols = distanceMap[min].filter(
-      symbol => symbol.name !== errSym
+      (symbol) => symbol.name !== errSym
     );
     if (matchedSymbols.length !== 0) {
       const parsed = p5._getErrorStackParser().parse(error);
@@ -410,11 +410,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
         parsed[0].columnNumber
       ) {
         locationObj = {
-          location: `${parsed[0].fileName}:${parsed[0].lineNumber}:${
-            parsed[0].columnNumber
-          }`,
+          location: `${parsed[0].fileName}:${parsed[0].lineNumber}:${parsed[0].columnNumber}`,
           file: parsed[0].fileName.split('/').slice(-1),
-          line: parsed[0].lineNumber
+          line: parsed[0].lineNumber,
         };
       }
 
@@ -428,14 +426,14 @@ if (typeof IS_MINIFIED !== 'undefined') {
           actualName: matchedSymbols[0].name,
           type: matchedSymbols[0].type,
           location: locationObj ? translator('fes.location', locationObj) : '',
-          count: matchedSymbols.length
+          count: matchedSymbols.length,
         });
       } else {
         // To be used when there are multiple closest matches. Gives each
         // suggestion on its own line, the function name followed by a link to
         // reference documentation
         const suggestions = matchedSymbols
-          .map(symbol => {
+          .map((symbol) => {
             const message =
               '▶️ ' + symbol.name + (symbol.type === 'function' ? '()' : '');
             return mapToReference(message, symbol.name);
@@ -446,7 +444,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           name: errSym,
           suggestions: suggestions,
           location: locationObj ? translator('fes.location', locationObj) : '',
-          count: matchedSymbols.length
+          count: matchedSymbols.length,
         });
       }
 
@@ -470,7 +468,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @private
    * @param {Array} friendlyStack
    */
-  const printFriendlyStack = friendlyStack => {
+  const printFriendlyStack = (friendlyStack) => {
     const log =
       p5._fesLogger && typeof p5._fesLogger === 'function'
         ? p5._fesLogger
@@ -478,15 +476,13 @@ if (typeof IS_MINIFIED !== 'undefined') {
     if (friendlyStack.length > 1) {
       let stacktraceMsg = '';
       friendlyStack.forEach((frame, idx) => {
-        const location = `${frame.fileName}:${frame.lineNumber}:${
-          frame.columnNumber
-        }`;
+        const location = `${frame.fileName}:${frame.lineNumber}:${frame.columnNumber}`;
         let frameMsg,
           translationObj = {
             func: frame.functionName,
             line: frame.lineNumber,
             location: location,
-            file: frame.fileName.split('/').slice(-1)
+            file: frame.fileName.split('/').slice(-1),
           };
         if (idx === 0) {
           frameMsg = translator('fes.globalErrors.stackTop', translationObj);
@@ -521,7 +517,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     // cannot process a stacktrace that doesn't exist
     if (!stacktrace) return [false, null];
 
-    stacktrace.forEach(frame => {
+    stacktrace.forEach((frame) => {
       frame.functionName = frame.functionName || '';
     });
 
@@ -564,7 +560,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           frame.frameIndex = index;
           return frame;
         })
-        .filter(frame => frame.fileName !== p5FileName);
+        .filter((frame) => frame.fileName !== p5FileName);
 
       // a weird case, if for some reason we can't identify the function called
       // from user's code
@@ -584,11 +580,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
         friendlyStack[0].columnNumber
       ) {
         locationObj = {
-          location: `${friendlyStack[0].fileName}:${
-            friendlyStack[0].lineNumber
-          }:${friendlyStack[0].columnNumber}`,
+          location: `${friendlyStack[0].fileName}:${friendlyStack[0].lineNumber}:${friendlyStack[0].columnNumber}`,
           file: friendlyStack[0].fileName.split('/').slice(-1),
-          line: friendlyStack[0].lineNumber
+          line: friendlyStack[0].lineNumber,
         };
 
         // if already handled by another part of the FES, don't handle again
@@ -607,7 +601,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             location: locationObj
               ? translator('fes.location', locationObj)
               : '',
-            error: error.message
+            error: error.message,
           }),
           'preload'
         );
@@ -619,7 +613,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             location: locationObj
               ? translator('fes.location', locationObj)
               : '',
-            error: error.message
+            error: error.message,
           }),
           func
         );
@@ -643,7 +637,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @private
    * @param {*} e The object to extract error details from
    */
-  const fesErrorMonitor = e => {
+  const fesErrorMonitor = (e) => {
     if (p5.disableFriendlyErrors) return;
     // Try to get the error object from e
     let error;
@@ -697,11 +691,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
       stacktrace[0].columnNumber
     ) {
       locationObj = {
-        location: `${stacktrace[0].fileName}:${stacktrace[0].lineNumber}:${
-          stacktrace[0].columnNumber
-        }`,
+        location: `${stacktrace[0].fileName}:${stacktrace[0].lineNumber}:${stacktrace[0].columnNumber}`,
         file: stacktrace[0].fileName.split('/').slice(-1),
-        line: friendlyStack[0].lineNumber
+        line: friendlyStack[0].lineNumber,
       };
     }
 
@@ -716,7 +708,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Illegal_character#What_went_wrong';
             report(
               translator('fes.globalErrors.syntax.invalidToken', {
-                url
+                url,
               })
             );
             break;
@@ -726,7 +718,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Unexpected_token#What_went_wrong';
             report(
               translator('fes.globalErrors.syntax.unexpectedToken', {
-                url
+                url,
               })
             );
             break;
@@ -755,7 +747,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
                 symbol: errSym,
                 location: locationObj
                   ? translator('fes.location', locationObj)
-                  : ''
+                  : '',
               })
             );
 
@@ -781,7 +773,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               obj: splitSym.slice(0, splitSym.length - 1).join('.'),
               location: locationObj
                 ? translator('fes.location', locationObj)
-                : ''
+                : '',
             };
 
             // There are two cases to handle here. When the function is called
@@ -854,9 +846,9 @@ const FAQ_URL =
 defineMisusedAtTopLevelCode = () => {
   const uniqueNamesFound = {};
 
-  const getSymbols = obj =>
+  const getSymbols = (obj) =>
     Object.getOwnPropertyNames(obj)
-      .filter(name => {
+      .filter((name) => {
         if (name[0] === '_') {
           return false;
         }
@@ -868,7 +860,7 @@ defineMisusedAtTopLevelCode = () => {
 
         return true;
       })
-      .map(name => {
+      .map((name) => {
         let type;
 
         if (typeof obj[name] === 'function') {
@@ -914,7 +906,7 @@ const helpForMisusedAtTopLevelCode = (e, log) => {
   //  return;
   //}
 
-  misusedAtTopLevelCode.some(symbol => {
+  misusedAtTopLevelCode.some((symbol) => {
     // Note that while just checking for the occurrence of the
     // symbol name in the error message could result in false positives,
     // a more rigorous test is difficult because different browsers
@@ -933,16 +925,14 @@ const helpForMisusedAtTopLevelCode = (e, log) => {
         symbol.type === 'function' ? `${symbol.name}()` : symbol.name;
       if (typeof IS_MINIFIED !== 'undefined') {
         log(
-          `Did you just try to use p5.js's ${symbolName} ${
-            symbol.type
-          }? If so, you may want to move it into your sketch's setup() function.\n\nFor more details, see: ${FAQ_URL}`
+          `Did you just try to use p5.js's ${symbolName} ${symbol.type}? If so, you may want to move it into your sketch's setup() function.\n\nFor more details, see: ${FAQ_URL}`
         );
       } else {
         log(
           translator('fes.misusedTopLevel', {
             symbolName,
             symbolType: symbol.type,
-            link: FAQ_URL
+            link: FAQ_URL,
           })
         );
       }

@@ -24,7 +24,7 @@ import p5 from '../core/main';
  * @alt
  * Current day is displayed
  */
-p5.prototype.day = function() {
+p5.prototype.day = function () {
   return new Date().getDate();
 };
 
@@ -45,7 +45,7 @@ p5.prototype.day = function() {
  * @alt
  * Current hour is displayed
  */
-p5.prototype.hour = function() {
+p5.prototype.hour = function () {
   return new Date().getHours();
 };
 
@@ -66,7 +66,7 @@ p5.prototype.hour = function() {
  * @alt
  * Current minute is displayed
  */
-p5.prototype.minute = function() {
+p5.prototype.minute = function () {
   return new Date().getMinutes();
 };
 
@@ -88,7 +88,7 @@ p5.prototype.minute = function() {
  * @alt
  * number of milliseconds since sketch has started displayed
  */
-p5.prototype.millis = function() {
+p5.prototype.millis = function () {
   if (this._millisStart === -1) {
     // Sketch has not started
     return 0;
@@ -114,7 +114,7 @@ p5.prototype.millis = function() {
  * @alt
  * Current month is displayed
  */
-p5.prototype.month = function() {
+p5.prototype.month = function () {
   //January is 0!
   return new Date().getMonth() + 1;
 };
@@ -136,7 +136,7 @@ p5.prototype.month = function() {
  * @alt
  * Current second is displayed
  */
-p5.prototype.second = function() {
+p5.prototype.second = function () {
   return new Date().getSeconds();
 };
 
@@ -157,7 +157,7 @@ p5.prototype.second = function() {
  * @alt
  * Current year is displayed
  */
-p5.prototype.year = function() {
+p5.prototype.year = function () {
   return new Date().getFullYear();
 };
 

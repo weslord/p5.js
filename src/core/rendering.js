@@ -52,7 +52,7 @@ const defaultClass = 'p5Canvas';
  * @alt
  * Black line extending from top-left of canvas to bottom right.
  */
-p5.prototype.createCanvas = function(w, h, renderer) {
+p5.prototype.createCanvas = function (w, h, renderer) {
   p5._validateParameters('createCanvas', arguments);
   //optional: renderer, otherwise defaults to p2d
   const r = renderer || constants.P2D;
@@ -64,7 +64,7 @@ p5.prototype.createCanvas = function(w, h, renderer) {
       //if defaultCanvas already exists
       c.parentNode.removeChild(c); //replace the existing defaultCanvas
       const thisRenderer = this._renderer;
-      this._elements = this._elements.filter(e => e !== thisRenderer);
+      this._elements = this._elements.filter((e) => e !== thisRenderer);
     }
     c = document.createElement('canvas');
     c.id = defaultId;
@@ -148,7 +148,7 @@ p5.prototype.createCanvas = function(w, h, renderer) {
  * @alt
  * No image displayed.
  */
-p5.prototype.resizeCanvas = function(w, h, noRedraw) {
+p5.prototype.resizeCanvas = function (w, h, noRedraw) {
   p5._validateParameters('resizeCanvas', arguments);
   if (this._renderer) {
     // save canvas properties
@@ -195,7 +195,7 @@ p5.prototype.resizeCanvas = function(w, h, noRedraw) {
  * @alt
  * no image displayed
  */
-p5.prototype.noCanvas = function() {
+p5.prototype.noCanvas = function () {
   if (this.canvas) {
     this.canvas.parentNode.removeChild(this.canvas);
   }
@@ -235,7 +235,7 @@ p5.prototype.noCanvas = function() {
  * @alt
  * 4 grey squares alternating light and dark grey. White quarter circle mid-left.
  */
-p5.prototype.createGraphics = function(w, h, renderer) {
+p5.prototype.createGraphics = function (w, h, renderer) {
   p5._validateParameters('createGraphics', arguments);
   return new p5.Graphics(w, h, renderer, this);
 };
@@ -311,7 +311,7 @@ p5.prototype.createGraphics = function(w, h, renderer) {
  * translucent image thick red & blue diagonal rounded lines intersecting center
  * Thick red & blue diagonal rounded lines intersecting center. dark at overlap
  */
-p5.prototype.blendMode = function(mode) {
+p5.prototype.blendMode = function (mode) {
   p5._validateParameters('blendMode', arguments);
   if (mode === constants.NORMAL) {
     // Warning added 3/26/19, can be deleted in future (1.0 release?)

@@ -168,7 +168,7 @@ p5.prototype.keyCode = 0;
  * black rect center. turns white when key pressed and black when released
  * black rect center. turns white when left arrow pressed and black when right.
  */
-p5.prototype._onkeydown = function(e) {
+p5.prototype._onkeydown = function (e) {
   if (this._downKeys[e.which]) {
     // prevent multiple firings
     return;
@@ -216,7 +216,7 @@ p5.prototype._onkeydown = function(e) {
  * @alt
  * black rect center. turns white when key pressed and black when pressed again
  */
-p5.prototype._onkeyup = function(e) {
+p5.prototype._onkeyup = function (e) {
   this._downKeys[e.which] = false;
 
   if (!this._areDownKeys()) {
@@ -276,7 +276,7 @@ p5.prototype._onkeyup = function(e) {
  * @alt
  * black rect center. turns white when 'a' key typed and black when 'b' pressed
  */
-p5.prototype._onkeypress = function(e) {
+p5.prototype._onkeypress = function (e) {
   if (e.which === this._lastKeyCodeTyped) {
     // prevent multiple firings
     return;
@@ -298,7 +298,7 @@ p5.prototype._onkeypress = function(e) {
  * not focused on the element we must assume all keys currently down have
  * been released.
  */
-p5.prototype._onblur = function(e) {
+p5.prototype._onblur = function (e) {
   this._downKeys = {};
 };
 
@@ -373,7 +373,7 @@ p5.prototype._onblur = function(e) {
  * 50x50 red ellipse moves left, right, up and down with arrow presses.
  * 50x50 red ellipse gets bigger or smaller when + or - are pressed.
  */
-p5.prototype.keyIsDown = function(code) {
+p5.prototype.keyIsDown = function (code) {
   p5._validateParameters('keyIsDown', arguments);
   return this._downKeys[code] || false;
 };
@@ -387,7 +387,7 @@ p5.prototype.keyIsDown = function(code) {
  * keyIsPressed property to true.
  * @private
 **/
-p5.prototype._areDownKeys = function() {
+p5.prototype._areDownKeys = function () {
   for (const key in this._downKeys) {
     if (this._downKeys.hasOwnProperty(key) && this._downKeys[key] === true) {
       return true;

@@ -1,18 +1,18 @@
-suite('saveTable', function() {
+suite('saveTable', function () {
   let validFile = 'unit/assets/csv.csv';
   let myp5;
   let myTable;
 
-  setup(function(done) {
-    new p5(function(p) {
-      p.setup = function() {
+  setup(function (done) {
+    new p5(function (p) {
+      p.setup = function () {
         myp5 = p;
         done();
       };
     });
   });
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
@@ -25,20 +25,20 @@ suite('saveTable', function() {
   });
 
   setup(function loadMyTable(done) {
-    myp5.loadTable(validFile, 'csv', 'header', function(table) {
+    myp5.loadTable(validFile, 'csv', 'header', function (table) {
       myTable = table;
       done();
     });
   });
 
-  test('should be a function', function() {
+  test('should be a function', function () {
     assert.ok(myp5.saveTable);
     assert.typeOf(myp5.saveTable, 'function');
   });
 
-  test('no friendly-err-msg I', function() {
+  test('no friendly-err-msg I', function () {
     assert.doesNotThrow(
-      function() {
+      function () {
         myp5.saveTable(myTable, 'myfile');
       },
       Error,
@@ -46,9 +46,9 @@ suite('saveTable', function() {
     );
   });
 
-  test('no friendly-err-msg II', function() {
+  test('no friendly-err-msg II', function () {
     assert.doesNotThrow(
-      function() {
+      function () {
         myp5.saveTable(myTable, 'myfile', 'csv');
       },
       Error,
@@ -56,33 +56,33 @@ suite('saveTable', function() {
     );
   });
 
-  testUnMinified('missing param #1', function() {
-    assert.validationError(function() {
+  testUnMinified('missing param #1', function () {
+    assert.validationError(function () {
       myp5.saveTable(myTable);
     });
   });
 
-  testUnMinified('wrong param type #0', function() {
-    assert.validationError(function() {
+  testUnMinified('wrong param type #0', function () {
+    assert.validationError(function () {
       myp5.saveTable('myTable', 'myfile');
     });
   });
 
-  testUnMinified('wrong param type #1', function() {
-    assert.validationError(function() {
+  testUnMinified('wrong param type #1', function () {
+    assert.validationError(function () {
       myp5.saveTable(myTable, 2);
     });
   });
 
-  testUnMinified('wrong param type #2', function() {
-    assert.validationError(function() {
+  testUnMinified('wrong param type #2', function () {
+    assert.validationError(function () {
       myp5.saveTable(myTable, 'myfile', 2);
     });
   });
 
   testWithDownload(
     'should download a file with expected contents',
-    async function(blobContainer) {
+    async function (blobContainer) {
       myp5.saveTable(myTable, 'filename');
       let myBlob = blobContainer.blob;
       let text = await myBlob.text();
@@ -98,7 +98,7 @@ suite('saveTable', function() {
 
   testWithDownload(
     'should download a file with expected contents (tsv)',
-    async function(blobContainer) {
+    async function (blobContainer) {
       myp5.saveTable(myTable, 'filename', 'tsv');
       let myBlob = blobContainer.blob;
       let text = await myBlob.text();
@@ -113,7 +113,7 @@ suite('saveTable', function() {
 
   testWithDownload(
     'should download a file with expected contents (html)',
-    async function(blobContainer) {
+    async function (blobContainer) {
       myp5.saveTable(myTable, 'filename', 'html');
       let myBlob = blobContainer.blob;
       let text = await myBlob.text();

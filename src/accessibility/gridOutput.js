@@ -9,7 +9,7 @@ import p5 from '../core/main';
 //the functions in this file support updating the grid output
 
 //updates gridOutput
-p5.prototype._updateGridOutput = function(idT) {
+p5.prototype._updateGridOutput = function (idT) {
   //if html structure is not there yet
   if (!this.dummyDOM.querySelector(`#${idT}_summary`)) {
     return;
@@ -49,21 +49,17 @@ function _gridMap(idT, ingredients) {
   let shapeNumber = 0;
   let table = '';
   //create an array of arrays 10*10 of empty cells
-  let cells = Array.apply(null, Array(10)).map(function() {});
+  let cells = Array.apply(null, Array(10)).map(function () {});
   for (let r in cells) {
-    cells[r] = Array.apply(null, Array(10)).map(function() {});
+    cells[r] = Array.apply(null, Array(10)).map(function () {});
   }
   for (let x in ingredients) {
     for (let y in ingredients[x]) {
       let fill;
       if (x !== 'line') {
-        fill = `<a href="#${idT}shape${shapeNumber}">${
-          ingredients[x][y].color
-        } ${x}</a>`;
+        fill = `<a href="#${idT}shape${shapeNumber}">${ingredients[x][y].color} ${x}</a>`;
       } else {
-        fill = `<a href="#${idT}shape${shapeNumber}">${
-          ingredients[x][y].color
-        } ${x} midpoint</a>`;
+        fill = `<a href="#${idT}shape${shapeNumber}">${ingredients[x][y].color} ${x} midpoint</a>`;
       }
       //if empty cell of location of shape is undefined
       if (!cells[ingredients[x][y].loc.locY][ingredients[x][y].loc.locX]) {
@@ -97,9 +93,7 @@ function _gridMap(idT, ingredients) {
 
 //creates grid summary
 function _gridSummary(numShapes, background, width, height) {
-  let text = `${background} canvas, ${width} by ${height} pixels, contains ${
-    numShapes[0]
-  }`;
+  let text = `${background} canvas, ${width} by ${height} pixels, contains ${numShapes[0]}`;
   if (numShapes[0] === 1) {
     text = `${text} shape: ${numShapes[1]}`;
   } else {
@@ -118,15 +112,11 @@ function _gridShapeDetails(idT, ingredients) {
     let shapeNum = 0;
     for (let y in ingredients[x]) {
       //it creates a line in a list
-      let line = `<li id="${idT}shape${totalShapes}">${
-        ingredients[x][y].color
-      } ${x},`;
+      let line = `<li id="${idT}shape${totalShapes}">${ingredients[x][y].color} ${x},`;
       if (x === 'line') {
         line =
           line +
-          ` location = ${ingredients[x][y].pos}, length = ${
-            ingredients[x][y].length
-          } pixels`;
+          ` location = ${ingredients[x][y].pos}, length = ${ingredients[x][y].length} pixels`;
       } else {
         line = line + ` location = ${ingredients[x][y].pos}`;
         if (x !== 'point') {

@@ -58,7 +58,7 @@ let isFirstContour = true;
  * @alt
  * white rect and smaller grey rect with red outlines in center of canvas.
  */
-p5.prototype.beginContour = function() {
+p5.prototype.beginContour = function () {
   contourVertices = [];
   isContour = true;
   return this;
@@ -239,7 +239,7 @@ p5.prototype.beginContour = function() {
  * 3 side-by-side white rectangles center rect is smaller in mid-right canvas.
  * Thick white l-shape with black outline mid-top-left of canvas.
  */
-p5.prototype.beginShape = function(kind) {
+p5.prototype.beginShape = function (kind) {
   p5._validateParameters('beginShape', arguments);
   if (this._renderer.isP3D) {
     this._renderer.beginShape(...arguments);
@@ -359,7 +359,7 @@ p5.prototype.beginShape = function(kind) {
  * @param  {Number} z4 z-coordinate for the anchor point (for WebGL mode)
  * @chainable
  */
-p5.prototype.bezierVertex = function(...args) {
+p5.prototype.bezierVertex = function (...args) {
   p5._validateParameters('bezierVertex', args);
   if (this._renderer.isP3D) {
     this._renderer.bezierVertex(...args);
@@ -484,7 +484,7 @@ p5.prototype.bezierVertex = function(...args) {
  * @alt
  * Upside-down u-shape line, mid canvas with the same shape in positive z-axis.
  */
-p5.prototype.curveVertex = function(...args) {
+p5.prototype.curveVertex = function (...args) {
   p5._validateParameters('curveVertex', args);
   if (this._renderer.isP3D) {
     this._renderer.curveVertex(...args);
@@ -536,7 +536,7 @@ p5.prototype.curveVertex = function(...args) {
  * @alt
  * white rect and smaller grey rect with red outlines in center of canvas.
  */
-p5.prototype.endContour = function() {
+p5.prototype.endContour = function () {
   const vert = contourVertices[0].slice(); // copy all data
   vert.isVert = contourVertices[0].isVert;
   vert.moveTo = false;
@@ -586,7 +586,7 @@ p5.prototype.endContour = function() {
  * @alt
  * Triangle line shape with smallest interior angle on bottom and upside-down L.
  */
-p5.prototype.endShape = function(mode) {
+p5.prototype.endShape = function (mode) {
   p5._validateParameters('endShape', arguments);
   if (this._renderer.isP3D) {
     this._renderer.endShape(
@@ -757,7 +757,7 @@ p5.prototype.endShape = function(mode) {
  * @alt
  * backwards s-shaped black line with the same s-shaped line in postive z-axis.
  */
-p5.prototype.quadraticVertex = function(...args) {
+p5.prototype.quadraticVertex = function (...args) {
   p5._validateParameters('quadraticVertex', args);
   if (this._renderer.isP3D) {
     this._renderer.quadraticVertex(...args);
@@ -906,15 +906,15 @@ p5.prototype.quadraticVertex = function(...args) {
  * function ngon(n, x, y, d) {
  *   beginShape(TESS);
  *   for (let i = 0; i < n + 1; i++) {
- *     angle = TWO_PI / n * i;
- *     px = x + sin(angle) * d / 2;
- *     py = y - cos(angle) * d / 2;
+ *     angle = (TWO_PI / n) * i;
+ *     px = x + (sin(angle) * d) / 2;
+ *     py = y - (cos(angle) * d) / 2;
  *     vertex(px, py, 0);
  *   }
  *   for (let i = 0; i < n + 1; i++) {
- *     angle = TWO_PI / n * i;
- *     px = x + sin(angle) * d / 4;
- *     py = y - cos(angle) * d / 4;
+ *     angle = (TWO_PI / n) * i;
+ *     px = x + (sin(angle) * d) / 4;
+ *     py = y - (cos(angle) * d) / 4;
  *     vertex(px, py, 0);
  *   }
  *   endShape();
@@ -937,7 +937,7 @@ p5.prototype.quadraticVertex = function(...args) {
  * @param  {Number} [v] the vertex's texture v-coordinate
  * @chainable
  */
-p5.prototype.vertex = function(x, y, moveTo, u, v) {
+p5.prototype.vertex = function (x, y, moveTo, u, v) {
   if (this._renderer.isP3D) {
     this._renderer.vertex(...arguments);
   } else {

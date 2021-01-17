@@ -57,7 +57,7 @@ import p5 from '../core/main';
  * When you type the key name is displayed as black text on white background.
  * If you reload the page, the last letter typed is still displaying.
  */
-p5.prototype.storeItem = function(key, value) {
+p5.prototype.storeItem = function (key, value) {
   if (typeof key !== 'string') {
     console.log(
       `The argument that you passed to storeItem() - ${key} is not a string.`
@@ -140,7 +140,7 @@ p5.prototype.storeItem = function(key, value) {
  * If you reload the page, the canvas is still the color it
  * was when the page was previously loaded.
  */
-p5.prototype.getItem = function(key) {
+p5.prototype.getItem = function (key) {
   let value = localStorage.getItem(key);
   const type = localStorage.getItem(`${key}p5TypeID`);
   if (typeof type === 'undefined') {
@@ -198,7 +198,7 @@ p5.prototype.getItem = function(key) {
  * }
  * </code></div>
  */
-p5.prototype.clearStorage = function() {
+p5.prototype.clearStorage = function () {
   localStorage.clear();
 };
 
@@ -222,7 +222,7 @@ p5.prototype.clearStorage = function() {
  * }
  * </code></div>
  */
-p5.prototype.removeItem = function(key) {
+p5.prototype.removeItem = function (key) {
   if (typeof key !== 'string') {
     console.log(
       `The argument that you passed to removeItem() - ${key} is not a string.`

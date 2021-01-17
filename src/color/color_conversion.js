@@ -19,13 +19,13 @@ p5.ColorConversion = {};
 /**
  * Convert an HSBA array to HSLA.
  */
-p5.ColorConversion._hsbaToHSLA = function(hsba) {
+p5.ColorConversion._hsbaToHSLA = function (hsba) {
   const hue = hsba[0];
   let sat = hsba[1];
   const val = hsba[2];
 
   // Calculate lightness.
-  const li = (2 - sat) * val / 2;
+  const li = ((2 - sat) * val) / 2;
 
   // Convert saturation.
   if (li !== 0) {
@@ -34,7 +34,7 @@ p5.ColorConversion._hsbaToHSLA = function(hsba) {
     } else if (li < 0.5) {
       sat = sat / (2 - sat);
     } else {
-      sat = sat * val / (2 - li * 2);
+      sat = (sat * val) / (2 - li * 2);
     }
   }
 
@@ -45,7 +45,7 @@ p5.ColorConversion._hsbaToHSLA = function(hsba) {
 /**
  * Convert an HSBA array to RGBA.
  */
-p5.ColorConversion._hsbaToRGBA = function(hsba) {
+p5.ColorConversion._hsbaToRGBA = function (hsba) {
   const hue = hsba[0] * 6; // We will split hue into 6 sectors.
   const sat = hsba[1];
   const val = hsba[2];
@@ -100,7 +100,7 @@ p5.ColorConversion._hsbaToRGBA = function(hsba) {
 /**
  * Convert an HSLA array to HSBA.
  */
-p5.ColorConversion._hslaToHSBA = function(hsla) {
+p5.ColorConversion._hslaToHSBA = function (hsla) {
   const hue = hsla[0];
   let sat = hsla[1];
   const li = hsla[2];
@@ -114,7 +114,7 @@ p5.ColorConversion._hslaToHSBA = function(hsla) {
   }
 
   // Convert saturation.
-  sat = 2 * (val - li) / val;
+  sat = (2 * (val - li)) / val;
 
   // Hue and alpha stay the same.
   return [hue, sat, val, hsla[3]];
@@ -128,7 +128,7 @@ p5.ColorConversion._hslaToHSBA = function(hsla) {
  * components, and pick a convenient third one ('zest') so that we don't need
  * to calculate formal HSBA saturation.
  */
-p5.ColorConversion._hslaToRGBA = function(hsla) {
+p5.ColorConversion._hslaToRGBA = function (hsla) {
   const hue = hsla[0] * 6; // We will split hue into 6 sectors.
   const sat = hsla[1];
   const li = hsla[2];
@@ -177,7 +177,7 @@ p5.ColorConversion._hslaToRGBA = function(hsla) {
       hzvToRGB(hue + 2, zest, val),
       hzvToRGB(hue, zest, val),
       hzvToRGB(hue - 2, zest, val),
-      hsla[3]
+      hsla[3],
     ];
   }
 
@@ -187,7 +187,7 @@ p5.ColorConversion._hslaToRGBA = function(hsla) {
 /**
  * Convert an RGBA array to HSBA.
  */
-p5.ColorConversion._rgbaToHSBA = function(rgba) {
+p5.ColorConversion._rgbaToHSBA = function (rgba) {
   const red = rgba[0];
   const green = rgba[1];
   const blue = rgba[2];
@@ -226,7 +226,7 @@ p5.ColorConversion._rgbaToHSBA = function(rgba) {
 /**
  * Convert an RGBA array to HSLA.
  */
-p5.ColorConversion._rgbaToHSLA = function(rgba) {
+p5.ColorConversion._rgbaToHSLA = function (rgba) {
   const red = rgba[0];
   const green = rgba[1];
   const blue = rgba[2];

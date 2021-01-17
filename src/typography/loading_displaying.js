@@ -84,7 +84,7 @@ import '../core/friendly_errors/fes_core';
  * p5*js in p5's theme dark pink
  * p5*js in p5's theme dark pink
  */
-p5.prototype.loadFont = function(path, onSuccess, onError) {
+p5.prototype.loadFont = function (path, onSuccess, onError) {
   p5._validateParameters('loadFont', arguments);
   const p5Font = new p5.Font(this);
 
@@ -110,11 +110,7 @@ p5.prototype.loadFont = function(path, onSuccess, onError) {
     // check that we have an acceptable font type
     const validFontTypes = ['ttf', 'otf', 'woff', 'woff2'];
 
-    const fileNoPath = path
-      .split('\\')
-      .pop()
-      .split('/')
-      .pop();
+    const fileNoPath = path.split('\\').pop().split('/').pop();
 
     const lastDotIdx = fileNoPath.lastIndexOf('.');
     let fontFamily;
@@ -219,7 +215,7 @@ p5.prototype.loadFont = function(path, onSuccess, onError) {
  * The text 'The quick brown fox jumped over the lazy dog' displayed.
  * The text 'p5.js' spinning in 3d
  */
-p5.prototype.text = function(str, x, y, maxWidth, maxHeight) {
+p5.prototype.text = function (str, x, y, maxWidth, maxHeight) {
   p5._validateParameters('text', arguments);
   return !(this._renderer._doFill || this._renderer._doStroke)
     ? this
@@ -255,9 +251,10 @@ p5.prototype.text = function(str, x, y, maxWidth, maxHeight) {
  * }
  * function setup() {
  *   background(210);
+ *   // prettier-ignore
  *   fill(0)
-    .strokeWeight(0)
-    .textSize(10);
+ *     .strokeWeight(0)
+ *     .textSize(10);
  *   textFont(fontRegular);
  *   text('Font Style Normal', 10, 30);
  *   textFont(fontItalic);
@@ -280,7 +277,7 @@ p5.prototype.text = function(str, x, y, maxWidth, maxHeight) {
  * @param {Number} [size] the font size to use
  * @chainable
  */
-p5.prototype.textFont = function(theFont, theSize) {
+p5.prototype.textFont = function (theFont, theSize) {
   p5._validateParameters('textFont', arguments);
   if (arguments.length) {
     if (!theFont) {

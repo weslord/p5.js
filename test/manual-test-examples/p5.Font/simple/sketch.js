@@ -1,4 +1,4 @@
-var _setup = function(p, font) {
+var _setup = function (p, font) {
   var txt,
     tb,
     tw,
@@ -56,33 +56,33 @@ var _setup = function(p, font) {
   p.line(x, y + 6, x + tw, y + 6);
 };
 
-var textSketch = function(p) {
-  p.setup = function() {
-    p.loadFont('../acmesa.ttf', function(f) {
+var textSketch = function (p) {
+  p.setup = function () {
+    p.loadFont('../acmesa.ttf', function (f) {
       _setup(p, f);
     });
   };
 };
 
-var textSketchMono = function(p) {
-  p.setup = function() {
-    p.loadFont('../AndaleMono.ttf', function(f) {
+var textSketchMono = function (p) {
+  p.setup = function () {
+    p.loadFont('../AndaleMono.ttf', function (f) {
       _setup(p, f);
     });
   };
 };
 
-var textSketch1958 = function(p) {
+var textSketch1958 = function (p) {
   // issue #1958
   var font,
     lineW,
     words = 'swimming back to the rock';
 
-  p.preload = function() {
+  p.preload = function () {
     font = p.loadFont('../OpenSans-Regular.ttf');
   };
 
-  p.setup = function() {
+  p.setup = function () {
     function textAsWords(words, x, y) {
       var tw,
         spaceW = p.textWidth(' ');

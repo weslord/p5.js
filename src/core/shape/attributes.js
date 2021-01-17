@@ -65,7 +65,7 @@ import * as constants from '../constants';
  * 60x60 white ellipse and 30x30 grey ellipse with black outlines at center.
  * 60x60 white ellipse and 30x30 grey ellipse top-right with black outlines.
  */
-p5.prototype.ellipseMode = function(m) {
+p5.prototype.ellipseMode = function (m) {
   p5._validateParameters('ellipseMode', arguments);
   if (
     m === constants.CORNER ||
@@ -102,7 +102,7 @@ p5.prototype.ellipseMode = function(m) {
  * @alt
  * 2 pixelated 36x36 white ellipses to left & right of center, black background
  */
-p5.prototype.noSmooth = function() {
+p5.prototype.noSmooth = function () {
   this.setAttributes('antialias', false);
   if (!this._renderer.isP3D) {
     if ('imageSmoothingEnabled' in this.drawingContext) {
@@ -168,7 +168,7 @@ p5.prototype.noSmooth = function() {
  * 50x50 white rect at center and 25x25 grey rect in the top left of the other.
  * 50x50 white rect at center and 25x25 grey rect in the center of the other.
  */
-p5.prototype.rectMode = function(m) {
+p5.prototype.rectMode = function (m) {
   p5._validateParameters('rectMode', arguments);
   if (
     m === constants.CORNER ||
@@ -206,7 +206,7 @@ p5.prototype.rectMode = function(m) {
  * @alt
  * 2 pixelated 36x36 white ellipses one left one right of center. On black.
  */
-p5.prototype.smooth = function() {
+p5.prototype.smooth = function () {
   this.setAttributes('antialias', true);
   if (!this._renderer.isP3D) {
     if ('imageSmoothingEnabled' in this.drawingContext) {
@@ -244,7 +244,7 @@ p5.prototype.smooth = function() {
  * @alt
  * 3 lines. Top line: rounded ends, mid: squared, bottom:longer squared ends.
  */
-p5.prototype.strokeCap = function(cap) {
+p5.prototype.strokeCap = function (cap) {
   p5._validateParameters('strokeCap', arguments);
   if (
     cap === constants.ROUND ||
@@ -316,7 +316,7 @@ p5.prototype.strokeCap = function(cap) {
  * Right-facing arrowhead shape with flat tip in center of canvas.
  * Right-facing arrowhead shape with rounded tip in center of canvas.
  */
-p5.prototype.strokeJoin = function(join) {
+p5.prototype.strokeJoin = function (join) {
   p5._validateParameters('strokeJoin', arguments);
   if (
     join === constants.ROUND ||
@@ -351,7 +351,7 @@ p5.prototype.strokeJoin = function(join) {
  * @alt
  * 3 horizontal black lines. Top line: thin, mid: medium, bottom:thick.
  */
-p5.prototype.strokeWeight = function(w) {
+p5.prototype.strokeWeight = function (w) {
   p5._validateParameters('strokeWeight', arguments);
   this._renderer.strokeWeight(w);
   return this;

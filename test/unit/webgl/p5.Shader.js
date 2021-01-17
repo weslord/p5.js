@@ -1,4 +1,4 @@
-suite('p5.Shader', function() {
+suite('p5.Shader', function () {
   var myp5;
 
   if (!window.Modernizr.webgl) {
@@ -6,9 +6,9 @@ suite('p5.Shader', function() {
     return;
   }
 
-  setup(function() {
-    myp5 = new p5(function(p) {
-      p.setup = function() {
+  setup(function () {
+    myp5 = new p5(function (p) {
+      p.setup = function () {
         p.createCanvas(100, 100, p.WEBGL);
         p.pointLight(250, 250, 250, 100, 100, 0);
         p.ambientMaterial(250);
@@ -16,7 +16,7 @@ suite('p5.Shader', function() {
     });
   });
 
-  var testUniforms = function(shaderName, uniforms, expectedUniforms) {
+  var testUniforms = function (shaderName, uniforms, expectedUniforms) {
     // assert(expectedUniforms.length === Object.keys(uniforms).length,
     //   shaderName + ' expected ' + expectedUniforms.length + ' uniforms but has ' +
     //   Object.keys(uniforms).length);
@@ -31,7 +31,7 @@ suite('p5.Shader', function() {
     }
   };
 
-  var testAttributes = function(shaderName, attributes, expectedAttributes) {
+  var testAttributes = function (shaderName, attributes, expectedAttributes) {
     // assert(expectedAttributes.length === Object.keys(attributes).length,
     //   shaderName + ' expected ' + expectedAttributes.length +
     //   ' attributes but has ' + Object.keys(attributes).length);
@@ -46,7 +46,7 @@ suite('p5.Shader', function() {
     }
   };
 
-  var testShader = function(
+  var testShader = function (
     shaderName,
     shaderObj,
     expectedAttributes,
@@ -58,12 +58,12 @@ suite('p5.Shader', function() {
     shaderObj.unbindShader();
   };
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
-  suite('Shader', function() {
-    test('Light Shader', function() {
+  suite('Shader', function () {
+    test('Light Shader', function () {
       var expectedAttributes = ['aPosition', 'aNormal', 'aTexCoord'];
 
       var expectedUniforms = [
@@ -95,7 +95,7 @@ suite('p5.Shader', function() {
         'uEmissive',
         'uConstantAttenuation',
         'uLinearAttenuation',
-        'uQuadraticAttenuation'
+        'uQuadraticAttenuation',
       ];
 
       testShader(
@@ -105,13 +105,13 @@ suite('p5.Shader', function() {
         expectedUniforms
       );
     });
-    test('Color Shader definition', function() {
+    test('Color Shader definition', function () {
       var expectedAttributes = ['aPosition'];
 
       var expectedUniforms = [
         'uModelViewMatrix',
         'uProjectionMatrix',
-        'uMaterialColor'
+        'uMaterialColor',
       ];
 
       testShader(
@@ -121,14 +121,14 @@ suite('p5.Shader', function() {
         expectedUniforms
       );
     });
-    test('Immediate Mode Shader definition', function() {
+    test('Immediate Mode Shader definition', function () {
       var expectedAttributes = ['aPosition', 'aVertexColor'];
 
       var expectedUniforms = [
         'uModelViewMatrix',
         'uProjectionMatrix',
         /*'uResolution',*/
-        'uPointSize'
+        'uPointSize',
       ];
 
       testShader(
@@ -138,13 +138,13 @@ suite('p5.Shader', function() {
         expectedUniforms
       );
     });
-    test('Normal Shader definition', function() {
+    test('Normal Shader definition', function () {
       var expectedAttributes = ['aPosition', 'aNormal'];
 
       var expectedUniforms = [
         'uModelViewMatrix',
         'uProjectionMatrix',
-        'uNormalMatrix'
+        'uNormalMatrix',
       ];
 
       testShader(
@@ -154,7 +154,7 @@ suite('p5.Shader', function() {
         expectedUniforms
       );
     });
-    test('Color Shader is set after fill()', function() {
+    test('Color Shader is set after fill()', function () {
       myp5.fill(0);
       var retainedColorShader = myp5._renderer._getColorShader();
       var texLightShader = myp5._renderer._getLightShader();
@@ -175,7 +175,7 @@ suite('p5.Shader', function() {
         "_renderer's immediate mode shader was not color shader after fill"
       );
     });
-    test('Normal Shader is set after normalMaterial()', function() {
+    test('Normal Shader is set after normalMaterial()', function () {
       myp5.normalMaterial();
       var normalShader = myp5._renderer._getNormalShader();
       var selectedRetainedShader = myp5._renderer._getRetainedFillShader();
@@ -189,7 +189,7 @@ suite('p5.Shader', function() {
         "_renderer's retain mode shader was not normal shader"
       );
     });
-    test('Light shader set after ambientMaterial()', function() {
+    test('Light shader set after ambientMaterial()', function () {
       var lightShader = myp5._renderer._getLightShader();
       myp5.ambientMaterial(128);
       var selectedRetainedShader = myp5._renderer._getRetainedFillShader();
@@ -205,7 +205,7 @@ suite('p5.Shader', function() {
           'after call to ambientMaterial()'
       );
     });
-    test('Light shader set after specularMaterial()', function() {
+    test('Light shader set after specularMaterial()', function () {
       var lightShader = myp5._renderer._getLightShader();
       myp5.specularMaterial(128);
       var selectedRetainedShader = myp5._renderer._getRetainedFillShader();
@@ -221,7 +221,7 @@ suite('p5.Shader', function() {
           'after call to specularMaterial()'
       );
     });
-    test('Light shader set after emissiveMaterial()', function() {
+    test('Light shader set after emissiveMaterial()', function () {
       var lightShader = myp5._renderer._getLightShader();
       myp5.emissiveMaterial(128);
       var selectedRetainedShader = myp5._renderer._getRetainedFillShader();
@@ -238,7 +238,7 @@ suite('p5.Shader', function() {
       );
     });
 
-    test('Able to setUniform empty arrays', function() {
+    test('Able to setUniform empty arrays', function () {
       myp5.shader(myp5._renderer._getLightShader());
       var s = myp5._renderer.userFillShader;
 
@@ -246,13 +246,13 @@ suite('p5.Shader', function() {
       s.setUniform('uLightingDirection', []);
     });
 
-    test('Able to set shininess', function() {
+    test('Able to set shininess', function () {
       assert.deepEqual(myp5._renderer._useShininess, 1);
       myp5.shininess(50);
       assert.deepEqual(myp5._renderer._useShininess, 50);
     });
 
-    test('Shader is reset after resetShader is called', function() {
+    test('Shader is reset after resetShader is called', function () {
       myp5.shader(myp5._renderer._getColorShader());
       var prevShader = myp5._renderer.userFillShader;
       assert.isTrue(prevShader !== null);

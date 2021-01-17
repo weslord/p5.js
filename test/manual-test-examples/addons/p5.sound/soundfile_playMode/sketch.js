@@ -10,11 +10,11 @@ var sample1, sample2, button;
 function preload() {
   sample1 = loadSound([
     '../_files/Damscray_01.ogg',
-    '../_files/Damscray_01.mp3'
+    '../_files/Damscray_01.mp3',
   ]);
   sample2 = loadSound([
     '../_files/Damscray_02.ogg',
-    '../_files/Damscray_02.mp3'
+    '../_files/Damscray_02.mp3',
   ]);
 }
 

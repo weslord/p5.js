@@ -126,7 +126,7 @@ p5.prototype.pAccelerationZ = 0;
  *
  * @private
  */
-p5.prototype._updatePAccelerations = function() {
+p5.prototype._updatePAccelerations = function () {
   this._setProperty('pAccelerationX', this.accelerationX);
   this._setProperty('pAccelerationY', this.accelerationY);
   this._setProperty('pAccelerationZ', this.accelerationZ);
@@ -380,7 +380,7 @@ p5.prototype.pRotateDirectionX = undefined;
 p5.prototype.pRotateDirectionY = undefined;
 p5.prototype.pRotateDirectionZ = undefined;
 
-p5.prototype._updatePRotations = function() {
+p5.prototype._updatePRotations = function () {
   this._setProperty('pRotationX', this.rotationX);
   this._setProperty('pRotationY', this.rotationY);
   this._setProperty('pRotationZ', this.rotationZ);
@@ -463,7 +463,7 @@ let shake_threshold = 30;
  * 50x50 black rect in center of canvas. turns white on mobile when device moves
  */
 
-p5.prototype.setMoveThreshold = function(val) {
+p5.prototype.setMoveThreshold = function (val) {
   p5._validateParameters('setMoveThreshold', arguments);
   move_threshold = val;
 };
@@ -507,7 +507,7 @@ p5.prototype.setMoveThreshold = function(val) {
  * is being shaked
  */
 
-p5.prototype.setShakeThreshold = function(val) {
+p5.prototype.setShakeThreshold = function (val) {
   p5._validateParameters('setShakeThreshold', arguments);
   shake_threshold = val;
 };
@@ -632,7 +632,7 @@ p5.prototype.setShakeThreshold = function(val) {
  * 50x50 black rect in center of canvas. turns white on mobile when device shakes
  */
 
-p5.prototype._ondeviceorientation = function(e) {
+p5.prototype._ondeviceorientation = function (e) {
   this._updatePRotations();
   if (this._angleMode === constants.radians) {
     e.beta = e.beta * (_PI / 180.0);
@@ -644,14 +644,14 @@ p5.prototype._ondeviceorientation = function(e) {
   this._setProperty('rotationZ', e.alpha);
   this._handleMotion();
 };
-p5.prototype._ondevicemotion = function(e) {
+p5.prototype._ondevicemotion = function (e) {
   this._updatePAccelerations();
   this._setProperty('accelerationX', e.acceleration.x * 2);
   this._setProperty('accelerationY', e.acceleration.y * 2);
   this._setProperty('accelerationZ', e.acceleration.z * 2);
   this._handleMotion();
 };
-p5.prototype._handleMotion = function() {
+p5.prototype._handleMotion = function () {
   if (window.orientation === 90 || window.orientation === -90) {
     this._setProperty('deviceOrientation', 'landscape');
   } else if (window.orientation === 0) {

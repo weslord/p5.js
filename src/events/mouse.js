@@ -416,7 +416,7 @@ p5.prototype.mouseButton = 0;
  */
 p5.prototype.mouseIsPressed = false;
 
-p5.prototype._updateNextMouseCoords = function(e) {
+p5.prototype._updateNextMouseCoords = function (e) {
   if (this._curElement !== null && (!e.touches || e.touches.length > 0)) {
     const mousePos = getMousePos(
       this._curElement.elt,
@@ -438,7 +438,7 @@ p5.prototype._updateNextMouseCoords = function(e) {
   }
 };
 
-p5.prototype._updateMouseCoords = function() {
+p5.prototype._updateMouseCoords = function () {
   this._setProperty('pmouseX', this.mouseX);
   this._setProperty('pmouseY', this.mouseY);
   this._setProperty('pwinMouseX', this.winMouseX);
@@ -464,11 +464,11 @@ function getMousePos(canvas, w, h, evt) {
     y: (evt.clientY - rect.top) / sy,
     winX: evt.clientX,
     winY: evt.clientY,
-    id: evt.identifier
+    id: evt.identifier,
   };
 }
 
-p5.prototype._setMouseButton = function(e) {
+p5.prototype._setMouseButton = function (e) {
   if (e.button === 1) {
     this._setProperty('mouseButton', constants.CENTER);
   } else if (e.button === 2) {
@@ -586,7 +586,7 @@ p5.prototype._setMouseButton = function(e) {
  * black 50x50 rect turns lighter with mouse click and drag until white, resets
  * no image displayed
  */
-p5.prototype._onmousemove = function(e) {
+p5.prototype._onmousemove = function (e) {
   const context = this._isGlobal ? window : this;
   let executeDefault;
   this._updateNextMouseCoords(e);
@@ -669,7 +669,7 @@ p5.prototype._onmousemove = function(e) {
  * black 50x50 rect turns white with mouse click/press.
  * no image displayed
  */
-p5.prototype._onmousedown = function(e) {
+p5.prototype._onmousedown = function (e) {
   const context = this._isGlobal ? window : this;
   let executeDefault;
   this._setProperty('mouseIsPressed', true);
@@ -749,7 +749,7 @@ p5.prototype._onmousedown = function(e) {
  * black 50x50 rect turns white with mouse click/press.
  * no image displayed
  */
-p5.prototype._onmouseup = function(e) {
+p5.prototype._onmouseup = function (e) {
   const context = this._isGlobal ? window : this;
   let executeDefault;
   this._setProperty('mouseIsPressed', false);
@@ -828,7 +828,7 @@ p5.prototype._ondragover = p5.prototype._onmousemove;
  * black 50x50 rect turns white with mouse click/press.
  * no image displayed
  */
-p5.prototype._onclick = function(e) {
+p5.prototype._onclick = function (e) {
   const context = this._isGlobal ? window : this;
   if (typeof context.mouseClicked === 'function') {
     const executeDefault = context.mouseClicked(e);
@@ -897,7 +897,7 @@ p5.prototype._onclick = function(e) {
  * no image displayed
  */
 
-p5.prototype._ondblclick = function(e) {
+p5.prototype._ondblclick = function (e) {
   const context = this._isGlobal ? window : this;
   if (typeof context.doubleClicked === 'function') {
     const executeDefault = context.doubleClicked(e);
@@ -964,7 +964,7 @@ p5.prototype._pmouseWheelDeltaY = 0;
  * @alt
  * black 50x50 rect moves up and down with vertical scroll. fuchsia background
  */
-p5.prototype._onwheel = function(e) {
+p5.prototype._onwheel = function (e) {
   const context = this._isGlobal ? window : this;
   this._setProperty('_mouseWheelDeltaY', e.deltaY);
   if (typeof context.mouseWheel === 'function') {
@@ -1009,7 +1009,7 @@ p5.prototype._onwheel = function(e) {
  * @alt
  * 3D scene moves according to mouse mouse movement in a first person perspective
  */
-p5.prototype.requestPointerLock = function() {
+p5.prototype.requestPointerLock = function () {
   // pointer lock object forking for cross browser
   const canvas = this._curElement.elt;
   canvas.requestPointerLock =
@@ -1052,7 +1052,7 @@ p5.prototype.requestPointerLock = function() {
  * @alt
  * cursor gets locked / unlocked on mouse-click
  */
-p5.prototype.exitPointerLock = function() {
+p5.prototype.exitPointerLock = function () {
   document.exitPointerLock();
 };
 

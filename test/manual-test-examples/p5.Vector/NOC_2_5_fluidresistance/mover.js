@@ -11,12 +11,12 @@ function Mover(m, x, y) {
 
 // Newton's 2nd law: F = M * A
 // or A = F / M
-Mover.prototype.applyForce = function(force) {
+Mover.prototype.applyForce = function (force) {
   var f = p5.Vector.div(force, this.mass);
   this.acceleration.add(f);
 };
 
-Mover.prototype.update = function() {
+Mover.prototype.update = function () {
   // Velocity changes according to acceleration
   this.velocity.add(this.acceleration);
   // position changes by velocity
@@ -25,7 +25,7 @@ Mover.prototype.update = function() {
   this.acceleration.mult(0);
 };
 
-Mover.prototype.display = function() {
+Mover.prototype.display = function () {
   stroke(0);
   strokeWeight(2);
   fill(255, 127);
@@ -33,7 +33,7 @@ Mover.prototype.display = function() {
 };
 
 // Bounce off bottom of window
-Mover.prototype.checkEdges = function() {
+Mover.prototype.checkEdges = function () {
   if (this.position.y > height) {
     this.velocity.y *= -0.9; // A little dampening when hitting the bottom
     this.position.y = height;

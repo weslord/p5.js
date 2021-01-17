@@ -54,7 +54,7 @@ import p5 from '../core/main';
  * [a, b, c, d, e]; // unused
  * </code></div>
  */
-p5.prototype.select = function(e, p) {
+p5.prototype.select = function (e, p) {
   p5._validateParameters('select', arguments);
   const container = this._getContainer(p);
   const res = container.querySelector(e);
@@ -110,7 +110,7 @@ p5.prototype.select = function(e, p) {
  * console.log(a);
  * </code></div>
  */
-p5.prototype.selectAll = function(e, p) {
+p5.prototype.selectAll = function (e, p) {
   p5._validateParameters('selectAll', arguments);
   const arr = [];
   const container = this._getContainer(p);
@@ -127,7 +127,7 @@ p5.prototype.selectAll = function(e, p) {
 /**
  * Helper function for select and selectAll
  */
-p5.prototype._getContainer = function(p) {
+p5.prototype._getContainer = function (p) {
   let container = document;
   if (typeof p === 'string') {
     container = document.querySelector(p) || document;
@@ -142,11 +142,11 @@ p5.prototype._getContainer = function(p) {
 /**
  * Helper function for getElement and getElements.
  */
-p5.prototype._wrapElement = function(elt) {
+p5.prototype._wrapElement = function (elt) {
   const children = Array.prototype.slice.call(elt.children);
   if (elt.tagName === 'INPUT' && elt.type === 'checkbox') {
     let converted = new p5.Element(elt, this);
-    converted.checked = function() {
+    converted.checked = function () {
       if (arguments.length === 0) {
         return this.elt.checked;
       } else if (arguments[0]) {
@@ -163,7 +163,7 @@ p5.prototype._wrapElement = function(elt) {
     return this.createSelect(new p5.Element(elt, this));
   } else if (
     children.length > 0 &&
-    children.every(function(c) {
+    children.every(function (c) {
       return c.tagName === 'INPUT' || c.tagName === 'LABEL';
     })
   ) {
@@ -193,12 +193,12 @@ p5.prototype._wrapElement = function(elt) {
  * }
  * </code></div>
  */
-p5.prototype.removeElements = function(e) {
+p5.prototype.removeElements = function (e) {
   p5._validateParameters('removeElements', arguments);
   // el.remove splices from this._elements, so don't mix iteration with it
-  const isNotCanvasElement = el => !(el.elt instanceof HTMLCanvasElement);
+  const isNotCanvasElement = (el) => !(el.elt instanceof HTMLCanvasElement);
   const removeableElements = this._elements.filter(isNotCanvasElement);
-  removeableElements.map(el => el.remove());
+  removeableElements.map((el) => el.remove());
 };
 
 /**
@@ -263,7 +263,7 @@ p5.prototype.removeElements = function(e) {
  * @alt
  * dropdown: pear, kiwi, grape. When selected text "its a" + selection shown.
  */
-p5.Element.prototype.changed = function(fxn) {
+p5.Element.prototype.changed = function (fxn) {
   p5.Element._adjustListener('change', fxn, this);
   return this;
 };
@@ -301,7 +301,7 @@ p5.Element.prototype.changed = function(fxn) {
  * @alt
  * no display.
  */
-p5.Element.prototype.input = function(fxn) {
+p5.Element.prototype.input = function (fxn) {
   p5.Element._adjustListener('input', fxn, this);
   return this;
 };
@@ -332,7 +332,7 @@ function addElement(elt, pInst, media) {
  * div.position(10, 0);
  * </code></div>
  */
-p5.prototype.createDiv = function(html = '') {
+p5.prototype.createDiv = function (html = '') {
   let elt = document.createElement('div');
   elt.innerHTML = html;
   return addElement(elt, this);
@@ -352,7 +352,7 @@ p5.prototype.createDiv = function(html = '') {
  * p.position(10, 0);
  * </code></div>
  */
-p5.prototype.createP = function(html = '') {
+p5.prototype.createP = function (html = '') {
   let elt = document.createElement('p');
   elt.innerHTML = html;
   return addElement(elt, this);
@@ -370,7 +370,7 @@ p5.prototype.createP = function(html = '') {
  * span.position(0, 0);
  * </code></div>
  */
-p5.prototype.createSpan = function(html = '') {
+p5.prototype.createSpan = function (html = '') {
   let elt = document.createElement('span');
   elt.innerHTML = html;
   return addElement(elt, this);
@@ -401,7 +401,7 @@ p5.prototype.createSpan = function(html = '') {
  * @param  {Function} [successCallback] callback to be called once image data is loaded with the <a href="#/p5.Element">p5.Element</a> as argument
  * @return {p5.Element} pointer to <a href="#/p5.Element">p5.Element</a> holding created node
  */
-p5.prototype.createImg = function() {
+p5.prototype.createImg = function () {
   p5._validateParameters('createImg', arguments);
   const elt = document.createElement('img');
   const args = arguments;
@@ -414,7 +414,7 @@ p5.prototype.createImg = function() {
   }
   elt.src = args[0];
   self = addElement(elt, this);
-  elt.addEventListener('load', function() {
+  elt.addEventListener('load', function () {
     self.width = elt.offsetWidth || elt.width;
     self.height = elt.offsetHeight || elt.height;
     const last = args[args.length - 1];
@@ -438,7 +438,7 @@ p5.prototype.createImg = function() {
  * a.position(0, 0);
  * </code></div>
  */
-p5.prototype.createA = function(href, html, target) {
+p5.prototype.createA = function (href, html, target) {
   p5._validateParameters('createA', arguments);
   const elt = document.createElement('a');
   elt.href = href;
@@ -489,7 +489,7 @@ p5.prototype.createA = function(href, html, target) {
  * }
  * </code></div>
  */
-p5.prototype.createSlider = function(min, max, value, step) {
+p5.prototype.createSlider = function (min, max, value, step) {
   p5._validateParameters('createSlider', arguments);
   const elt = document.createElement('input');
   elt.type = 'range';
@@ -530,7 +530,7 @@ p5.prototype.createSlider = function(min, max, value, step) {
  * }
  * </code></div>
  */
-p5.prototype.createButton = function(label, value) {
+p5.prototype.createButton = function (label, value) {
   p5._validateParameters('createButton', arguments);
   const elt = document.createElement('button');
   elt.innerHTML = label;
@@ -564,7 +564,7 @@ p5.prototype.createButton = function(label, value) {
  * }
  * </code></div>
  */
-p5.prototype.createCheckbox = function() {
+p5.prototype.createCheckbox = function () {
   p5._validateParameters('createCheckbox', arguments);
   const elt = document.createElement('div');
   const checkbox = document.createElement('input');
@@ -572,7 +572,7 @@ p5.prototype.createCheckbox = function() {
   elt.appendChild(checkbox);
   //checkbox must be wrapped in p5.Element before label so that label appears after
   const self = addElement(elt, this);
-  self.checked = function() {
+  self.checked = function () {
     const cb = self.elt.getElementsByTagName('input')[0];
     if (cb) {
       if (arguments.length === 0) {
@@ -585,14 +585,12 @@ p5.prototype.createCheckbox = function() {
     }
     return self;
   };
-  this.value = function(val) {
+  this.value = function (val) {
     self.value = val;
     return this;
   };
   if (arguments[0]) {
-    const ran = Math.random()
-      .toString(36)
-      .slice(2);
+    const ran = Math.random().toString(36).slice(2);
     const label = document.createElement('label');
     checkbox.setAttribute('id', ran);
     label.htmlFor = ran;
@@ -663,7 +661,7 @@ p5.prototype.createCheckbox = function() {
  * @return {p5.Element}
  */
 
-p5.prototype.createSelect = function() {
+p5.prototype.createSelect = function () {
   p5._validateParameters('createSelect', arguments);
   let self;
   let arg = arguments[0];
@@ -682,7 +680,7 @@ p5.prototype.createSelect = function() {
     self = addElement(elt, this);
     this.elt = elt;
   }
-  self.option = function(name, value) {
+  self.option = function (name, value) {
     let index;
 
     // if no name is passed, return
@@ -715,7 +713,7 @@ p5.prototype.createSelect = function() {
     }
   };
 
-  self.selected = function(value) {
+  self.selected = function (value) {
     // Update selected status of option
     if (value !== undefined) {
       for (let i = 0; i < this.elt.length; i += 1) {
@@ -737,7 +735,7 @@ p5.prototype.createSelect = function() {
     }
   };
 
-  self.disable = function(value) {
+  self.disable = function (value) {
     if (typeof value === 'string') {
       for (let i = 0; i < this.elt.length; i++) {
         if (this.elt[i].value.toString() === value) {
@@ -821,7 +819,7 @@ p5.prototype.createSelect = function() {
  * @method createRadio
  * @return {p5.Element} pointer to <a href="#/p5.Element">p5.Element</a> holding created node
  */
-p5.prototype.createRadio = function() {
+p5.prototype.createRadio = function () {
   // Creates a div, adds each option as an individual input inside it.
   // If already given with a containerEl, will search for all input[radio]
   // it, create a p5.Element out of it, add options to it and return the p5.Element.
@@ -842,15 +840,15 @@ p5.prototype.createRadio = function() {
   self._name = name || 'radioOption';
 
   // setup member functions
-  const isRadioInput = el =>
+  const isRadioInput = (el) =>
     el instanceof HTMLInputElement && el.type === 'radio';
-  const isNextLabel = el => el.nextElementSibling instanceof HTMLLabelElement;
+  const isNextLabel = (el) => el.nextElementSibling instanceof HTMLLabelElement;
 
-  self._getOptionsArray = function() {
+  self._getOptionsArray = function () {
     return Array.from(this.elt.children).filter(isRadioInput);
   };
 
-  self.option = function(value, label) {
+  self.option = function (value, label) {
     // return an option with this value, create if not exists.
     let optionEl;
     for (const option of self._getOptionsArray()) {
@@ -882,7 +880,7 @@ p5.prototype.createRadio = function() {
     return optionEl;
   };
 
-  self.remove = function(value) {
+  self.remove = function (value) {
     for (const optionEl of self._getOptionsArray()) {
       if (optionEl.value === value) {
         if (isNextLabel(optionEl)) optionEl.nextElementSibling.remove();
@@ -892,7 +890,7 @@ p5.prototype.createRadio = function() {
     }
   };
 
-  self.value = function() {
+  self.value = function () {
     let result = '';
     for (const option of self._getOptionsArray()) {
       if (option.checked) {
@@ -903,7 +901,7 @@ p5.prototype.createRadio = function() {
     return result;
   };
 
-  self.selected = function(value) {
+  self.selected = function (value) {
     let result = null;
     if (value === undefined) {
       for (const option of self._getOptionsArray()) {
@@ -923,7 +921,7 @@ p5.prototype.createRadio = function() {
     return result;
   };
 
-  self.disable = function(shouldDisable = true) {
+  self.disable = function (shouldDisable = true) {
     for (const radioInput of self._getOptionsArray()) {
       radioInput.setAttribute('disabled', shouldDisable);
     }
@@ -984,7 +982,7 @@ p5.prototype.createRadio = function() {
  * }
  * </code></div>
  */
-p5.prototype.createColorPicker = function(value) {
+p5.prototype.createColorPicker = function (value) {
   p5._validateParameters('createColorPicker', arguments);
   const elt = document.createElement('input');
   let self;
@@ -997,7 +995,7 @@ p5.prototype.createColorPicker = function(value) {
       p5.prototype._colorMaxes = {
         rgb: [255, 255, 255, 255],
         hsb: [360, 100, 100, 1],
-        hsl: [360, 100, 100, 1]
+        hsl: [360, 100, 100, 1],
       };
       elt.value = p5.prototype.color(value).toString('#rrggbb');
     }
@@ -1006,7 +1004,7 @@ p5.prototype.createColorPicker = function(value) {
   }
   self = addElement(elt, this);
   // Method to return a p5.Color object for the given color.
-  self.color = function() {
+  self.color = function () {
     if (value) {
       if (value.mode) {
         p5.prototype._colorMode = value.mode;
@@ -1050,7 +1048,7 @@ p5.prototype.createColorPicker = function(value) {
  * @param {String} [value]
  * @return {p5.Element}
  */
-p5.prototype.createInput = function(value = '', type = 'text') {
+p5.prototype.createInput = function (value = '', type = 'text') {
   p5._validateParameters('createInput', arguments);
   let elt = document.createElement('input');
   elt.setAttribute('value', value);
@@ -1094,10 +1092,10 @@ p5.prototype.createInput = function(value = '', type = 'text') {
  * }
  * </code></div>
  */
-p5.prototype.createFileInput = function(callback, multiple = false) {
+p5.prototype.createFileInput = function (callback, multiple = false) {
   p5._validateParameters('createFileInput', arguments);
 
-  const handleFileSelect = function(event) {
+  const handleFileSelect = function (event) {
     for (const file of event.target.files) {
       p5.File._load(file, callback);
     }
@@ -1206,7 +1204,7 @@ function createMedia(pInst, type, src, callback) {
  * }
  * </code></div>
  */
-p5.prototype.createVideo = function(src, callback) {
+p5.prototype.createVideo = function (src, callback) {
   p5._validateParameters('createVideo', arguments);
   return createMedia(this, 'video', src, callback);
 };
@@ -1245,7 +1243,7 @@ p5.prototype.createVideo = function(src, callback) {
  * }
  * </code></div>
  */
-p5.prototype.createAudio = function(src, callback) {
+p5.prototype.createAudio = function (src, callback) {
   p5._validateParameters('createAudio', arguments);
   return createMedia(this, 'audio', src, callback);
 };
@@ -1275,7 +1273,7 @@ if (navigator.mediaDevices === undefined) {
 // with getUserMedia as it would overwrite existing properties.
 // Here, we will just add the getUserMedia property if it's missing.
 if (navigator.mediaDevices.getUserMedia === undefined) {
-  navigator.mediaDevices.getUserMedia = function(constraints) {
+  navigator.mediaDevices.getUserMedia = function (constraints) {
     // First get ahold of the legacy getUserMedia, if present
     const getUserMedia =
       navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -1289,7 +1287,7 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
     }
 
     // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       getUserMedia.call(navigator, constraints, resolve, reject);
     });
   };
@@ -1333,7 +1331,7 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
  * }
  *
  * function draw() {
- *   image(capture, 0, 0, width, width * capture.height / capture.width);
+ *   image(capture, 0, 0, width, (width * capture.height) / capture.width);
  *   filter(INVERT);
  * }
  * </code>
@@ -1347,13 +1345,13 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
  *     video: {
  *       mandatory: {
  *         minWidth: 1280,
- *         minHeight: 720
+ *         minHeight: 720,
  *       },
- *       optional: [{ maxFrameRate: 10 }]
+ *       optional: [{ maxFrameRate: 10 }],
  *     },
- *     audio: true
+ *     audio: true,
  *   };
- *   createCapture(constraints, function(stream) {
+ *   createCapture(constraints, function (stream) {
  *     console.log(stream);
  *   });
  * }
@@ -1377,7 +1375,7 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
  * </code>
  * </div>
  */
-p5.prototype.createCapture = function() {
+p5.prototype.createCapture = function () {
   p5._validateParameters('createCapture', arguments);
 
   // return if getUserMedia is not supported by browser
@@ -1401,7 +1399,7 @@ p5.prototype.createCapture = function() {
   // required to work in iOS 11 & up:
   domElement.setAttribute('playsinline', '');
 
-  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+  navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
     try {
       if ('srcObject' in domElement) {
         domElement.srcObject = stream;
@@ -1416,7 +1414,7 @@ p5.prototype.createCapture = function() {
   const videoEl = addElement(domElement, this, true);
   videoEl.loadedmetadata = false;
   // set width and height onload metadata
-  domElement.addEventListener('loadedmetadata', function() {
+  domElement.addEventListener('loadedmetadata', function () {
     domElement.play();
     if (domElement.width) {
       videoEl.width = domElement.width;
@@ -1446,7 +1444,7 @@ p5.prototype.createCapture = function() {
  * h5.position(0, 0);
  * </code></div>
  */
-p5.prototype.createElement = function(tag, content) {
+p5.prototype.createElement = function (tag, content) {
   p5._validateParameters('createElement', arguments);
   const elt = document.createElement(tag);
   if (typeof content !== 'undefined') {
@@ -1472,7 +1470,7 @@ p5.prototype.createElement = function(tag, content) {
  * div.addClass('myClass');
  * </code></div>
  */
-p5.Element.prototype.addClass = function(c) {
+p5.Element.prototype.addClass = function (c) {
   if (this.elt.className) {
     if (!this.hasClass(c)) {
       this.elt.className = this.elt.className + ' ' + c;
@@ -1508,7 +1506,7 @@ p5.Element.prototype.addClass = function(c) {
  * }
  * </code></div>
  */
-p5.Element.prototype.removeClass = function(c) {
+p5.Element.prototype.removeClass = function (c) {
   // Note: Removing a class that does not exist does NOT throw an error in classList.remove method
   this.elt.classList.remove(c);
   return this;
@@ -1539,7 +1537,7 @@ p5.Element.prototype.removeClass = function(c) {
  * }
  * </code></div>
  */
-p5.Element.prototype.hasClass = function(c) {
+p5.Element.prototype.hasClass = function (c) {
   return this.elt.classList.contains(c);
 };
 
@@ -1564,7 +1562,7 @@ p5.Element.prototype.hasClass = function(c) {
  * }
  * </code></div>
  */
-p5.Element.prototype.toggleClass = function(c) {
+p5.Element.prototype.toggleClass = function (c) {
   // classList also has a toggle() method, but we cannot use that yet as support is unclear.
   // See https://github.com/processing/p5.js/issues/3631
   // this.elt.classList.toggle(c);
@@ -1610,7 +1608,7 @@ p5.Element.prototype.toggleClass = function(c) {
  *                         to add to the current element
  * @chainable
  */
-p5.Element.prototype.child = function(childNode) {
+p5.Element.prototype.child = function (childNode) {
   if (typeof childNode === 'undefined') {
     return this.elt.childNodes;
   }
@@ -1648,7 +1646,7 @@ p5.Element.prototype.child = function(childNode) {
  * }
  * </code></div>
  */
-p5.Element.prototype.center = function(align) {
+p5.Element.prototype.center = function (align) {
   const style = this.elt.style.display;
   const hidden = this.elt.style.display === 'none';
   const parentHidden = this.parent().style.display === 'none';
@@ -1707,7 +1705,7 @@ p5.Element.prototype.center = function(align) {
  * @param  {boolean} [append] whether to append HTML to existing
  * @chainable
  */
-p5.Element.prototype.html = function() {
+p5.Element.prototype.html = function () {
   if (arguments.length === 0) {
     return this.elt.innerHTML;
   } else if (arguments[1]) {
@@ -1759,7 +1757,7 @@ p5.Element.prototype.html = function() {
  * @param  {String} positionType it can be static, fixed, relative, sticky, initial or inherit (optional)
  * @chainable
  */
-p5.Element.prototype.position = function() {
+p5.Element.prototype.position = function () {
   if (arguments.length === 0) {
     return { x: this.elt.offsetLeft, y: this.elt.offsetTop };
   } else {
@@ -1784,7 +1782,7 @@ p5.Element.prototype.position = function() {
 };
 
 /* Helper method called by p5.Element.style() */
-p5.Element.prototype._translate = function() {
+p5.Element.prototype._translate = function () {
   this.elt.style.position = 'absolute';
   // save out initial non-translate transform styling
   let transform = '';
@@ -1816,7 +1814,7 @@ p5.Element.prototype._translate = function() {
 };
 
 /* Helper method called by p5.Element.style() */
-p5.Element.prototype._rotate = function() {
+p5.Element.prototype._rotate = function () {
   // save out initial non-rotate transform styling
   let transform = '';
   if (this.elt.style.transform) {
@@ -1881,7 +1879,7 @@ p5.Element.prototype._rotate = function() {
  * @return {String} current value of property, if no value is given as second argument
  * @chainable
  */
-p5.Element.prototype.style = function(prop, val) {
+p5.Element.prototype.style = function (prop, val) {
   const self = this;
 
   if (val instanceof p5.Color) {
@@ -1952,7 +1950,7 @@ p5.Element.prototype.style = function(prop, val) {
  * @param  {String} value      value to assign to attribute
  * @chainable
  */
-p5.Element.prototype.attribute = function(attr, value) {
+p5.Element.prototype.attribute = function (attr, value) {
   //handling for checkboxes and radios to ensure options get
   //attributes not divs
   if (
@@ -2006,7 +2004,7 @@ p5.Element.prototype.attribute = function(attr, value) {
  * }
  * </code></div>
  */
-p5.Element.prototype.removeAttribute = function(attr) {
+p5.Element.prototype.removeAttribute = function (attr) {
   if (
     this.elt.firstChild != null &&
     (this.elt.firstChild.type === 'checkbox' ||
@@ -2055,7 +2053,7 @@ p5.Element.prototype.removeAttribute = function(attr) {
  * @param  {String|Number}     value
  * @chainable
  */
-p5.Element.prototype.value = function() {
+p5.Element.prototype.value = function () {
   if (arguments.length > 0) {
     this.elt.value = arguments[0];
     return this;
@@ -2079,7 +2077,7 @@ p5.Element.prototype.value = function() {
  * div.show(); // turns display to block
  * </code></div>
  */
-p5.Element.prototype.show = function() {
+p5.Element.prototype.show = function () {
   this.elt.style.display = 'block';
   return this;
 };
@@ -2095,7 +2093,7 @@ p5.Element.prototype.show = function() {
  * div.hide();
  * </code></div>
  */
-p5.Element.prototype.hide = function() {
+p5.Element.prototype.hide = function () {
   this.elt.style.display = 'none';
   return this;
 };
@@ -2130,7 +2128,7 @@ p5.Element.prototype.hide = function() {
  * @param  {Number|Constant} [h] height of the element, either AUTO, or a number
  * @chainable
  */
-p5.Element.prototype.size = function(w, h) {
+p5.Element.prototype.size = function (w, h) {
   if (arguments.length === 0) {
     return { width: this.elt.offsetWidth, height: this.elt.offsetHeight };
   } else {
@@ -2139,9 +2137,9 @@ p5.Element.prototype.size = function(w, h) {
     const AUTO = p5.prototype.AUTO;
     if (aW !== AUTO || aH !== AUTO) {
       if (aW === AUTO) {
-        aW = h * this.width / this.height;
+        aW = (h * this.width) / this.height;
       } else if (aH === AUTO) {
-        aH = w * this.height / this.width;
+        aH = (w * this.height) / this.width;
       }
       // set diff for cnv vs normal div
       if (this.elt instanceof HTMLCanvasElement) {
@@ -2190,7 +2188,7 @@ p5.Element.prototype.size = function(w, h) {
  * myDiv.remove();
  * </code></div>
  */
-p5.Element.prototype.remove = function() {
+p5.Element.prototype.remove = function () {
   // stop all audios/videos and detach all devices like microphone/camera etc
   // used as input/output for audios/videos.
   if (this instanceof p5.MediaElement) {
@@ -2198,7 +2196,7 @@ p5.Element.prototype.remove = function() {
     const sources = this.elt.srcObject;
     if (sources !== null) {
       const tracks = sources.getTracks();
-      tracks.forEach(track => {
+      tracks.forEach((track) => {
         track.stop();
       });
     }
@@ -2278,13 +2276,13 @@ p5.Element.prototype.remove = function() {
  * @alt
  * Canvas turns into whatever image is dragged/dropped onto it.
  */
-p5.Element.prototype.drop = function(callback, fxn) {
+p5.Element.prototype.drop = function (callback, fxn) {
   // Is the file stuff supported?
   if (window.File && window.FileReader && window.FileList && window.Blob) {
     if (!this._dragDisabled) {
       this._dragDisabled = true;
 
-      const preventDefault = function(evt) {
+      const preventDefault = function (evt) {
         evt.preventDefault();
       };
 
@@ -2300,7 +2298,7 @@ p5.Element.prototype.drop = function(callback, fxn) {
     // Deal with the files
     p5.Element._attachListener(
       'drop',
-      function(evt) {
+      function (evt) {
         evt.preventDefault();
         // Call the second argument as a callback that receives the raw drop event
         if (typeof fxn === 'function') {
@@ -2338,7 +2336,7 @@ p5.Element.prototype.drop = function(callback, fxn) {
  * @constructor
  * @param {String} elt DOM node that is wrapped
  */
-p5.MediaElement = function(elt, pInst) {
+p5.MediaElement = function (elt, pInst) {
   p5.Element.call(this, elt, pInst);
 
   const self = this;
@@ -2390,14 +2388,14 @@ p5.MediaElement = function(elt, pInst) {
    * </code></div>
    */
   Object.defineProperty(self, 'src', {
-    get: function() {
+    get: function () {
       const firstChildSrc = self.elt.children[0].src;
       const srcVal = self.elt.src === window.location.href ? '' : self.elt.src;
       const ret =
         firstChildSrc === window.location.href ? srcVal : firstChildSrc;
       return ret;
     },
-    set: function(newValue) {
+    set: function (newValue) {
       for (let i = 0; i < self.elt.children.length; i++) {
         self.elt.removeChild(self.elt.children[i]);
       }
@@ -2406,12 +2404,12 @@ p5.MediaElement = function(elt, pInst) {
       elt.appendChild(source);
       self.elt.src = newValue;
       self.modified = true;
-    }
+    },
   });
 
   // private _onended callback, set by the method: onended(callback)
-  self._onended = function() {};
-  self.elt.onended = function() {
+  self._onended = function () {};
+  self.elt.onended = function () {
     self._onended(self);
   };
 };
@@ -2455,7 +2453,7 @@ p5.MediaElement.prototype = Object.create(p5.Element.prototype);
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.play = function() {
+p5.MediaElement.prototype.play = function () {
   if (this.elt.currentTime === this.elt.duration) {
     this.elt.currentTime = 0;
   }
@@ -2468,7 +2466,7 @@ p5.MediaElement.prototype.play = function() {
     promise = this.elt.play();
   }
   if (promise && promise.catch) {
-    promise.catch(e => {
+    promise.catch((e) => {
       // if it's an autoplay failure error
       if (e.name === 'NotAllowedError') {
         p5._friendlyAutoplayError(this.src);
@@ -2539,7 +2537,7 @@ p5.MediaElement.prototype.play = function() {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.stop = function() {
+p5.MediaElement.prototype.stop = function () {
   this.elt.pause();
   this.elt.currentTime = 0;
   return this;
@@ -2602,7 +2600,7 @@ p5.MediaElement.prototype.stop = function() {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.pause = function() {
+p5.MediaElement.prototype.pause = function () {
   this.elt.pause();
   return this;
 };
@@ -2658,7 +2656,7 @@ p5.MediaElement.prototype.pause = function() {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.loop = function() {
+p5.MediaElement.prototype.loop = function () {
   this.elt.setAttribute('loop', true);
   this.play();
   return this;
@@ -2710,7 +2708,7 @@ p5.MediaElement.prototype.loop = function() {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.noLoop = function() {
+p5.MediaElement.prototype.noLoop = function () {
   this.elt.removeAttribute('loop');
   return this;
 };
@@ -2721,11 +2719,11 @@ p5.MediaElement.prototype.noLoop = function() {
  * @method setupAutoplayFailDetection
  * @private
  */
-p5.MediaElement.prototype._setupAutoplayFailDetection = function() {
+p5.MediaElement.prototype._setupAutoplayFailDetection = function () {
   const timeout = setTimeout(() => p5._friendlyAutoplayError(this.src), 500);
   this.elt.addEventListener('play', () => clearTimeout(timeout), {
     passive: true,
-    once: true
+    once: true,
   });
 };
 
@@ -2774,7 +2772,7 @@ p5.MediaElement.prototype._setupAutoplayFailDetection = function() {
  * An example of a video element which waits for a trigger for playing.
  */
 
-p5.MediaElement.prototype.autoplay = function(val) {
+p5.MediaElement.prototype.autoplay = function (val) {
   const oldVal = this.elt.getAttribute('autoplay');
   this.elt.setAttribute('autoplay', val);
   // if we turned on autoplay
@@ -2788,7 +2786,7 @@ p5.MediaElement.prototype.autoplay = function(val) {
       // otherwise, schedule check whenever it is ready
       this.elt.addEventListener('canplay', setupAutoplayFailDetection, {
         passive: true,
-        once: true
+        once: true,
       });
     }
   }
@@ -2874,7 +2872,7 @@ p5.MediaElement.prototype.autoplay = function(val) {
  * @param {Number}            val volume between 0.0 and 1.0
  * @chainable
  */
-p5.MediaElement.prototype.volume = function(val) {
+p5.MediaElement.prototype.volume = function (val) {
   if (typeof val === 'undefined') {
     return this.elt.volume;
   } else {
@@ -2959,7 +2957,7 @@ p5.MediaElement.prototype.volume = function(val) {
  * @param {Number} speed  speed multiplier for element playback
  * @chainable
  */
-p5.MediaElement.prototype.speed = function(val) {
+p5.MediaElement.prototype.speed = function (val) {
   if (typeof val === 'undefined') {
     return this.presetPlaybackRate || this.elt.playbackRate;
   } else {
@@ -3021,7 +3019,7 @@ p5.MediaElement.prototype.speed = function(val) {
  * @param {Number} time time to jump to (in seconds)
  * @chainable
  */
-p5.MediaElement.prototype.time = function(val) {
+p5.MediaElement.prototype.time = function (val) {
   if (typeof val === 'undefined') {
     return this.elt.currentTime;
   } else {
@@ -3058,11 +3056,11 @@ p5.MediaElement.prototype.time = function(val) {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.duration = function() {
+p5.MediaElement.prototype.duration = function () {
   return this.elt.duration;
 };
 p5.MediaElement.prototype.pixels = [];
-p5.MediaElement.prototype._ensureCanvas = function() {
+p5.MediaElement.prototype._ensureCanvas = function () {
   if (!this.canvas) {
     this.canvas = document.createElement('canvas');
     this.drawingContext = this.canvas.getContext('2d');
@@ -3087,11 +3085,11 @@ p5.MediaElement.prototype._ensureCanvas = function() {
     this.setModified(true);
   }
 };
-p5.MediaElement.prototype.loadPixels = function() {
+p5.MediaElement.prototype.loadPixels = function () {
   this._ensureCanvas();
   return p5.Renderer2D.prototype.loadPixels.apply(this, arguments);
 };
-p5.MediaElement.prototype.updatePixels = function(x, y, w, h) {
+p5.MediaElement.prototype.updatePixels = function (x, y, w, h) {
   if (this.loadedmetadata) {
     // wait for metadata
     this._ensureCanvas();
@@ -3100,16 +3098,16 @@ p5.MediaElement.prototype.updatePixels = function(x, y, w, h) {
   this.setModified(true);
   return this;
 };
-p5.MediaElement.prototype.get = function() {
+p5.MediaElement.prototype.get = function () {
   this._ensureCanvas();
   return p5.Renderer2D.prototype.get.apply(this, arguments);
 };
-p5.MediaElement.prototype._getPixel = function() {
+p5.MediaElement.prototype._getPixel = function () {
   this.loadPixels();
   return p5.Renderer2D.prototype._getPixel.apply(this, arguments);
 };
 
-p5.MediaElement.prototype.set = function(x, y, imgOrCol) {
+p5.MediaElement.prototype.set = function (x, y, imgOrCol) {
   if (this.loadedmetadata) {
     // wait for metadata
     this._ensureCanvas();
@@ -3117,11 +3115,11 @@ p5.MediaElement.prototype.set = function(x, y, imgOrCol) {
     this.setModified(true);
   }
 };
-p5.MediaElement.prototype.copy = function() {
+p5.MediaElement.prototype.copy = function () {
   this._ensureCanvas();
   p5.prototype.copy.apply(this, arguments);
 };
-p5.MediaElement.prototype.mask = function() {
+p5.MediaElement.prototype.mask = function () {
   this.loadPixels();
   this.setModified(true);
   p5.Image.prototype.mask.apply(this, arguments);
@@ -3135,7 +3133,7 @@ p5.MediaElement.prototype.mask = function() {
  * @return {boolean} a boolean indicating whether or not the
  * image has been updated or modified since last texture upload.
  */
-p5.MediaElement.prototype.isModified = function() {
+p5.MediaElement.prototype.isModified = function () {
   return this._modified;
 };
 /**
@@ -3149,7 +3147,7 @@ p5.MediaElement.prototype.isModified = function() {
  * modified.
  * @private
  */
-p5.MediaElement.prototype.setModified = function(value) {
+p5.MediaElement.prototype.setModified = function (value) {
   this._modified = value;
 };
 /**
@@ -3178,7 +3176,7 @@ p5.MediaElement.prototype.setModified = function(value) {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.onended = function(callback) {
+p5.MediaElement.prototype.onended = function (callback) {
   this._onended = callback;
   return this;
 };
@@ -3197,7 +3195,7 @@ p5.MediaElement.prototype.onended = function(callback) {
  * @param  {AudioNode|Object} audioNode AudioNode from the Web Audio API,
  * or an object from the p5.sound library
  */
-p5.MediaElement.prototype.connect = function(obj) {
+p5.MediaElement.prototype.connect = function (obj) {
   let audioContext, mainOutput;
 
   // if p5.sound exists, same audio context
@@ -3241,7 +3239,7 @@ p5.MediaElement.prototype.connect = function(obj) {
  *
  * @method  disconnect
  */
-p5.MediaElement.prototype.disconnect = function() {
+p5.MediaElement.prototype.disconnect = function () {
   if (this.audioSourceNode) {
     this.audioSourceNode.disconnect();
   } else {
@@ -3276,7 +3274,7 @@ p5.MediaElement.prototype.disconnect = function() {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.showControls = function() {
+p5.MediaElement.prototype.showControls = function () {
   // must set style for the element to show on the page
   this.elt.style['text-align'] = 'inherit';
   this.elt.controls = true;
@@ -3307,7 +3305,7 @@ p5.MediaElement.prototype.showControls = function() {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.hideControls = function() {
+p5.MediaElement.prototype.hideControls = function () {
   this.elt.controls = false;
 };
 
@@ -3315,7 +3313,7 @@ p5.MediaElement.prototype.hideControls = function() {
 
 // Cue inspired by JavaScript setTimeout, and the
 // Tone.js Transport Timeline Event, MIT License Yotam Mann 2015 tonejs.org
-const Cue = function(callback, time, id, val) {
+const Cue = function (callback, time, id, val) {
   this.callback = callback;
   this.time = time;
   this.id = id;
@@ -3372,7 +3370,7 @@ const Cue = function(callback, time, id, val) {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.addCue = function(time, callback, val) {
+p5.MediaElement.prototype.addCue = function (time, callback, val) {
   const id = this._cueIDCounter++;
 
   const cue = new Cue(callback, time, id, val);
@@ -3414,7 +3412,7 @@ p5.MediaElement.prototype.addCue = function(time, callback, val) {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.removeCue = function(id) {
+p5.MediaElement.prototype.removeCue = function (id) {
   for (let i = 0; i < this._cues.length; i++) {
     if (this._cues[i].id === id) {
       console.log(id);
@@ -3461,14 +3459,14 @@ p5.MediaElement.prototype.removeCue = function(id) {
  * }
  * </code></div>
  */
-p5.MediaElement.prototype.clearCues = function() {
+p5.MediaElement.prototype.clearCues = function () {
   this._cues = [];
   this.elt.ontimeupdate = null;
 };
 
 // private method that checks for cues to be fired if events
 // have been scheduled using addCue(callback, time).
-p5.MediaElement.prototype._onTimeUpdate = function() {
+p5.MediaElement.prototype._onTimeUpdate = function () {
   const playbackTime = this.time();
 
   for (let i = 0; i < this._cues.length; i++) {
@@ -3492,7 +3490,7 @@ p5.MediaElement.prototype._onTimeUpdate = function() {
  * @constructor
  * @param {File} file File that is wrapped
  */
-p5.File = function(file, pInst) {
+p5.File = function (file, pInst) {
   /**
    * Underlying File object. All normal File methods can be called on this.
    *
@@ -3539,9 +3537,9 @@ p5.File = function(file, pInst) {
   this.data = undefined;
 };
 
-p5.File._createLoader = function(theFile, callback) {
+p5.File._createLoader = function (theFile, callback) {
   const reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = function (e) {
     const p5file = new p5.File(theFile);
     if (p5file.file.type === 'application/json') {
       // Parse JSON and store the result in data
@@ -3559,7 +3557,7 @@ p5.File._createLoader = function(theFile, callback) {
   return reader;
 };
 
-p5.File._load = function(f, callback) {
+p5.File._load = function (f, callback) {
   // Text or data?
   // This should likely be improved
   if (/^text\//.test(f.type) || f.type === 'application/json') {

@@ -105,7 +105,7 @@ import p5 from '../core/main';
  * An interactive example of a red cube with 3 sliders for moving it across x, y,
  * z axis and 3 sliders for shifting it's center.
  */
-p5.prototype.camera = function(...args) {
+p5.prototype.camera = function (...args) {
   this._assert3d('camera');
   p5._validateParameters('camera', args);
   this._renderer._curCamera.camera(...args);
@@ -165,7 +165,7 @@ p5.prototype.camera = function(...args) {
  * @alt
  * two colored 3D boxes move back and forth, rotating as mouse is dragged.
  */
-p5.prototype.perspective = function(...args) {
+p5.prototype.perspective = function (...args) {
   this._assert3d('perspective');
   p5._validateParameters('perspective', args);
   this._renderer._curCamera.perspective(...args);
@@ -221,7 +221,7 @@ p5.prototype.perspective = function(...args) {
  * @alt
  * two 3D boxes move back and forth along same plane, rotating as mouse is dragged.
  */
-p5.prototype.ortho = function(...args) {
+p5.prototype.ortho = function (...args) {
   this._assert3d('ortho');
   p5._validateParameters('ortho', args);
   this._renderer._curCamera.ortho(...args);
@@ -283,7 +283,7 @@ p5.prototype.ortho = function(...args) {
  * @alt
  * two 3D boxes move back and forth along same plane, rotating as mouse is dragged.
  */
-p5.prototype.frustum = function(...args) {
+p5.prototype.frustum = function (...args) {
   this._assert3d('frustum');
   p5._validateParameters('frustum', args);
   this._renderer._curCamera.frustum(...args);
@@ -322,7 +322,7 @@ p5.prototype.frustum = function(...args) {
  * @alt
  * An example that creates a camera and moves it around the box.
  */
-p5.prototype.createCamera = function() {
+p5.prototype.createCamera = function () {
   this._assert3d('createCamera');
   const _cam = new p5.Camera(this._renderer);
 
@@ -409,7 +409,7 @@ p5.prototype.createCamera = function() {
  * @alt
  * camera view pans left and right across a series of rotating 3D boxes.
  */
-p5.Camera = function(renderer) {
+p5.Camera = function (renderer) {
   this._renderer = renderer;
 
   this.cameraType = 'default';
@@ -429,7 +429,7 @@ p5.Camera = function(renderer) {
  * @method perspective
  * @for p5.Camera
  */
-p5.Camera.prototype.perspective = function(fovy, aspect, near, far) {
+p5.Camera.prototype.perspective = function (fovy, aspect, near, far) {
   this.cameraType = arguments.length > 0 ? 'custom' : 'default';
   if (typeof fovy === 'undefined') {
     fovy = this.defaultCameraFOV;
@@ -508,7 +508,7 @@ p5.Camera.prototype.perspective = function(fovy, aspect, near, far) {
  * @method ortho
  * @for p5.Camera
  */
-p5.Camera.prototype.ortho = function(left, right, bottom, top, near, far) {
+p5.Camera.prototype.ortho = function (left, right, bottom, top, near, far) {
   if (left === undefined) left = -this._renderer.width / 2;
   if (right === undefined) right = +this._renderer.width / 2;
   if (bottom === undefined) bottom = -this._renderer.height / 2;
@@ -565,7 +565,7 @@ p5.Camera.prototype.ortho = function(left, right, bottom, top, near, far) {
  * @method frustum
  * @for p5.Camera
  */
-p5.Camera.prototype.frustum = function(left, right, bottom, top, near, far) {
+p5.Camera.prototype.frustum = function (left, right, bottom, top, near, far) {
   if (left === undefined) left = -this._renderer.width / 2;
   if (right === undefined) right = +this._renderer.width / 2;
   if (bottom === undefined) bottom = -this._renderer.height / 2;
@@ -628,7 +628,7 @@ p5.Camera.prototype.frustum = function(left, right, bottom, top, near, far) {
  * @method _rotateView
  * @private
  */
-p5.Camera.prototype._rotateView = function(a, x, y, z) {
+p5.Camera.prototype._rotateView = function (a, x, y, z) {
   let centerX = this.centerX;
   let centerY = this.centerY;
   let centerZ = this.centerZ;
@@ -719,7 +719,7 @@ p5.Camera.prototype._rotateView = function(a, x, y, z) {
  * @alt
  * camera view pans left and right across a series of rotating 3D boxes.
  */
-p5.Camera.prototype.pan = function(amount) {
+p5.Camera.prototype.pan = function (amount) {
   const local = this._getLocalAxes();
   this._rotateView(amount, local.y[0], local.y[1], local.y[2]);
 };
@@ -777,7 +777,7 @@ p5.Camera.prototype.pan = function(amount) {
  * @alt
  * camera view tilts up and down across a series of rotating 3D boxes.
  */
-p5.Camera.prototype.tilt = function(amount) {
+p5.Camera.prototype.tilt = function (amount) {
   const local = this._getLocalAxes();
   this._rotateView(amount, local.x[0], local.x[1], local.x[2]);
 };
@@ -831,7 +831,7 @@ p5.Camera.prototype.tilt = function(amount) {
  * camera view of rotating 3D cubes changes to look at a new random
  * point every second .
  */
-p5.Camera.prototype.lookAt = function(x, y, z) {
+p5.Camera.prototype.lookAt = function (x, y, z) {
   this.camera(
     this.eyeX,
     this.eyeY,
@@ -855,7 +855,7 @@ p5.Camera.prototype.lookAt = function(x, y, z) {
  * @method camera
  * @for p5.Camera
  */
-p5.Camera.prototype.camera = function(
+p5.Camera.prototype.camera = function (
   eyeX,
   eyeY,
   eyeZ,
@@ -984,7 +984,7 @@ p5.Camera.prototype.camera = function(
  * camera view moves along a series of 3D boxes, maintaining the same
  * orientation throughout the move
  */
-p5.Camera.prototype.move = function(x, y, z) {
+p5.Camera.prototype.move = function (x, y, z) {
   const local = this._getLocalAxes();
 
   // scale local axes by movement amounts
@@ -1050,7 +1050,7 @@ p5.Camera.prototype.move = function(x, y, z) {
  * @alt
  * camera position changes as the user presses keys, altering view of a 3D box
  */
-p5.Camera.prototype.setPosition = function(x, y, z) {
+p5.Camera.prototype.setPosition = function (x, y, z) {
   const diffX = x - this.eyeX;
   const diffY = y - this.eyeY;
   const diffZ = z - this.eyeZ;
@@ -1074,8 +1074,8 @@ p5.Camera.prototype.setPosition = function(x, y, z) {
 
 // @TODO: combine this function with _setDefaultCamera to compute these values
 // as-needed
-p5.Camera.prototype._computeCameraDefaultSettings = function() {
-  this.defaultCameraFOV = 60 / 180 * Math.PI;
+p5.Camera.prototype._computeCameraDefaultSettings = function () {
+  this.defaultCameraFOV = (60 / 180) * Math.PI;
   this.defaultAspectRatio = this._renderer.width / this._renderer.height;
   this.defaultEyeX = 0;
   this.defaultEyeY = 0;
@@ -1090,7 +1090,7 @@ p5.Camera.prototype._computeCameraDefaultSettings = function() {
 
 //detect if user didn't set the camera
 //then call this function below
-p5.Camera.prototype._setDefaultCamera = function() {
+p5.Camera.prototype._setDefaultCamera = function () {
   this.cameraFOV = this.defaultCameraFOV;
   this.aspectRatio = this.defaultAspectRatio;
   this.eyeX = this.defaultEyeX;
@@ -1111,7 +1111,7 @@ p5.Camera.prototype._setDefaultCamera = function() {
   this.cameraType = 'default';
 };
 
-p5.Camera.prototype._resize = function() {
+p5.Camera.prototype._resize = function () {
   // If we're using the default camera, update the aspect ratio
   if (this.cameraType === 'default') {
     this._computeCameraDefaultSettings();
@@ -1129,7 +1129,7 @@ p5.Camera.prototype._resize = function() {
  * @method copy
  * @private
  */
-p5.Camera.prototype.copy = function() {
+p5.Camera.prototype.copy = function () {
   const _cam = new p5.Camera(this._renderer);
   _cam.cameraFOV = this.cameraFOV;
   _cam.aspectRatio = this.aspectRatio;
@@ -1156,7 +1156,7 @@ p5.Camera.prototype.copy = function() {
  * @method _getLocalAxes
  * @private
  */
-p5.Camera.prototype._getLocalAxes = function() {
+p5.Camera.prototype._getLocalAxes = function () {
   // calculate camera local Z vector
   let z0 = this.eyeX - this.centerX;
   let z1 = this.eyeY - this.centerY;
@@ -1204,7 +1204,7 @@ p5.Camera.prototype._getLocalAxes = function() {
   return {
     x: [x0, x1, x2],
     y: [y0, y1, y2],
-    z: [z0, z1, z2]
+    z: [z0, z1, z2],
   };
 };
 
@@ -1216,7 +1216,7 @@ p5.Camera.prototype._getLocalAxes = function() {
  * @param {Number} dPhi change in spherical coordinate phi
  * @param {Number} dRadius change in radius
  */
-p5.Camera.prototype._orbit = function(dTheta, dPhi, dRadius) {
+p5.Camera.prototype._orbit = function (dTheta, dPhi, dRadius) {
   const diffX = this.eyeX - this.centerX;
   const diffY = this.eyeY - this.centerY;
   const diffZ = this.eyeZ - this.centerZ;
@@ -1267,7 +1267,7 @@ p5.Camera.prototype._orbit = function(dTheta, dPhi, dRadius) {
  * @method _isActive
  * @private
  */
-p5.Camera.prototype._isActive = function() {
+p5.Camera.prototype._isActive = function () {
   return this === this._renderer._curCamera;
 };
 
@@ -1342,7 +1342,7 @@ p5.Camera.prototype._isActive = function() {
  * Canvas switches between two camera views, each showing a series of spinning
  * 3D boxes.
  */
-p5.prototype.setCamera = function(cam) {
+p5.prototype.setCamera = function (cam) {
   this._renderer._curCamera = cam;
 
   // set the projection matrix (which is not normally updated each frame)

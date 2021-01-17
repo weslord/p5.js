@@ -1,9 +1,9 @@
-suite('Error Helpers', function() {
+suite('Error Helpers', function () {
   var myp5;
 
-  setup(function(done) {
-    new p5(function(p) {
-      p.setup = function() {
+  setup(function (done) {
+    new p5(function (p) {
+      p.setup = function () {
         myp5 = p;
         p5._clearValidateParamsCache();
         done();
@@ -11,14 +11,14 @@ suite('Error Helpers', function() {
     });
   });
 
-  teardown(function() {
+  teardown(function () {
     myp5.remove();
   });
 
-  suite('friendly error logger', function() {
-    test('basic', function() {
+  suite('friendly error logger', function () {
+    test('basic', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._friendlyError('basic', 'basic');
         },
         Error,
@@ -28,23 +28,23 @@ suite('Error Helpers', function() {
   });
 
   // unit tests for validateParameters
-  suite('validateParameters: Numbers + optional Constant', function() {
-    test('arc(): no friendly-err-msg', function() {
+  suite('validateParameters: Numbers + optional Constant', function () {
+    test('arc(): no friendly-err-msg', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._validateParameters('arc', [1, 1, 10.5, 10, 0, Math.PI, 'pie']);
         },
         Error,
         'got unwanted exception'
       );
     });
-    test('arc(): missing param #4, #5', function() {
-      assert.validationError(function() {
+    test('arc(): missing param #4, #5', function () {
+      assert.validationError(function () {
         p5._validateParameters('arc', [1, 1, 10.5, 10]);
       });
     });
-    test('arc(): missing param #0', function() {
-      assert.validationError(function() {
+    test('arc(): missing param #0', function () {
+      assert.validationError(function () {
         p5._validateParameters('arc', [
           undefined,
           1,
@@ -52,12 +52,12 @@ suite('Error Helpers', function() {
           10,
           0,
           Math.PI,
-          'pie'
+          'pie',
         ]);
       });
     });
-    test('arc(): missing param #4', function() {
-      assert.validationError(function() {
+    test('arc(): missing param #4', function () {
+      assert.validationError(function () {
         p5._validateParameters('arc', [
           1,
           1,
@@ -65,43 +65,43 @@ suite('Error Helpers', function() {
           10,
           undefined,
           Math.PI,
-          'pie'
+          'pie',
         ]);
       });
     });
-    test('arc(): missing param #5', function() {
-      assert.validationError(function() {
+    test('arc(): missing param #5', function () {
+      assert.validationError(function () {
         p5._validateParameters('arc', [1, 1, 10.5, 10, 0, undefined, 'pie']);
       });
     });
-    test('arc(): missing param #6, no friendly-err-msg', function() {
+    test('arc(): missing param #6, no friendly-err-msg', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._validateParameters('arc', [1, 1, 10.5, 10, 0, Math.PI]);
         },
         Error,
         'got unwanted exception'
       );
     });
-    test('arc(): wrong param type at #0', function() {
-      assert.validationError(function() {
+    test('arc(): wrong param type at #0', function () {
+      assert.validationError(function () {
         p5._validateParameters('arc', ['a', 1, 10.5, 10, 0, Math.PI, 'pie']);
       });
     });
   });
 
-  suite('validateParameters: Numbers + optional Constant', function() {
-    test('rect(): no friendly-err-msg', function() {
+  suite('validateParameters: Numbers + optional Constant', function () {
+    test('rect(): no friendly-err-msg', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._validateParameters('rect', [1, 1, 10.5, 10]);
         },
         Error,
         'got unwanted exception'
       );
     });
-    test('rect(): wrong param type at #0', function() {
-      assert.validationError(function() {
+    test('rect(): wrong param type at #0', function () {
+      assert.validationError(function () {
         p5._validateParameters('rect', ['a', 1, 10.5, 10, 0, Math.PI]);
       });
     });
@@ -109,10 +109,10 @@ suite('Error Helpers', function() {
 
   suite(
     'validateParameters: class, multi-types + optional Numbers',
-    function() {
-      test('ambientLight(): no friendly-err-msg', function() {
+    function () {
+      test('ambientLight(): no friendly-err-msg', function () {
         assert.doesNotThrow(
-          function() {
+          function () {
             var c = myp5.color(255, 204, 0);
             p5._validateParameters('ambientLight', [c]);
           },
@@ -123,11 +123,11 @@ suite('Error Helpers', function() {
     }
   );
 
-  suite('validateParameters: a few edge cases', function() {
+  suite('validateParameters: a few edge cases', function () {
     // testing for edge cases mentioned in
     // https://github.com/processing/p5.js/issues/2740
-    testUnMinified('color: wrong type for optional parameter', function() {
-      let err = assert.throws(function() {
+    testUnMinified('color: wrong type for optional parameter', function () {
+      let err = assert.throws(function () {
         p5._validateParameters('color', [0, 0, 0, 'A']);
       }, p5.ValidationError);
       assert.strictEqual(
@@ -137,16 +137,16 @@ suite('Error Helpers', function() {
       );
     });
 
-    testUnMinified('color: superfluous parameter', function() {
-      assert.throws(function() {
+    testUnMinified('color: superfluous parameter', function () {
+      assert.throws(function () {
         p5._validateParameters('color', [[0, 0, 0], 0]);
       }, p5.ValidationError);
       // not performing a type check here as it could reasonably fit as
       // either WRONG_TYPE or TOO_MANY_ARGUMENTS
     });
 
-    testUnMinified('color: wrong element types', function() {
-      let err = assert.throws(function() {
+    testUnMinified('color: wrong element types', function () {
+      let err = assert.throws(function () {
         p5._validateParameters('color', [['A', 'B', 'C']]);
       }, p5.ValidationError);
       assert.strictEqual(
@@ -156,8 +156,8 @@ suite('Error Helpers', function() {
       );
     });
 
-    testUnMinified('rect: null, non-trailing, optional parameter', function() {
-      let err = assert.throws(function() {
+    testUnMinified('rect: null, non-trailing, optional parameter', function () {
+      let err = assert.throws(function () {
         p5._validateParameters('rect', [0, 0, 0, 0, null, 0, 0, 0]);
       }, p5.ValidationError);
       assert.strictEqual(
@@ -167,8 +167,8 @@ suite('Error Helpers', function() {
       );
     });
 
-    testUnMinified('color: too many args + wrong types too', function() {
-      let err = assert.throws(function() {
+    testUnMinified('color: too many args + wrong types too', function () {
+      let err = assert.throws(function () {
         p5._validateParameters('color', ['A', 'A', 0, 0, 0, 0, 0, 0, 0, 0]);
       }, p5.ValidationError);
       assert.strictEqual(
@@ -179,30 +179,30 @@ suite('Error Helpers', function() {
     });
   });
 
-  suite('validateParameters: trailing undefined arguments', function() {
+  suite('validateParameters: trailing undefined arguments', function () {
     // see https://github.com/processing/p5.js/issues/4571 for details
 
-    test('color: missing params #1 #2', function() {
+    test('color: missing params #1 #2', function () {
       // even though color can also be called with one argument, if 3 args
       // are passed, it is likely that them being undefined is an accident
-      assert.validationError(function() {
+      assert.validationError(function () {
         p5._validateParameters('color', [12, undefined, undefined]);
       });
     });
 
-    test('random: missing params #0 #1 (both optional)', function() {
+    test('random: missing params #0 #1 (both optional)', function () {
       // even though the undefined params are optional, since they are passed
       // to the function, it is more likely that the user wanted to call the
       // function with 2 arguments.
-      assert.validationError(function() {
+      assert.validationError(function () {
         p5._validateParameters('random', [undefined, undefined]);
       });
     });
 
     // compuslory argument trailing undefined
-    testUnMinified('circle: missing compulsory param #2', function() {
+    testUnMinified('circle: missing compulsory param #2', function () {
       // should throw an EMPTY_VAR error instead of a TOO_FEW_ARGUMENTS error
-      let err = assert.throws(function() {
+      let err = assert.throws(function () {
         p5._validateParameters('circle', [5, 5, undefined]);
       }, p5.ValidationError);
       assert.strictEqual(
@@ -213,19 +213,19 @@ suite('Error Helpers', function() {
     });
   });
 
-  suite('validateParameters: argument tree', function() {
+  suite('validateParameters: argument tree', function () {
     // should not throw a validation error for the same kind of wrong args
     // more than once. This prevents repetetive validation logs for a
     // function that is called in a loop or draw()
     testUnMinified(
       'no repeated validation error for the same wrong arguments',
-      function() {
-        assert.validationError(function() {
+      function () {
+        assert.validationError(function () {
           myp5.color();
         });
 
         assert.doesNotThrow(
-          function() {
+          function () {
             myp5.color(); // Same type of wrong arguments as above
           },
           p5.ValidationError,
@@ -236,18 +236,18 @@ suite('Error Helpers', function() {
 
     testUnMinified(
       'should throw validation errors for different wrong args',
-      function() {
-        assert.validationError(function() {
+      function () {
+        assert.validationError(function () {
           myp5.color();
         });
 
-        assert.validationError(function() {
+        assert.validationError(function () {
           myp5.color(false);
         });
       }
     );
 
-    testUnMinified('arg tree is built properly', function() {
+    testUnMinified('arg tree is built properly', function () {
       let myArgTree = p5._getValidateParamsArgTree();
       myp5.random();
       myp5.random(50);
@@ -283,60 +283,60 @@ suite('Error Helpers', function() {
     });
   });
 
-  suite('validateParameters: multi-format', function() {
-    test('color(): no friendly-err-msg', function() {
+  suite('validateParameters: multi-format', function () {
+    test('color(): no friendly-err-msg', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._validateParameters('color', [65]);
         },
         Error,
         'got unwanted exception'
       );
     });
-    test('color(): no friendly-err-msg', function() {
+    test('color(): no friendly-err-msg', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._validateParameters('color', [65, 0.5]);
         },
         Error,
         'got unwanted exception'
       );
     });
-    test('color(): no friendly-err-msg', function() {
+    test('color(): no friendly-err-msg', function () {
       assert.doesNotThrow(
-        function() {
+        function () {
           p5._validateParameters('color', [255, 204, 0]);
         },
         Error,
         'got unwanted exception'
       );
     });
-    test('color(): optional parameter, incorrect type', function() {
-      assert.validationError(function() {
+    test('color(): optional parameter, incorrect type', function () {
+      assert.validationError(function () {
         p5._validateParameters('color', [0, 0, 0, 'A']);
       });
     });
-    test('color(): extra parameter', function() {
-      assert.validationError(function() {
+    test('color(): extra parameter', function () {
+      assert.validationError(function () {
         p5._validateParameters('color', [[0, 0, 0], 0]);
       });
     });
-    test('color(): incorrect element type', function() {
-      assert.validationError(function() {
+    test('color(): incorrect element type', function () {
+      assert.validationError(function () {
         p5._validateParameters('color', [['A', 'B', 'C']]);
       });
     });
-    test('color(): incorrect parameter count', function() {
-      assert.validationError(function() {
+    test('color(): incorrect parameter count', function () {
+      assert.validationError(function () {
         p5._validateParameters('color', ['A', 'A', 0, 0, 0, 0, 0, 0]);
       });
     });
   });
 
-  suite('helpForMisusedAtTopLevelCode', function() {
-    var help = function(msg) {
+  suite('helpForMisusedAtTopLevelCode', function () {
+    var help = function (msg) {
       var log = [];
-      var logger = function(msg) {
+      var logger = function (msg) {
         log.push(msg);
       };
 
@@ -345,21 +345,21 @@ suite('Error Helpers', function() {
       return log[0];
     };
 
-    test('help for constants is shown', function() {
+    test('help for constants is shown', function () {
       assert.match(
         help("'HALF_PI' is undefined"),
         /Did you just try to use p5\.js's HALF_PI constant\?/
       );
     });
 
-    test('help for functions is shown', function() {
+    test('help for functions is shown', function () {
       assert.match(
         help("'smooth' is undefined"),
         /Did you just try to use p5\.js's smooth\(\) function\?/
       );
     });
 
-    test('help for variables is shown', function() {
+    test('help for variables is shown', function () {
       assert.match(
         help("'focused' is undefined"),
         /Did you just try to use p5\.js's focused variable\?/
@@ -367,27 +367,27 @@ suite('Error Helpers', function() {
     });
   });
 
-  suite('misspelling detection', function() {
+  suite('misspelling detection', function () {
     let log = [];
-    const logger = function(err) {
+    const logger = function (err) {
       log.push(err);
     };
-    let help = function(err) {
+    let help = function (err) {
       p5._fesErrorMonitor(err);
       assert.equal(log.length, 1);
       return log[0];
     };
 
-    setup(function() {
+    setup(function () {
       log = [];
       p5._fesLogger = logger;
     });
 
-    teardown(function() {
+    teardown(function () {
       p5._fesLogger = null;
     });
 
-    testUnMinified('detects capitalization mistakes', function() {
+    testUnMinified('detects capitalization mistakes', function () {
       const logMsg = help(new ReferenceError('MouseX is not defined'));
       assert.match(
         logMsg,
@@ -396,7 +396,7 @@ suite('Error Helpers', function() {
       assert.match(logMsg, /mouseX/);
     });
 
-    testUnMinified('detects spelling mistakes', function() {
+    testUnMinified('detects spelling mistakes', function () {
       const logMsg = help(new ReferenceError('colour is not defined'));
       assert.match(
         logMsg,
@@ -407,7 +407,7 @@ suite('Error Helpers', function() {
 
     testUnMinified(
       'can give more than one closest matches, if applicable',
-      function() {
+      function () {
         const logMsg = help(new ReferenceError('strok is not defined'));
         assert.match(
           logMsg,
@@ -418,7 +418,7 @@ suite('Error Helpers', function() {
       }
     );
 
-    testUnMinified('detects spelling + captialization mistakes', function() {
+    testUnMinified('detects spelling + captialization mistakes', function () {
       const logMsg = help(new ReferenceError('RandomGossian is not defined'));
       assert.match(
         logMsg,
@@ -428,52 +428,55 @@ suite('Error Helpers', function() {
     });
   });
 
-  suite('caps mistakes for user-defined functions (instance mode)', function() {
-    let myp5;
-    let log;
-    const logger = function(err) {
-      log.push(err);
-    };
-    setup(function(done) {
-      log = [];
-      p5._fesLogger = logger;
-      new p5(function(p) {
-        // intentional capitalization mistake
-        p.preLoad = function() {};
-        p.setup = function() {
-          myp5 = p;
-          p._fesLogger = logger;
-          done();
-        };
+  suite(
+    'caps mistakes for user-defined functions (instance mode)',
+    function () {
+      let myp5;
+      let log;
+      const logger = function (err) {
+        log.push(err);
+      };
+      setup(function (done) {
+        log = [];
+        p5._fesLogger = logger;
+        new p5(function (p) {
+          // intentional capitalization mistake
+          p.preLoad = function () {};
+          p.setup = function () {
+            myp5 = p;
+            p._fesLogger = logger;
+            done();
+          };
+        });
       });
-    });
 
-    teardown(function() {
-      p5._fesLogger = null;
-      myp5.remove();
-    });
+      teardown(function () {
+        p5._fesLogger = null;
+        myp5.remove();
+      });
 
-    testUnMinified(
-      'detects capitatilization mistake in instance mode',
-      function() {
-        assert.strictEqual(log.length, 1, 'One message is displayed');
-        assert.match(
-          log[0],
-          /It seems that you may have accidentally written preLoad instead of preload/
-        );
-      }
-    );
-  });
+      testUnMinified(
+        'detects capitatilization mistake in instance mode',
+        function () {
+          assert.strictEqual(log.length, 1, 'One message is displayed');
+          assert.match(
+            log[0],
+            /It seems that you may have accidentally written preLoad instead of preload/
+          );
+        }
+      );
+    }
+  );
 
-  suite('caps mistakes for user-defined functions (global mode)', function() {
+  suite('caps mistakes for user-defined functions (global mode)', function () {
     let log;
-    const logger = function(err) {
+    const logger = function (err) {
       log.push(err);
     };
     testUnMinified(
       'detects capitatilization mistake in global mode',
-      function() {
-        return new Promise(function(resolve) {
+      function () {
+        return new Promise(function (resolve) {
           iframe = createP5Iframe(
             [
               P5_SCRIPT_TAG,
@@ -481,13 +484,13 @@ suite('Error Helpers', function() {
               'p5._fesLogger = window.logger',
               'function setup() { window.afterSetup();}',
               'function DRAW() {}',
-              '</script>'
+              '</script>',
             ].join('\n')
           );
           log = [];
           iframe.elt.contentWindow.logger = logger;
           iframe.elt.contentWindow.afterSetup = resolve;
-        }).then(function() {
+        }).then(function () {
           //let log = iframe.elt.contentWindow.log;
           assert.strictEqual(log.length, 1);
           assert.match(
@@ -503,7 +506,7 @@ suite('Error Helpers', function() {
 // seperating in another suite because these don't need to initialize myp5
 // for each test. Instead they initialize p5 in the iframe. These tests are
 // also slower than the above ones.
-suite('Global Error Handling', function() {
+suite('Global Error Handling', function () {
   let log;
   const WAIT_AND_RESOLVE = [
     '<script>',
@@ -518,24 +521,24 @@ suite('Global Error Handling', function() {
     '    flag = true;',
     '  }',
     '}, 50);',
-    '</script>'
+    '</script>',
   ].join('\n');
-  const logger = function(err) {
+  const logger = function (err) {
     log.push(err);
   };
-  setup(function() {
+  setup(function () {
     log = [];
     p5._fesLogger = logger;
   });
 
-  teardown(function() {
+  teardown(function () {
     p5._fesLogger = null;
   });
 
   testUnMinified(
     'correctly identifies errors happenning internally',
-    function() {
-      return new Promise(function(resolve) {
+    function () {
+      return new Promise(function (resolve) {
         // quite an unusual way to test, but the error listerner doesn't work
         // under mocha. Also the stacktrace gets filled with mocha internal
         // function calls. Using this method solves both of these problems.
@@ -550,13 +553,13 @@ suite('Global Error Handling', function() {
             'let cnv = createCanvas(400, 400);',
             'cnv.mouseClicked();', // Error in p5 library as no callback passed
             '}',
-            '</script>'
+            '</script>',
           ].join('\n')
         );
         log = [];
         iframe.elt.contentWindow.logger = logger;
         iframe.elt.contentWindow.afterSetup = resolve;
-      }).then(function() {
+      }).then(function () {
         assert.strictEqual(log.length, 1);
         assert.match(log[0], /inside the p5js library/);
         assert.match(log[0], /mouseClicked/);
@@ -564,8 +567,8 @@ suite('Global Error Handling', function() {
     }
   );
 
-  testUnMinified('correctly identifies errors in preload', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly identifies errors in preload', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -577,20 +580,20 @@ suite('Global Error Handling', function() {
           'function setup() {',
           'createCanvas(10, 10);',
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 1);
       assert.match(log[0], /"circle" being called from preload/);
     });
   });
 
-  testUnMinified('correctly identifies errors in user code I', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly identifies errors in user code I', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -599,21 +602,21 @@ suite('Global Error Handling', function() {
           'function setup() {',
           'let x = asdfg + 5;', // ReferenceError: asdfg is not defined
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 1);
       assert.match(log[0], /asdfg/);
       assert.match(log[0], /not being defined in the current scope/);
     });
   });
 
-  testUnMinified('correctly identifies errors in user code II', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly identifies errors in user code II', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -622,21 +625,21 @@ suite('Global Error Handling', function() {
           'function setup() {',
           'let x = “not a string”', // SyntaxError: Invalid or unexpected token
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 1);
       assert.match(log[0], /syntax error/);
       assert.match(log[0], /JavaScript doesn't recognize/);
     });
   });
 
-  testUnMinified('correctly identifies errors in user code III', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly identifies errors in user code III', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -645,21 +648,21 @@ suite('Global Error Handling', function() {
           'function setup() {',
           'for (let i = 0; i < 5,; ++i) {}', // SyntaxError: Unexpected token
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 1);
       assert.match(log[0], /syntax error/);
       assert.match(log[0], /typo/);
     });
   });
 
-  testUnMinified('correctly identifies errors in user code IV', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly identifies errors in user code IV', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -669,20 +672,20 @@ suite('Global Error Handling', function() {
           'let asdfg = 5',
           'asdfg()', // TypeError: asdfg is not a function
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 1);
       assert.match(log[0], /"asdfg" could not be called as a function/);
     });
   });
 
-  testUnMinified('correctly identifies errors in user code IV', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly identifies errors in user code IV', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -692,21 +695,21 @@ suite('Global Error Handling', function() {
           'let asdfg = {}',
           'asdfg.abcd()', // TypeError: abcd is not a function
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 1);
       assert.match(log[0], /"abcd" could not be called as a function/);
       assert.match(log[0], /"asdfg" has "abcd" in it/);
     });
   });
 
-  testUnMinified('correctly builds friendlyStack', function() {
-    return new Promise(function(resolve) {
+  testUnMinified('correctly builds friendlyStack', function () {
+    return new Promise(function (resolve) {
       iframe = createP5Iframe(
         [
           P5_SCRIPT_TAG,
@@ -718,16 +721,16 @@ suite('Global Error Handling', function() {
           'function setup() {',
           'myfun()',
           '}',
-          '</script>'
+          '</script>',
         ].join('\n')
       );
       log = [];
       iframe.elt.contentWindow.logger = logger;
       iframe.elt.contentWindow.afterSetup = resolve;
-    }).then(function() {
+    }).then(function () {
       assert.strictEqual(log.length, 2);
       let temp = log[1].split('\n');
-      temp = temp.filter(e => e.trim().length > 0);
+      temp = temp.filter((e) => e.trim().length > 0);
       assert.strictEqual(temp.length, 2);
       assert.match(log[0], /"asdfg" not being defined/);
       assert.match(temp[0], /Error at/);
@@ -739,8 +742,8 @@ suite('Global Error Handling', function() {
 
   testUnMinified(
     'correctly indentifies internal error - instance mode',
-    function() {
-      return new Promise(function(resolve) {
+    function () {
+      return new Promise(function (resolve) {
         iframe = createP5Iframe(
           [
             P5_SCRIPT_TAG,
@@ -752,13 +755,13 @@ suite('Global Error Handling', function() {
             '  }',
             '}',
             'new p5(sketch);',
-            '</script>'
+            '</script>',
           ].join('\n')
         );
         log = [];
         iframe.elt.contentWindow.logger = logger;
         iframe.elt.contentWindow.afterSetup = resolve;
-      }).then(function() {
+      }).then(function () {
         assert.strictEqual(log.length, 1);
         assert.match(log[0], /stroke/);
         assert.match(log[0], /inside the p5js library/);
@@ -768,8 +771,8 @@ suite('Global Error Handling', function() {
 
   testUnMinified(
     'correctly indentifies error in preload - instance mode',
-    function() {
-      return new Promise(function(resolve) {
+    function () {
+      return new Promise(function (resolve) {
         iframe = createP5Iframe(
           [
             P5_SCRIPT_TAG,
@@ -784,13 +787,13 @@ suite('Global Error Handling', function() {
             '  }',
             '}',
             'new p5(sketch);',
-            '</script>'
+            '</script>',
           ].join('\n')
         );
         log = [];
         iframe.elt.contentWindow.logger = logger;
         iframe.elt.contentWindow.afterSetup = resolve;
-      }).then(function() {
+      }).then(function () {
         assert.strictEqual(log.length, 1);
         assert.match(log[0], /"circle" being called from preload/);
       });
@@ -799,8 +802,8 @@ suite('Global Error Handling', function() {
 
   testUnMinified(
     'correctly indentifies error in user code - instance mode',
-    function() {
-      return new Promise(function(resolve) {
+    function () {
+      return new Promise(function (resolve) {
         iframe = createP5Iframe(
           [
             P5_SCRIPT_TAG,
@@ -812,13 +815,13 @@ suite('Global Error Handling', function() {
             '  }',
             '}',
             'new p5(sketch);',
-            '</script>'
+            '</script>',
           ].join('\n')
         );
         log = [];
         iframe.elt.contentWindow.logger = logger;
         iframe.elt.contentWindow.afterSetup = resolve;
-      }).then(function() {
+      }).then(function () {
         assert.strictEqual(log.length, 1);
         assert.match(log[0], /myfun/);
         assert.match(log[0], /not being defined in the current scope/);

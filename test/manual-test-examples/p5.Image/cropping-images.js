@@ -4,7 +4,7 @@ function setup() {
   createCanvas(600, 600);
   background(200);
 
-  spriteSheet = loadImage('sprite_sheet.jpg', function() {
+  spriteSheet = loadImage('sprite_sheet.jpg', function () {
     // Full sprite sheet
     image(spriteSheet, 0, 0);
 

@@ -5,12 +5,12 @@ import './p5.RendererGL.Retained';
 
 // Text/Typography
 // @TODO:
-p5.RendererGL.prototype._applyTextProperties = function() {
+p5.RendererGL.prototype._applyTextProperties = function () {
   //@TODO finish implementation
   //console.error('text commands not yet implemented in webgl');
 };
 
-p5.RendererGL.prototype.textWidth = function(s) {
+p5.RendererGL.prototype.textWidth = function (s) {
   if (this._isOpenType()) {
     return this._textFont._textWidth(s, this._textSize);
   }
@@ -58,7 +58,7 @@ function ImageInfos(width, height) {
    *
    * finds free space of a given size in the ImageData list
    */
-  this.findImage = function(space) {
+  this.findImage = function (space) {
     const imageSize = this.width * this.height;
     if (space > imageSize)
       throw new Error('font is too complex to render in 3D');
@@ -141,7 +141,7 @@ const SQRT3 = Math.sqrt(3);
  *
  * contains cached images and glyph information for an opentype font
  */
-const FontInfo = function(font) {
+const FontInfo = function (font) {
   this.font = font;
   // the bezier curve coordinates
   this.strokeImageInfos = new ImageInfos(strokeImageWidth, strokeImageHeight);
@@ -164,7 +164,7 @@ const FontInfo = function(font) {
    * row & column stripes compiled into textures.
    */
 
-  this.getGlyphInfo = function(glyph) {
+  this.getGlyphInfo = function (glyph) {
     // check the cache
     let gi = this.glyphInfos[glyph.index];
     if (gi) return gi;
@@ -280,14 +280,14 @@ const FontInfo = function(font) {
        * converts the cubic to a quadtratic approximation by
        * picking an appropriate quadratic control point
        */
-      this.toQuadratic = function() {
+      this.toQuadratic = function () {
         return {
           x: this.p0.x,
           y: this.p0.y,
           x1: this.p1.x,
           y1: this.p1.y,
           cx: ((this.c0.x + this.c1.x) * 3 - (this.p0.x + this.p1.x)) / 4,
-          cy: ((this.c0.y + this.c1.y) * 3 - (this.p0.y + this.p1.y)) / 4
+          cy: ((this.c0.y + this.c1.y) * 3 - (this.p0.y + this.p1.y)) / 4,
         };
       };
 
@@ -298,7 +298,7 @@ const FontInfo = function(font) {
        * calculates the magnitude of error of this curve's
        * quadratic approximation.
        */
-      this.quadError = function() {
+      this.quadError = function () {
         return (
           p5.Vector.sub(
             p5.Vector.sub(this.p1, this.p0),
@@ -316,7 +316,7 @@ const FontInfo = function(font) {
        * this cubic keeps its start point and its end point becomes the
        * point at 't'. the 'end half is returned.
        */
-      this.split = function(t) {
+      this.split = function (t) {
         const m1 = p5.Vector.lerp(this.p0, this.c0, t);
         const m2 = p5.Vector.lerp(this.c0, this.c1, t);
         const mm1 = p5.Vector.lerp(m1, m2, t);
@@ -337,7 +337,7 @@ const FontInfo = function(font) {
        * from splitting this cubic at its inflection points.
        * this cubic is (potentially) altered and returned in the list.
        */
-      this.splitInflections = function() {
+      this.splitInflections = function () {
         const a = p5.Vector.sub(this.c0, this.p0);
         const b = p5.Vector.sub(p5.Vector.sub(this.c1, this.c0), a);
         const c = p5.Vector.sub(
@@ -603,7 +603,7 @@ const FontInfo = function(font) {
       return {
         cellImageInfo,
         dimOffset,
-        dimImageInfo
+        dimImageInfo,
       };
     }
 
@@ -614,14 +614,14 @@ const FontInfo = function(font) {
       strokeImageInfo,
       strokes,
       colInfo: layout(cols, this.colDimImageInfos, this.colCellImageInfos),
-      rowInfo: layout(rows, this.rowDimImageInfos, this.rowCellImageInfos)
+      rowInfo: layout(rows, this.rowDimImageInfos, this.rowCellImageInfos),
     };
     gi.uGridOffset = [gi.colInfo.dimOffset, gi.rowInfo.dimOffset];
     return gi;
   };
 };
 
-p5.RendererGL.prototype._renderText = function(p, line, x, y, maxY) {
+p5.RendererGL.prototype._renderText = function (p, line, x, y, maxY) {
   if (!this._textFont || typeof this._textFont === 'string') {
     console.log(
       'WEBGL: you must load and set a font before drawing text. See `loadFont` and `textFont` for more details.'
@@ -681,7 +681,7 @@ p5.RendererGL.prototype._renderText = function(p, line, x, y, maxY) {
   let g = this.retainedMode.geometry['glyph'];
   if (!g) {
     // create the geometry for rendering a quad
-    const geom = (this._textGeom = new p5.Geometry(1, 1, function() {
+    const geom = (this._textGeom = new p5.Geometry(1, 1, function () {
       for (let i = 0; i <= 1; i++) {
         for (let j = 0; j <= 1; j++) {
           this.vertices.push(new p5.Vector(j, i, 0));

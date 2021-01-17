@@ -69,7 +69,7 @@ import omggif from 'omggif';
  * let img = createImage(66, 66);
  * img.loadPixels();
  * let d = pixelDensity();
- * let halfImage = 4 * (img.width * d) * (img.height / 2 * d);
+ * let halfImage = 4 * (img.width * d) * ((img.height / 2) * d);
  * for (let i = 0; i < halfImage; i += 4) {
  *   img.pixels[i] = red(pink);
  *   img.pixels[i + 1] = green(pink);
@@ -86,7 +86,7 @@ import omggif from 'omggif';
  * 2 gradated dark turquoise rects fade left. 1 center 1 bottom right of canvas
  * no image displayed
  */
-p5.prototype.createImage = function(width, height) {
+p5.prototype.createImage = function (width, height) {
   p5._validateParameters('createImage', arguments);
   return new p5.Image(width, height);
 };
@@ -138,7 +138,7 @@ p5.prototype.createImage = function(width, height) {
  *  @param  {String} [filename]
  *  @param  {String} [extension]
  */
-p5.prototype.saveCanvas = function() {
+p5.prototype.saveCanvas = function () {
   p5._validateParameters('saveCanvas', arguments);
 
   // copy arguments to array
@@ -179,12 +179,12 @@ p5.prototype.saveCanvas = function() {
       break;
   }
 
-  htmlCanvas.toBlob(blob => {
+  htmlCanvas.toBlob((blob) => {
     p5.prototype.downloadFile(blob, filename, extension);
   }, mimeType);
 };
 
-p5.prototype.saveGif = function(pImg, filename) {
+p5.prototype.saveGif = function (pImg, filename) {
   const props = pImg.gifProperties;
 
   //convert loopLimit back into Netscape Block formatting
@@ -237,17 +237,16 @@ p5.prototype.saveGif = function(pImg, filename) {
 
   // Now to build the global palette
   // Sort all the unique palettes in descending order of their occurence
-  const palettesSortedByFreq = Object.keys(paletteFreqsAndFrames).sort(function(
-    a,
-    b
-  ) {
-    return paletteFreqsAndFrames[b].freq - paletteFreqsAndFrames[a].freq;
-  });
+  const palettesSortedByFreq = Object.keys(paletteFreqsAndFrames).sort(
+    function (a, b) {
+      return paletteFreqsAndFrames[b].freq - paletteFreqsAndFrames[a].freq;
+    }
+  );
 
   // The initial global palette is the one with the most occurence
   const globalPalette = palettesSortedByFreq[0]
     .split(',')
-    .map(a => parseInt(a));
+    .map((a) => parseInt(a));
 
   framesUsingGlobalPalette = framesUsingGlobalPalette.concat(
     paletteFreqsAndFrames[globalPalette].frames
@@ -261,9 +260,9 @@ p5.prototype.saveGif = function(pImg, filename) {
   // not in the global palette can be added there, while keeping the length
   // of the global palette <= 256
   for (let i = 1; i < palettesSortedByFreq.length; i++) {
-    const palette = palettesSortedByFreq[i].split(',').map(a => parseInt(a));
+    const palette = palettesSortedByFreq[i].split(',').map((a) => parseInt(a));
 
-    const difference = palette.filter(x => !globalPaletteSet.has(x));
+    const difference = palette.filter((x) => !globalPaletteSet.has(x));
     if (globalPalette.length + difference.length <= 256) {
       for (let j = 0; j < difference.length; j++) {
         globalPalette.push(difference[j]);
@@ -298,7 +297,7 @@ p5.prototype.saveGif = function(pImg, filename) {
   // global opts
   const opts = {
     loop: loopLimit,
-    palette: new Uint32Array(globalPalette)
+    palette: new Uint32Array(globalPalette),
   };
   const gifWriter = new omggif.GifWriter(buffer, pImg.width, pImg.height, opts);
   let previousFrame = {};
@@ -345,7 +344,7 @@ p5.prototype.saveGif = function(pImg, filename) {
     const frameOpts = {};
 
     // Transparency optimization
-    const canBeTransparent = palette.filter(a => !cannotBeTransparent.has(a));
+    const canBeTransparent = palette.filter((a) => !cannotBeTransparent.has(a));
     if (canBeTransparent.length > 0) {
       // Select a color to mark as transparent
       const transparent = canBeTransparent[0];
@@ -388,7 +387,7 @@ p5.prototype.saveGif = function(pImg, filename) {
     // previous frame object should now have details of this frame
     previousFrame = {
       pixelPaletteIndex,
-      frameOpts
+      frameOpts,
     };
   }
 
@@ -405,7 +404,7 @@ p5.prototype.saveGif = function(pImg, filename) {
 
   const extension = 'gif';
   const blob = new Blob([buffer.slice(0, gifWriter.end())], {
-    type: 'image/gif'
+    type: 'image/gif',
   });
   p5.prototype.downloadFile(blob, filename, extension);
 };
@@ -443,7 +442,7 @@ p5.prototype.saveGif = function(pImg, filename) {
  * }
  *
  * function mousePressed() {
- *   saveFrames('out', 'png', 1, 25, data => {
+ *   saveFrames('out', 'png', 1, 25, (data) => {
  *     print(data);
  *   });
  * }
@@ -452,7 +451,7 @@ p5.prototype.saveGif = function(pImg, filename) {
  * @alt
  * canvas background goes from light to dark with mouse x.
  */
-p5.prototype.saveFrames = function(fName, ext, _duration, _fps, callback) {
+p5.prototype.saveFrames = function (fName, ext, _duration, _fps, callback) {
   p5._validateParameters('saveFrames', arguments);
   let duration = _duration || 3;
   duration = p5.prototype.constrain(duration, 0, 15);
@@ -482,7 +481,7 @@ p5.prototype.saveFrames = function(fName, ext, _duration, _fps, callback) {
   }, duration + 0.01);
 };
 
-p5.prototype._makeFrame = function(filename, extension, _cnv) {
+p5.prototype._makeFrame = function (filename, extension, _cnv) {
   let cnv;
   if (this) {
     cnv = this._curElement.elt;

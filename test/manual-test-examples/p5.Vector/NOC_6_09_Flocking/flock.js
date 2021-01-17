@@ -10,12 +10,12 @@ function Flock() {
   this.boids = []; // Initialize the array
 }
 
-Flock.prototype.run = function() {
+Flock.prototype.run = function () {
   for (var i = 0; i < this.boids.length; i++) {
     this.boids[i].run(this.boids); // Passing the entire list of boids to each boid individually
   }
 };
 
-Flock.prototype.addBoid = function(b) {
+Flock.prototype.addBoid = function (b) {
   this.boids.push(b);
 };

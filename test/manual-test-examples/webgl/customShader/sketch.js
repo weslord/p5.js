@@ -13,7 +13,7 @@ function preload() {
   img = loadImage('../assets/UV_Grid_Sm.jpg');
   fingers = createVideo(
     '../../../../docs/yuidoc-p5-theme/assets/fingers.mov',
-    function() {
+    function () {
       fingers.hide();
     }
   );

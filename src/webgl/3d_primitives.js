@@ -45,7 +45,7 @@ import * as constants from '../core/constants';
  * 3d red and green gradient.
  * rotating view of a multi-colored cylinder with concave sides.
  */
-p5.prototype.plane = function(width, height, detailX, detailY) {
+p5.prototype.plane = function (width, height, detailX, detailY) {
   this._assert3d('plane');
   p5._validateParameters('plane', arguments);
   if (typeof width === 'undefined') {
@@ -65,7 +65,7 @@ p5.prototype.plane = function(width, height, detailX, detailY) {
   const gId = `plane|${detailX}|${detailY}`;
 
   if (!this._renderer.geometryInHash(gId)) {
-    const _plane = function() {
+    const _plane = function () {
       let u, v, p;
       for (let i = 0; i <= this.detailY; i++) {
         v = i / this.detailY;
@@ -123,7 +123,7 @@ p5.prototype.plane = function(width, height, detailX, detailY) {
  * </code>
  * </div>
  */
-p5.prototype.box = function(width, height, depth, detailX, detailY) {
+p5.prototype.box = function (width, height, depth, detailX, detailY) {
   this._assert3d('box');
   p5._validateParameters('box', arguments);
   if (typeof width === 'undefined') {
@@ -147,14 +147,14 @@ p5.prototype.box = function(width, height, depth, detailX, detailY) {
 
   const gId = `box|${detailX}|${detailY}`;
   if (!this._renderer.geometryInHash(gId)) {
-    const _box = function() {
+    const _box = function () {
       const cubeIndices = [
         [0, 4, 2, 6], // -1, 0, 0],// -x
         [1, 3, 5, 7], // +1, 0, 0],// +x
         [0, 1, 4, 5], // 0, -1, 0],// -y
         [2, 6, 3, 7], // 0, +1, 0],// +y
         [0, 2, 1, 3], // 0, 0, -1],// -z
-        [4, 5, 6, 7] // 0, 0, +1] // +z
+        [4, 5, 6, 7], // 0, 0, +1] // +z
       ];
       //using strokeIndices instead of faces for strokes
       //to avoid diagonal stroke lines across face of box
@@ -170,7 +170,7 @@ p5.prototype.box = function(width, height, depth, detailX, detailY) {
         [17, 19],
         [18, 19],
         [20, 21],
-        [22, 23]
+        [22, 23],
       ];
       for (let i = 0; i < cubeIndices.length; i++) {
         const cubeIndex = cubeIndices[i];
@@ -280,7 +280,7 @@ p5.prototype.box = function(width, height, depth, detailX, detailY) {
  * </code>
  * </div>
  */
-p5.prototype.sphere = function(radius, detailX, detailY) {
+p5.prototype.sphere = function (radius, detailX, detailY) {
   this._assert3d('sphere');
   p5._validateParameters('sphere', arguments);
   if (typeof radius === 'undefined') {
@@ -305,7 +305,7 @@ p5.prototype.sphere = function(radius, detailX, detailY) {
  * and topRadius >= 0
  * If topRadius == 0, topCap should be false
  */
-const _truncatedCone = function(
+const _truncatedCone = function (
   bottomRadius,
   topRadius,
   height,
@@ -383,7 +383,7 @@ const _truncatedCone = function(
       this.faces.push([
         startIndex + jj,
         startIndex + detailX + nextjj,
-        startIndex + detailX + jj
+        startIndex + detailX + jj,
       ]);
     }
     startIndex += detailX * 2;
@@ -394,12 +394,12 @@ const _truncatedCone = function(
       this.faces.push([
         startIndex + ii,
         startIndex + nextii,
-        startIndex + detailX + nextii
+        startIndex + detailX + nextii,
       ]);
       this.faces.push([
         startIndex + ii,
         startIndex + detailX + nextii,
-        startIndex + detailX + ii
+        startIndex + detailX + ii,
       ]);
     }
     startIndex += detailX;
@@ -409,8 +409,8 @@ const _truncatedCone = function(
     for (ii = 0; ii < detailX; ++ii) {
       this.faces.push([
         startIndex + ii,
-        startIndex + (ii + 1) % detailX,
-        startIndex + detailX
+        startIndex + ((ii + 1) % detailX),
+        startIndex + detailX,
       ]);
     }
   }
@@ -492,7 +492,7 @@ const _truncatedCone = function(
  * </code>
  * </div>
  */
-p5.prototype.cylinder = function(
+p5.prototype.cylinder = function (
   radius,
   height,
   detailX,
@@ -627,7 +627,7 @@ p5.prototype.cylinder = function(
  * </code>
  * </div>
  */
-p5.prototype.cone = function(radius, height, detailX, detailY, cap) {
+p5.prototype.cone = function (radius, height, detailX, detailY, cap) {
   this._assert3d('cone');
   p5._validateParameters('cone', arguments);
   if (typeof radius === 'undefined') {
@@ -741,7 +741,13 @@ p5.prototype.cone = function(radius, height, detailX, detailY, cap) {
  * </code>
  * </div>
  */
-p5.prototype.ellipsoid = function(radiusX, radiusY, radiusZ, detailX, detailY) {
+p5.prototype.ellipsoid = function (
+  radiusX,
+  radiusY,
+  radiusZ,
+  detailX,
+  detailY
+) {
   this._assert3d('ellipsoid');
   p5._validateParameters('ellipsoid', arguments);
   if (typeof radiusX === 'undefined') {
@@ -764,7 +770,7 @@ p5.prototype.ellipsoid = function(radiusX, radiusY, radiusZ, detailX, detailY) {
   const gId = `ellipsoid|${detailX}|${detailY}`;
 
   if (!this._renderer.geometryInHash(gId)) {
-    const _ellipsoid = function() {
+    const _ellipsoid = function () {
       for (let i = 0; i <= this.detailY; i++) {
         const v = i / this.detailY;
         const phi = Math.PI * v - Math.PI / 2;
@@ -877,7 +883,7 @@ p5.prototype.ellipsoid = function(radiusX, radiusY, radiusZ, detailX, detailY) {
  * </code>
  * </div>
  */
-p5.prototype.torus = function(radius, tubeRadius, detailX, detailY) {
+p5.prototype.torus = function (radius, tubeRadius, detailX, detailY) {
   this._assert3d('torus');
   p5._validateParameters('torus', arguments);
   if (typeof radius === 'undefined') {
@@ -903,7 +909,7 @@ p5.prototype.torus = function(radius, tubeRadius, detailX, detailY) {
   const gId = `torus|${tubeRatio}|${detailX}|${detailY}`;
 
   if (!this._renderer.geometryInHash(gId)) {
-    const _torus = function() {
+    const _torus = function () {
       for (let i = 0; i <= this.detailY; i++) {
         const v = i / this.detailY;
         const phi = 2 * Math.PI * v;
@@ -984,7 +990,7 @@ p5.prototype.torus = function(radius, tubeRadius, detailX, detailY) {
  * </code>
  * </div>
  */
-p5.RendererGL.prototype.point = function(x, y, z) {
+p5.RendererGL.prototype.point = function (x, y, z) {
   if (typeof z === 'undefined') {
     z = 0;
   }
@@ -996,7 +1002,7 @@ p5.RendererGL.prototype.point = function(x, y, z) {
   return this;
 };
 
-p5.RendererGL.prototype.triangle = function(args) {
+p5.RendererGL.prototype.triangle = function (args) {
   const x1 = args[0],
     y1 = args[1];
   const x2 = args[2],
@@ -1006,12 +1012,16 @@ p5.RendererGL.prototype.triangle = function(args) {
 
   const gId = 'tri';
   if (!this.geometryInHash(gId)) {
-    const _triangle = function() {
+    const _triangle = function () {
       const vertices = [];
       vertices.push(new p5.Vector(0, 0, 0));
       vertices.push(new p5.Vector(0, 1, 0));
       vertices.push(new p5.Vector(1, 0, 0));
-      this.strokeIndices = [[0, 1], [1, 2], [2, 0]];
+      this.strokeIndices = [
+        [0, 1],
+        [1, 2],
+        [2, 0],
+      ];
       this.vertices = vertices;
       this.faces = [[0, 1, 2]];
       this.uvs = [0, 0, 0, 1, 1, 1];
@@ -1048,7 +1058,7 @@ p5.RendererGL.prototype.triangle = function(args) {
   return this;
 };
 
-p5.RendererGL.prototype.ellipse = function(args) {
+p5.RendererGL.prototype.ellipse = function (args) {
   this.arc(
     args[0],
     args[1],
@@ -1061,7 +1071,7 @@ p5.RendererGL.prototype.ellipse = function(args) {
   );
 };
 
-p5.RendererGL.prototype.arc = function(args) {
+p5.RendererGL.prototype.arc = function (args) {
   const x = arguments[0];
   const y = arguments[1];
   const width = arguments[2];
@@ -1084,7 +1094,7 @@ p5.RendererGL.prototype.arc = function(args) {
   }
 
   if (!this.geometryInHash(gId)) {
-    const _arc = function() {
+    const _arc = function () {
       this.strokeIndices = [];
 
       // if the start and stop angles are not the same, push vertices to the array
@@ -1118,12 +1128,12 @@ p5.RendererGL.prototype.arc = function(args) {
             this.faces.push([
               0,
               this.vertices.length - 2,
-              this.vertices.length - 1
+              this.vertices.length - 1,
             ]);
             this.strokeIndices.push([0, 1]);
             this.strokeIndices.push([
               this.vertices.length - 2,
-              this.vertices.length - 1
+              this.vertices.length - 1,
             ]);
             this.strokeIndices.push([0, this.vertices.length - 1]);
             break;
@@ -1141,11 +1151,11 @@ p5.RendererGL.prototype.arc = function(args) {
             this.faces.push([
               0,
               this.vertices.length - 2,
-              this.vertices.length - 1
+              this.vertices.length - 1,
             ]);
             this.strokeIndices.push([
               this.vertices.length - 2,
-              this.vertices.length - 1
+              this.vertices.length - 1,
             ]);
         }
       }
@@ -1177,7 +1187,7 @@ p5.RendererGL.prototype.arc = function(args) {
   return this;
 };
 
-p5.RendererGL.prototype.rect = function(args) {
+p5.RendererGL.prototype.rect = function (args) {
   const perPixelLighting = this._pInst._glAttributes.perPixelLighting;
   const x = args[0];
   const y = args[1];
@@ -1187,7 +1197,7 @@ p5.RendererGL.prototype.rect = function(args) {
   const detailY = args[5] || (perPixelLighting ? 1 : 16);
   const gId = `rect|${detailX}|${detailY}`;
   if (!this.geometryInHash(gId)) {
-    const _rect = function() {
+    const _rect = function () {
       for (let i = 0; i <= this.detailY; i++) {
         const v = i / this.detailY;
         for (let j = 0; j <= this.detailX; j++) {
@@ -1203,7 +1213,7 @@ p5.RendererGL.prototype.rect = function(args) {
           [0, detailX],
           [detailX, (detailX + 1) * (detailY + 1) - 1],
           [(detailX + 1) * (detailY + 1) - 1, (detailX + 1) * detailY],
-          [(detailX + 1) * detailY, 0]
+          [(detailX + 1) * detailY, 0],
         ];
       }
     };
@@ -1296,7 +1306,7 @@ p5.RendererGL.prototype.quad = function(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, 
 //this implementation of bezier curve
 //is based on Bernstein polynomial
 // pretier-ignore
-p5.RendererGL.prototype.bezier = function(
+p5.RendererGL.prototype.bezier = function (
   x1,
   y1,
   z1, // x2
@@ -1337,7 +1347,7 @@ p5.RendererGL.prototype.bezier = function(
 };
 
 // pretier-ignore
-p5.RendererGL.prototype.curve = function(
+p5.RendererGL.prototype.curve = function (
   x1,
   y1,
   z1, // x2
@@ -1365,7 +1375,7 @@ p5.RendererGL.prototype.curve = function(
   for (let i = 0; i <= curveDetail; i++) {
     const c1 = Math.pow(i / curveDetail, 3) * 0.5;
     const c2 = Math.pow(i / curveDetail, 2) * 0.5;
-    const c3 = i / curveDetail * 0.5;
+    const c3 = (i / curveDetail) * 0.5;
     const c4 = 0.5;
     const vx =
       c1 * (-x1 + 3 * x2 - 3 * x3 + x4) +
@@ -1417,7 +1427,7 @@ p5.RendererGL.prototype.curve = function(
  * </code>
  * </div>
  */
-p5.RendererGL.prototype.line = function(...args) {
+p5.RendererGL.prototype.line = function (...args) {
   if (args.length === 6) {
     this.beginShape(constants.LINES);
     this.vertex(args[0], args[1], args[2]);
@@ -1432,7 +1442,7 @@ p5.RendererGL.prototype.line = function(...args) {
   return this;
 };
 
-p5.RendererGL.prototype.bezierVertex = function(...args) {
+p5.RendererGL.prototype.bezierVertex = function (...args) {
   if (this.immediateMode._bezierVertex.length === 0) {
     throw Error('vertex() must be used once before calling bezierVertex()');
   } else {
@@ -1523,7 +1533,7 @@ p5.RendererGL.prototype.bezierVertex = function(...args) {
   }
 };
 
-p5.RendererGL.prototype.quadraticVertex = function(...args) {
+p5.RendererGL.prototype.quadraticVertex = function (...args) {
   if (this.immediateMode._quadraticVertex.length === 0) {
     throw Error('vertex() must be used once before calling quadraticVertex()');
   } else {
@@ -1612,7 +1622,7 @@ p5.RendererGL.prototype.quadraticVertex = function(...args) {
   }
 };
 
-p5.RendererGL.prototype.curveVertex = function(...args) {
+p5.RendererGL.prototype.curveVertex = function (...args) {
   let w_x = [];
   let w_y = [];
   let w_z = [];
@@ -1656,13 +1666,13 @@ p5.RendererGL.prototype.curveVertex = function(...args) {
         this.immediateMode._curveVertex[0],
         this.immediateMode._curveVertex[2],
         this.immediateMode._curveVertex[4],
-        this.immediateMode._curveVertex[6]
+        this.immediateMode._curveVertex[6],
       ]);
       w_y = this._bezierToCatmull([
         this.immediateMode._curveVertex[1],
         this.immediateMode._curveVertex[3],
         this.immediateMode._curveVertex[5],
-        this.immediateMode._curveVertex[7]
+        this.immediateMode._curveVertex[7],
       ]);
       for (i = 0; i < LUTLength; i++) {
         _x =
@@ -1691,19 +1701,19 @@ p5.RendererGL.prototype.curveVertex = function(...args) {
         this.immediateMode._curveVertex[0],
         this.immediateMode._curveVertex[3],
         this.immediateMode._curveVertex[6],
-        this.immediateMode._curveVertex[9]
+        this.immediateMode._curveVertex[9],
       ]);
       w_y = this._bezierToCatmull([
         this.immediateMode._curveVertex[1],
         this.immediateMode._curveVertex[4],
         this.immediateMode._curveVertex[7],
-        this.immediateMode._curveVertex[10]
+        this.immediateMode._curveVertex[10],
       ]);
       w_z = this._bezierToCatmull([
         this.immediateMode._curveVertex[2],
         this.immediateMode._curveVertex[5],
         this.immediateMode._curveVertex[8],
-        this.immediateMode._curveVertex[11]
+        this.immediateMode._curveVertex[11],
       ]);
       for (i = 0; i < LUTLength; i++) {
         _x =
@@ -1730,7 +1740,7 @@ p5.RendererGL.prototype.curveVertex = function(...args) {
   }
 };
 
-p5.RendererGL.prototype.image = function(
+p5.RendererGL.prototype.image = function (
   img,
   sx,
   sy,

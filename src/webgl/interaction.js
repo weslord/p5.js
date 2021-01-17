@@ -46,7 +46,11 @@ import * as constants from '../core/constants';
 
 // implementation based on three.js 'orbitControls':
 // https://github.com/mrdoob/three.js/blob/dev/examples/js/controls/OrbitControls.js
-p5.prototype.orbitControl = function(sensitivityX, sensitivityY, sensitivityZ) {
+p5.prototype.orbitControl = function (
+  sensitivityX,
+  sensitivityY,
+  sensitivityZ
+) {
   this._assert3d('orbitControl');
   p5._validateParameters('orbitControl', arguments);
 
@@ -104,9 +108,9 @@ p5.prototype.orbitControl = function(sensitivityX, sensitivityY, sensitivityZ) {
     // ORBIT BEHAVIOR
     if (this.mouseButton === this.LEFT) {
       const deltaTheta =
-        -sensitivityX * (this.mouseX - this.pmouseX) / scaleFactor;
+        (-sensitivityX * (this.mouseX - this.pmouseX)) / scaleFactor;
       const deltaPhi =
-        sensitivityY * (this.mouseY - this.pmouseY) / scaleFactor;
+        (sensitivityY * (this.mouseY - this.pmouseY)) / scaleFactor;
       this._renderer._curCamera._orbit(deltaTheta, deltaPhi, 0);
     } else if (this.mouseButton === this.RIGHT) {
       // PANNING BEHAVIOR along X/Z camera axes and restricted to X/Z plane
@@ -312,7 +316,7 @@ p5.prototype.orbitControl = function(sensitivityX, sensitivityY, sensitivityZ) {
  * @param {Number} [axesZOff]
  */
 
-p5.prototype.debugMode = function(...args) {
+p5.prototype.debugMode = function (...args) {
   this._assert3d('debugMode');
   p5._validateParameters('debugMode', args);
 
@@ -380,7 +384,7 @@ p5.prototype.debugMode = function(...args) {
  * a green line +Y, and a blue line +Z. the grid and icon disappear when the
  * spacebar is pressed.
  */
-p5.prototype.noDebugMode = function() {
+p5.prototype.noDebugMode = function () {
   this._assert3d('noDebugMode');
 
   // start by removing existing 'post' registered debug methods
@@ -405,7 +409,7 @@ p5.prototype.noDebugMode = function() {
  * @param {Number} [yOff] offset of grid center from origin in Y axis
  * @param {Number} [zOff] offset of grid center from origin in Z axis
  */
-p5.prototype._grid = function(size, numDivs, xOff, yOff, zOff) {
+p5.prototype._grid = function (size, numDivs, xOff, yOff, zOff) {
   if (typeof size === 'undefined') {
     size = this.width / 2;
   }
@@ -426,7 +430,7 @@ p5.prototype._grid = function(size, numDivs, xOff, yOff, zOff) {
   const spacing = size / numDivs;
   const halfSize = size / 2;
 
-  return function() {
+  return function () {
     this.push();
     this.stroke(
       this._renderer.curStrokeColor[0] * 255,
@@ -481,7 +485,7 @@ p5.prototype._grid = function(size, numDivs, xOff, yOff, zOff) {
  * @param {Number} [yOff] offset of icon from origin in Y axis
  * @param {Number} [zOff] offset of icon from origin in Z axis
  */
-p5.prototype._axesIcon = function(size, xOff, yOff, zOff) {
+p5.prototype._axesIcon = function (size, xOff, yOff, zOff) {
   if (typeof size === 'undefined') {
     size = this.width / 20 > 40 ? this.width / 20 : 40;
   }
@@ -495,7 +499,7 @@ p5.prototype._axesIcon = function(size, xOff, yOff, zOff) {
     zOff = xOff;
   }
 
-  return function() {
+  return function () {
     this.push();
     this._renderer.uMVMatrix.set(
       this._renderer._curCamera.cameraMatrix.mat4[0],

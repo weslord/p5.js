@@ -14,20 +14,20 @@ function Boid(x, y) {
   this.maxforce = 0.05; // Maximum steering force
 }
 
-Boid.prototype.run = function(boids) {
+Boid.prototype.run = function (boids) {
   this.flock(boids);
   this.update();
   this.borders();
   this.render();
 };
 
-Boid.prototype.applyForce = function(force) {
+Boid.prototype.applyForce = function (force) {
   // We could add mass here if we want A = F / M
   this.acceleration.add(force);
 };
 
 // We accumulate a new acceleration each time based on three rules
-Boid.prototype.flock = function(boids) {
+Boid.prototype.flock = function (boids) {
   var sep = this.separate(boids); // Separation
   var ali = this.align(boids); // Alignment
   var coh = this.cohesion(boids); // Cohesion
@@ -42,7 +42,7 @@ Boid.prototype.flock = function(boids) {
 };
 
 // Method to update location
-Boid.prototype.update = function() {
+Boid.prototype.update = function () {
   // Update velocity
   this.velocity.add(this.acceleration);
   // Limit speed
@@ -54,7 +54,7 @@ Boid.prototype.update = function() {
 
 // A method that calculates and applies a steering force towards a target
 // STEER = DESIRED MINUS VELOCITY
-Boid.prototype.seek = function(target) {
+Boid.prototype.seek = function (target) {
   var desired = p5.Vector.sub(target, this.position); // A vector pointing from the location to the target
   // Normalize desired and scale to maximum speed
   desired.normalize();
@@ -65,7 +65,7 @@ Boid.prototype.seek = function(target) {
   return steer;
 };
 
-Boid.prototype.render = function() {
+Boid.prototype.render = function () {
   // Draw a triangle rotated in the direction of velocity
   var theta = this.velocity.heading() + radians(90);
   fill(127);
@@ -82,7 +82,7 @@ Boid.prototype.render = function() {
 };
 
 // Wraparound
-Boid.prototype.borders = function() {
+Boid.prototype.borders = function () {
   if (this.position.x < -this.r) this.position.x = width + this.r;
   if (this.position.y < -this.r) this.position.y = height + this.r;
   if (this.position.x > width + this.r) location.x = -this.r;
@@ -91,7 +91,7 @@ Boid.prototype.borders = function() {
 
 // Separation
 // Method checks for nearby boids and steers away
-Boid.prototype.separate = function(boids) {
+Boid.prototype.separate = function (boids) {
   var desiredseparation = 25.0;
   var steer = createVector(0, 0);
   var count = 0;
@@ -126,7 +126,7 @@ Boid.prototype.separate = function(boids) {
 
 // Alignment
 // For every nearby boid in the system, calculate the average velocity
-Boid.prototype.align = function(boids) {
+Boid.prototype.align = function (boids) {
   var neighbordist = 50;
   var sum = createVector(0, 0);
   var count = 0;
@@ -151,7 +151,7 @@ Boid.prototype.align = function(boids) {
 
 // Cohesion
 // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
-Boid.prototype.cohesion = function(boids) {
+Boid.prototype.cohesion = function (boids) {
   var neighbordist = 50;
   var sum = createVector(0, 0); // Start with empty vector to accumulate all locations
   var count = 0;

@@ -1,6 +1,6 @@
-(function() {
+(function () {
   var script = document.createElement('script');
-  script.onload = function() {
+  script.onload = function () {
     var stats = new Stats();
     stats.domElement.style.cssText =
       'position:fixed;left:0;top:0;z-index:10000';

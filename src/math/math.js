@@ -36,7 +36,7 @@ import p5 from '../core/main';
  * @alt
  * draws a line from center of canvas to mouse pointer position.
  */
-p5.prototype.createVector = function(x, y, z) {
+p5.prototype.createVector = function (x, y, z) {
   if (this instanceof p5) {
     return new p5.Vector(this, arguments);
   } else {

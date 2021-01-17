@@ -1,7 +1,7 @@
 function setup() {
   var canvas = createCanvas(200, 150).canvas;
 
-  loadFont('../SourceSansPro-Regular.otf', function(font) {
+  loadFont('../SourceSansPro-Regular.otf', function (font) {
     // render text with opentype font
     textAlign(RIGHT);
     textFont(font, 32);
@@ -17,12 +17,12 @@ function setup() {
       decimals: 4,
       fill: 'red',
       strokeWidth: 2,
-      stroke: 'green'
+      stroke: 'green',
     });
     console.log(pathTag);
 
     // hit detection for canvas Path2D (cursor changes)
-    canvas.onmousemove = function(e) {
+    canvas.onmousemove = function (e) {
       var context = e.target.getContext('2d');
       var coordX = e.offsetX;
       var coordY = e.offsetY;

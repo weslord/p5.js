@@ -101,7 +101,7 @@ import './p5.Geometry';
  * @param  {String} [fileType]
  * @return {p5.Geometry} the <a href="#/p5.Geometry">p5.Geometry</a> object
  */
-p5.prototype.loadModel = function(path) {
+p5.prototype.loadModel = function (path) {
   p5._validateParameters('loadModel', arguments);
   let normalize;
   let successCallback;
@@ -132,7 +132,7 @@ p5.prototype.loadModel = function(path) {
       path,
       'GET',
       'arrayBuffer',
-      arrayBuffer => {
+      (arrayBuffer) => {
         parseSTL(model, arrayBuffer);
 
         if (normalize) {
@@ -148,7 +148,7 @@ p5.prototype.loadModel = function(path) {
   } else if (fileType.match(/\.obj$/i)) {
     this.loadStrings(
       path,
-      strings => {
+      (strings) => {
         parseObj(model, strings);
 
         if (normalize) {
@@ -200,7 +200,7 @@ function parseObj(model, lines) {
   const loadedVerts = {
     v: [],
     vt: [],
-    vn: []
+    vn: [],
   };
   const indexedVerts = {};
 
@@ -567,9 +567,7 @@ function parseASCIISTL(model, lines) {
           // Invalid State
           console.error(line);
           console.error(
-            `Invalid state "${
-              parts[0]
-            }", should be "endsolid" or "facet normal"`
+            `Invalid state "${parts[0]}", should be "endsolid" or "facet normal"`
           );
           return;
         }
@@ -614,7 +612,7 @@ function parseASCIISTL(model, lines) {
  * @alt
  * Vertically rotating 3-d octahedron.
  */
-p5.prototype.model = function(model) {
+p5.prototype.model = function (model) {
   this._assert3d('model');
   p5._validateParameters('model', arguments);
   if (model.vertices.length > 0) {

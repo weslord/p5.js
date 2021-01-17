@@ -10,28 +10,29 @@ import dataDoc from '../docs/reference/data.min.json';
 const globals = {};
 dataDoc.classitems
   .filter(
-    ci => classes.indexOf(ci.class) >= 0 && itemtypes.indexOf(ci.itemtype) >= 0
+    (ci) =>
+      classes.indexOf(ci.class) >= 0 && itemtypes.indexOf(ci.itemtype) >= 0
   )
-  .forEach(ci => {
+  .forEach((ci) => {
     globals[ci.name] = true;
   });
 
-Object.keys(dataDoc.consts).forEach(c => {
+Object.keys(dataDoc.consts).forEach((c) => {
   globals[c] = true;
 });
 
 dataDoc.classitems
-  .find(ci => ci.name === 'keyCode' && ci.class === 'p5')
+  .find((ci) => ci.name === 'keyCode' && ci.class === 'p5')
   .description.match(/[A-Z\r\n, _]{10,}/m)[0]
   .match(/[A-Z_]+/gm)
-  .forEach(c => {
+  .forEach((c) => {
     globals[c] = true;
   });
 
 function splitLines(text) {
   const lines = [];
 
-  lines.lineFromIndex = function(index) {
+  lines.lineFromIndex = function (index) {
     const lines = this;
     const lineCount = lines.length;
     for (let i = 0; i < lineCount; i++) {
@@ -50,7 +51,7 @@ function splitLines(text) {
     lines.push({
       index: m.index,
       text: m[1],
-      prefixLength: m[2] ? m[2].length : 0
+      prefixLength: m[2] ? m[2].length : 0,
     });
   }
 
@@ -79,21 +80,21 @@ const userFunctions = [
   'deviceShaken',
   'keyPressed',
   'keyReleased',
-  'keyTyped'
+  'keyTyped',
 ];
 const userFunctionTrailer =
-  EOL + userFunctions.map(s => 'typeof ' + s + ';').join(EOL) + EOL;
+  EOL + userFunctions.map((s) => 'typeof ' + s + ';').join(EOL) + EOL;
 
 module.exports = {
   environments: {
     p5: {
-      globals: globals
-    }
+      globals: globals,
+    },
   },
   processors: {
     '.js': {
       supportsAutofix: true,
-      preprocess: function(text) {
+      preprocess: function (text) {
         this.lines = splitLines(text);
 
         let m;
@@ -104,7 +105,7 @@ module.exports = {
           const value = m[0];
           comments.push({
             value: value,
-            range: [m.index, m.index + value.length]
+            range: [m.index, m.index + value.length],
           });
         }
 
@@ -123,15 +124,15 @@ module.exports = {
             samples.push({
               comment: comment,
               index: m.index + m[1].length,
-              code: code
+              code: code,
             });
           }
         }
 
-        return samples.map(s => s.code + userFunctionTrailer);
+        return samples.map((s) => s.code + userFunctionTrailer);
       },
 
-      postprocess: function(sampleMessages, filename) {
+      postprocess: function (sampleMessages, filename) {
         const problems = [];
 
         for (let i = 0; i < sampleMessages.length; i++) {
@@ -188,9 +189,9 @@ module.exports = {
           }
         }
         return problems;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 function eslintFiles(opts, filesSrc) {
@@ -199,7 +200,7 @@ function eslintFiles(opts, filesSrc) {
     quiet: false,
     maxWarnings: -1,
     envs: ['eslint-samples/p5', 'amd'],
-    format: 'unix'
+    format: 'unix',
   };
 
   if (filesSrc.length === 0) {

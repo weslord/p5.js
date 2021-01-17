@@ -15,67 +15,67 @@ if (typeof IS_MINIFIED !== 'undefined') {
   const fileLoadErrorCases = (num, filePath) => {
     const suggestion = translator('fes.fileLoadError.suggestion', {
       filePath,
-      link: 'https://github.com/processing/p5.js/wiki/Local-server'
+      link: 'https://github.com/processing/p5.js/wiki/Local-server',
     });
     switch (num) {
       case 0:
         return {
           message: translator('fes.fileLoadError.image', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadImage'
+          method: 'loadImage',
         };
       case 1:
         return {
           message: translator('fes.fileLoadError.xml', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadXML'
+          method: 'loadXML',
         };
       case 2:
         return {
           message: translator('fes.fileLoadError.table', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadTable'
+          method: 'loadTable',
         };
       case 3:
         return {
           message: translator('fes.fileLoadError.strings', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadStrings'
+          method: 'loadStrings',
         };
       case 4:
         return {
           message: translator('fes.fileLoadError.font', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadFont'
+          method: 'loadFont',
         };
       case 5:
         return {
           message: translator('fes.fileLoadError.json', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadJSON'
+          method: 'loadJSON',
         };
       case 6:
         return {
           message: translator('fes.fileLoadError.bytes', {
-            suggestion
+            suggestion,
           }),
-          method: 'loadBytes'
+          method: 'loadBytes',
         };
       case 7:
         return {
           message: translator('fes.fileLoadError.large'),
-          method: 'loadX'
+          method: 'loadX',
         };
       case 8:
         return {
           message: translator('fes.fileLoadError.gif'),
-          method: 'loadImage'
+          method: 'loadImage',
         };
     }
   };
@@ -88,7 +88,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @param  {Number} errorType
    * @param  {String} filePath
    */
-  p5._friendlyFileLoadError = function(errorType, filePath) {
+  p5._friendlyFileLoadError = function (errorType, filePath) {
     const { message, method } = fileLoadErrorCases(errorType, filePath);
     p5._friendlyError(message, method, 3);
   };

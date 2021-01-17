@@ -30,9 +30,9 @@ function draw() {
   rotateY(millis() / 3000);
   rotateX(1);
   for (var i = 0; i < N; i++) {
-    var n = 2 * PI * P1 * P2 * i / N - millis() / 300;
+    var n = (2 * PI * P1 * P2 * i) / N - millis() / 300;
 
-    fill(i * 400 / N, 255, 255);
+    fill((i * 400) / N, 255, 255);
 
     push();
     rotateY(n / P1);
