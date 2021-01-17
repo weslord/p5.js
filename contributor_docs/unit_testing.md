@@ -34,7 +34,7 @@ To only run the "p5.ColorConversion" suite of tests, you would change the first 
 suite.only('color/p5.ColorConversion', function() {
 ```
 
-Now when you use `npm test`, only tests within that `function()` body will be run.
+Now when you use `npm test:unit`, only tests within that `function()` body will be run.
 
 ### Skipping a test suite
 

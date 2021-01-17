@@ -542,7 +542,7 @@ module.exports = grunt => {
   grunt.registerTask('test:nobuild', [
     'eslint:test',
     'connect:server',
-    'mochaChrome',
+    'mochaChrome:test',
     'mochaTest',
     'nyc:report'
   ]);
