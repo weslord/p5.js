@@ -284,9 +284,9 @@ Filters.posterize = function(canvas, level) {
     const glevel = pixels[i + 1];
     const blevel = pixels[i + 2];
 
-    pixels[i] = ((rlevel * level) >> 8) * 255 / levels1;
-    pixels[i + 1] = ((glevel * level) >> 8) * 255 / levels1;
-    pixels[i + 2] = ((blevel * level) >> 8) * 255 / levels1;
+    pixels[i] = (((rlevel * level) >> 8) * 255) / levels1;
+    pixels[i + 1] = (((glevel * level) >> 8) * 255) / levels1;
+    pixels[i + 2] = (((blevel * level) >> 8) * 255) / levels1;
   }
 };
 

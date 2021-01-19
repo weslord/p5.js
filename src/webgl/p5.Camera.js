@@ -1075,7 +1075,7 @@ p5.Camera.prototype.setPosition = function(x, y, z) {
 // @TODO: combine this function with _setDefaultCamera to compute these values
 // as-needed
 p5.Camera.prototype._computeCameraDefaultSettings = function() {
-  this.defaultCameraFOV = 60 / 180 * Math.PI;
+  this.defaultCameraFOV = (60 / 180) * Math.PI;
   this.defaultAspectRatio = this._renderer.width / this._renderer.height;
   this.defaultEyeX = 0;
   this.defaultEyeY = 0;

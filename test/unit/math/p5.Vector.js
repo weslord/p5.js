@@ -1145,7 +1145,7 @@ suite('p5.Vector', function() {
         v2 = new p5.Vector(2, 2, 0);
         res = v1.angleBetween(v2);
         expect(res).to.be.closeTo(Math.PI / 4, 0.01);
-        expect(v2.angleBetween(v1)).to.be.closeTo(-1 * Math.PI / 4, 0.01);
+        expect(v2.angleBetween(v1)).to.be.closeTo((-1 * Math.PI) / 4, 0.01);
       });
     });
 

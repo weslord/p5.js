@@ -454,8 +454,8 @@ function _getPos(args, canvasWidth, canvasHeight) {
 function _canvasLocator(args, canvasWidth, canvasHeight) {
   const noRows = 10;
   const noCols = 10;
-  let locX = Math.floor(args[0] / canvasWidth * noRows);
-  let locY = Math.floor(args[1] / canvasHeight * noCols);
+  let locX = Math.floor((args[0] / canvasWidth) * noRows);
+  let locY = Math.floor((args[1] / canvasHeight) * noCols);
   if (locX === noRows) {
     locX = locX - 1;
   }
@@ -476,22 +476,22 @@ function _getArea(objectType, shapeArgs, canvasWidth, canvasHeight) {
     // therefore, area of arc = difference bet. arc's start and end radians * horizontal radius * vertical radius.
     // the below expression is adjusted for negative values and differences in arc's start and end radians over PI*2
     const arcSizeInRadians =
-      ((shapeArgs[5] - shapeArgs[4]) % (Math.PI * 2) + Math.PI * 2) %
+      (((shapeArgs[5] - shapeArgs[4]) % (Math.PI * 2)) + Math.PI * 2) %
       (Math.PI * 2);
-    objectArea = arcSizeInRadians * shapeArgs[2] * shapeArgs[3] / 8;
+    objectArea = (arcSizeInRadians * shapeArgs[2] * shapeArgs[3]) / 8;
     if (shapeArgs[6] === 'open' || shapeArgs[6] === 'chord') {
       // when the arc's mode is OPEN or CHORD, we need to account for the area of the triangle that is formed to close the arc
       // (Ax( By −  Cy) + Bx(Cy − Ay) + Cx(Ay − By ) )/2
       const Ax = shapeArgs[0];
       const Ay = shapeArgs[1];
       const Bx =
-        shapeArgs[0] + shapeArgs[2] / 2 * Math.cos(shapeArgs[4]).toFixed(2);
+        shapeArgs[0] + (shapeArgs[2] / 2) * Math.cos(shapeArgs[4]).toFixed(2);
       const By =
-        shapeArgs[1] + shapeArgs[3] / 2 * Math.sin(shapeArgs[4]).toFixed(2);
+        shapeArgs[1] + (shapeArgs[3] / 2) * Math.sin(shapeArgs[4]).toFixed(2);
       const Cx =
-        shapeArgs[0] + shapeArgs[2] / 2 * Math.cos(shapeArgs[5]).toFixed(2);
+        shapeArgs[0] + (shapeArgs[2] / 2) * Math.cos(shapeArgs[5]).toFixed(2);
       const Cy =
-        shapeArgs[1] + shapeArgs[3] / 2 * Math.sin(shapeArgs[5]).toFixed(2);
+        shapeArgs[1] + (shapeArgs[3] / 2) * Math.sin(shapeArgs[5]).toFixed(2);
       const areaOfExtraTriangle =
         Math.abs(Ax * (By - Cy) + Bx * (Cy - Ay) + Cx * (Ay - By)) / 2;
       if (arcSizeInRadians > Math.PI) {
@@ -501,7 +501,7 @@ function _getArea(objectType, shapeArgs, canvasWidth, canvasHeight) {
       }
     }
   } else if (objectType === 'ellipse' || objectType === 'circle') {
-    objectArea = 3.14 * shapeArgs[2] / 2 * shapeArgs[3] / 2;
+    objectArea = (((3.14 * shapeArgs[2]) / 2) * shapeArgs[3]) / 2;
   } else if (objectType === 'line') {
     objectArea = 0;
   } else if (objectType === 'point') {
@@ -527,7 +527,7 @@ function _getArea(objectType, shapeArgs, canvasWidth, canvasHeight) {
     // (Ax( By −  Cy) + Bx(Cy − Ay) + Cx(Ay − By ))/2
   }
 
-  return Math.round(objectArea * 100 / (canvasWidth * canvasHeight));
+  return Math.round((objectArea * 100) / (canvasWidth * canvasHeight));
 }
 
 export default p5;

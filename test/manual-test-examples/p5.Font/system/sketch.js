@@ -10,8 +10,7 @@ var textSketch = function(p) {
     p.text('Blue No Stroke Text Italic', 10, 80);
     p.textStyle(p.BOLD);
     p.text('Blue No Stroke Text Bold', 10, 100);
-    p
-      .fill(120)
+    p.fill(120)
       .textStyle(p.NORMAL)
       .textSize(12)
       .text(

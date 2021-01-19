@@ -80,7 +80,11 @@ suite('preloads', () => {
         return promisedSketch((sketch, resolve, reject) => {
           sketch.preload = () => {
             target
-              .testPreloadFunction(() => {}, () => {}, () => {})
+              .testPreloadFunction(
+                () => {},
+                () => {},
+                () => {}
+              )
               .catch(reject);
           };
 
@@ -104,7 +108,11 @@ suite('preloads', () => {
         return promisedSketch((sketch, resolve, reject) => {
           sketch.preload = () => {
             target
-              .testPreloadFunction(() => {}, () => {}, () => {})
+              .testPreloadFunction(
+                () => {},
+                () => {},
+                () => {}
+              )
               .catch(reject);
           };
 

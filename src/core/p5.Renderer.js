@@ -344,7 +344,7 @@ p5.Renderer.prototype.text = function(str, x, y, maxWidth, maxHeight) {
 
     const vAlign = p.textAlign().vertical;
     if (vAlign === constants.CENTER) {
-      offset = (cars.length - 1) * p.textLeading() / 2;
+      offset = ((cars.length - 1) * p.textLeading()) / 2;
     } else if (vAlign === constants.BOTTOM) {
       offset = (cars.length - 1) * p.textLeading();
     }

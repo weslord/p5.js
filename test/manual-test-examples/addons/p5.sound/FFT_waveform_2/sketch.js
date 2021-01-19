@@ -33,7 +33,7 @@ function setup() {
 }
 
 function draw() {
-  background(30, 30, 30, frameCount % 40 + 4);
+  background(30, 30, 30, (frameCount % 40) + 4);
 
   /**
    * Analyze the sound as a waveform (amplitude over time)

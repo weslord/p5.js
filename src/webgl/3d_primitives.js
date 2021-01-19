@@ -409,7 +409,7 @@ const _truncatedCone = function(
     for (ii = 0; ii < detailX; ++ii) {
       this.faces.push([
         startIndex + ii,
-        startIndex + (ii + 1) % detailX,
+        startIndex + ((ii + 1) % detailX),
         startIndex + detailX
       ]);
     }
@@ -1011,7 +1011,11 @@ p5.RendererGL.prototype.triangle = function(args) {
       vertices.push(new p5.Vector(0, 0, 0));
       vertices.push(new p5.Vector(0, 1, 0));
       vertices.push(new p5.Vector(1, 0, 0));
-      this.strokeIndices = [[0, 1], [1, 2], [2, 0]];
+      this.strokeIndices = [
+        [0, 1],
+        [1, 2],
+        [2, 0]
+      ];
       this.vertices = vertices;
       this.faces = [[0, 1, 2]];
       this.uvs = [0, 0, 0, 1, 1, 1];
@@ -1365,7 +1369,7 @@ p5.RendererGL.prototype.curve = function(
   for (let i = 0; i <= curveDetail; i++) {
     const c1 = Math.pow(i / curveDetail, 3) * 0.5;
     const c2 = Math.pow(i / curveDetail, 2) * 0.5;
-    const c3 = i / curveDetail * 0.5;
+    const c3 = (i / curveDetail) * 0.5;
     const c4 = 0.5;
     const vx =
       c1 * (-x1 + 3 * x2 - 3 * x3 + x4) +

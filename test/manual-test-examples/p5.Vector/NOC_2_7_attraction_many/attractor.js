@@ -23,7 +23,7 @@ Attractor.prototype.calculateAttraction = function(m) {
   // Normalize vector (distance doesn't matter here, we just want this vector for direction)
   force.normalize();
   // Calculate gravitional force magnitude
-  var strength = this.G * this.mass * m.mass / (distance * distance);
+  var strength = (this.G * this.mass * m.mass) / (distance * distance);
   // Get force vector --> magnitude * direction
   force.mult(strength);
   return force;

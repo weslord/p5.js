@@ -104,9 +104,9 @@ p5.prototype.orbitControl = function(sensitivityX, sensitivityY, sensitivityZ) {
     // ORBIT BEHAVIOR
     if (this.mouseButton === this.LEFT) {
       const deltaTheta =
-        -sensitivityX * (this.mouseX - this.pmouseX) / scaleFactor;
+        (-sensitivityX * (this.mouseX - this.pmouseX)) / scaleFactor;
       const deltaPhi =
-        sensitivityY * (this.mouseY - this.pmouseY) / scaleFactor;
+        (sensitivityY * (this.mouseY - this.pmouseY)) / scaleFactor;
       this._renderer._curCamera._orbit(deltaTheta, deltaPhi, 0);
     } else if (this.mouseButton === this.RIGHT) {
       // PANNING BEHAVIOR along X/Z camera axes and restricted to X/Z plane

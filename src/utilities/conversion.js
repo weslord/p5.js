@@ -172,7 +172,7 @@ p5.prototype.boolean = function(n) {
 p5.prototype.byte = function(n) {
   const nn = p5.prototype.int(n, 10);
   if (typeof nn === 'number') {
-    return (nn + 128) % 256 - 128;
+    return ((nn + 128) % 256) - 128;
   } else if (nn instanceof Array) {
     return nn.map(p5.prototype.byte);
   }

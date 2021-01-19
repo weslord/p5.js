@@ -410,9 +410,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         parsed[0].columnNumber
       ) {
         locationObj = {
-          location: `${parsed[0].fileName}:${parsed[0].lineNumber}:${
-            parsed[0].columnNumber
-          }`,
+          location: `${parsed[0].fileName}:${parsed[0].lineNumber}:${parsed[0].columnNumber}`,
           file: parsed[0].fileName.split('/').slice(-1),
           line: parsed[0].lineNumber
         };
@@ -478,9 +476,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     if (friendlyStack.length > 1) {
       let stacktraceMsg = '';
       friendlyStack.forEach((frame, idx) => {
-        const location = `${frame.fileName}:${frame.lineNumber}:${
-          frame.columnNumber
-        }`;
+        const location = `${frame.fileName}:${frame.lineNumber}:${frame.columnNumber}`;
         let frameMsg,
           translationObj = {
             func: frame.functionName,
@@ -584,9 +580,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         friendlyStack[0].columnNumber
       ) {
         locationObj = {
-          location: `${friendlyStack[0].fileName}:${
-            friendlyStack[0].lineNumber
-          }:${friendlyStack[0].columnNumber}`,
+          location: `${friendlyStack[0].fileName}:${friendlyStack[0].lineNumber}:${friendlyStack[0].columnNumber}`,
           file: friendlyStack[0].fileName.split('/').slice(-1),
           line: friendlyStack[0].lineNumber
         };
@@ -697,9 +691,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
       stacktrace[0].columnNumber
     ) {
       locationObj = {
-        location: `${stacktrace[0].fileName}:${stacktrace[0].lineNumber}:${
-          stacktrace[0].columnNumber
-        }`,
+        location: `${stacktrace[0].fileName}:${stacktrace[0].lineNumber}:${stacktrace[0].columnNumber}`,
         file: stacktrace[0].fileName.split('/').slice(-1),
         line: friendlyStack[0].lineNumber
       };
@@ -933,9 +925,7 @@ const helpForMisusedAtTopLevelCode = (e, log) => {
         symbol.type === 'function' ? `${symbol.name}()` : symbol.name;
       if (typeof IS_MINIFIED !== 'undefined') {
         log(
-          `Did you just try to use p5.js's ${symbolName} ${
-            symbol.type
-          }? If so, you may want to move it into your sketch's setup() function.\n\nFor more details, see: ${FAQ_URL}`
+          `Did you just try to use p5.js's ${symbolName} ${symbol.type}? If so, you may want to move it into your sketch's setup() function.\n\nFor more details, see: ${FAQ_URL}`
         );
       } else {
         log(

@@ -484,7 +484,8 @@ p5.prototype.lightFalloff = function(
 
   if (
     constantAttenuation === 0 &&
-    (linearAttenuation === 0 && quadraticAttenuation === 0)
+    linearAttenuation === 0 &&
+    quadraticAttenuation === 0
   ) {
     constantAttenuation = 1;
     console.warn(

@@ -974,7 +974,7 @@ p5.prototype.httpPost = function() {
  *
  *   let feature = earthquakes.features[eqFeatureIndex];
  *   let mag = feature.properties.mag;
- *   let rad = mag / 11 * ((width + height) / 2);
+ *   let rad = (mag / 11) * ((width + height) / 2);
  *   fill(255, 0, 0, 100);
  *   ellipse(width / 2 + random(-2, 2), height / 2 + random(-2, 2), rad, rad);
  *

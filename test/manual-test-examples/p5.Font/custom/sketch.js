@@ -618,8 +618,7 @@ var textStyleSketch = function(p) {
   };
   p.setup = function() {
     p.createCanvas(240, 160);
-    p
-      .fill(0)
+    p.fill(0)
       .strokeWeight(0)
       .textSize(24);
     p.textFont(fontRegular);

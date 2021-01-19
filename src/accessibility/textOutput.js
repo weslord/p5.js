@@ -64,15 +64,11 @@ function _shapeDetails(idT, ingredients) {
     //and for every shape
     for (let y in ingredients[x]) {
       //it creates a table row
-      let row = `<tr id="${idT}shape${shapeNumber}"><th>${
-        ingredients[x][y].color
-      } ${x}</th>`;
+      let row = `<tr id="${idT}shape${shapeNumber}"><th>${ingredients[x][y].color} ${x}</th>`;
       if (x === 'line') {
         row =
           row +
-          `<td>location = ${ingredients[x][y].pos}</td><td>length = ${
-            ingredients[x][y].length
-          } pixels</td></tr>`;
+          `<td>location = ${ingredients[x][y].pos}</td><td>length = ${ingredients[x][y].length} pixels</td></tr>`;
       } else {
         row = row + `<td>location = ${ingredients[x][y].pos}</td>`;
         if (x !== 'point') {
@@ -95,15 +91,11 @@ function _shapeList(idT, ingredients) {
   for (let x in ingredients) {
     for (let y in ingredients[x]) {
       //it creates a line in a list
-      let _line = `<li><a href="#${idT}shape${shapeNumber}">${
-        ingredients[x][y].color
-      } ${x}</a>`;
+      let _line = `<li><a href="#${idT}shape${shapeNumber}">${ingredients[x][y].color} ${x}</a>`;
       if (x === 'line') {
         _line =
           _line +
-          `, ${ingredients[x][y].pos}, ${
-            ingredients[x][y].length
-          } pixels long.</li>`;
+          `, ${ingredients[x][y].pos}, ${ingredients[x][y].length} pixels long.</li>`;
       } else {
         _line = _line + `, at ${ingredients[x][y].pos}`;
         if (x !== 'point') {

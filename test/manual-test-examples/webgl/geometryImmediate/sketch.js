@@ -29,15 +29,15 @@ function draw() {
 function ngon(n, x, y, d) {
   beginShape(TESS);
   for (let i = 0; i < n + 1; i++) {
-    angle = TWO_PI / n * i;
-    px = x + sin(angle) * d / 2;
-    py = y - cos(angle) * d / 2;
+    angle = (TWO_PI / n) * i;
+    px = x + (sin(angle) * d) / 2;
+    py = y - (cos(angle) * d) / 2;
     vertex(px, py);
   }
   for (i = 0; i < n + 1; i++) {
-    angle = TWO_PI / n * i;
-    px = x + sin(angle) * d / 4;
-    py = y - cos(angle) * d / 4;
+    angle = (TWO_PI / n) * i;
+    px = x + (sin(angle) * d) / 4;
+    py = y - (cos(angle) * d) / 4;
     vertex(px, py);
   }
   endShape();
@@ -47,7 +47,7 @@ function drawQuads(y) {
   // 2 args
   push();
   fill(255, 0, 0);
-  translate(-3 / 8 * width, y);
+  translate((-3 / 8) * width, y);
   beginShape(TRIANGLES);
   vertex(-sz, -sz);
   vertex(sz, -sz);
@@ -61,7 +61,7 @@ function drawQuads(y) {
   // 3 args
   push();
   fill(0, 0, 255);
-  translate(-1 / 8 * width, y);
+  translate((-1 / 8) * width, y);
   beginShape(TRIANGLES);
   vertex(-sz, -sz, 0);
   vertex(sz, -sz, 0);
@@ -75,7 +75,7 @@ function drawQuads(y) {
   // 4 args
   push();
   texture(img);
-  translate(1 / 8 * width, y);
+  translate((1 / 8) * width, y);
   beginShape(TRIANGLES);
   vertex(-sz, -sz, 0, 0);
   vertex(sz, -sz, 1, 0);
@@ -89,7 +89,7 @@ function drawQuads(y) {
   // 5 args
   push();
   texture(img);
-  translate(3 / 8 * width, y);
+  translate((3 / 8) * width, y);
   beginShape(TRIANGLES);
   vertex(-sz, -sz, 0, 0, 0);
   vertex(sz, -sz, 0, 1, 0);

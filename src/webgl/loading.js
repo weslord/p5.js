@@ -567,9 +567,7 @@ function parseASCIISTL(model, lines) {
           // Invalid State
           console.error(line);
           console.error(
-            `Invalid state "${
-              parts[0]
-            }", should be "endsolid" or "facet normal"`
+            `Invalid state "${parts[0]}", should be "endsolid" or "facet normal"`
           );
           return;
         }

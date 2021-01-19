@@ -72,18 +72,18 @@ p5.prototype._normalizeArcAngles = (
   // Optionally adjust the angles to counter linear scaling.
   if (correctForScaling) {
     if (start <= constants.HALF_PI) {
-      start = Math.atan(width / height * Math.tan(start));
+      start = Math.atan((width / height) * Math.tan(start));
     } else if (start > constants.HALF_PI && start <= 3 * constants.HALF_PI) {
-      start = Math.atan(width / height * Math.tan(start)) + constants.PI;
+      start = Math.atan((width / height) * Math.tan(start)) + constants.PI;
     } else {
-      start = Math.atan(width / height * Math.tan(start)) + constants.TWO_PI;
+      start = Math.atan((width / height) * Math.tan(start)) + constants.TWO_PI;
     }
     if (stop <= constants.HALF_PI) {
-      stop = Math.atan(width / height * Math.tan(stop));
+      stop = Math.atan((width / height) * Math.tan(stop));
     } else if (stop > constants.HALF_PI && stop <= 3 * constants.HALF_PI) {
-      stop = Math.atan(width / height * Math.tan(stop)) + constants.PI;
+      stop = Math.atan((width / height) * Math.tan(stop)) + constants.PI;
     } else {
-      stop = Math.atan(width / height * Math.tan(stop)) + constants.TWO_PI;
+      stop = Math.atan((width / height) * Math.tan(stop)) + constants.TWO_PI;
     }
   }
 

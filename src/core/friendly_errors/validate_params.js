@@ -520,7 +520,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
         const argType =
           arg instanceof Array
             ? 'array'
-            : arg === null ? 'null' : arg.name || typeof arg;
+            : arg === null
+            ? 'null'
+            : arg.name || typeof arg;
 
         translationObj = {
           func,
@@ -579,9 +581,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           parsed[3].lineNumber &&
           parsed[3].columnNumber
         ) {
-          let location = `${parsed[3].fileName}:${parsed[3].lineNumber}:${
-            parsed[3].columnNumber
-          }`;
+          let location = `${parsed[3].fileName}:${parsed[3].lineNumber}:${parsed[3].columnNumber}`;
 
           translationObj.location = translator('fes.location', {
             location: location,

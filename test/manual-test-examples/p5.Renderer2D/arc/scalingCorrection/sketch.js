@@ -18,10 +18,10 @@ function draw() {
   noStroke();
   fill(255);
   arc(300, 300, w, h, theta, theta + PI / 2);
-  arc(300, 300, w, h, theta + PI, theta + 3 * PI / 2);
+  arc(300, 300, w, h, theta + PI, theta + (3 * PI) / 2);
   fill(200);
   arc(300, 300, w, h, theta + PI / 2, theta + PI);
-  arc(300, 300, w, h, theta + 3 * PI / 2, theta);
+  arc(300, 300, w, h, theta + (3 * PI) / 2, theta);
 
   // Draws dividers between rotating quadrants.
   stroke(237, 34, 93);

@@ -531,9 +531,7 @@ p5.Shader.prototype.enableAttrib = function(
       this.attributes[attr.name] !== attr
     ) {
       console.warn(
-        `The attribute "${
-          attr.name
-        }"passed to enableAttrib does not belong to this shader.`
+        `The attribute "${attr.name}"passed to enableAttrib does not belong to this shader.`
       );
     }
     const loc = attr.location;

@@ -23,7 +23,9 @@ module.exports = function(grunt) {
 
       const filename = isMin
         ? 'p5.pre-min.js'
-        : isTest ? 'p5-test.js' : 'p5.js';
+        : isTest
+        ? 'p5-test.js'
+        : 'p5.js';
 
       // This file will not exist until it has been built
       const libFilePath = resolve('lib/' + filename);

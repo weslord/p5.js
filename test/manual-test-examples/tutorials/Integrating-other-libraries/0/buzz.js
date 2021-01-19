@@ -719,11 +719,11 @@
     },
     toPercent: function(value, total, decimal) {
       var r = Math.pow(10, decimal || 0);
-      return Math.round(value * 100 / total * r) / r;
+      return Math.round(((value * 100) / total) * r) / r;
     },
     fromPercent: function(percent, total, decimal) {
       var r = Math.pow(10, decimal || 0);
-      return Math.round(total / 100 * percent * r) / r;
+      return Math.round((total / 100) * percent * r) / r;
     }
   };
   return buzz;

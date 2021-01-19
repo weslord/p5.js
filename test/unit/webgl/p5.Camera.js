@@ -32,7 +32,7 @@ suite('p5.Camera', function() {
         myCam.camera(
           0,
           0,
-          100 / 2.0 / Math.tan(Math.PI * 30.0 / 180.0),
+          100 / 2.0 / Math.tan((Math.PI * 30.0) / 180.0),
           0,
           0,
           0,
@@ -238,7 +238,7 @@ suite('p5.Camera', function() {
         72.87352752685547, 0, -46.79154968261719, 1
         ]);
 
-      myCam.pan(1 * 180 / Math.PI);
+      myCam.pan((1 * 180) / Math.PI);
 
       assert.deepEqual(myCam.cameraMatrix.mat4, expectedMatrix);
 
@@ -262,7 +262,7 @@ suite('p5.Camera', function() {
           -0, 0.9974949955940247, 0.07073719799518585, 0,
           0, -86.3855972290039, -6.126020908355713, 1]);
 
-      myCam.tilt(1.5 * 180 / Math.PI);
+      myCam.tilt((1.5 * 180) / Math.PI);
 
       assert.deepEqual(myCam.cameraMatrix.mat4, expectedMatrix);
 

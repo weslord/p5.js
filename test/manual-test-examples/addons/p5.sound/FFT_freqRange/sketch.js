@@ -40,11 +40,11 @@ function draw() {
   // Generate 8 bars to represent 8 different frequency ranges
   for (var i = 0; i < 8; i++) {
     noStroke();
-    fill((i * 30) % 100 + 50, 195, (i * 25 + 50) % 255);
+    fill(((i * 30) % 100) + 50, 195, (i * 25 + 50) % 255);
 
     // Each bar has a unique frequency range
-    var centerFreq = pow(2, i) * 125 / 2;
-    var loFreq = pow(2, i - 1) * 125 / 2 + centerFreq / 4;
+    var centerFreq = (pow(2, i) * 125) / 2;
+    var loFreq = (pow(2, i - 1) * 125) / 2 + centerFreq / 4;
     var hiFreq = centerFreq + centerFreq / 2;
 
     // get the average value in a frequency range
@@ -52,12 +52,12 @@ function draw() {
 
     // Rectangle height represents the average value of this frequency range
     var h = -height + map(freqValue, 0, 255, height, 0);
-    rect((i + 1) * width / 8 - width / 8, height, width / 8, h);
+    rect(((i + 1) * width) / 8 - width / 8, height, width / 8, h);
 
     fill(255);
     text(
       loFreq.toFixed(0) + ' Hz - ' + hiFreq.toFixed(0) + ' Hz',
-      (i + 1) * width / 8 - width / 8 / 2,
+      ((i + 1) * width) / 8 - width / 8 / 2,
       30
     );
   }

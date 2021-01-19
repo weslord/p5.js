@@ -529,10 +529,10 @@ p5.prototype.curveTangent = function(a, b, c, d, t) {
   p5._validateParameters('curveTangent', arguments);
 
   const t2 = t * t,
-    f1 = -3 * t2 / 2 + 2 * t - 0.5,
-    f2 = 9 * t2 / 2 - 5 * t,
-    f3 = -9 * t2 / 2 + 4 * t + 0.5,
-    f4 = 3 * t2 / 2 - t;
+    f1 = (-3 * t2) / 2 + 2 * t - 0.5,
+    f2 = (9 * t2) / 2 - 5 * t,
+    f3 = (-9 * t2) / 2 + 4 * t + 0.5,
+    f4 = (3 * t2) / 2 - t;
   return a * f1 + b * f2 + c * f3 + d * f4;
 };
 
