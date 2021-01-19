@@ -738,7 +738,7 @@ p5.prototype.round = function (n, decimals) {
  * @alt
  * horizontal center line squared values displayed on top and regular on bottom.
  */
-p5.prototype.sq = (n) => n * n;
+p5.prototype.sq = n => n * n;
 
 /**
  * Calculates the square root of a number. The square root of a number is

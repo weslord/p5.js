@@ -730,7 +730,7 @@ suite('Global Error Handling', function () {
     }).then(function () {
       assert.strictEqual(log.length, 2);
       let temp = log[1].split('\n');
-      temp = temp.filter((e) => e.trim().length > 0);
+      temp = temp.filter(e => e.trim().length > 0);
       assert.strictEqual(temp.length, 2);
       assert.match(log[0], /"asdfg" not being defined/);
       assert.match(temp[0], /Error at/);

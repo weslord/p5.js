@@ -474,7 +474,7 @@ class p5 {
 
         // call any registered remove functions
         const self = this;
-        this._registeredMethods.remove.forEach((f) => {
+        this._registeredMethods.remove.forEach(f => {
           if (typeof f !== 'undefined') {
             f.call(self);
           }

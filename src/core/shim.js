@@ -48,11 +48,11 @@ window.requestAnimationFrame = (() =>
   if (!Object.assign) {
     const keys = Object.keys;
     const defineProperty = Object.defineProperty;
-    const canBeObject = (obj) => typeof obj !== 'undefined' && obj !== null;
+    const canBeObject = obj => typeof obj !== 'undefined' && obj !== null;
     const hasSymbols =
       typeof Symbol === 'function' && typeof Symbol() === 'symbol';
     const propIsEnumerable = Object.prototype.propertyIsEnumerable;
-    const isEnumerableOn = (obj) =>
+    const isEnumerableOn = obj =>
       function isEnumerable(prop) {
         return propIsEnumerable.call(obj, prop);
       };

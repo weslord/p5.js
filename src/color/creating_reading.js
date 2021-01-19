@@ -409,8 +409,8 @@ p5.prototype.lerpColor = function (c1, c2, amt) {
   let fromArray, toArray;
 
   if (mode === constants.RGB) {
-    fromArray = c1.levels.map((level) => level / 255);
-    toArray = c2.levels.map((level) => level / 255);
+    fromArray = c1.levels.map(level => level / 255);
+    toArray = c2.levels.map(level => level / 255);
   } else if (mode === constants.HSB) {
     c1._getBrightness(); // Cache hsba so it definitely exists.
     c2._getBrightness();

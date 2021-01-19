@@ -179,7 +179,7 @@ p5.prototype.saveCanvas = function () {
       break;
   }
 
-  htmlCanvas.toBlob((blob) => {
+  htmlCanvas.toBlob(blob => {
     p5.prototype.downloadFile(blob, filename, extension);
   }, mimeType);
 };
@@ -246,7 +246,7 @@ p5.prototype.saveGif = function (pImg, filename) {
   // The initial global palette is the one with the most occurence
   const globalPalette = palettesSortedByFreq[0]
     .split(',')
-    .map((a) => parseInt(a));
+    .map(a => parseInt(a));
 
   framesUsingGlobalPalette = framesUsingGlobalPalette.concat(
     paletteFreqsAndFrames[globalPalette].frames
@@ -260,9 +260,9 @@ p5.prototype.saveGif = function (pImg, filename) {
   // not in the global palette can be added there, while keeping the length
   // of the global palette <= 256
   for (let i = 1; i < palettesSortedByFreq.length; i++) {
-    const palette = palettesSortedByFreq[i].split(',').map((a) => parseInt(a));
+    const palette = palettesSortedByFreq[i].split(',').map(a => parseInt(a));
 
-    const difference = palette.filter((x) => !globalPaletteSet.has(x));
+    const difference = palette.filter(x => !globalPaletteSet.has(x));
     if (globalPalette.length + difference.length <= 256) {
       for (let j = 0; j < difference.length; j++) {
         globalPalette.push(difference[j]);
@@ -344,7 +344,7 @@ p5.prototype.saveGif = function (pImg, filename) {
     const frameOpts = {};
 
     // Transparency optimization
-    const canBeTransparent = palette.filter((a) => !cannotBeTransparent.has(a));
+    const canBeTransparent = palette.filter(a => !cannotBeTransparent.has(a));
     if (canBeTransparent.length > 0) {
       // Select a color to mark as transparent
       const transparent = canBeTransparent[0];
@@ -442,7 +442,7 @@ p5.prototype.saveGif = function (pImg, filename) {
  * }
  *
  * function mousePressed() {
- *   saveFrames('out', 'png', 1, 25, (data) => {
+ *   saveFrames('out', 'png', 1, 25, data => {
  *     print(data);
  *   });
  * }

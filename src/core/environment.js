@@ -702,7 +702,7 @@ p5.prototype.getURL = () => location.href;
  * This example does not render anything.
  */
 p5.prototype.getURLPath = () =>
-  location.pathname.split('/').filter((v) => v !== '');
+  location.pathname.split('/').filter(v => v !== '');
 /**
  * Gets the current URL params as an Object.
  * @method getURLParams

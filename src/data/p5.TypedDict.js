@@ -334,7 +334,7 @@ p5.TypedDict.prototype.print = function () {
  *       john: 1940,
  *       paul: 1942,
  *       george: 1943,
- *       ringo: 1940,
+ *       ringo: 1940
  *     }).saveTable('beatles');
  *   }
  * }
@@ -372,7 +372,7 @@ p5.TypedDict.prototype.saveTable = function (filename) {
  *       john: 1940,
  *       paul: 1942,
  *       george: 1943,
- *       ringo: 1940,
+ *       ringo: 1940
  *     }).saveJSON('beatles');
  *   }
  * }
@@ -389,7 +389,7 @@ p5.TypedDict.prototype.saveJSON = function (filename, opt) {
  * values for the Dictionary type
  */
 
-p5.TypedDict.prototype._validate = (value) => true;
+p5.TypedDict.prototype._validate = value => true;
 
 /**
  *
@@ -405,7 +405,7 @@ p5.StringDict = function (...args) {
 
 p5.StringDict.prototype = Object.create(p5.TypedDict.prototype);
 
-p5.StringDict.prototype._validate = (value) => typeof value === 'string';
+p5.StringDict.prototype._validate = value => typeof value === 'string';
 
 /**
  *
@@ -427,7 +427,7 @@ p5.NumberDict.prototype = Object.create(p5.TypedDict.prototype);
  * values for the Dictionary type
  */
 
-p5.NumberDict.prototype._validate = (value) => typeof value === 'number';
+p5.NumberDict.prototype._validate = value => typeof value === 'number';
 
 /**
  * Add the given number to the value currently stored at the given key.

@@ -208,7 +208,7 @@ p5.Font.prototype.textBounds = function (str, x = 0, y = 0, fontSize, opts) {
  *
  *   points = font.textToPoints('p5', 0, 0, 10, {
  *     sampleFactor: 5,
- *     simplifyThreshold: 0,
+ *     simplifyThreshold: 0
  *   });
  *   bounds = font.textBounds(' p5 ', 0, 0, 10);
  * }

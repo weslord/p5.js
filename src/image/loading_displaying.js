@@ -55,7 +55,7 @@ import '../core/friendly_errors/fes_core';
  * <code>
  * function setup() {
  *   // here we use a callback to display the image after loading
- *   loadImage('assets/laDefense.jpg', (img) => {
+ *   loadImage('assets/laDefense.jpg', img => {
  *     image(img, 0, 0);
  *   });
  * }
@@ -76,7 +76,7 @@ p5.prototype.loadImage = function (path, successCallback, failureCallback) {
     mode: 'cors'
   });
 
-  fetch(path, req).then((response) => {
+  fetch(path, req).then(response => {
     // GIF section
     const contentType = response.headers.get('content-type');
     if (contentType === null) {
@@ -86,7 +86,7 @@ p5.prototype.loadImage = function (path, successCallback, failureCallback) {
     }
     if (contentType && contentType.includes('image/gif')) {
       response.arrayBuffer().then(
-        (arrayBuffer) => {
+        arrayBuffer => {
           if (arrayBuffer) {
             const byteArray = new Uint8Array(arrayBuffer);
             _createGif(
@@ -94,13 +94,13 @@ p5.prototype.loadImage = function (path, successCallback, failureCallback) {
               pImg,
               successCallback,
               failureCallback,
-              ((pImg) => {
+              (pImg => {
                 self._decrementPreload();
               }).bind(self)
             );
           }
         },
-        (e) => {
+        e => {
           if (typeof failureCallback === 'function') {
             failureCallback(e);
           } else {
@@ -125,7 +125,7 @@ p5.prototype.loadImage = function (path, successCallback, failureCallback) {
         self._decrementPreload();
       };
 
-      img.onerror = (e) => {
+      img.onerror = e => {
         p5._friendlyFileLoadError(0, img.src);
         if (typeof failureCallback === 'function') {
           failureCallback(e);
@@ -307,7 +307,7 @@ function _sAssign(sVal, iVal) {
  * <code>
  * function setup() {
  *   // Here, we use a callback to display the image after loading
- *   loadImage('assets/laDefense.jpg', (img) => {
+ *   loadImage('assets/laDefense.jpg', img => {
  *     image(img, 0, 0);
  *   });
  * }

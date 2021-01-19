@@ -294,7 +294,7 @@ suite('Files', function () {
     suite('saving images', function () {
       let waitForBlob = async function (blc) {
         let sleep = function (ms) {
-          return new Promise((r) => setTimeout(r, ms));
+          return new Promise(r => setTimeout(r, ms));
         };
         while (!blc.blob) {
           await sleep(5);

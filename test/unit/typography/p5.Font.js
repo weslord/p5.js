@@ -53,7 +53,7 @@ suite('p5.Font', function () {
         };
       });
       assert.isArray(points);
-      points.forEach((p) => {
+      points.forEach(p => {
         assert.property(p, 'x');
         assert.property(p, 'y');
         assert.property(p, 'alpha');

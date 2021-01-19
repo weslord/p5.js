@@ -81,7 +81,7 @@ function getYuidocOptions() {
   return o;
 }
 
-module.exports = (grunt) => {
+module.exports = grunt => {
   // Specify what reporter we'd like to use for Mocha
   const quietReport = process.env.GITHUB_ACTIONS || grunt.option('quiet');
   const reporter = quietReport ? 'spec' : 'Nyan';
@@ -467,9 +467,9 @@ module.exports = (grunt) => {
 
   // eslint fixes everything it checks:
   gruntConfig.eslint.fix.src = Object.keys(gruntConfig.eslint)
-    .map((s) => gruntConfig.eslint[s].src)
+    .map(s => gruntConfig.eslint[s].src)
     .reduce((a, b) => a.concat(b), [])
-    .filter((a) => a);
+    .filter(a => a);
 
   /* not yet
   gruntConfig['eslint-samples'].fix.src = Object.keys(

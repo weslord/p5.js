@@ -156,7 +156,7 @@ p5.prototype.concat = (list0, list1) => list0.concat(list1);
  * }
  * </code></div>
  */
-p5.prototype.reverse = (list) => list.reverse();
+p5.prototype.reverse = list => list.reverse();
 
 /**
  * Decreases an array by one element and returns the shortened array,

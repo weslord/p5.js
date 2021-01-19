@@ -185,7 +185,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
   // validateParameters() helper functions:
   // lookupParamDoc() for querying data.json
-  const lookupParamDoc = (func) => {
+  const lookupParamDoc = func => {
     // look for the docs in the `data.json` datastructure
 
     const ichDot = func.lastIndexOf('.');
@@ -210,7 +210,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     // parse the parameter types for each overload
     const mapConstants = {};
     let maxParams = 0;
-    overloads.forEach((overload) => {
+    overloads.forEach(overload => {
       const formats = overload.formats;
 
       // keep a record of the maximum number of arguments
@@ -228,7 +228,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
       overload.minParams = minParams;
 
       // loop through each parameter position, and parse its types
-      formats.forEach((format) => {
+      formats.forEach(format => {
         // split this parameter's types
         format.types = format.type.split('|').map(function ct(type) {
           // array
@@ -301,7 +301,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             typeParts.shift();
           }
 
-          typeParts.forEach((p) => {
+          typeParts.forEach(p => {
             t = t && t[p];
           });
           if (t) {
@@ -318,7 +318,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     };
   };
 
-  const isNumber = (param) => {
+  const isNumber = param => {
     switch (typeof param) {
       case 'number':
         return true;
@@ -469,7 +469,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
   // a custom error type, used by the mocha
   // tests when expecting validation errors
-  p5.ValidationError = ((name) => {
+  p5.ValidationError = (name => {
     class err extends Error {
       constructor(message, func, type) {
         super();
@@ -493,7 +493,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     function formatType() {
       const format = errorObj.format;
       return format.types
-        .map((type) => (type.names ? type.names.join('|') : type.name))
+        .map(type => (type.names ? type.names.join('|') : type.name))
         .join('|');
     }
 

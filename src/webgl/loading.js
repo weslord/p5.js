@@ -132,7 +132,7 @@ p5.prototype.loadModel = function (path) {
       path,
       'GET',
       'arrayBuffer',
-      (arrayBuffer) => {
+      arrayBuffer => {
         parseSTL(model, arrayBuffer);
 
         if (normalize) {
@@ -148,7 +148,7 @@ p5.prototype.loadModel = function (path) {
   } else if (fileType.match(/\.obj$/i)) {
     this.loadStrings(
       path,
-      (strings) => {
+      strings => {
         parseObj(model, strings);
 
         if (normalize) {

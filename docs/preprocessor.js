@@ -34,7 +34,7 @@ function smokeTestMethods(data) {
 function cleanExamples(data) {
   data.classitems.forEach(function (classitem) {
     if (classitem.itemtype === 'method' && classitem.example) {
-      classitem.example = classitem.example.map((i) =>
+      classitem.example = classitem.example.map(i =>
         i.replace(/[^\n]*\/\/\s*prettier-ignore.*\r?\n/g, '')
       );
     }
@@ -214,7 +214,7 @@ function mergeOverloadedMethods(data) {
         methodsByFullName[fullName] = classitem;
       }
 
-      Object.keys(methodConsts).forEach((constName) =>
+      Object.keys(methodConsts).forEach(constName =>
         (consts[constName] || (consts[constName] = [])).push(fullName)
       );
     }
@@ -293,16 +293,15 @@ function renderDescriptionsAsMarkdown(data) {
 module.exports = (data, options) => {
   data.classitems
     .filter(
-      (ci) =>
-        !ci.itemtype && (ci.params || ci.return) && ci.access !== 'private'
+      ci => !ci.itemtype && (ci.params || ci.return) && ci.access !== 'private'
     )
-    .forEach((ci) => {
+    .forEach(ci => {
       console.error(ci.file + ':' + ci.line + ': unnamed public member');
     });
 
   Object.keys(data.classes)
-    .filter((k) => data.classes[k].access === 'private')
-    .forEach((k) => delete data.classes[k]);
+    .filter(k => data.classes[k].access === 'private')
+    .forEach(k => delete data.classes[k]);
 
   renderDescriptionsAsMarkdown(data);
   mergeOverloadedMethods(data);

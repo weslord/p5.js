@@ -80,7 +80,7 @@ p5.prototype.int = function (n, radix = 10) {
   } else if (typeof n === 'boolean') {
     return n ? 1 : 0;
   } else if (n instanceof Array) {
-    return n.map((n) => p5.prototype.int(n, radix));
+    return n.map(n => p5.prototype.int(n, radix));
   }
 };
 
@@ -270,7 +270,7 @@ p5.prototype.unchar = function (n) {
 p5.prototype.hex = function (n, digits) {
   digits = digits === undefined || digits === null ? (digits = 8) : digits;
   if (n instanceof Array) {
-    return n.map((n) => p5.prototype.hex(n, digits));
+    return n.map(n => p5.prototype.hex(n, digits));
   } else if (n === Infinity || n === -Infinity) {
     const c = n === Infinity ? 'F' : '0';
     return c.repeat(digits);

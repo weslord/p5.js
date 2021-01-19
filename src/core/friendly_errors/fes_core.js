@@ -115,7 +115,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
   for (let n = 0; n < names.length; n++) {
     class2type[`[object ${names[n]}]`] = names[n].toLowerCase();
   }
-  const getType = (obj) => {
+  const getType = obj => {
     if (obj == null) {
       return `${obj}`;
     }
@@ -323,7 +323,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @param {*} context The current default context. It's set to window in
    * "global mode" and to a p5 instance in "instance mode"
    */
-  const checkForUserDefinedFunctions = (context) => {
+  const checkForUserDefinedFunctions = context => {
     if (p5.disableFriendlyErrors) return;
 
     // if using instance mode, this function would be called with the current
@@ -334,7 +334,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
     const fxns = {};
     // lowercasename -> actualName mapping
-    fnNames.forEach((symbol) => {
+    fnNames.forEach(symbol => {
       fxns[symbol.toLowerCase()] = symbol;
     });
 
@@ -383,7 +383,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     let min = 999999;
     // compute the levenshtein distance for the symbol against all known
     // public p5 properties. Find the property with the minimum distance
-    misusedAtTopLevelCode.forEach((symbol) => {
+    misusedAtTopLevelCode.forEach(symbol => {
       let dist = computeEditDistance(errSym, symbol.name);
       if (distanceMap[dist]) distanceMap[dist].push(symbol);
       else distanceMap[dist] = [symbol];
@@ -397,7 +397,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     // Show a message only if the caught symbol and the matched property name
     // differ in their name ( either letter difference or difference of case )
     const matchedSymbols = distanceMap[min].filter(
-      (symbol) => symbol.name !== errSym
+      symbol => symbol.name !== errSym
     );
     if (matchedSymbols.length !== 0) {
       const parsed = p5._getErrorStackParser().parse(error);
@@ -433,7 +433,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         // suggestion on its own line, the function name followed by a link to
         // reference documentation
         const suggestions = matchedSymbols
-          .map((symbol) => {
+          .map(symbol => {
             const message =
               '▶️ ' + symbol.name + (symbol.type === 'function' ? '()' : '');
             return mapToReference(message, symbol.name);
@@ -468,7 +468,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @private
    * @param {Array} friendlyStack
    */
-  const printFriendlyStack = (friendlyStack) => {
+  const printFriendlyStack = friendlyStack => {
     const log =
       p5._fesLogger && typeof p5._fesLogger === 'function'
         ? p5._fesLogger
@@ -517,7 +517,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     // cannot process a stacktrace that doesn't exist
     if (!stacktrace) return [false, null];
 
-    stacktrace.forEach((frame) => {
+    stacktrace.forEach(frame => {
       frame.functionName = frame.functionName || '';
     });
 
@@ -560,7 +560,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           frame.frameIndex = index;
           return frame;
         })
-        .filter((frame) => frame.fileName !== p5FileName);
+        .filter(frame => frame.fileName !== p5FileName);
 
       // a weird case, if for some reason we can't identify the function called
       // from user's code
@@ -637,7 +637,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
    * @private
    * @param {*} e The object to extract error details from
    */
-  const fesErrorMonitor = (e) => {
+  const fesErrorMonitor = e => {
     if (p5.disableFriendlyErrors) return;
     // Try to get the error object from e
     let error;
@@ -846,9 +846,9 @@ const FAQ_URL =
 defineMisusedAtTopLevelCode = () => {
   const uniqueNamesFound = {};
 
-  const getSymbols = (obj) =>
+  const getSymbols = obj =>
     Object.getOwnPropertyNames(obj)
-      .filter((name) => {
+      .filter(name => {
         if (name[0] === '_') {
           return false;
         }
@@ -860,7 +860,7 @@ defineMisusedAtTopLevelCode = () => {
 
         return true;
       })
-      .map((name) => {
+      .map(name => {
         let type;
 
         if (typeof obj[name] === 'function') {
@@ -906,7 +906,7 @@ const helpForMisusedAtTopLevelCode = (e, log) => {
   //  return;
   //}
 
-  misusedAtTopLevelCode.some((symbol) => {
+  misusedAtTopLevelCode.some(symbol => {
     // Note that while just checking for the occurrence of the
     // symbol name in the error message could result in false positives,
     // a more rigorous test is difficult because different browsers

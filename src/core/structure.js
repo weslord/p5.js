@@ -470,7 +470,7 @@ p5.prototype.redraw = function (n) {
     if (typeof context.setup === 'undefined') {
       context.scale(context._pixelDensity, context._pixelDensity);
     }
-    const callMethod = (f) => {
+    const callMethod = f => {
       f.call(context);
     };
     for (let idxRedraw = 0; idxRedraw < numberOfRedraws; idxRedraw++) {
@@ -523,7 +523,7 @@ p5.prototype.redraw = function (n) {
  * @param {String|Object} node ID or pointer to HTML DOM node to contain sketch in
  * @example
  * <div class='norender'><code>
- * const s = (p) => {
+ * const s = p => {
  *   let x = 100;
  *   let y = 100;
  *

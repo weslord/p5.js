@@ -3,7 +3,7 @@
 'use strict';
 import { magenta } from 'chalk';
 
-module.exports = (grunt) => {
+module.exports = grunt => {
   grunt.registerMultiTask(
     'eslint-samples',
     'Validate samples with ESLint',

@@ -10,22 +10,21 @@ import dataDoc from '../docs/reference/data.min.json';
 const globals = {};
 dataDoc.classitems
   .filter(
-    (ci) =>
-      classes.indexOf(ci.class) >= 0 && itemtypes.indexOf(ci.itemtype) >= 0
+    ci => classes.indexOf(ci.class) >= 0 && itemtypes.indexOf(ci.itemtype) >= 0
   )
-  .forEach((ci) => {
+  .forEach(ci => {
     globals[ci.name] = true;
   });
 
-Object.keys(dataDoc.consts).forEach((c) => {
+Object.keys(dataDoc.consts).forEach(c => {
   globals[c] = true;
 });
 
 dataDoc.classitems
-  .find((ci) => ci.name === 'keyCode' && ci.class === 'p5')
+  .find(ci => ci.name === 'keyCode' && ci.class === 'p5')
   .description.match(/[A-Z\r\n, _]{10,}/m)[0]
   .match(/[A-Z_]+/gm)
-  .forEach((c) => {
+  .forEach(c => {
     globals[c] = true;
   });
 
@@ -83,7 +82,7 @@ const userFunctions = [
   'keyTyped'
 ];
 const userFunctionTrailer =
-  EOL + userFunctions.map((s) => 'typeof ' + s + ';').join(EOL) + EOL;
+  EOL + userFunctions.map(s => 'typeof ' + s + ';').join(EOL) + EOL;
 
 module.exports = {
   environments: {
@@ -129,7 +128,7 @@ module.exports = {
           }
         }
 
-        return samples.map((s) => s.code + userFunctionTrailer);
+        return samples.map(s => s.code + userFunctionTrailer);
       },
 
       postprocess: function (sampleMessages, filename) {

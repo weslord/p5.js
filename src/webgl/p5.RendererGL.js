@@ -427,7 +427,7 @@ p5.RendererGL.prototype._resetContext = function (options, callback) {
  *   { c: '#00f', t: 1.37, p: 1.57, r: 0.2 },
  *   { c: '#ff0', t: 1.12, p: 1.91, r: 0.7 },
  *   { c: '#0ff', t: 1.21, p: 1.31, r: 0.7 },
- *   { c: '#f0f', t: 1.37, p: 1.57, r: 0.7 },
+ *   { c: '#f0f', t: 1.37, p: 1.57, r: 0.7 }
  * ];
  *
  * function draw() {

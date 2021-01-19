@@ -254,7 +254,7 @@
  *
  * <div class='norender'>
  * <code>
- * let square = (number) => number * number;
+ * let square = number => number * number;
  * console.log(square(5));
  * </code>
  * </div>
@@ -364,8 +364,8 @@
  *   books: [
  *     'The Left Hand of Darkness',
  *     'The Dispossessed',
- *     'A Wizard of Earthsea',
- *   ],
+ *     'A Wizard of Earthsea'
+ *   ]
  * };
  * console.log(author.name); // prints 'Ursula K Le Guin' to the console
  * </code>

@@ -649,7 +649,7 @@ suite('DOM', function () {
       }
     });
 
-    const createHTMLSelect = (options) => {
+    const createHTMLSelect = options => {
       const selectElement = document.createElement('select');
       for (const optionName of options) {
         const option = document.createElement('option');
@@ -792,10 +792,8 @@ suite('DOM', function () {
       return radioEl;
     };
 
-    const getChildren = (radioEl) =>
-      Array.from(radioEl.children).filter(
-        (el) => el instanceof HTMLInputElement
-      );
+    const getChildren = radioEl =>
+      Array.from(radioEl.children).filter(el => el instanceof HTMLInputElement);
 
     test('should be a function', function () {
       assert.isFunction(myp5.createRadio);
@@ -885,7 +883,7 @@ suite('DOM', function () {
       testElement.remove(testValue);
       // Verify remaining options
       const remainingOptions = Array.from(testElement.elt.children).map(
-        (el) => el.value
+        el => el.value
       );
       assert.deepEqual(options, remainingOptions);
     });
@@ -1071,7 +1069,7 @@ suite('DOM', function () {
     });
 
     const emptyCallback = () => {};
-    const createDummyFile = (filename) => {
+    const createDummyFile = filename => {
       return new File(['testFileBlob'], filename, {
         type: 'text/plain'
       });
@@ -1117,7 +1115,7 @@ suite('DOM', function () {
           let totalTriggers = 0;
           let filesCount = 7;
 
-          const handleFiles = (event) => {
+          const handleFiles = event => {
             totalTriggers += 1;
             if (totalTriggers === filesCount) resolve();
           };

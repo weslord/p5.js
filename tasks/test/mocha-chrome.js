@@ -55,8 +55,8 @@ module.exports = function (grunt) {
           `);
 
           // Pipe console messages from the browser to the terminal
-          page.on('console', async (msg) => {
-            const args = await mapSeries(msg.args(), (v) => v.jsonValue());
+          page.on('console', async msg => {
+            const args = await mapSeries(msg.args(), v => v.jsonValue());
             console.log(util.format.apply(util, args));
           });
 
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
 
           await new Promise(async (resolve, reject) => {
             // When test end, check if there are any failures and record coverage
-            event.on('mocha:end', async (results) => {
+            event.on('mocha:end', async results => {
               const { stats, coverage } = results;
               if (stats.failures) {
                 reject(stats);

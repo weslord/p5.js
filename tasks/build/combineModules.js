@@ -35,7 +35,7 @@ module.exports = function (grunt) {
       const dump = fs.readFileSync('./src/app.js', 'utf8').split('\n');
       const sources = [];
       const regexp = new RegExp('./(' + modules.join('/|') + ')', 'g');
-      dump.forEach((source) => {
+      dump.forEach(source => {
         let match;
         while ((match = regexp.exec(source)) !== null) {
           sources.push(match.input);

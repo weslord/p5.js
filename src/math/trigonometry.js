@@ -257,7 +257,7 @@ p5.prototype.tan = function (angle) {
  * </code>
  * </div>
  */
-p5.prototype.degrees = (angle) => angle * constants.RAD_TO_DEG;
+p5.prototype.degrees = angle => angle * constants.RAD_TO_DEG;
 
 /**
  * Converts a degree measurement to its corresponding value in radians.
@@ -280,7 +280,7 @@ p5.prototype.degrees = (angle) => angle * constants.RAD_TO_DEG;
  * </code>
  * </div>
  */
-p5.prototype.radians = (angle) => angle * constants.DEG_TO_RAD;
+p5.prototype.radians = angle => angle * constants.DEG_TO_RAD;
 
 /**
  * Sets the current mode of p5 to given mode. Default mode is RADIANS.

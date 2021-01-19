@@ -80,7 +80,7 @@ class FetchResources {
   loadUrl(url, callback) {
     this.fetchWithTimeout(url)
       .then(
-        (response) => {
+        response => {
           const ok = response.ok;
 
           if (!ok) {
@@ -94,7 +94,7 @@ class FetchResources {
           throw new Error(`failed loading ${url}`);
         }
       )
-      .then((data) => {
+      .then(data => {
         return callback(null, data);
       })
       .catch(callback);
@@ -156,10 +156,10 @@ export const initialize = () => {
       resources: fallbackResources
     })
     .then(
-      (translateFn) => {
+      translateFn => {
         translator = translateFn;
       },
-      (e) => console.debug(`Translations failed to load (${e})`)
+      e => console.debug(`Translations failed to load (${e})`)
     );
 
   // i18next.init() returns a promise that resolves when the translations

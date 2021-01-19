@@ -196,9 +196,9 @@ p5.prototype._wrapElement = function (elt) {
 p5.prototype.removeElements = function (e) {
   p5._validateParameters('removeElements', arguments);
   // el.remove splices from this._elements, so don't mix iteration with it
-  const isNotCanvasElement = (el) => !(el.elt instanceof HTMLCanvasElement);
+  const isNotCanvasElement = el => !(el.elt instanceof HTMLCanvasElement);
   const removeableElements = this._elements.filter(isNotCanvasElement);
-  removeableElements.map((el) => el.remove());
+  removeableElements.map(el => el.remove());
 };
 
 /**
@@ -840,9 +840,9 @@ p5.prototype.createRadio = function () {
   self._name = name || 'radioOption';
 
   // setup member functions
-  const isRadioInput = (el) =>
+  const isRadioInput = el =>
     el instanceof HTMLInputElement && el.type === 'radio';
-  const isNextLabel = (el) => el.nextElementSibling instanceof HTMLLabelElement;
+  const isNextLabel = el => el.nextElementSibling instanceof HTMLLabelElement;
 
   self._getOptionsArray = function () {
     return Array.from(this.elt.children).filter(isRadioInput);
@@ -1345,11 +1345,11 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
  *     video: {
  *       mandatory: {
  *         minWidth: 1280,
- *         minHeight: 720,
+ *         minHeight: 720
  *       },
- *       optional: [{ maxFrameRate: 10 }],
+ *       optional: [{ maxFrameRate: 10 }]
  *     },
- *     audio: true,
+ *     audio: true
  *   };
  *   createCapture(constraints, function (stream) {
  *     console.log(stream);
@@ -2196,7 +2196,7 @@ p5.Element.prototype.remove = function () {
     const sources = this.elt.srcObject;
     if (sources !== null) {
       const tracks = sources.getTracks();
-      tracks.forEach((track) => {
+      tracks.forEach(track => {
         track.stop();
       });
     }
@@ -2466,7 +2466,7 @@ p5.MediaElement.prototype.play = function () {
     promise = this.elt.play();
   }
   if (promise && promise.catch) {
-    promise.catch((e) => {
+    promise.catch(e => {
       // if it's an autoplay failure error
       if (e.name === 'NotAllowedError') {
         p5._friendlyAutoplayError(this.src);

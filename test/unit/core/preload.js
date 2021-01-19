@@ -14,7 +14,7 @@ suite('preloads', () => {
       let resolved = false;
       const target = {
         async testPreloadFunction() {
-          await new Promise((res) => setTimeout(res, 10));
+          await new Promise(res => setTimeout(res, 10));
           resolved = true;
         }
       };
@@ -172,7 +172,7 @@ suite('preloads', () => {
         let resolved = false;
         const target = {
           async testPreloadFunction() {
-            await new Promise((res) => setTimeout(res, 10));
+            await new Promise(res => setTimeout(res, 10));
             resolved = true;
           }
         };

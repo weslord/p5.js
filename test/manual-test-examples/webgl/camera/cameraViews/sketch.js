@@ -1,4 +1,4 @@
-let orthoP5 = new p5((sketch) => {
+let orthoP5 = new p5(sketch => {
   let x = 100;
   let y = 100;
   let width, height;
@@ -30,7 +30,7 @@ let orthoP5 = new p5((sketch) => {
   };
 });
 
-let perspP5 = new p5((sketch) => {
+let perspP5 = new p5(sketch => {
   sketch.setup = function () {
     sketch.createCanvas(
       sketch.windowWidth,

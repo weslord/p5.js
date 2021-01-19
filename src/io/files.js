@@ -155,7 +155,7 @@ p5.prototype.loadJSON = function (...args) {
     'GET',
     options,
     t,
-    (resp) => {
+    resp => {
       for (const k in resp) {
         ret[k] = resp[k];
       }
@@ -165,7 +165,7 @@ p5.prototype.loadJSON = function (...args) {
 
       self._decrementPreload();
     },
-    (err) => {
+    err => {
       // Error handling
       p5._friendlyFileLoadError(5, path);
 
@@ -261,7 +261,7 @@ p5.prototype.loadStrings = function (...args) {
     args[0],
     'GET',
     'text',
-    (data) => {
+    data => {
       // split lines handling mac/windows/linux endings
       const lines = data
         .replace(/\r\n/g, '\r')
@@ -418,7 +418,7 @@ p5.prototype.loadTable = function (path) {
     path,
     'GET',
     'table',
-    (resp) => {
+    resp => {
       const state = {};
 
       // define constants
@@ -548,7 +548,7 @@ p5.prototype.loadTable = function (path) {
 
       self._decrementPreload();
     },
-    (err) => {
+    err => {
       // Error handling
       p5._friendlyFileLoadError(2, path);
 
@@ -665,7 +665,7 @@ p5.prototype.loadXML = function (...args) {
     args[0],
     'GET',
     'xml',
-    (xml) => {
+    xml => {
       for (const key in xml) {
         ret[key] = xml[key];
       }
@@ -726,7 +726,7 @@ p5.prototype.loadBytes = function (file, callback, errorCallback) {
     file,
     'GET',
     'arrayBuffer',
-    (arrayBuffer) => {
+    arrayBuffer => {
       ret.bytes = new Uint8Array(arrayBuffer);
 
       if (typeof callback === 'function') {
@@ -735,7 +735,7 @@ p5.prototype.loadBytes = function (file, callback, errorCallback) {
 
       self._decrementPreload();
     },
-    (err) => {
+    err => {
       // Error handling
       p5._friendlyFileLoadError(6, file);
 
@@ -957,7 +957,7 @@ p5.prototype.httpPost = function () {
  *     {
  *       method: 'GET',
  *       // Other Request options, like special headers for apis
- *       headers: { authorization: 'Bearer secretKey' },
+ *       headers: { authorization: 'Bearer secretKey' }
  *     },
  *     function (res) {
  *       earthquakes = res;
@@ -1103,7 +1103,7 @@ p5.prototype.httpDo = function (...args) {
   } else {
     promise = fetch(request);
   }
-  promise = promise.then((res) => {
+  promise = promise.then(res => {
     if (!res.ok) {
       const err = new Error(res.body);
       err.status = res.status;
@@ -1126,7 +1126,7 @@ p5.prototype.httpDo = function (...args) {
         case 'arrayBuffer':
           return res.arrayBuffer();
         case 'xml':
-          return res.text().then((text) => {
+          return res.text().then(text => {
             const parser = new DOMParser();
             const xml = parser.parseFromString(text, 'text/xml');
             return new p5.XML(xml.documentElement);
@@ -1835,7 +1835,7 @@ p5.prototype.downloadFile = function (data, fName, extension) {
   a.download = filename;
 
   // Firefox requires the link to be added to the DOM before click()
-  a.onclick = (e) => {
+  a.onclick = e => {
     destroyClickedElement(e);
     e.stopPropagation();
   };

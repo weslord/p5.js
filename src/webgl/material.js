@@ -83,7 +83,7 @@ p5.prototype.loadShader = function (
 
   this.loadStrings(
     vertFilename,
-    (result) => {
+    result => {
       loadedShader._vertSrc = result.join('\n');
       loadedVert = true;
       if (loadedFrag) {
@@ -95,7 +95,7 @@ p5.prototype.loadShader = function (
 
   this.loadStrings(
     fragFilename,
-    (result) => {
+    result => {
       loadedShader._fragSrc = result.join('\n');
       loadedFrag = true;
       if (loadedVert) {
