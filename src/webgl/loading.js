@@ -200,7 +200,7 @@ function parseObj(model, lines) {
   const loadedVerts = {
     v: [],
     vt: [],
-    vn: [],
+    vn: []
   };
   const indexedVerts = {};
 

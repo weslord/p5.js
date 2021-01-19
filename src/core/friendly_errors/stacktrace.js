@@ -105,7 +105,7 @@ function ErrorStackParser() {
           fileName: fileName,
           lineNumber: locationParts[1],
           columnNumber: locationParts[2],
-          source: line,
+          source: line
         };
       }, this);
     },
@@ -127,7 +127,7 @@ function ErrorStackParser() {
         if (line.indexOf('@') === -1 && line.indexOf(':') === -1) {
           // Safari eval frames only have function names and nothing else
           return {
-            functionName: line,
+            functionName: line
           };
         } else {
           let functionNameRegex = /((.*".+"[^@]*)?[^@]*)(?:@)/;
@@ -142,7 +142,7 @@ function ErrorStackParser() {
             fileName: locationParts[0],
             lineNumber: locationParts[1],
             columnNumber: locationParts[2],
-            source: line,
+            source: line
           };
         }
       }, this);
@@ -173,7 +173,7 @@ function ErrorStackParser() {
           result.push({
             fileName: match[2],
             lineNumber: match[1],
-            source: lines[i],
+            source: lines[i]
           });
         }
       }
@@ -193,7 +193,7 @@ function ErrorStackParser() {
             functionName: match[3] || undefined,
             fileName: match[2],
             lineNumber: match[1],
-            source: lines[i],
+            source: lines[i]
           });
         }
       }
@@ -233,10 +233,10 @@ function ErrorStackParser() {
           fileName: locationParts[0],
           lineNumber: locationParts[1],
           columnNumber: locationParts[2],
-          source: line,
+          source: line
         };
       }, this);
-    },
+    }
   };
 }
 

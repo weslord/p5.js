@@ -14,7 +14,7 @@ module.exports = (grunt) => {
         maxWarnings: -1,
         envs: ['eslint-samples/p5'],
         verbose: true,
-        debug: true,
+        debug: true
       });
 
       if (this.filesSrc.length === 0) {

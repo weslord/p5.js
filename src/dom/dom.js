@@ -995,7 +995,7 @@ p5.prototype.createColorPicker = function (value) {
       p5.prototype._colorMaxes = {
         rgb: [255, 255, 255, 255],
         hsb: [360, 100, 100, 1],
-        hsl: [360, 100, 100, 1],
+        hsl: [360, 100, 100, 1]
       };
       elt.value = p5.prototype.color(value).toString('#rrggbb');
     }
@@ -2404,7 +2404,7 @@ p5.MediaElement = function (elt, pInst) {
       elt.appendChild(source);
       self.elt.src = newValue;
       self.modified = true;
-    },
+    }
   });
 
   // private _onended callback, set by the method: onended(callback)
@@ -2723,7 +2723,7 @@ p5.MediaElement.prototype._setupAutoplayFailDetection = function () {
   const timeout = setTimeout(() => p5._friendlyAutoplayError(this.src), 500);
   this.elt.addEventListener('play', () => clearTimeout(timeout), {
     passive: true,
-    once: true,
+    once: true
   });
 };
 
@@ -2786,7 +2786,7 @@ p5.MediaElement.prototype.autoplay = function (val) {
       // otherwise, schedule check whenever it is ready
       this.elt.addEventListener('canplay', setupAutoplayFailDetection, {
         passive: true,
-        once: true,
+        once: true
       });
     }
   }

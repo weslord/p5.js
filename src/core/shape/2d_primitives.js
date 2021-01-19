@@ -95,7 +95,7 @@ p5.prototype._normalizeArcAngles = (
   return {
     start,
     stop,
-    correspondToSamePoint: separation < epsilon,
+    correspondToSamePoint: separation < epsilon
   };
 };
 
@@ -220,7 +220,7 @@ p5.prototype.arc = function (x, y, w, h, start, stop, mode, detail) {
         vals.h,
         angles.start,
         angles.stop,
-        mode,
+        mode
       ]);
     }
   }

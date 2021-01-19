@@ -14,11 +14,11 @@ suite('Acceleration Events', function () {
   });
 
   let deviceMotionEvent1 = new DeviceMotionEvent('devicemotion', {
-    acceleration: { x: 10, y: 20, z: 30 },
+    acceleration: { x: 10, y: 20, z: 30 }
   });
 
   let deviceMotionEvent2 = new DeviceMotionEvent('devicemotion', {
-    acceleration: { x: 20, y: 40, z: 10 },
+    acceleration: { x: 20, y: 40, z: 10 }
   });
 
   let deviceOrientationEvent1 = new DeviceOrientationEvent(
@@ -26,7 +26,7 @@ suite('Acceleration Events', function () {
     {
       alpha: 10,
       beta: 45,
-      gamma: 90,
+      gamma: 90
     }
   );
 
@@ -35,7 +35,7 @@ suite('Acceleration Events', function () {
     {
       alpha: 15,
       beta: 30,
-      gamma: 180,
+      gamma: 180
     }
   );
 

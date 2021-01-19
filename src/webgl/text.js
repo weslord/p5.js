@@ -287,7 +287,7 @@ const FontInfo = function (font) {
           x1: this.p1.x,
           y1: this.p1.y,
           cx: ((this.c0.x + this.c1.x) * 3 - (this.p0.x + this.p1.x)) / 4,
-          cy: ((this.c0.y + this.c1.y) * 3 - (this.p0.y + this.p1.y)) / 4,
+          cy: ((this.c0.y + this.c1.y) * 3 - (this.p0.y + this.p1.y)) / 4
         };
       };
 
@@ -603,7 +603,7 @@ const FontInfo = function (font) {
       return {
         cellImageInfo,
         dimOffset,
-        dimImageInfo,
+        dimImageInfo
       };
     }
 
@@ -614,7 +614,7 @@ const FontInfo = function (font) {
       strokeImageInfo,
       strokes,
       colInfo: layout(cols, this.colDimImageInfos, this.colCellImageInfos),
-      rowInfo: layout(rows, this.rowDimImageInfos, this.rowCellImageInfos),
+      rowInfo: layout(rows, this.rowDimImageInfos, this.rowCellImageInfos)
     };
     gi.uGridOffset = [gi.colInfo.dimOffset, gi.rowInfo.dimOffset];
     return gi;

@@ -523,7 +523,7 @@ var textVertAlignmentSketch = function (p) {
     'Merriweather-LightItalic.ttf',
     'Montserrat-Regular.ttf',
     'OpenSans-Regular.ttf',
-    'SourceSansPro-Regular.otf',
+    'SourceSansPro-Regular.otf'
   ];
   var fonts = [];
   var vAligns = [p.TOP, p.CENTER, p.BASELINE, p.BOTTOM];

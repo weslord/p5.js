@@ -189,7 +189,7 @@ function mergeOverloadedMethods(data) {
         var makeOverload = function (method) {
           const overload = {
             line: method.line,
-            params: processOverloadedParams(method.params || []),
+            params: processOverloadedParams(method.params || [])
           };
           // TODO: the doc renderer assumes (incorrectly) that
           //   these are the same for all overrides
@@ -261,7 +261,7 @@ function buildParamDocs(docs) {
     path.join(process.cwd(), 'docs', 'parameterData.json'),
     {
       flags: 'w',
-      mode: '0644',
+      mode: '0644'
     }
   );
   out.write(JSON.stringify(newClassItems, null, 2));

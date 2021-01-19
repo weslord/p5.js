@@ -254,7 +254,7 @@ suite('loading animated gif images', function () {
               loopLimit: null,
               numFrames: 6,
               playing: true,
-              timeDisplayed: 0,
+              timeDisplayed: 0
             };
             assert.isTrue(gifImage.gifProperties !== null);
             for (var prop in nyanCatGifProperties) {

@@ -35,7 +35,7 @@ module.exports = function (grunt) {
           : ['--any-branch'],
         {
           stdio: 'inherit',
-          shell: true,
+          shell: true
         }
       );
 

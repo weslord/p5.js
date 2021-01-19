@@ -20,7 +20,7 @@ function setup() {
   ball = {
     x: width / 2,
     y: height / 2,
-    speed: 7,
+    speed: 7
   };
 }
 

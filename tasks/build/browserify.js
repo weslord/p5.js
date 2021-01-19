@@ -43,7 +43,7 @@ module.exports = function (grunt) {
       // Invoke Browserify programatically to bundle the code
       let browserified = browserify(srcFilePath, {
         standalone: 'p5',
-        insertGlobalVars: globalVars,
+        insertGlobalVars: globalVars
       });
 
       if (isMin) {
@@ -93,6 +93,8 @@ module.exports = function (grunt) {
               singleQuote: true,
               printWidth: 80 + 12,
               parser: 'babel',
+              trailingComma: 'none',
+              arrowParens: 'avoid'
             });
           }
 

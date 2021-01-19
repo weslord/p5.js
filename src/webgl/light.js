@@ -167,7 +167,7 @@ p5.prototype.specularColor = function (v1, v2, v3) {
   this._renderer.specularColors = [
     color._array[0],
     color._array[1],
-    color._array[2],
+    color._array[2]
   ];
 
   return this;

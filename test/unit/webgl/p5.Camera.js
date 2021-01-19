@@ -14,7 +14,7 @@ suite('p5.Camera', function () {
       cz: cam.centerZ,
       ux: cam.upX,
       uy: cam.upY,
-      uz: cam.upZ,
+      uz: cam.upZ
     };
   };
 

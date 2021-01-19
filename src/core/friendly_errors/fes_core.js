@@ -110,7 +110,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     'Date',
     'RegExp',
     'Object',
-    'Error',
+    'Error'
   ];
   for (let n = 0; n < names.length; n++) {
     class2type[`[object ${names[n]}]`] = names[n].toLowerCase();
@@ -147,7 +147,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     'keyPressed',
     'keyReleased',
     'keyTyped',
-    'windowResized',
+    'windowResized'
   ];
 
   const friendlyWelcome = () => {
@@ -157,7 +157,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     //const welcomeBgColor = '#ED225D';
     //const welcomeTextColor = 'white';
     const welcomeMessage = translator('fes.pre', {
-      message: translator('fes.welcome'),
+      message: translator('fes.welcome')
     });
     console.log(
       '    _ \n' +
@@ -259,7 +259,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
   p5._friendlyAutoplayError = function (src) {
     const message = translator('fes.autoplay', {
       src,
-      link: 'https://developer.mozilla.org/docs/Web/Media/Autoplay_guide',
+      link: 'https://developer.mozilla.org/docs/Web/Media/Autoplay_guide'
     });
     console.log(translator('fes.pre', { message }));
   };
@@ -351,7 +351,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
       ) {
         const msg = translator('fes.checkUserDefinedFns', {
           name: prop,
-          actualName: fxns[lowercase],
+          actualName: fxns[lowercase]
         });
 
         report(msg, fxns[lowercase]);
@@ -412,7 +412,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         locationObj = {
           location: `${parsed[0].fileName}:${parsed[0].lineNumber}:${parsed[0].columnNumber}`,
           file: parsed[0].fileName.split('/').slice(-1),
-          line: parsed[0].lineNumber,
+          line: parsed[0].lineNumber
         };
       }
 
@@ -426,7 +426,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           actualName: matchedSymbols[0].name,
           type: matchedSymbols[0].type,
           location: locationObj ? translator('fes.location', locationObj) : '',
-          count: matchedSymbols.length,
+          count: matchedSymbols.length
         });
       } else {
         // To be used when there are multiple closest matches. Gives each
@@ -444,7 +444,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           name: errSym,
           suggestions: suggestions,
           location: locationObj ? translator('fes.location', locationObj) : '',
-          count: matchedSymbols.length,
+          count: matchedSymbols.length
         });
       }
 
@@ -482,7 +482,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             func: frame.functionName,
             line: frame.lineNumber,
             location: location,
-            file: frame.fileName.split('/').slice(-1),
+            file: frame.fileName.split('/').slice(-1)
           };
         if (idx === 0) {
           frameMsg = translator('fes.globalErrors.stackTop', translationObj);
@@ -582,7 +582,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         locationObj = {
           location: `${friendlyStack[0].fileName}:${friendlyStack[0].lineNumber}:${friendlyStack[0].columnNumber}`,
           file: friendlyStack[0].fileName.split('/').slice(-1),
-          line: friendlyStack[0].lineNumber,
+          line: friendlyStack[0].lineNumber
         };
 
         // if already handled by another part of the FES, don't handle again
@@ -601,7 +601,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             location: locationObj
               ? translator('fes.location', locationObj)
               : '',
-            error: error.message,
+            error: error.message
           }),
           'preload'
         );
@@ -613,7 +613,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             location: locationObj
               ? translator('fes.location', locationObj)
               : '',
-            error: error.message,
+            error: error.message
           }),
           func
         );
@@ -693,7 +693,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
       locationObj = {
         location: `${stacktrace[0].fileName}:${stacktrace[0].lineNumber}:${stacktrace[0].columnNumber}`,
         file: stacktrace[0].fileName.split('/').slice(-1),
-        line: friendlyStack[0].lineNumber,
+        line: friendlyStack[0].lineNumber
       };
     }
 
@@ -708,7 +708,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Illegal_character#What_went_wrong';
             report(
               translator('fes.globalErrors.syntax.invalidToken', {
-                url,
+                url
               })
             );
             break;
@@ -718,7 +718,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Unexpected_token#What_went_wrong';
             report(
               translator('fes.globalErrors.syntax.unexpectedToken', {
-                url,
+                url
               })
             );
             break;
@@ -747,7 +747,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
                 symbol: errSym,
                 location: locationObj
                   ? translator('fes.location', locationObj)
-                  : '',
+                  : ''
               })
             );
 
@@ -773,7 +773,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               obj: splitSym.slice(0, splitSym.length - 1).join('.'),
               location: locationObj
                 ? translator('fes.location', locationObj)
-                : '',
+                : ''
             };
 
             // There are two cases to handle here. When the function is called
@@ -932,7 +932,7 @@ const helpForMisusedAtTopLevelCode = (e, log) => {
           translator('fes.misusedTopLevel', {
             symbolName,
             symbolType: symbol.type,
-            link: FAQ_URL,
+            link: FAQ_URL
           })
         );
       }

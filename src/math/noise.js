@@ -296,7 +296,7 @@ p5.prototype.noiseSeed = function (seed) {
         // return a float in [0, 1)
         // if z = m then z / m = 0 therefore (z % m) / m < 1 always
         return z / m;
-      },
+      }
     };
   })();
 

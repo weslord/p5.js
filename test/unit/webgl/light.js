@@ -40,7 +40,7 @@ suite('light', function () {
       assert.deepEqual(myp5._renderer.directionalLightSpecularColors, [
         1,
         0,
-        0,
+        0
       ]);
     });
     test('noLights works', function () {

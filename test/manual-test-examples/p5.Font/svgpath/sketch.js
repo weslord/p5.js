@@ -17,7 +17,7 @@ function setup() {
       decimals: 4,
       fill: 'red',
       strokeWidth: 2,
-      stroke: 'green',
+      stroke: 'green'
     });
     console.log(pathTag);
 

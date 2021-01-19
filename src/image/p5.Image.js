@@ -652,7 +652,7 @@ p5.Image.prototype.mask = function (p5Image) {
     0,
     0,
     this.width,
-    this.height,
+    this.height
   ];
 
   this.drawingContext.globalCompositeOperation = 'destination-in';

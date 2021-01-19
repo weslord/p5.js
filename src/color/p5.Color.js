@@ -602,7 +602,7 @@ const namedColors = {
   white: '#ffffff',
   whitesmoke: '#f5f5f5',
   yellow: '#ffff00',
-  yellowgreen: '#9acd32',
+  yellowgreen: '#9acd32'
 };
 
 /**
@@ -643,7 +643,7 @@ const colorPatterns = {
       INTEGER.source,
       ',',
       INTEGER.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -657,7 +657,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       PERCENT.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -673,7 +673,7 @@ const colorPatterns = {
       INTEGER.source,
       ',',
       DECIMAL.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -689,7 +689,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       DECIMAL.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -703,7 +703,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       PERCENT.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -719,7 +719,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       DECIMAL.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -733,7 +733,7 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       PERCENT.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
   ),
@@ -749,10 +749,10 @@ const colorPatterns = {
       PERCENT.source,
       ',',
       DECIMAL.source,
-      '\\)$',
+      '\\)$'
     ].join(WHITESPACE.source),
     'i'
-  ),
+  )
 };
 
 /**

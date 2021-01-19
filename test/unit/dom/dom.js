@@ -1073,7 +1073,7 @@ suite('DOM', function () {
     const emptyCallback = () => {};
     const createDummyFile = (filename) => {
       return new File(['testFileBlob'], filename, {
-        type: 'text/plain',
+        type: 'text/plain'
       });
     };
 
@@ -1159,7 +1159,7 @@ suite('DOM', function () {
 
     const mediaSources = [
       '/test/unit/assets/nyan_cat.gif',
-      '/test/unit/assets/target.gif',
+      '/test/unit/assets/target.gif'
     ];
 
     test('should be a function', function () {
@@ -1227,7 +1227,7 @@ suite('DOM', function () {
 
     const mediaSources = [
       '/test/unit/assets/beat.mp3',
-      '/test/unit/assets/beat.mp3',
+      '/test/unit/assets/beat.mp3'
     ];
 
     test('should be a function', function () {
@@ -1371,7 +1371,7 @@ suite('DOM', function () {
       p: HTMLParagraphElement,
       button: HTMLButtonElement,
       input: HTMLInputElement,
-      video: HTMLVideoElement,
+      video: HTMLVideoElement
     };
 
     test('should be a function', function () {

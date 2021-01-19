@@ -45,7 +45,7 @@ const defaultShaders = {
   lineVert: readFileSync(join(__dirname, '/shaders/line.vert'), 'utf-8'),
   lineFrag: readFileSync(join(__dirname, '/shaders/line.frag'), 'utf-8'),
   pointVert: readFileSync(join(__dirname, '/shaders/point.vert'), 'utf-8'),
-  pointFrag: readFileSync(join(__dirname, '/shaders/point.frag'), 'utf-8'),
+  pointFrag: readFileSync(join(__dirname, '/shaders/point.frag'), 'utf-8')
 };
 
 /**
@@ -160,8 +160,8 @@ p5.RendererGL = function (elt, pInst, isMainCanvas, attr) {
       text: [
         new p5.RenderBuffer(3, 'vertices', 'vertexBuffer', 'aPosition',this, this._vToNArray),
         new p5.RenderBuffer(2, 'uvs', 'uvBuffer', 'aTexCoord', this, this._flatten)
-      ],
-    },
+      ]
+    }
   };
 
   // Immediate Mode
@@ -186,8 +186,8 @@ p5.RendererGL = function (elt, pInst, isMainCanvas, attr) {
       new p5.RenderBuffer(3, 'lineVertices', 'lineVertexBuffer', 'aPosition', this, this._flatten),
       new p5.RenderBuffer(4, 'lineNormals', 'lineNormalBuffer', 'aDirection', this, this._flatten)
       ],
-      point: this.GL.createBuffer(),
-    },
+      point: this.GL.createBuffer()
+    }
   };
 
   this.pointSize = 5.0; //default point size
@@ -238,7 +238,7 @@ p5.RendererGL.prototype._setAttributeDefaults = function (pInst) {
     antialias: applyAA,
     premultipliedAlpha: false,
     preserveDrawingBuffer: true,
-    perPixelLighting: true,
+    perPixelLighting: true
   };
   if (pInst._glAttributes === null) {
     pInst._glAttributes = defaults;
@@ -804,7 +804,7 @@ p5.RendererGL.prototype._getPixel = function (x, y) {
     imageData[index + 0],
     imageData[index + 1],
     imageData[index + 2],
-    imageData[index + 3],
+    imageData[index + 3]
   ];
 };
 

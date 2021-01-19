@@ -172,7 +172,7 @@ p5.prototype._addAccsOutput = function () {
       text: false,
       grid: false,
       textLabel: false,
-      gridLabel: false,
+      gridLabel: false
     };
   }
   return this._accessibleOutputs.grid || this._accessibleOutputs.text;
@@ -186,7 +186,7 @@ p5.prototype._createOutput = function (type, display) {
     this.ingredients = {
       shapes: {},
       colors: { background: 'white', fill: 'white', stroke: 'black' },
-      pShapes: '',
+      pShapes: ''
     };
   }
   //if there is no dummyDOM create it
@@ -464,7 +464,7 @@ function _canvasLocator(args, canvasWidth, canvasHeight) {
   }
   return {
     locX,
-    locY,
+    locY
   };
 }
 

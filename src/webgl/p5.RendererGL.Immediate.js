@@ -229,7 +229,7 @@ p5.RendererGL.prototype._calculateEdges = function (
 p5.RendererGL.prototype._tesselateShape = function () {
   this.immediateMode.shapeMode = constants.TRIANGLES;
   const contours = [
-    new Float32Array(this._vToNArray(this.immediateMode.geometry.vertices)),
+    new Float32Array(this._vToNArray(this.immediateMode.geometry.vertices))
   ];
   const polyTriangles = this._triangulate(contours);
   this.immediateMode.geometry.vertices = [];

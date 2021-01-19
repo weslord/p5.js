@@ -1084,7 +1084,7 @@ p5.prototype.httpDo = function (...args) {
       method,
       mode: 'cors',
       body: data,
-      headers: headers,
+      headers: headers
     });
   }
   // do some sort of smart type checking
@@ -1803,7 +1803,7 @@ p5.prototype.writeFile = function (dataToDownload, filename, extension) {
     type = 'text/plain';
   }
   const blob = new Blob(dataToDownload, {
-    type,
+    type
   });
   p5.prototype.downloadFile(blob, filename, extension);
 };

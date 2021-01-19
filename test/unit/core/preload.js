@@ -16,12 +16,12 @@ suite('preloads', () => {
         async testPreloadFunction() {
           await new Promise((res) => setTimeout(res, 10));
           resolved = true;
-        },
+        }
       };
 
       p5.prototype._promisePreloads.push({
         target,
-        method: 'testPreloadFunction',
+        method: 'testPreloadFunction'
       });
 
       return promisedSketch((sketch, resolve, reject) => {
@@ -43,12 +43,12 @@ suite('preloads', () => {
       const target = {
         async testPreloadFunction() {
           throw new Error('Testing Error');
-        },
+        }
       };
 
       p5.prototype._promisePreloads.push({
         target,
-        method: 'testPreloadFunction',
+        method: 'testPreloadFunction'
       });
 
       return promisedSketch((sketch, resolve, reject) => {
@@ -68,13 +68,13 @@ suite('preloads', () => {
         const target = {
           async testPreloadFunction(...args) {
             assert.lengthOf(args, 3);
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
           target,
           method: 'testPreloadFunction',
-          addCallbacks: false,
+          addCallbacks: false
         });
 
         return promisedSketch((sketch, resolve, reject) => {
@@ -96,13 +96,13 @@ suite('preloads', () => {
         const target = {
           async testPreloadFunction(...args) {
             assert.lengthOf(args, 1);
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
           target,
           method: 'testPreloadFunction',
-          addCallbacks: true,
+          addCallbacks: true
         });
 
         return promisedSketch((sketch, resolve, reject) => {
@@ -124,13 +124,13 @@ suite('preloads', () => {
         const target = {
           async testPreloadFunction(...args) {
             assert.lengthOf(args, 1);
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
           target,
           method: 'testPreloadFunction',
-          addCallbacks: true,
+          addCallbacks: true
         });
 
         let success = 0;
@@ -174,15 +174,15 @@ suite('preloads', () => {
           async testPreloadFunction() {
             await new Promise((res) => setTimeout(res, 10));
             resolved = true;
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
           target,
           method: 'testPreloadFunction',
           legacyPreloadSetup: {
-            method: 'testPreloadLegacy',
-          },
+            method: 'testPreloadLegacy'
+          }
         });
 
         return promisedSketch((sketch, resolve, reject) => {
@@ -204,15 +204,15 @@ suite('preloads', () => {
         const target = {
           async testPreloadFunction() {
             throw new Error('Testing Error');
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
           target,
           method: 'testPreloadFunction',
           legacyPreloadSetup: {
-            method: 'testPreloadLegacy',
-          },
+            method: 'testPreloadLegacy'
+          }
         });
 
         return promisedSketch((sketch, resolve, reject) => {
@@ -230,20 +230,20 @@ suite('preloads', () => {
       test('Extension legacy preload returns objects correctly', async () => {
         let testItem = {
           test: true,
-          otherTest: [],
+          otherTest: []
         };
         const target = {
           async testPreloadFunction() {
             return testItem;
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
           target,
           method: 'testPreloadFunction',
           legacyPreloadSetup: {
-            method: 'testPreloadLegacy',
-          },
+            method: 'testPreloadLegacy'
+          }
         });
 
         let testResult;
@@ -264,7 +264,7 @@ suite('preloads', () => {
         const target = {
           async testPreloadFunction() {
             return testItem;
-          },
+          }
         };
 
         p5.prototype._promisePreloads.push({
@@ -272,8 +272,8 @@ suite('preloads', () => {
           method: 'testPreloadFunction',
           legacyPreloadSetup: {
             method: 'testPreloadLegacy',
-            createBaseObject: () => [],
-          },
+            createBaseObject: () => []
+          }
         });
 
         let testResult;

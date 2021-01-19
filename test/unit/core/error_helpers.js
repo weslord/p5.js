@@ -52,7 +52,7 @@ suite('Error Helpers', function () {
           10,
           0,
           Math.PI,
-          'pie',
+          'pie'
         ]);
       });
     });
@@ -65,7 +65,7 @@ suite('Error Helpers', function () {
           10,
           undefined,
           Math.PI,
-          'pie',
+          'pie'
         ]);
       });
     });
@@ -484,7 +484,7 @@ suite('Error Helpers', function () {
               'p5._fesLogger = window.logger',
               'function setup() { window.afterSetup();}',
               'function DRAW() {}',
-              '</script>',
+              '</script>'
             ].join('\n')
           );
           log = [];
@@ -521,7 +521,7 @@ suite('Global Error Handling', function () {
     '    flag = true;',
     '  }',
     '}, 50);',
-    '</script>',
+    '</script>'
   ].join('\n');
   const logger = function (err) {
     log.push(err);
@@ -553,7 +553,7 @@ suite('Global Error Handling', function () {
             'let cnv = createCanvas(400, 400);',
             'cnv.mouseClicked();', // Error in p5 library as no callback passed
             '}',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         log = [];
@@ -580,7 +580,7 @@ suite('Global Error Handling', function () {
           'function setup() {',
           'createCanvas(10, 10);',
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -602,7 +602,7 @@ suite('Global Error Handling', function () {
           'function setup() {',
           'let x = asdfg + 5;', // ReferenceError: asdfg is not defined
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -625,7 +625,7 @@ suite('Global Error Handling', function () {
           'function setup() {',
           'let x = “not a string”', // SyntaxError: Invalid or unexpected token
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -648,7 +648,7 @@ suite('Global Error Handling', function () {
           'function setup() {',
           'for (let i = 0; i < 5,; ++i) {}', // SyntaxError: Unexpected token
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -672,7 +672,7 @@ suite('Global Error Handling', function () {
           'let asdfg = 5',
           'asdfg()', // TypeError: asdfg is not a function
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -695,7 +695,7 @@ suite('Global Error Handling', function () {
           'let asdfg = {}',
           'asdfg.abcd()', // TypeError: abcd is not a function
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -721,7 +721,7 @@ suite('Global Error Handling', function () {
           'function setup() {',
           'myfun()',
           '}',
-          '</script>',
+          '</script>'
         ].join('\n')
       );
       log = [];
@@ -755,7 +755,7 @@ suite('Global Error Handling', function () {
             '  }',
             '}',
             'new p5(sketch);',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         log = [];
@@ -787,7 +787,7 @@ suite('Global Error Handling', function () {
             '  }',
             '}',
             'new p5(sketch);',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         log = [];
@@ -815,7 +815,7 @@ suite('Global Error Handling', function () {
             '  }',
             '}',
             'new p5(sketch);',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         log = [];

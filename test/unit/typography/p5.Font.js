@@ -47,7 +47,7 @@ suite('p5.Font', function () {
         sketch.setup = function () {
           let _points = _font.textToPoints('p5', 0, 0, 10, {
             sampleFactor: 5,
-            simplifyThreshold: 0,
+            simplifyThreshold: 0
           });
           resolve(_points);
         };

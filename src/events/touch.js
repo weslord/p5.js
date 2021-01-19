@@ -64,7 +64,7 @@ function getTouchInfo(canvas, w, h, e, i = 0) {
     y: (touch.clientY - rect.top) / sy,
     winX: touch.clientX,
     winY: touch.clientY,
-    id: touch.identifier,
+    id: touch.identifier
   };
 }
 

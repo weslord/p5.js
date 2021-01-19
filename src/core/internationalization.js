@@ -43,7 +43,7 @@ class FetchResources {
       fetch(url, options),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error('timeout')), timeout)
-      ),
+      )
     ]);
   }
 
@@ -67,7 +67,7 @@ class FetchResources {
 
       const url = this.services.interpolator.interpolate(loadPath, {
         lng: language,
-        ns: namespace,
+        ns: namespace
       });
       this.loadUrl(url, callback);
     } else {
@@ -137,7 +137,7 @@ export const initialize = () => {
       defaultNS: 'translation',
       returnEmptyString: false,
       interpolation: {
-        escapeValue: false,
+        escapeValue: false
       },
       detection: {
         checkWhitelist: false,
@@ -145,15 +145,15 @@ export const initialize = () => {
         // prevent storing or locating language from cookie or localStorage
         // more info on https://github.com/processing/p5.js/issues/4862
         order: ['querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],
-        caches: [],
+        caches: []
       },
       backend: {
         fallback: 'en',
         loadPath:
-          'https://cdn.jsdelivr.net/npm/p5/translations/{{lng}}/{{ns}}.json',
+          'https://cdn.jsdelivr.net/npm/p5/translations/{{lng}}/{{ns}}.json'
       },
       partialBundledLanguages: true,
-      resources: fallbackResources,
+      resources: fallbackResources
     })
     .then(
       (translateFn) => {

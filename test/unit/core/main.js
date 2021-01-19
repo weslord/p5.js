@@ -86,7 +86,7 @@ suite('Core', function () {
             'myURL = p5.prototype.getURL();',
             'function setup() { setupCalled = true; }',
             'window.addEventListener("load", onDoneLoading, false);',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         iframe.elt.contentWindow.onDoneLoading = resolve;
@@ -123,7 +123,7 @@ suite('Core', function () {
             throw new Error('log() was called more than once');
           }
           logMsg = msg;
-        },
+        }
       });
     });
 
@@ -223,7 +223,7 @@ suite('Core', function () {
             'function setup() { }',
             'function preload() { window.globalPreloads++; }',
             'new p5(' + cb.toString() + ');',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         iframe.elt.contentWindow.afterSetup = resolve;

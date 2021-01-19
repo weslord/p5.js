@@ -281,9 +281,9 @@ p5.prototype.isLooping = function () {
 p5.prototype.push = function () {
   this._styles.push({
     props: {
-      _colorMode: this._colorMode,
+      _colorMode: this._colorMode
     },
-    renderer: this._renderer.push(),
+    renderer: this._renderer.push()
   });
 };
 

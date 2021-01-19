@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 
       // Invoke Browserify programatically to bundle the code
       let browseified = browserify(tempFilePath, {
-        standalone: 'p5',
+        standalone: 'p5'
       });
 
       if (isMin) {
@@ -90,6 +90,8 @@ module.exports = function (grunt) {
               singleQuote: true,
               printWidth: 80 + 12,
               parser: 'babel',
+              trailingComma: 'none',
+              arrowParens: 'avoid'
             });
           }
 

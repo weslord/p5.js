@@ -275,7 +275,7 @@ p5.Renderer2D.prototype._getPixel = function (x, y) {
     imageData[index + 0],
     imageData[index + 1],
     imageData[index + 2],
-    imageData[index + 3],
+    imageData[index + 3]
   ];
 };
 
@@ -431,7 +431,7 @@ p5.Renderer2D.prototype._acuteArcToBezier = function _acuteArcToBezier(
     cx: (lambda * cos_phi - mu * sin_phi).toFixed(7),
     cy: (lambda * sin_phi + mu * cos_phi).toFixed(7),
     dx: Math.cos(start + size).toFixed(7),
-    dy: Math.sin(start + size).toFixed(7),
+    dy: Math.sin(start + size).toFixed(7)
   };
 };
 
@@ -764,13 +764,12 @@ p5.Renderer2D.prototype.endShape = function (
         b[0] = [v[0], v[1]];
         b[1] = [
           v[0] + (s * vertices[i + 1][0] - s * vertices[i - 1][0]) / 6,
-          v[1] + (s * vertices[i + 1][1] - s * vertices[i - 1][1]) / 6,
+          v[1] + (s * vertices[i + 1][1] - s * vertices[i - 1][1]) / 6
         ];
         b[2] = [
           vertices[i + 1][0] +
             (s * vertices[i][0] - s * vertices[i + 2][0]) / 6,
-          vertices[i + 1][1] +
-            (s * vertices[i][1] - s * vertices[i + 2][1]) / 6,
+          vertices[i + 1][1] + (s * vertices[i][1] - s * vertices[i + 2][1]) / 6
         ];
         b[3] = [vertices[i + 1][0], vertices[i + 1][1]];
         this.drawingContext.bezierCurveTo(

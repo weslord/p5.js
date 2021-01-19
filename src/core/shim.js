@@ -31,7 +31,7 @@ window.requestAnimationFrame = (() =>
       value: Array.prototype.slice,
       writable: true,
       configurable: true,
-      enumerable: false,
+      enumerable: false
     });
   }
 })();
@@ -84,7 +84,7 @@ window.requestAnimationFrame = (() =>
       value: assignShim,
       configurable: true,
       enumerable: false,
-      writable: true,
+      writable: true
     });
   }
 })();

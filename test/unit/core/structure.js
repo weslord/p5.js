@@ -249,7 +249,7 @@ suite('Structure', function () {
             'function setup() { noLoop(); }',
             'function draw() { window.globalDraws++; }',
             'new p5(' + cb.toString() + ');',
-            '</script>',
+            '</script>'
           ].join('\n')
         );
         iframe.elt.contentWindow.afterSetup = resolve;

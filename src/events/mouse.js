@@ -464,7 +464,7 @@ function getMousePos(canvas, w, h, evt) {
     y: (evt.clientY - rect.top) / sy,
     winX: evt.clientX,
     winY: evt.clientY,
-    id: evt.identifier,
+    id: evt.identifier
   };
 }
 

@@ -95,7 +95,7 @@ suite('p5.Shader', function () {
         'uEmissive',
         'uConstantAttenuation',
         'uLinearAttenuation',
-        'uQuadraticAttenuation',
+        'uQuadraticAttenuation'
       ];
 
       testShader(
@@ -111,7 +111,7 @@ suite('p5.Shader', function () {
       var expectedUniforms = [
         'uModelViewMatrix',
         'uProjectionMatrix',
-        'uMaterialColor',
+        'uMaterialColor'
       ];
 
       testShader(
@@ -128,7 +128,7 @@ suite('p5.Shader', function () {
         'uModelViewMatrix',
         'uProjectionMatrix',
         /*'uResolution',*/
-        'uPointSize',
+        'uPointSize'
       ];
 
       testShader(
@@ -144,7 +144,7 @@ suite('p5.Shader', function () {
       var expectedUniforms = [
         'uModelViewMatrix',
         'uProjectionMatrix',
-        'uNormalMatrix',
+        'uNormalMatrix'
       ];
 
       testShader(

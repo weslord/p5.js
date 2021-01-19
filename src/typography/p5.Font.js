@@ -149,7 +149,7 @@ p5.Font.prototype.textBounds = function (str, x = 0, y = 0, fontSize, opts) {
       y: minY,
       h: maxY - minY,
       w: finalMaxX,
-      advance: finalMinX - x,
+      advance: finalMinX - x
     };
 
     // Bounds are now calculated, so shift the x & y to match alignment settings
@@ -502,7 +502,7 @@ p5.Font.prototype._handleAlignment = function (
 function pathToPoints(cmds, options) {
   const opts = parseOpts(options, {
     sampleFactor: 0.1,
-    simplifyThreshold: 0,
+    simplifyThreshold: 0
   });
 
   const // total-length
@@ -644,7 +644,7 @@ function findDotsAtSegment(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
     n: { x: nx, y: ny },
     start: { x: ax, y: ay },
     end: { x: cx, y: cy },
-    alpha,
+    alpha
   };
 }
 
@@ -1066,7 +1066,7 @@ function a2c(x1, y1, rx, ry, angle, lac, sweep_flag, x2, y2, recursive) {
       f2,
       f2old,
       cx,
-      cy,
+      cy
     ]);
   }
   df = f2 - f1;
@@ -1105,40 +1105,40 @@ function catmullRom2bezier(crp, z) {
     const p = [
       {
         x: +crp[i - 2],
-        y: +crp[i - 1],
+        y: +crp[i - 1]
       },
       {
         x: +crp[i],
-        y: +crp[i + 1],
+        y: +crp[i + 1]
       },
       {
         x: +crp[i + 2],
-        y: +crp[i + 3],
+        y: +crp[i + 3]
       },
       {
         x: +crp[i + 4],
-        y: +crp[i + 5],
-      },
+        y: +crp[i + 5]
+      }
     ];
     if (z) {
       if (!i) {
         p[0] = {
           x: +crp[iLen - 2],
-          y: +crp[iLen - 1],
+          y: +crp[iLen - 1]
         };
       } else if (iLen - 4 === i) {
         p[3] = {
           x: +crp[0],
-          y: +crp[1],
+          y: +crp[1]
         };
       } else if (iLen - 2 === i) {
         p[2] = {
           x: +crp[0],
-          y: +crp[1],
+          y: +crp[1]
         };
         p[3] = {
           x: +crp[2],
-          y: +crp[3],
+          y: +crp[3]
         };
       }
     } else {
@@ -1147,7 +1147,7 @@ function catmullRom2bezier(crp, z) {
       } else if (!i) {
         p[0] = {
           x: +crp[i],
-          y: +crp[i + 1],
+          y: +crp[i + 1]
         };
       }
     }
@@ -1158,7 +1158,7 @@ function catmullRom2bezier(crp, z) {
       (p[1].x + 6 * p[2].x - p[3].x) / 6,
       (p[1].y + 6 * p[2].y - p[3].y) / 6,
       p[2].x,
-      p[2].y,
+      p[2].y
     ]);
   }
 
@@ -1178,7 +1178,7 @@ function q2c(x1, y1, ax, ay, x2, y2) {
     _13 * x2 + _23 * ax,
     _13 * y2 + _23 * ay,
     x2,
-    y2,
+    y2
   ];
 }
 
@@ -1201,7 +1201,7 @@ function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
     -0.9041,
     0.9041,
     -0.9816,
-    0.9816,
+    0.9816
   ];
 
   let sum = 0;
@@ -1217,7 +1217,7 @@ function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
     0.1069,
     0.1069,
     0.0472,
-    0.0472,
+    0.0472
   ];
 
   for (let i = 0; i < n; i++) {

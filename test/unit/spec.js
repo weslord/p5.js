@@ -14,7 +14,7 @@ var spec = {
     'rendering',
     'structure',
     'transform',
-    'vertex',
+    'vertex'
   ],
   data: ['p5.TypedDict', 'local_storage'],
   dom: ['dom'],
@@ -30,7 +30,7 @@ var spec = {
     'saveTable',
     'loadImage',
     'loadModel',
-    'loadShader',
+    'loadShader'
   ],
   math: ['calculation', 'noise', 'p5.Vector', 'random', 'trigonometry'],
   typography: ['attributes', 'loadFont', 'p5.Font'],
@@ -43,8 +43,8 @@ var spec = {
     'p5.RendererGL',
     'p5.Shader',
     'p5.Texture',
-    'light',
-  ],
+    'light'
+  ]
 };
 Object.keys(spec).map(function (folder) {
   spec[folder].map(function (file) {
@@ -53,7 +53,7 @@ Object.keys(spec).map(function (folder) {
       folder,
       '/',
       file,
-      '.js" type="text/javascript" ></script>',
+      '.js" type="text/javascript" ></script>'
     ];
     document.write(string.join(''));
   });

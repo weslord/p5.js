@@ -25,7 +25,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     'constant',
     'function',
     'any',
-    'integer',
+    'integer'
   ]);
 
   const basicTypes = {
@@ -33,7 +33,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     boolean: true,
     string: true,
     function: true,
-    undefined: true,
+    undefined: true
   };
 
   // reverse map of all constants
@@ -235,7 +235,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           if (type.substr(type.length - 2, 2) === '[]') {
             return {
               name: type,
-              array: ct(type.substr(0, type.length - 2)),
+              array: ct(type.substr(0, type.length - 2))
             };
           }
 
@@ -254,7 +254,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
 
               constant = mapConstants[format.name] = {
                 values,
-                names,
+                names
               };
 
               const myArray = myRe.exec(format.description);
@@ -278,7 +278,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
               name: type,
               builtin: lowerType,
               names: constant.names,
-              values: constant.values,
+              values: constant.values
             };
           }
 
@@ -314,7 +314,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
     });
     return {
       overloads,
-      maxParams,
+      maxParams
     };
   };
 
@@ -427,16 +427,16 @@ if (typeof IS_MINIFIED !== 'undefined') {
         {
           type: 'TOO_FEW_ARGUMENTS',
           argCount,
-          minParams,
-        },
+          minParams
+        }
       ];
     } else if (argCount > formats.length) {
       return [
         {
           type: 'TOO_MANY_ARGUMENTS',
           argCount,
-          maxParams: formats.length,
-        },
+          maxParams: formats.length
+        }
       ];
     }
 
@@ -451,7 +451,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           errorArray.push({
             type: 'EMPTY_VAR',
             position: p,
-            format,
+            format
           });
         }
       } else if (testParamTypes(arg, format.types) > 0) {
@@ -459,7 +459,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
           type: 'WRONG_TYPE',
           position: p,
           format,
-          arg,
+          arg
         });
       }
     }
@@ -508,9 +508,9 @@ if (typeof IS_MINIFIED !== 'undefined') {
           /* i18next-extract-mark-context-next-line ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] */
           position: translator('fes.positions.p', {
             context: (errorObj.position + 1).toString(),
-            defaultValue: (errorObj.position + 1).toString(),
+            defaultValue: (errorObj.position + 1).toString()
           }),
-          link: '[https://p5js.org/examples/data-variable-scope.html]',
+          link: '[https://p5js.org/examples/data-variable-scope.html]'
         };
 
         break;
@@ -531,8 +531,8 @@ if (typeof IS_MINIFIED !== 'undefined') {
           /* i18next-extract-mark-context-next-line ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] */
           position: translator('fes.positions.p', {
             context: (errorObj.position + 1).toString(),
-            defaultValue: (errorObj.position + 1).toString(),
-          }),
+            defaultValue: (errorObj.position + 1).toString()
+          })
         };
 
         break;
@@ -541,7 +541,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         translationObj = {
           func,
           minParams: errorObj.minParams,
-          argCount: errorObj.argCount,
+          argCount: errorObj.argCount
         };
 
         break;
@@ -550,7 +550,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
         translationObj = {
           func,
           maxParams: errorObj.maxParams,
-          argCount: errorObj.argCount,
+          argCount: errorObj.argCount
         };
 
         break;
@@ -587,7 +587,7 @@ if (typeof IS_MINIFIED !== 'undefined') {
             location: location,
             // for e.g. get "sketch.js" from "https://example.com/abc/sketch.js"
             file: parsed[3].fileName.split('/').slice(-1),
-            line: parsed[3].lineNumber,
+            line: parsed[3].lineNumber
           });
 
           // tell fesErrorMonitor that we have already given a friendly message

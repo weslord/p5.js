@@ -73,7 +73,7 @@ p5.prototype.loadImage = function (path, successCallback, failureCallback) {
 
   const req = new Request(path, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'cors'
   });
 
   fetch(path, req).then((response) => {
@@ -195,7 +195,7 @@ function _createGif(
       pImg.drawingContext.putImageData(imageData, 0, 0);
       frames.push({
         image: pImg.drawingContext.getImageData(0, 0, pImg.width, pImg.height),
-        delay: frameInfo.delay * 10, //GIF stores delay in one-hundredth of a second, shift to ms
+        delay: frameInfo.delay * 10 //GIF stores delay in one-hundredth of a second, shift to ms
       });
     }
 
@@ -225,7 +225,7 @@ function _createGif(
       numFrames,
       playing: true,
       timeDisplayed: 0,
-      lastChangeTime: 0,
+      lastChangeTime: 0
     };
   }
 

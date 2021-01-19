@@ -26,14 +26,14 @@
       placeholder: '--',
       preload: 'metadata',
       volume: 80,
-      document: document,
+      document: document
     },
     types: {
       mp3: 'audio/mpeg',
       ogg: 'audio/ogg',
       wav: 'audio/wav',
       aac: 'audio/aac',
-      m4a: 'audio/x-m4a',
+      m4a: 'audio/x-m4a'
     },
     sounds: [],
     el: document.createElement('audio'),
@@ -353,7 +353,7 @@
           type = idx.split('.')[0];
           events.push({
             idx: idx,
-            func: efunc,
+            func: efunc
           });
           this.sound.addEventListener(type, efunc, true);
         }
@@ -489,7 +489,7 @@
         for (var i = 0; i <= length; i++) {
           array.push({
             start: timeRange.start(i),
-            end: timeRange.end(i),
+            end: timeRange.end(i)
           });
         }
         return array;
@@ -724,7 +724,7 @@
     fromPercent: function (percent, total, decimal) {
       var r = Math.pow(10, decimal || 0);
       return Math.round((total / 100) * percent * r) / r;
-    },
+    }
   };
   return buzz;
 });

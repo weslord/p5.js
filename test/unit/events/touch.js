@@ -16,19 +16,19 @@ suite('Touch Events', function () {
           target: canvas,
           clientX: 100,
           clientY: 100,
-          identifier: 36,
+          identifier: 36
         });
         touchObj2 = new Touch({
           target: canvas,
           clientX: 200,
           clientY: 200,
-          identifier: 35,
+          identifier: 35
         });
         touchEvent1 = new TouchEvent('touchmove', {
-          touches: [touchObj1, touchObj2],
+          touches: [touchObj1, touchObj2]
         });
         touchEvent2 = new TouchEvent('touchmove', {
-          touches: [touchObj2],
+          touches: [touchObj2]
         });
         done();
       };

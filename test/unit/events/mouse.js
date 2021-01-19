@@ -22,19 +22,19 @@ suite('Mouse Events', function () {
           target: canvas,
           identifier: Date.now(),
           clientX: 100,
-          clientY: 100,
+          clientY: 100
         });
         touchObj2 = new Touch({
           target: canvas,
           identifier: Date.now() + 1,
           clientX: 200,
-          clientY: 200,
+          clientY: 200
         });
         touchEvent1 = new TouchEvent('touchmove', {
-          touches: [touchObj1, touchObj2],
+          touches: [touchObj1, touchObj2]
         });
         touchEvent2 = new TouchEvent('touchmove', {
-          touches: [touchObj2],
+          touches: [touchObj2]
         });
         done();
       };

@@ -9,48 +9,48 @@ const strings = {
     {
       msg: '{{}} is not defined',
       type: 'NOTDEFINED',
-      browser: 'all',
+      browser: 'all'
     },
     {
       msg: "Can't find variable: {{}}",
       type: 'NOTDEFINED',
-      browser: 'Safari',
-    },
+      browser: 'Safari'
+    }
   ],
   SyntaxError: [
     {
       msg: 'illegal character',
       type: 'INVALIDTOKEN',
-      browser: 'Firefox',
+      browser: 'Firefox'
     },
     {
       msg: 'Invalid character',
       type: 'INVALIDTOKEN',
-      browser: 'Safari',
+      browser: 'Safari'
     },
     {
       msg: 'Invalid or unexpected token',
       type: 'INVALIDTOKEN',
-      browser: 'Chrome',
+      browser: 'Chrome'
     },
     {
       msg: "Unexpected token '{{.}}'",
       type: 'UNEXPECTEDTOKEN',
-      browser: 'Chrome',
+      browser: 'Chrome'
     },
     {
       msg: "expected {{.}}, got '{{.}}'",
       type: 'UNEXPECTEDTOKEN',
-      browser: 'Chrome',
-    },
+      browser: 'Chrome'
+    }
   ],
   TypeError: [
     {
       msg: '{{.}} is not a function',
       type: 'NOTFUNC',
-      browser: 'all',
-    },
-  ],
+      browser: 'all'
+    }
+  ]
 };
 
 export default strings;

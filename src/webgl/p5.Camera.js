@@ -1204,7 +1204,7 @@ p5.Camera.prototype._getLocalAxes = function () {
   return {
     x: [x0, x1, x2],
     y: [y0, y1, y2],
-    z: [z0, z1, z2],
+    z: [z0, z1, z2]
   };
 };
 

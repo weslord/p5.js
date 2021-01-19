@@ -77,8 +77,8 @@ p5.Renderer.prototype.push = function () {
       _textSize: this._textSize,
       _textAlign: this._textAlign,
       _textBaseline: this._textBaseline,
-      _textStyle: this._textStyle,
-    },
+      _textStyle: this._textStyle
+    }
   };
 };
 
@@ -203,7 +203,7 @@ p5.Renderer.prototype.textAlign = function (h, v) {
   } else {
     return {
       horizontal: this._textAlign,
-      vertical: this._textBaseline,
+      vertical: this._textBaseline
     };
   }
 };

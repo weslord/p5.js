@@ -42,7 +42,7 @@ suite('local storage', function () {
     test('object storage should work', function () {
       assert.deepEqual(myp5.getItem('myObject'), {
         one: 1,
-        two: { nested: true },
+        two: { nested: true }
       });
     });
     test('object storage retrieval should store the correct type ID', function () {

@@ -1,4 +1,6 @@
 {
   "singleQuote": true,
-  "parser": "babel"
+  "parser": "babel",
+  "trailingComma": "none",
+  "arrowParens": "avoid"
 }

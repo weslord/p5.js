@@ -9,7 +9,7 @@ module.exports = function (runner) {
     failures: 0,
     duration: 0,
     start: 0,
-    end: 0,
+    end: 0
   });
 
   runner.on('start', function () {

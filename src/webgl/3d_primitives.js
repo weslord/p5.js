@@ -154,7 +154,7 @@ p5.prototype.box = function (width, height, depth, detailX, detailY) {
         [0, 1, 4, 5], // 0, -1, 0],// -y
         [2, 6, 3, 7], // 0, +1, 0],// +y
         [0, 2, 1, 3], // 0, 0, -1],// -z
-        [4, 5, 6, 7], // 0, 0, +1] // +z
+        [4, 5, 6, 7] // 0, 0, +1] // +z
       ];
       //using strokeIndices instead of faces for strokes
       //to avoid diagonal stroke lines across face of box
@@ -170,7 +170,7 @@ p5.prototype.box = function (width, height, depth, detailX, detailY) {
         [17, 19],
         [18, 19],
         [20, 21],
-        [22, 23],
+        [22, 23]
       ];
       for (let i = 0; i < cubeIndices.length; i++) {
         const cubeIndex = cubeIndices[i];
@@ -383,7 +383,7 @@ const _truncatedCone = function (
       this.faces.push([
         startIndex + jj,
         startIndex + detailX + nextjj,
-        startIndex + detailX + jj,
+        startIndex + detailX + jj
       ]);
     }
     startIndex += detailX * 2;
@@ -394,12 +394,12 @@ const _truncatedCone = function (
       this.faces.push([
         startIndex + ii,
         startIndex + nextii,
-        startIndex + detailX + nextii,
+        startIndex + detailX + nextii
       ]);
       this.faces.push([
         startIndex + ii,
         startIndex + detailX + nextii,
-        startIndex + detailX + ii,
+        startIndex + detailX + ii
       ]);
     }
     startIndex += detailX;
@@ -410,7 +410,7 @@ const _truncatedCone = function (
       this.faces.push([
         startIndex + ii,
         startIndex + ((ii + 1) % detailX),
-        startIndex + detailX,
+        startIndex + detailX
       ]);
     }
   }
@@ -1020,7 +1020,7 @@ p5.RendererGL.prototype.triangle = function (args) {
       this.strokeIndices = [
         [0, 1],
         [1, 2],
-        [2, 0],
+        [2, 0]
       ];
       this.vertices = vertices;
       this.faces = [[0, 1, 2]];
@@ -1128,12 +1128,12 @@ p5.RendererGL.prototype.arc = function (args) {
             this.faces.push([
               0,
               this.vertices.length - 2,
-              this.vertices.length - 1,
+              this.vertices.length - 1
             ]);
             this.strokeIndices.push([0, 1]);
             this.strokeIndices.push([
               this.vertices.length - 2,
-              this.vertices.length - 1,
+              this.vertices.length - 1
             ]);
             this.strokeIndices.push([0, this.vertices.length - 1]);
             break;
@@ -1151,11 +1151,11 @@ p5.RendererGL.prototype.arc = function (args) {
             this.faces.push([
               0,
               this.vertices.length - 2,
-              this.vertices.length - 1,
+              this.vertices.length - 1
             ]);
             this.strokeIndices.push([
               this.vertices.length - 2,
-              this.vertices.length - 1,
+              this.vertices.length - 1
             ]);
         }
       }
@@ -1213,7 +1213,7 @@ p5.RendererGL.prototype.rect = function (args) {
           [0, detailX],
           [detailX, (detailX + 1) * (detailY + 1) - 1],
           [(detailX + 1) * (detailY + 1) - 1, (detailX + 1) * detailY],
-          [(detailX + 1) * detailY, 0],
+          [(detailX + 1) * detailY, 0]
         ];
       }
     };
@@ -1666,13 +1666,13 @@ p5.RendererGL.prototype.curveVertex = function (...args) {
         this.immediateMode._curveVertex[0],
         this.immediateMode._curveVertex[2],
         this.immediateMode._curveVertex[4],
-        this.immediateMode._curveVertex[6],
+        this.immediateMode._curveVertex[6]
       ]);
       w_y = this._bezierToCatmull([
         this.immediateMode._curveVertex[1],
         this.immediateMode._curveVertex[3],
         this.immediateMode._curveVertex[5],
-        this.immediateMode._curveVertex[7],
+        this.immediateMode._curveVertex[7]
       ]);
       for (i = 0; i < LUTLength; i++) {
         _x =
@@ -1701,19 +1701,19 @@ p5.RendererGL.prototype.curveVertex = function (...args) {
         this.immediateMode._curveVertex[0],
         this.immediateMode._curveVertex[3],
         this.immediateMode._curveVertex[6],
-        this.immediateMode._curveVertex[9],
+        this.immediateMode._curveVertex[9]
       ]);
       w_y = this._bezierToCatmull([
         this.immediateMode._curveVertex[1],
         this.immediateMode._curveVertex[4],
         this.immediateMode._curveVertex[7],
-        this.immediateMode._curveVertex[10],
+        this.immediateMode._curveVertex[10]
       ]);
       w_z = this._bezierToCatmull([
         this.immediateMode._curveVertex[2],
         this.immediateMode._curveVertex[5],
         this.immediateMode._curveVertex[8],
-        this.immediateMode._curveVertex[11],
+        this.immediateMode._curveVertex[11]
       ]);
       for (i = 0; i < LUTLength; i++) {
         _x =

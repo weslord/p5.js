@@ -297,7 +297,7 @@ p5.prototype.saveGif = function (pImg, filename) {
   // global opts
   const opts = {
     loop: loopLimit,
-    palette: new Uint32Array(globalPalette),
+    palette: new Uint32Array(globalPalette)
   };
   const gifWriter = new omggif.GifWriter(buffer, pImg.width, pImg.height, opts);
   let previousFrame = {};
@@ -387,7 +387,7 @@ p5.prototype.saveGif = function (pImg, filename) {
     // previous frame object should now have details of this frame
     previousFrame = {
       pixelPaletteIndex,
-      frameOpts,
+      frameOpts
     };
   }
 
@@ -404,7 +404,7 @@ p5.prototype.saveGif = function (pImg, filename) {
 
   const extension = 'gif';
   const blob = new Blob([buffer.slice(0, gifWriter.end())], {
-    type: 'image/gif',
+    type: 'image/gif'
   });
   p5.prototype.downloadFile(blob, filename, extension);
 };

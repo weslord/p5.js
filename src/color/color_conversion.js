@@ -177,7 +177,7 @@ p5.ColorConversion._hslaToRGBA = function (hsla) {
       hzvToRGB(hue + 2, zest, val),
       hzvToRGB(hue, zest, val),
       hzvToRGB(hue - 2, zest, val),
-      hsla[3],
+      hsla[3]
     ];
   }
 

@@ -51,7 +51,7 @@ function splitLines(text) {
     lines.push({
       index: m.index,
       text: m[1],
-      prefixLength: m[2] ? m[2].length : 0,
+      prefixLength: m[2] ? m[2].length : 0
     });
   }
 
@@ -80,7 +80,7 @@ const userFunctions = [
   'deviceShaken',
   'keyPressed',
   'keyReleased',
-  'keyTyped',
+  'keyTyped'
 ];
 const userFunctionTrailer =
   EOL + userFunctions.map((s) => 'typeof ' + s + ';').join(EOL) + EOL;
@@ -88,8 +88,8 @@ const userFunctionTrailer =
 module.exports = {
   environments: {
     p5: {
-      globals: globals,
-    },
+      globals: globals
+    }
   },
   processors: {
     '.js': {
@@ -105,7 +105,7 @@ module.exports = {
           const value = m[0];
           comments.push({
             value: value,
-            range: [m.index, m.index + value.length],
+            range: [m.index, m.index + value.length]
           });
         }
 
@@ -124,7 +124,7 @@ module.exports = {
             samples.push({
               comment: comment,
               index: m.index + m[1].length,
-              code: code,
+              code: code
             });
           }
         }
@@ -189,9 +189,9 @@ module.exports = {
           }
         }
         return problems;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 
 function eslintFiles(opts, filesSrc) {
@@ -200,7 +200,7 @@ function eslintFiles(opts, filesSrc) {
     quiet: false,
     maxWarnings: -1,
     envs: ['eslint-samples/p5', 'amd'],
-    format: 'unix',
+    format: 'unix'
   };
 
   if (filesSrc.length === 0) {
