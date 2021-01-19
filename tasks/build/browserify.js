@@ -89,7 +89,8 @@ module.exports = function(grunt) {
           if (!isMin) {
             code = format(code, {
               singleQuote: true,
-              printWidth: 80 + 12
+              printWidth: 80 + 12,
+              parser: 'babel'
             });
           }
 
